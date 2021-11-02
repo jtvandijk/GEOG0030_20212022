@@ -1,0 +1,11 @@
+fig:01-rstudio-interface
+geocomputation-an-introduction
+lecture-recording
+reading-list
+getting-started
+software
+qgis-installation
+r-and-rstudio-installation
+ucl-desktop-and-rstudio-server
+a-note-on-arcgis
+file-management

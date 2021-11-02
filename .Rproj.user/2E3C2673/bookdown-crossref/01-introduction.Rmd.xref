@@ -1,7 +1,11 @@
-h1:software-installation Software Installation
-h2:qgis QGIS
-h2:r-and-r-studio R and R-Studio
-h3:r-studio-setup-1 R-Studio Setup 1
+h1:part-foundational-concepts (PART*) Foundational Concepts
+h1:geocomputation-an-introduction Geocomputation: An Introduction
+h2:reading-list Reading list
+h2:what-is-geocomputation What is Geocomputation?
+h2:software Software
+h3:qgis-installation QGIS Installation
+h2:r-and-rstudio-installation R and RStudio Installation
+h2:ucl-desktop-and-rstudio-server UCL Desktop and RStudio Server
 h3:r-studio-setup-2 R-Studio Setup 2
 h2:arcgis ArcGIS
 
