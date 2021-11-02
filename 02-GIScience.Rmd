@@ -1,0 +1,10 @@
+# GIScience and GIS software
+
+This week’s lecture introduced you to foundational concepts associated with GIScience and GIS software. Out of all our foundational concepts you will come across in the next four weeks, this is probably the most substantial to get to grips with - and has both significant theoretical and practical aspects to its learning.
+
+## Lecture recording {#recording-w02}
+- Lecture W1
+
+## Reading list {#reading-w02}
+- Reading #1
+- Reading #2

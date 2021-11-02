@@ -6,10 +6,10 @@ We set the scene for the remainder of the module and explained how the foundatio
 
 For this week only, there is no practical per se, but you will need to complete a few practical tasks in preparation for our future practicals.
 
-## Lecture recording
+## Lecture recording {#recording-w01}
 - Lecture W1
 
-## Reading list
+## Reading list {#reading-w01}
 - Reading #1
 - Reading #2
 
