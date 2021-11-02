@@ -275,7 +275,7 @@ Before adding our population data, we can make a quick map of the wards in Londo
 
 10. In the `Properties` box, click on the `Symbology` tab - this is where we can change how our data layer looks. For example, here we can change the line and fill colour of our Wards utilising either the default options available or clicking on **Simple Fill** and changing these properties directly. Keep the overall **styling** to a **Single Symbol** for now - we will get back to this once we have added the population data. You can also click on the `Labels` tab - and set the Labels option to `Single labels`. 
 
-11. Q-GIS will default to the **NAME** column within our data. You can change the properties of these labels using the options available. We will add a small buffer to our labels and change the font to **Futura** and size **8**. You can click **Apply** to see what your labels look like.
+11. QGIS will default to the **NAME** column within our data. You can change the properties of these labels using the options available. We will add a small buffer to our labels and change the font to **Futura** and size **8**. You can click **Apply** to see what your labels look like.
 
 ```{r echo=FALSE, fig.align='center', fig.cap='It looks incredibly busy.'}
 knitr::include_graphics('images/w02/wardlabels.png')
@@ -294,7 +294,7 @@ The second concept is the order in which your layers are drawn – and this is r
 
 Being aware of this need for 'order' is important when we shift to using R-Studio and `ggoplot2` to plot our maps, as if you do not layer your data correctly in your code, your map will end up not looking as you hoped!
 
-For us using Q-GIS right now, the layers will be drawn from bottom to top. At the moment, we only have one layer loaded, so we do not need to worry about our order right now - but as we add in our 2015 and 2018 ward files, it is useful to know about this order as we will need to display them individually to export them at the end.
+For us using QGIS right now, the layers will be drawn from bottom to top. At the moment, we only have one layer loaded, so we do not need to worry about our order right now - but as we add in our 2015 and 2018 ward files, it is useful to know about this order as we will need to display them individually to export them at the end.
 :::
 
 #### Conducting an attribute join
@@ -302,7 +302,7 @@ We are now going to join our 2011 population data to our 2011 shapefile. First, 
 
 13. Click on **Layer** -> **Add Layer** -> **Add Delimited Text Layer**.
 
-14. Click on the three dots button again and navigate to your **2011 population data** in your `working` folder. Your file format should be set to `csv`. You should have the following boxes clicked: *Decimal separator is comma; First record has field names' Detect field types; Discard empty fields*. Q-GIS does many of these by default, but do double-check!
+14. Click on the three dots button again and navigate to your **2011 population data** in your `working` folder. Your file format should be set to `csv`. You should have the following boxes clicked: *Decimal separator is comma; First record has field names' Detect field types; Discard empty fields*. QGIS does many of these by default, but do double-check!
 
 15. Set the Geometry to *No geometry (attribute only table)*. Then click **Add** and **Close***. You should now see a table added to your `Layers` box.
 
@@ -338,7 +338,7 @@ To make our join work, we need to check that we have a matching **UID** across b
 - Click the `Joined Fields` box and click to only select the `POP2011` field.
 - Click on the **Custom Field Name Prefix** and **remove** the pre-entered text to leave it blank.
 - Click on **OK**.
-- Click on **Apply** in the main Join tab and then click OK to return to the main Q-GIS window.
+- Click on **Apply** in the main Join tab and then click OK to return to the main QGIS window.
 
 We can now check to see if our join has worked by opening up our `London_Ward` **Attribute Table** and looking to see if our wards now have a **Population** field attached to it:
 
@@ -398,11 +398,11 @@ You now need to **repeat this whole process** for your 2015 and 2019 datasets. R
 - Export your joined data set into a new data set within your `final` folder.
 * Style your data appropriately.
 
-To make visual comparisions against our three datasets, theorectically we would need to standardise the breaks at which our classification schemes are set at. This can be a little fiddly with Q-GIS, so for now, you can leave your symbolisation to the default settings.
+To make visual comparisions against our three datasets, theorectically we would need to standardise the breaks at which our classification schemes are set at. This can be a little fiddly with QGIS, so for now, you can leave your symbolisation to the default settings.
 
 Alternatively, to set all three datasets to the same breaks, you can do the following:
 
-- Right-click on the `ward_population_2019` dataset and navigate to the `Symbology` tab. Double-click on the Values for the smallest classifcation group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click OK, then Click Apply, then Click OK to return to the main Q-GIS screen.
+- Right-click on the `ward_population_2019` dataset and navigate to the `Symbology` tab. Double-click on the Values for the smallest classifcation group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click OK, then Click Apply, then Click OK to return to the main QGIS screen.
 -  Right-click again on the `ward_population_2019` dataset but this time, click on **Styles** -> **Copy Styles** -> **Symbology**.
 - Now right-click on the `ward_population_2015` file, but this time after clicking on **Styles** -> **Paste Style** -> **Symbology**. You should now see the classification breaks in the 2015 data set change to match those in the 2019 data.
 - Repeat this for the 2011 dataset as well.

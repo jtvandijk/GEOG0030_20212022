@@ -393,7 +393,7 @@ We will explain CRSs and using CRSs in GIS software in more detail next week.</p
 <p>Before adding our population data, we can make a quick map of the wards in London - we can add <strong>labels</strong> and change the <strong>symbolisation</strong> of our wards.</p>
 <ol start="10" style="list-style-type: decimal">
 <li><p>In the <code>Properties</code> box, click on the <code>Symbology</code> tab - this is where we can change how our data layer looks. For example, here we can change the line and fill colour of our Wards utilising either the default options available or clicking on <strong>Simple Fill</strong> and changing these properties directly. Keep the overall <strong>styling</strong> to a <strong>Single Symbol</strong> for now - we will get back to this once we have added the population data. You can also click on the <code>Labels</code> tab - and set the Labels option to <code>Single labels</code>.</p></li>
-<li><p>Q-GIS will default to the <strong>NAME</strong> column within our data. You can change the properties of these labels using the options available. We will add a small buffer to our labels and change the font to <strong>Futura</strong> and size <strong>8</strong>. You can click <strong>Apply</strong> to see what your labels look like.</p></li>
+<li><p>QGIS will default to the <strong>NAME</strong> column within our data. You can change the properties of these labels using the options available. We will add a small buffer to our labels and change the font to <strong>Futura</strong> and size <strong>8</strong>. You can click <strong>Apply</strong> to see what your labels look like.</p></li>
 </ol>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="images/w02/wardlabels.png" alt="It looks incredibly busy." width="1127" />
@@ -411,14 +411,14 @@ The main strength of a GUI GIS system is that is really helps us understand how 
 <p>The first, and this is only really relevant to GUI GIS systems, is that each layer can either be turned on or off, to make it visible or not (try clicking the tick box to the left of each layer). This is probably a feature you are used to working with if you have played with interactive web mapping applications before!</p>
 <p>The second concept is the order in which your layers are drawn – and this is relevant for both GUI GIS and when using plotting libraries such as ggplot2 in RStudio. Your layers will be drawn depending on the order in which your layers are either tabled (as in a GUI GIS) or ‘called’ in your function in code.</p>
 <p>Being aware of this need for ‘order’ is important when we shift to using R-Studio and <code>ggoplot2</code> to plot our maps, as if you do not layer your data correctly in your code, your map will end up not looking as you hoped!</p>
-<p>For us using Q-GIS right now, the layers will be drawn from bottom to top. At the moment, we only have one layer loaded, so we do not need to worry about our order right now - but as we add in our 2015 and 2018 ward files, it is useful to know about this order as we will need to display them individually to export them at the end.</p>
+<p>For us using QGIS right now, the layers will be drawn from bottom to top. At the moment, we only have one layer loaded, so we do not need to worry about our order right now - but as we add in our 2015 and 2018 ward files, it is useful to know about this order as we will need to display them individually to export them at the end.</p>
 </div>
 <div id="conducting-an-attribute-join" class="section level4" number="2.4.4.1">
 <h4><span class="header-section-number">2.4.4.1</span> Conducting an attribute join</h4>
 <p>We are now going to join our 2011 population data to our 2011 shapefile. First, we need to add the 2011 population data to our project.</p>
 <ol start="13" style="list-style-type: decimal">
 <li><p>Click on <strong>Layer</strong> -&gt; <strong>Add Layer</strong> -&gt; <strong>Add Delimited Text Layer</strong>.</p></li>
-<li><p>Click on the three dots button again and navigate to your <strong>2011 population data</strong> in your <code>working</code> folder. Your file format should be set to <code>csv</code>. You should have the following boxes clicked: <em>Decimal separator is comma; First record has field names’ Detect field types; Discard empty fields</em>. Q-GIS does many of these by default, but do double-check!</p></li>
+<li><p>Click on the three dots button again and navigate to your <strong>2011 population data</strong> in your <code>working</code> folder. Your file format should be set to <code>csv</code>. You should have the following boxes clicked: <em>Decimal separator is comma; First record has field names’ Detect field types; Discard empty fields</em>. QGIS does many of these by default, but do double-check!</p></li>
 <li><p>Set the Geometry to <em>No geometry (attribute only table)</em>. Then click <strong>Add</strong> and <strong>Close</strong>*. You should now see a table added to your <code>Layers</code> box.</p></li>
 </ol>
 <p>We can now join this table data to our spatial data using an <strong>Attribute Join</strong>.</p>
@@ -444,7 +444,7 @@ An attribute join is one of two types of data joins you will use in spatial anal
 <li>Click the <code>Joined Fields</code> box and click to only select the <code>POP2011</code> field.</li>
 <li>Click on the <strong>Custom Field Name Prefix</strong> and <strong>remove</strong> the pre-entered text to leave it blank.</li>
 <li>Click on <strong>OK</strong>.</li>
-<li>Click on <strong>Apply</strong> in the main Join tab and then click OK to return to the main Q-GIS window.</li>
+<li>Click on <strong>Apply</strong> in the main Join tab and then click OK to return to the main QGIS window.</li>
 </ul>
 <p>We can now check to see if our join has worked by opening up our <code>London_Ward</code> <strong>Attribute Table</strong> and looking to see if our wards now have a <strong>Population</strong> field attached to it:</p>
 <ol start="18" style="list-style-type: decimal">
@@ -504,10 +504,10 @@ Figure 2.5: Your result.
 <li>Export your joined data set into a new data set within your <code>final</code> folder.</li>
 <li>Style your data appropriately.</li>
 </ul>
-<p>To make visual comparisions against our three datasets, theorectically we would need to standardise the breaks at which our classification schemes are set at. This can be a little fiddly with Q-GIS, so for now, you can leave your symbolisation to the default settings.</p>
+<p>To make visual comparisions against our three datasets, theorectically we would need to standardise the breaks at which our classification schemes are set at. This can be a little fiddly with QGIS, so for now, you can leave your symbolisation to the default settings.</p>
 <p>Alternatively, to set all three datasets to the same breaks, you can do the following:</p>
 <ul>
-<li>Right-click on the <code>ward_population_2019</code> dataset and navigate to the <code>Symbology</code> tab. Double-click on the Values for the smallest classifcation group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click OK, then Click Apply, then Click OK to return to the main Q-GIS screen.</li>
+<li>Right-click on the <code>ward_population_2019</code> dataset and navigate to the <code>Symbology</code> tab. Double-click on the Values for the smallest classifcation group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click OK, then Click Apply, then Click OK to return to the main QGIS screen.</li>
 <li>Right-click again on the <code>ward_population_2019</code> dataset but this time, click on <strong>Styles</strong> -&gt; <strong>Copy Styles</strong> -&gt; <strong>Symbology</strong>.</li>
 <li>Now right-click on the <code>ward_population_2015</code> file, but this time after clicking on <strong>Styles</strong> -&gt; <strong>Paste Style</strong> -&gt; <strong>Symbology</strong>. You should now see the classification breaks in the 2015 data set change to match those in the 2019 data.</li>
 <li>Repeat this for the 2011 dataset as well.</li>
