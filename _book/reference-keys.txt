@@ -1,4 +1,9 @@
 fig:01-rstudio-interface
+fig:unnamed-chunk-2
+fig:unnamed-chunk-3
+fig:unnamed-chunk-4
+fig:unnamed-chunk-5
+fig:unnamed-chunk-7
 geocomputation-an-introduction
 recording-w01
 reading-w01
@@ -12,3 +17,17 @@ file-management
 giscience-and-gis-software
 recording-w02
 reading-w02
+simple-digitisation-of-spatial-features
+population-change-in-london
+setting-the-scene
+finding-our-data-sets
+downloading-and-processing
+administrative-geography-boundaries
+population-data
+cleaning-our-population-data-sets
+using-qgis-to-map-our-population-data
+conducting-an-attribute-join
+conducting-an-attribute-join-for-20142015-and-20182019
+exporting-our-maps-for-visual-analysis
+fig:unnamed-chunk-1
+fig:unnamed-chunk-6
