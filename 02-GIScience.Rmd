@@ -46,13 +46,13 @@ When using spatial data, there is generally a very specific workflow that you wi
 
 Along with the idea that **80% of data is geographic data**, the second most often-quoted GIS-related unreferenced ‘fact’ is that anyone working with spatial data will spend **80% of their time simply finding, retrieving, managing and processing the data** – before any analysis can be done.
 
-One of the reasons behind this need for a substantial amount of processing is that the data you often need to use is not in the format that you require for analysis. For example, for our investigation, there is not a ‘ready-made’ spatial population dataset (i.e. population `shapefile`) we can download to explore population change across England:
+One of the reasons behind this need for a substantial amount of processing is that the data you often need to use is not in the format that you require for analysis. For example, for our investigation, there is not a ‘ready-made’ spatial population data set (i.e. population `shapefile`) we can download to explore population change across England:
 
 ```{r echo=FALSE, fig.align='center', fig.cap='Alas a quick Google search shows that finding a shapefile of England\'s population is incredibly difficult.'}
 knitr::include_graphics('images/w02/datasearch.png')
 ```
 
-Instead, we need to go and find the raw datasets and create the data layers that we want. As a result, before beginning any spatial analysis project, it is best-practice to think through what end product you will ultimately need for your analysis.
+Instead, we need to go and find the raw data sets and create the data layers that we want. As a result, before beginning any spatial analysis project, it is best-practice to think through what end product you will ultimately need for your analysis.
 
 A typical spatial analysis workflow usually looks something like this:
 
@@ -83,7 +83,7 @@ This data will be used in our future practicals to **normalise** certain data, s
 When we record events created by humans, there is often a population bias: simply, more people in an area will by probability lead to a higher occurrence of said event, such as crime. We will look at this in greater detail next week.
 
 ### Finding our data sets
-In the UK, finding authoritative data on population and Administrative Geography boundaries is increasingly straight-forward. Over the last ten years, the UK government has opened up many of its datasets as part of an Open Data precedent that began in 2010 with the creation of [data.gov.uk](data.gov.uk) and the Open Government Licence (the terms and conditions for using data).
+In the UK, finding authoritative data on population and Administrative Geography boundaries is increasingly straight-forward. Over the last ten years, the UK government has opened up many of its data sets as part of an Open Data precedent that began in 2010 with the creation of [data.gov.uk](data.gov.uk) and the Open Government Licence (the terms and conditions for using data).
 
 [Data.gov.uk](www.data.gov.uk) is the UK government’s central database that contains open data that the central government, local authorities and public bodies publish. This includes, for example, aggregated census and health data – and even government spending. In addition to this central database, there are other authoritative databases run by the government and/or respective public bodies that contain either a specific type of data (e.g. census data, crime data) or a specific collection of data sets (e.g. health data direct from the NHS, data about London). Some portals are less up-to-date than others, so it is wise to double-check with the ‘originators’ of the data to see if there are more recent versions.
 
@@ -156,11 +156,11 @@ We will be looking at wards in our practical analysis – although even at this 
 :::
 
 #### Population data 
-For our population data sets, we will use the ONS mid-year estimates (MYE). These population datasets are **estimates** that have been modelled based on the previous 2011 census count and then forecasted population growth (plus some additional data). They are released a year, with a delay of a year. Today we will use the data for 2011, 2015, and 2019.
+For our population data sets, we will use the ONS mid-year estimates (MYE). These population data sets are **estimates** that have been modelled based on the previous 2011 census count and then forecasted population growth (plus some additional data). They are released a year, with a delay of a year. Today we will use the data for 2011, 2015, and 2019.
 
 As the London Datastore only has these MYE for up to 2018, we will download some more recent data from ONS directly. *It is always worth checking the ‘originators’ of the data to see if there are more recent versions.*
 
-1. Navigate to the **Ward** level datasets: [[Link]](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/wardlevelmidyearpopulationestimatesexperimental)
+1. Navigate to the **Ward** level data sets: [[Link]](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/wardlevelmidyearpopulationestimatesexperimental)
 2. When you navigate to this page, you will find multiple choices of data to download. We will need to download the estimates for **2011, 2015 and 2019**. Click to download each of the zipfiles. Choose the **revised** versions for 2015 and the (Census-based) 2011 wards edition for 2011. 
 
 3. In your `GEOG0030/data/raw/` folder, create a new folder called `population` and copy the three spreadsheets into this folder.
@@ -196,7 +196,7 @@ As you will see again, there are plenty of worksheets available - again, we want
 
 If we head back to the original 2015 raw data set, we can actually find this data (as well as the City of London) further down in the spreadsheet. It seems like these LAs had their codes revised in the 2014 revision and are no longer in the same order as the 2011 data set - oh, the joys of using data!
 
-7. Locate the data for the *City of London*, *Hackney*, *Kensington and Chelsea* and *Tower Hamlets* and copy this over into our new spreadsheet. Double-check that you now have in total **636** wards within your dataset.
+7. Locate the data for the *City of London*, *Hackney*, *Kensington and Chelsea* and *Tower Hamlets* and copy this over into our new spreadsheet. Double-check that you now have in total **636** wards within your data set.
 
 8. Remember to rename the fields as above, but change your population field to **POP2015**. Also, remember to reformat your population values.
 
@@ -212,7 +212,7 @@ As you will see again, there are plenty of worksheets available - again, we want
 
 12. Next, copy the data from row 5 to the final row for the Westminster data for columns `A`, `B`, `D` and `G` over into a new spreadsheet.
 
-Look at the total number of rows you have copied over. We can see that we have even fewer wards than the 2015 dataset - yikes!We need to go hunting again for our missing data in the 2019 dataset. 
+Look at the total number of rows you have copied over. We can see that we have even fewer wards than the 2015 data set - yikes!We need to go hunting again for our missing data in the 2019 data set. 
 
 For expediency, you need to find and copy over the data for: 
 
@@ -264,7 +264,7 @@ We will first focus on loading and joining the 2011 data sets.
 
 6. With **File** select as your source type, click on the small three dots button and navigate to your 2011 boundary files.
 
-7. Here, we will select the `London_Ward.shp` dataset. Click on the `.shp` file of this data set and click **Open**. Then click Add. You may need to close the box after adding the layer.
+7. Here, we will select the `London_Ward.shp` data set. Click on the `.shp` file of this data set and click **Open**. Then click Add. You may need to close the box after adding the layer.
 
 We can take a moment just to look at our Ward data - and recognise the shape of London. Can you see the City of London in the data set? It has the smallest wards in the entire London area. With the data set loaded, we can now explore it in a little more detail. We want to check out two things about our data: first, its **Properties** and secondly, its **Attribute Table**. 
 
@@ -310,7 +310,7 @@ We can now join this table data to our spatial data using an **Attribute Join**.
 
 :::note
 **Note**<br>
-An attribute join is one of two types of data joins you will use in spatial analysis (the other is a spatial join, which we will look at later on in the module). An attribute join essentially allows you to join two datasets together, as long as they share a common attribute to facilitate the ‘matching’ of rows:
+An attribute join is one of two types of data joins you will use in spatial analysis (the other is a spatial join, which we will look at later on in the module). An attribute join essentially allows you to join two data sets together, as long as they share a common attribute to facilitate the ‘matching’ of rows:
 
 ```{r echo=FALSE, fig.align='center', fig.caps='Figure from Esri documentation on Attribute Joins.'}
 knitr::include_graphics('images/w02/attribute_joins.png')
@@ -348,7 +348,7 @@ As long as it has joined, you can move forward with the next steps. If your join
 
 :::note
 **Note**<br />
-Now, the join that you have created between your ward and population datasets in only held in QGIS's memory. If you were to close the programme now, you would lose this join and have to repeat it the next time you opened QGIS. To prevent this from happening, we need to export our data set to a new shapefile - and then re-add this to the map.
+Now, the join that you have created between your ward and population data sets in only held in QGIS's memory. If you were to close the programme now, you would lose this join and have to repeat it the next time you opened QGIS. To prevent this from happening, we need to export our data set to a new shapefile - and then re-add this to the map.
 :::
 
 Let's do this now:
@@ -359,18 +359,18 @@ Let's do this now:
 - Leave the remaining fields as selected, but check that the **Add saved file to map** is checked.
 - Click **OK**.
 
-You should now see our new shapefile add itself to our map. You can now remove the original `London_Ward` and `ward_population_2011` datasets from our Layers box (**Right-click on the layers** -> **Remove Layer**).
+You should now see our new shapefile add itself to our map. You can now remove the original `London_Ward` and `ward_population_2011` data sets from our Layers box (**Right-click on the layers** -> **Remove Layer**).
 
-The final thing we would like to do with this dataset is to style our dataset by our newly added population field to show population distribution around London.
+The final thing we would like to do with this data set is to style our data set by our newly added population field to show population distribution around London.
 
 20. To do this, again right-click on the **Layer** -> **Properties** -> **Symbology**.
 - This time, we want to style our data using a **Graduated** symbology.
 - Change this option in the tab and then choose `POP2011` as your column. 
 - We can then change the color ramp to suit our aesthetic preferences - *Viridis* seems to be the cool colour scheme at the moment, and we will choose to invert our ramp as well. 
-- The final thing we need to do is **classify** our data - what this simply means is to decide how to group the values in our dataset together to create the graduated representation. 
+- The final thing we need to do is **classify** our data - what this simply means is to decide how to group the values in our data set together to create the graduated representation. 
 - We will be looking at this in later weeks, but for now, we will use the **Natural Breaks** option. 
 - Click on the drop-down next to Mode, select **Natural Breaks**, change it to **7** classes and then click **Classify**.
-- Finally click **Apply** to style your dataset.
+- Finally click **Apply** to style your data set.
 
 :::note
 **Note**<br/>
@@ -390,23 +390,23 @@ You will be able to see that we have **some** missing data - and this is for sev
 One thing to flag is that **NODATA** means no data - whereas 0, particularly in a scenario like this, would be an actual numeric value. It iss important to remember this when processing and visualising data, to make sure you do not represent a **NODATA** value incorrectly.
 
 #### Conducting an attribute join for 2014/2015 and 2018/2019
-You now need to **repeat this whole process** for your 2015 and 2019 datasets. Remember, you need to:
+You now need to **repeat this whole process** for your 2015 and 2019 data sets. Remember, you need to:
 
-- Load the respective Ward dataset as a Vector Layer.
-- Load the respective Population dataset as a Delimited Text File Layer (remember the settings!).
+- Load the respective Ward data set as a Vector Layer.
+- Load the respective Population data set as a Delimited Text File Layer (remember the settings!).
 - Join the two data sets together using the Join tool in the Ward data set Properties box.
 - Export your joined data set into a new data set within your `final` folder.
 * Style your data appropriately.
 
-To make visual comparisions against our three datasets, theorectically we would need to standardise the breaks at which our classification schemes are set at. This can be a little fiddly with QGIS, so for now, you can leave your symbolisation to the default settings.
+To make visual comparisions against our three data sets, theorectically we would need to standardise the breaks at which our classification schemes are set at. This can be a little fiddly with QGIS, so for now, you can leave your symbolisation to the default settings.
 
-Alternatively, to set all three datasets to the same breaks, you can do the following:
+Alternatively, to set all three data sets to the same breaks, you can do the following:
 
-- Right-click on the `ward_population_2019` dataset and navigate to the `Symbology` tab. Double-click on the Values for the smallest classifcation group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click OK, then Click Apply, then Click OK to return to the main QGIS screen.
--  Right-click again on the `ward_population_2019` dataset but this time, click on **Styles** -> **Copy Styles** -> **Symbology**.
+- Right-click on the `ward_population_2019` data set and navigate to the `Symbology` tab. Double-click on the Values for the smallest classifcation group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click OK, then Click Apply, then Click OK to return to the main QGIS screen.
+-  Right-click again on the `ward_population_2019` data set but this time, click on **Styles** -> **Copy Styles** -> **Symbology**.
 - Now right-click on the `ward_population_2015` file, but this time after clicking on **Styles** -> **Paste Style** -> **Symbology**. You should now see the classification breaks in the 2015 data set change to match those in the 2019 data.
-- Repeat this for the 2011 dataset as well.
-- The final thing you need to do is to now change the classification column in the `Symbology` tab for the 2015 and 2011 datasets back to their original columns and press **Apply**. You will see when you first load up their Symbology options this is set to *POP2019*, which of course does not exist within this dataset.
+- Repeat this for the 2011 data set as well.
+- The final thing you need to do is to now change the classification column in the `Symbology` tab for the 2015 and 2011 data sets back to their original columns and press **Apply**. You will see when you first load up their Symbology options this is set to *POP2019*, which of course does not exist within this data set.
 
 #### Exporting our maps for visual analysis
 
