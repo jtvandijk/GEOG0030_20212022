@@ -277,7 +277,7 @@ They originate from the Roman era who used these geographies, usually defined by
 </ul>
 <p>OR</p>
 <ul>
-<li><strong>Boroughs</strong> –&gt; <strong>Middle layer Super Output Areas</strong> -&gt; <strong>Lower layer Super Output Areas</strong> -&gt; <strong>Output Areas</strong>.</li>
+<li><strong>Boroughs</strong> -&gt; <strong>Middle layer Super Output Areas</strong> -&gt; <strong>Lower layer Super Output Areas</strong> -&gt; <strong>Output Areas</strong>.</li>
 </ul>
 <p>We will be looking at wards in our practical analysis – although even at this fine scale, the City of London is a little pesky and introduces complexities into our analysis, which we willl see.</p>
 </div>
@@ -372,7 +372,7 @@ They originate from the Roman era who used these geographies, usually defined by
 <ol style="list-style-type: decimal">
 <li>Start <strong>QGIS</strong>.
 Let’s start a new project.</li>
-<li>Click on <strong>Project –&gt; New</strong>. Save your project into your <code>qgis</code> folder as <code>w2-pop-analysis</code>. Remember to save your work throughout the practical.</li>
+<li>Click on <strong>Project</strong> -&gt; <strong>New</strong>. Save your project into your <code>qgis</code> folder as <code>w2-pop-analysis</code>. Remember to save your work throughout the practical.</li>
 <li>Before we get started with adding data, we will first set the Coordinate Reference System of our Project. Click on <strong>Project</strong> -&gt; <strong>Properties – CRS</strong>. In the Filter box, type <strong>British National Grid</strong>. Select <strong>OSGB 1936 / British National Grid - EPSG:27700</strong> and click Apply. Click OK.</li>
 </ol>
 <div class="note">
@@ -381,7 +381,7 @@ We will explain CRSs and using CRSs in GIS software in more detail next week.</p
 </div>
 <p>We will first focus on loading and joining the 2011 data sets.</p>
 <ol start="5" style="list-style-type: decimal">
-<li><p>Click on <strong>Layer –&gt; Add Layer –&gt; Add Vector Layer</strong>.</p></li>
+<li><p>Click on <strong>Layer</strong> -&gt; <strong>Add Layer</strong> -&gt; <strong>Add Vector Layer</strong>.</p></li>
 <li><p>With <strong>File</strong> select as your source type, click on the small three dots button and navigate to your 2011 boundary files.</p></li>
 <li><p>Here, we will select the <code>London_Ward.shp</code> dataset. Click on the <code>.shp</code> file of this data set and click <strong>Open</strong>. Then click Add. You may need to close the box after adding the layer.</p></li>
 </ol>
@@ -435,7 +435,7 @@ An attribute join is one of two types of data joins you will use in spatial anal
 <p>To make our join work, we need to check that we have a matching <strong>UID</strong> across both our data sets. We therefore need to look at the tables of both data sets and check what attributes we have that could be used for this possible match.</p>
 <ol start="16" style="list-style-type: decimal">
 <li><p>Open up the Attribute Tables of each layer and check what fields we have that could be used for the join. We can see that both our respective <code>*_Code</code> fields have the same codes so we can use these to create our joins.</p></li>
-<li><p>Right-click on your <code>London_Ward</code> layer –&gt; <code>Properties</code> and then click on the <code>Joins</code> tab.</p></li>
+<li><p>Right-click on your <code>London_Ward</code> layer -&gt; <strong>Properties</strong> and then click on the <strong>Joins</strong> tab.</p></li>
 </ol>
 <ul>
 <li>Click on the <strong>+</strong> button.Make sure the <strong>Join Layer</strong> is set to <code>ward_population_2011</code>.</li>
@@ -465,10 +465,10 @@ Now, the join that you have created between your ward and population datasets in
 <li>Leave the remaining fields as selected, but check that the <strong>Add saved file to map</strong> is checked.</li>
 <li>Click <strong>OK</strong>.</li>
 </ul>
-<p>You should now see our new shapefile add itself to our map. You can now remove the original <code>London_Ward</code> and <code>ward_population_2011</code> datasets from our Layers box (<strong>Right-click on the layers -&gt; Remove Layer</strong>).</p>
+<p>You should now see our new shapefile add itself to our map. You can now remove the original <code>London_Ward</code> and <code>ward_population_2011</code> datasets from our Layers box (<strong>Right-click on the layers</strong> -&gt; <strong>Remove Layer</strong>).</p>
 <p>The final thing we would like to do with this dataset is to style our dataset by our newly added population field to show population distribution around London.</p>
 <ol start="20" style="list-style-type: decimal">
-<li>To do this, again right-click on the <strong>Layer -&gt; Properties -&gt; Symbology</strong>.</li>
+<li>To do this, again right-click on the <strong>Layer</strong> -&gt; <strong>Properties</strong> -&gt; <strong>Symbology</strong>.</li>
 </ol>
 <ul>
 <li>This time, we want to style our data using a <strong>Graduated</strong> symbology.</li>
@@ -508,8 +508,8 @@ Figure 2.5: Your result.
 <p>Alternatively, to set all three datasets to the same breaks, you can do the following:</p>
 <ul>
 <li>Right-click on the <code>ward_population_2019</code> dataset and navigate to the <code>Symbology</code> tab. Double-click on the Values for the smallest classifcation group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click OK, then Click Apply, then Click OK to return to the main Q-GIS screen.</li>
-<li>Right-click again on the <code>ward_population_2019</code> dataset but this time, click on <code>Styles</code> -&gt; <code>Copy Styles</code> -&gt; <code>Symbology</code>.</li>
-<li>Now right-click on the <code>ward_population_2015</code> file, but this time after clicking on <code>Styles</code> -&gt; <code>Paste Style</code> -&gt; <code>Symbology</code>. You should now see the classification breaks in the 2015 data set change to match those in the 2019 data.</li>
+<li>Right-click again on the <code>ward_population_2019</code> dataset but this time, click on <strong>Styles</strong> -&gt; <strong>Copy Styles</strong> -&gt; <strong>Symbology</strong>.</li>
+<li>Now right-click on the <code>ward_population_2015</code> file, but this time after clicking on <strong>Styles</strong> -&gt; <strong>Paste Style</strong> -&gt; <strong>Symbology</strong>. You should now see the classification breaks in the 2015 data set change to match those in the 2019 data.</li>
 <li>Repeat this for the 2011 dataset as well.</li>
 <li>The final thing you need to do is to now change the classification column in the <code>Symbology</code> tab for the 2015 and 2011 datasets back to their original columns and press <strong>Apply</strong>. You will see when you first load up their Symbology options this is set to <em>POP2019</em>, which of course does not exist within this dataset.</li>
 </ul>
@@ -517,7 +517,7 @@ Figure 2.5: Your result.
 <div id="exporting-our-maps-for-visual-analysis" class="section level4" number="2.4.4.3">
 <h4><span class="header-section-number">2.4.4.3</span> Exporting our maps for visual analysis</h4>
 <p>To export each of your maps (as is):
-- Click on <strong>Project -&gt; Import/Export -&gt; Export to Image</strong> and save your final map in your <code>maps</code> folder. You may want to create a folder for these maps titled <code>w02</code>.</p>
+- Click on <strong>Project</strong> -&gt; <strong>Import/Export</strong> -&gt; <strong>Export to Image</strong> and save your final map in your <code>maps</code> folder. You may want to create a folder for these maps titled <code>w02</code>.</p>
 <p>Next week, we will look at how to style our maps using the main map conventions (adding North Arrows, Scale Bars and Legends) but for now a simple picture will do. To get a picture of each of your different layers, remember to turn on and off each layer (using the check box).</p>
 <p>Finally, remember to save your project!</p>
 

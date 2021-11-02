@@ -150,7 +150,7 @@ For the majority of your practicals, we will be keeping it simple with a focus o
 
 OR 
 
-* **Boroughs** --> **Middle layer Super Output Areas** -> **Lower layer Super Output Areas** -> **Output Areas**. 
+* **Boroughs** -> **Middle layer Super Output Areas** -> **Lower layer Super Output Areas** -> **Output Areas**. 
 
 We will be looking at wards in our practical analysis – although even at this fine scale, the City of London is a little pesky and introduces complexities into our analysis, which we willl see.
 :::
@@ -250,7 +250,7 @@ Because, as we have seen above, we have issues with the number of wards and chan
 
 1. Start **QGIS**.
 Let's start a new project.
-2. Click on **Project --> New**. Save your project into your `qgis` folder as `w2-pop-analysis`. Remember to save your work throughout the practical. 
+2. Click on **Project** -> **New**. Save your project into your `qgis` folder as `w2-pop-analysis`. Remember to save your work throughout the practical. 
 4. Before we get started with adding data, we will first set the Coordinate Reference System of our Project. Click on **Project** -> **Properties -- CRS**. In the Filter box, type **British National Grid**. Select **OSGB 1936 / British National Grid - EPSG:27700** and click Apply. Click OK.
 
 :::note
@@ -260,7 +260,7 @@ We will explain CRSs and using CRSs in GIS software in more detail next week.
     
 We will first focus on loading and joining the 2011 data sets. 
 
-5. Click on **Layer --> Add Layer --> Add Vector Layer**.
+5. Click on **Layer** -> **Add Layer** -> **Add Vector Layer**.
 
 6. With **File** select as your source type, click on the small three dots button and navigate to your 2011 boundary files.
 
@@ -331,7 +331,7 @@ To make our join work, we need to check that we have a matching **UID** across b
 
 16. Open up the Attribute Tables of each layer and check what fields we have that could be used for the join. We can see that both our respective `*_Code` fields have the same codes so we can use these to create our joins.
 
-17. Right-click on your `London_Ward` layer --> `Properties` and then click on the `Joins` tab. 
+17. Right-click on your `London_Ward` layer -> **Properties** and then click on the **Joins** tab. 
 - Click on the **+** button.Make sure the **Join Layer** is set to `ward_population_2011`.
 - Set the **Join field** to `ward_code`.
 - Set the **Target field** to `GSS_code`.
@@ -359,11 +359,11 @@ Let's do this now:
 - Leave the remaining fields as selected, but check that the **Add saved file to map** is checked.
 - Click **OK**.
 
-You should now see our new shapefile add itself to our map. You can now remove the original `London_Ward` and `ward_population_2011` datasets from our Layers box (**Right-click on the layers -> Remove Layer**).
+You should now see our new shapefile add itself to our map. You can now remove the original `London_Ward` and `ward_population_2011` datasets from our Layers box (**Right-click on the layers** -> **Remove Layer**).
 
 The final thing we would like to do with this dataset is to style our dataset by our newly added population field to show population distribution around London.
 
-20. To do this, again right-click on the **Layer -> Properties -> Symbology**.
+20. To do this, again right-click on the **Layer** -> **Properties** -> **Symbology**.
 - This time, we want to style our data using a **Graduated** symbology.
 - Change this option in the tab and then choose `POP2011` as your column. 
 - We can then change the color ramp to suit our aesthetic preferences - *Viridis* seems to be the cool colour scheme at the moment, and we will choose to invert our ramp as well. 
@@ -403,15 +403,15 @@ To make visual comparisions against our three datasets, theorectically we would 
 Alternatively, to set all three datasets to the same breaks, you can do the following:
 
 - Right-click on the `ward_population_2019` dataset and navigate to the `Symbology` tab. Double-click on the Values for the smallest classifcation group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click OK, then Click Apply, then Click OK to return to the main Q-GIS screen.
--  Right-click again on the `ward_population_2019` dataset but this time, click on `Styles` -> `Copy Styles` -> `Symbology`.
-* Now right-click on the `ward_population_2015` file, but this time after clicking on `Styles` -> `Paste Style` -> `Symbology`. You should now see the classification breaks in the 2015 data set change to match those in the 2019 data.
+-  Right-click again on the `ward_population_2019` dataset but this time, click on **Styles** -> **Copy Styles** -> **Symbology**.
+- Now right-click on the `ward_population_2015` file, but this time after clicking on **Styles** -> **Paste Style** -> **Symbology**. You should now see the classification breaks in the 2015 data set change to match those in the 2019 data.
 - Repeat this for the 2011 dataset as well.
 - The final thing you need to do is to now change the classification column in the `Symbology` tab for the 2015 and 2011 datasets back to their original columns and press **Apply**. You will see when you first load up their Symbology options this is set to *POP2019*, which of course does not exist within this dataset.
 
 #### Exporting our maps for visual analysis
 
 To export each of your maps (as is):
-- Click on **Project -> Import/Export -> Export to Image** and save your final map in your `maps` folder. You may want to create a folder for these maps titled `w02`.
+- Click on **Project** -> **Import/Export** -> **Export to Image** and save your final map in your `maps` folder. You may want to create a folder for these maps titled `w02`.
 
 Next week, we will look at how to style our maps using the main map conventions (adding North Arrows, Scale Bars and Legends) but for now a simple picture will do. To get a picture of each of your different layers, remember to turn on and off each layer (using the check box).
 
