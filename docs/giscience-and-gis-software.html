@@ -24,7 +24,7 @@
 <meta name="author" content="Justin van Dijk" />
 
 
-<meta name="date" content="2021-11-02" />
+<meta name="date" content="2021-11-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="geocomputation-an-introduction.html"/>
 
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -97,6 +97,7 @@
 <li class="chapter" data-level="1.4.4" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#a-note-on-arcgis"><i class="fa fa-check"></i><b>1.4.4</b> A note on ArcGIS</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#file-management"><i class="fa fa-check"></i><b>1.5</b> File management</a></li>
+<li class="chapter" data-level="1.6" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#byl-w01"><i class="fa fa-check"></i><b>1.6</b> Before you leave</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html"><i class="fa fa-check"></i><b>2</b> GIScience and GIS software</a>
 <ul>
@@ -110,6 +111,7 @@
 <li class="chapter" data-level="2.4.3" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#downloading-and-processing"><i class="fa fa-check"></i><b>2.4.3</b> Downloading and processing</a></li>
 <li class="chapter" data-level="2.4.4" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#using-qgis-to-map-our-population-data"><i class="fa fa-check"></i><b>2.4.4</b> Using QGIS to map our population data</a></li>
 </ul></li>
+<li class="chapter" data-level="2.5" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#byl-w02"><i class="fa fa-check"></i><b>2.5</b> Before you leave</a></li>
 </ul></li>
 </ul>
 
@@ -130,8 +132,8 @@
             <section class="normal" id="section-">
 <div id="giscience-and-gis-software" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> GIScience and GIS software</h1>
-<p>This week’s lecture introduced you to foundational concepts associated with GIScience and GIS software on spatial representations and sample design. Out of all our foundational concepts you will come across in the next four weeks, this is probably the most substantial to get to grips with - and has both significant theoretical and practical aspects to its learning.</p>
-<p>The practical component of the week puts some of these learnings into practice with a quick digitisation of the river Thames in London as well as an exploration of population data within London using QGIS.</p>
+<p>This week’s lecture introduced you to foundational concepts associated with GIScience and GIS software on spatial representations and sample design. Out of all our foundational concepts you will come across in the next four weeks, this is probably the most substantial to get to grips with and has both significant theoretical and practical aspects to its learning.</p>
+<p>The practical component of the week puts some of these learnings into practice with a digitisation of the river Thames in London as well as an exploration of population data within London using QGIS.</p>
 <div id="recording-w02" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Lecture recording</h2>
 <ul>
@@ -149,7 +151,7 @@
 <h2><span class="header-section-number">2.3</span> Simple digitisation of spatial features</h2>
 <p>To get spatial features in a digital form, they need to be digitised. Let’s take what should be a straight-forward example of digitising the River Thames in London.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
-<img src="images/w02/river_thames.png" alt="The Thames." width="470" />
+<img src="images/w02/river_thames.png" alt="The Thames."  />
 <p class="caption">
 Figure 2.1: The Thames.
 </p>
@@ -219,18 +221,18 @@ Figure 2.2: Alas a quick Google search shows that finding a shapefile of England
 <h3><span class="header-section-number">2.4.2</span> Finding our data sets</h3>
 <p>In the UK, finding authoritative data on population and Administrative Geography boundaries is increasingly straight-forward. Over the last ten years, the UK government has opened up many of its data sets as part of an Open Data precedent that began in 2010 with the creation of <a href="data.gov.uk">data.gov.uk</a> and the Open Government Licence (the terms and conditions for using data).</p>
 <p><a href="www.data.gov.uk">Data.gov.uk</a> is the UK government’s central database that contains open data that the central government, local authorities and public bodies publish. This includes, for example, aggregated census and health data – and even government spending. In addition to this central database, there are other authoritative databases run by the government and/or respective public bodies that contain either a specific type of data (e.g. census data, crime data) or a specific collection of data sets (e.g. health data direct from the NHS, data about London). Some portals are less up-to-date than others, so it is wise to double-check with the ‘originators’ of the data to see if there are more recent versions.</p>
-<p>For our practical, we will access data from three portals:</p>
+<p>For our practical, we will access data from two portals:</p>
 <ol style="list-style-type: decimal">
-<li>For our administrative boundaries, we will download the <em>spatial</em> data from the <em>London Datastore</em> (which is exactly what it sounds like!).</li>
-<li>For population, we will download <strong>table</strong> data from the <em>Office of National Statistics (ONS)</em> (for 2019 data to represent 2020) and the London Datastore (currently only contains these data until 2018).</li>
+<li>For our administrative boundaries, we will download the <strong>spatial</strong> data from the <em>London Datastore</em> (which is exactly what it sounds like!).</li>
+<li>For population, we will download <strong>attribute</strong> data from the <em>Office of National Statistics (ONS)</em> for 2019 and the London Datastore (currently only contains these data until 2018).</li>
 </ol>
 </div>
 <div id="downloading-and-processing" class="section level3" number="2.4.3">
 <h3><span class="header-section-number">2.4.3</span> Downloading and processing</h3>
-<p>The first step in our practical is to download and process our two main data sets: <em>administrative geography boundaries</em> and <em>population</em>.</p>
+<p>The first step in our practical is to download and process our two main data sets: <em>administrative geography boundaries</em> and <em>population data</em>.</p>
 <div id="administrative-geography-boundaries" class="section level4" number="2.4.3.1">
 <h4><span class="header-section-number">2.4.3.1</span> Administrative Geography Boundaries</h4>
-<p>For our administrative boundaries, we will download the ‘Statistical GIS Boundary Files for London’ data set(s) found in the London Datastore.</p>
+<p>For our administrative boundaries, we will download the <em>Statistical GIS Boundary Files for London</em> data set(s) found in the London Datastore.</p>
 <ol style="list-style-type: decimal">
 <li>Navigate to the data sets: <a href="https://data.london.gov.uk/dataset/statistical-gis-boundary-files-london">[Link]</a></li>
 </ol>
@@ -238,16 +240,16 @@ Figure 2.2: Alas a quick Google search shows that finding a shapefile of England
 <ol start="2" style="list-style-type: decimal">
 <li>We will need to download all three zipfiles: <code>statistical-gis-boundaries-london.zip</code>, <code>London-wards-2014.zip</code> and <code>London-wards-2018.zip</code>.</li>
 </ol>
-<p>The first data set contains <strong>ALL</strong> levels of London’s administrative boundaries. In descending size order: Borough, Ward, Middle layer Super Output Area / MSOA, Lower layer Super Output Area / LSOA, and Output Area / OA) from 2011. The second data set contains an <em>UPDATED</em> version of the Ward boundaries, as of 2014. The third data set contains an <em>UPDATED</em> version of the Ward boundaries, as of 2020.</p>
-<p>As we will be looking at population data for 2015 and 2020, it is best practice to use those boundaries that are most reflective of the ‘geography’ at the time; therefore, we will use these 2014 / 2018 ward boundaries for our 2015 / 2020 population data set, respectively. When downloaded, you will need to unzip the file.</p>
+<p>The first data set contains <strong>ALL</strong> levels of London’s administrative boundaries. In descending size order: Borough, Ward, Middle layer Super Output Area (MSOA), Lower layer Super Output Area (LSOA), and Output Area (OA) from 2011. The second data set contains an <em>UPDATED</em> version of the Ward boundaries, as of 2014. The third data set contains an <em>UPDATED</em> version of the Ward boundaries, as of 2018. Once downloaded, you will need to unzip the file.</p>
 <div class="note">
 <p><strong>Note</strong> <br/>
 To unzip the file, you can use the built-in functionality of your computer’s operating system. For Windows: right click on the zip file, select Extract All, and then follow the instructions. For Mac OS: double-click the zip file.</p>
 </div>
+<p>As we will be looking at population data for 2015 and 2019, it is best practice to use those boundaries that are most reflective of the ‘geography’ at the time; therefore, we will use these 2014 / 2018 ward boundaries for our 2015 / 2019 population data set, respectively.</p>
 <p>Once unzipped, you will find two folder options: <em>Esri</em> and <em>MapInfo.</em> These folders contain the <strong>same set of data</strong>, but simply in two data formats: <strong>Esri shapefile</strong> and <strong>MapInfo TAB</strong>.</p>
 <div class="note">
 <p><strong>Note</strong><br/>
-MapInfo is another proprietary GIS software, which has historically been used in public sectors services in the UK and abroad(and many councils still use the software!), although has generally been replaced by either Esri’s ecosystem or open-source software GIS. The TAB format is the main format that the software uses for vector data, similar to Esri and its shapefile format.</p>
+MapInfo is another proprietary GIS software, which has historically been used in public sectors services in the UK and abroad (and many councils still use the software!), although has generally been replaced by either Esri’s ecosystem or open-source software GIS. The TAB format is the main format that the software uses for vector data, similar to Esri and its shapefile format.</p>
 </div>
 <ol start="3" style="list-style-type: decimal">
 <li>In your <code>GEOG0030/data/raw/</code> folder, create a new folder called <code>boundaries</code>. Within this folder, create three new folders: <code>2011</code>, <code>2014</code> and <code>2018</code>.</li>
@@ -270,7 +272,7 @@ Administrative geographies are a way of dividing the country into smaller sub-di
 They originate from the Roman era who used these geographies, usually defined by topographical and geographical features, to administer these regions including collecting the relevant tax from those living in these areas.</p>
 <p>These geographies are updated as populations evolve and as a result, the boundaries of the administrative geographies are subject to either periodic or occasional change. For any country in which you are using administrative geographies, it is good practice therefore to research into their history and how they have changed over the period of your data set.</p>
 <p>In the modern spatial analysis, we use administrative geographies to aggregate individual level data and individual event data. One of the motivations for this is the fact that census data (and many other sources of socio-economic and public health data) are provided at specific administrative levels, whilst other data sets can often be easily geo-referenced or aggregated to these levels. Furthermore, administrative geographies are concerned with the hierarchy of areas – hence we are able to conduct analyses at a variety of scales to understand local and global trends.</p>
-<p>The UK has quite a complex administrative geography (see more <a href="https://ago-item-storage.s3.us-east-1.amazonaws.com/c2eb89ab698144bf825873c1ae161c06/hierarchy_poster_v2.9_DEC_2020_A3.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKb%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIQD8PJq9PvtWhQd%2BJX0xBVOqhM1%2BaAtORW9NfOaZw84T2gIgckpNcJj1ag0qslYy%2BeEiG2a6TRRqfyJDHAOfJPNAhGIqtAMIfhAAGgw2MDQ3NTgxMDI2NjUiDEjfKh08JBejWtgt5iqRAyp%2BcVwX4Yt5QOcMr6qbxowDzHD%2BP9WfTykmHAMHQ93mB8eCRJMPZLDknV8nsc8C7c0A%2BWspHkdI%2BoG2fE9TGWI%2BuC1fFeqEvPz3KLZNoaIWYmbLAeiVArL83ltdqpEX0wFLmWFN1F4xcx2w5CxeKFnWJO2O7pcQUXHLuxG7HwIfpStYnZ8grEcUFmaivqnqq%2B3SE2y1NCD7FK8rSVRrjAKf3fx8zget0ak4yYh4H4QkkCV7ude%2B2CB0V%2B1%2FFjn%2Bqlsw5EVqVKmtb8Am3v4huJG%2FqQGaOqT3fD%2BeezTue7QTza19rzTY8vnZmQIV3Xd8CMbALBmys8wf8RiYaSNx%2Fl8tXqgqFfcEwqOHU%2B7hDjkKcySK3H0uYBy1naB9aYd9HYResbnVCiAAQkN7GHf1mo0inrizFxw1QRXfBntOqktbjy%2BzT%2FXvJaB7uu%2BddRsJsDRXZpeCb68FgzYZ0pzkTjtjn38gnkwSxfSZrwL63vuzoIDaTrMx05rd%2Fw6tUVjuXBJpHM4v7O%2B7BVAg2klQcXjDMJyXnYAGOusB6pdTypeysnUpHfZzR6AjpECbr3mKKDUlZBoOhZrUGoVkahsy0GrUFA5BPT4qYn60d%2BWjJ7KwoLrxgyE2wYqoxK%2FFsz3BzIABi%2BH5fWgmvo6CfMssohCBCQV83OTi6bxpns7C5aqdBBvnsWqq4799AgJRP5sjj1PTW1lENGKPaWJlfA%2BxaVvzZGzgTX1AR8jWQlyc4YiRTdhVUXR99EA5UqLP%2BCxLYeZOKb727wYmUhsXtRFAJRnDoUFjT6ticS2urA3iDOoWDWeDKPjb3YhwCS8VpnSb%2BUwKQzfCNKQUgCMpXIM2jjwq2MzURA%3D%3D&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20210119T222256Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=300&amp;X-Amz-Credential=ASIAYZTTEKKE3PCDAXH7%2F20210119%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=6884eede98e166b62f6fcf3bf3891cd901f6f033668d45640ac20be4e72d12d4">here</a>), particularly due to having several countries within one overriding administration and then multiple ways of dividing the countries according to specific applications.</p>
+<p>The UK has quite a complex administrative geography, particularly due to having several countries within one overriding administration and then multiple ways of dividing the countries according to specific applications.</p>
 <p>For the majority of your practicals, we will be keeping it simple with a focus on London, which is divided into:</p>
 <ul>
 <li><strong>Boroughs</strong> -&gt; <strong>Wards</strong></li>
@@ -284,12 +286,12 @@ They originate from the Roman era who used these geographies, usually defined by
 </div>
 <div id="population-data" class="section level4" number="2.4.3.2">
 <h4><span class="header-section-number">2.4.3.2</span> Population data</h4>
-<p>For our population data sets, we will use the ONS mid-year estimates (MYE). These population data sets are <strong>estimates</strong> that have been modelled based on the previous 2011 census count and then forecasted population growth (plus some additional data). They are released a year, with a delay of a year. Today we will use the data for 2011, 2015, and 2019.</p>
+<p>For our population data sets, we will use the ONS mid-year estimates (MYE). These population data sets are <strong>estimates</strong> that have been modelled based on the previous 2011 census count and then forecasted population growth (in combination with several additional data sources). They are released once a year, with a delay of a year. Today we will use the data for 2011, 2015, and 2019.</p>
 <p>As the London Datastore only has these MYE for up to 2018, we will download some more recent data from ONS directly. <em>It is always worth checking the ‘originators’ of the data to see if there are more recent versions.</em></p>
 <ol style="list-style-type: decimal">
 <li><p>Navigate to the <strong>Ward</strong> level data sets: <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/wardlevelmidyearpopulationestimatesexperimental">[Link]</a></p></li>
 <li><p>When you navigate to this page, you will find multiple choices of data to download. We will need to download the estimates for <strong>2011, 2015 and 2019</strong>. Click to download each of the zipfiles. Choose the <strong>revised</strong> versions for 2015 and the (Census-based) 2011 wards edition for 2011.</p></li>
-<li><p>In your <code>GEOG0030/data/raw/</code> folder, create a new folder called <code>population</code> and copy the three spreadsheets into this folder.</p></li>
+<li><p>In your <code>GEOG0030/data/raw/</code> folder, create a new folder called <code>population</code>, unzip your download, and copy the three spreadsheets into this folder.</p></li>
 </ol>
 <p>Now it is time to do some quite <strong>extensive</strong> data cleaning.</p>
 </div>
@@ -324,7 +326,7 @@ They originate from the Roman era who used these geographies, usually defined by
 </ul>
 <p>If we head back to the original 2015 raw data set, we can actually find this data (as well as the City of London) further down in the spreadsheet. It seems like these LAs had their codes revised in the 2014 revision and are no longer in the same order as the 2011 data set - oh, the joys of using data!</p>
 <ol start="7" style="list-style-type: decimal">
-<li><p>Locate the data for the <em>City of London</em>, <em>Hackney</em>, <em>Kensington and Chelsea</em> and <em>Tower Hamlets</em> and copy this over into our new spreadsheet. Double-check that you now have in total <strong>636</strong> wards within your data set.</p></li>
+<li><p>Locate the data for the <em>City of London</em>, <em>Hackney</em>, <em>Kensington and Chelsea</em> and <em>Tower Hamlets</em> and copy this over into our new spreadsheet. Double-check that you now have in total <strong>637</strong> wards within your data set.</p></li>
 <li><p>Remember to rename the fields as above, but change your population field to <strong>POP2015</strong>. Also, remember to reformat your population values.</p></li>
 <li><p>Once complete, save your spreadsheet into your <strong>working</strong> folder as <code>ward_population_2015.csv</code>.</p></li>
 </ol>
@@ -334,7 +336,7 @@ They originate from the Roman era who used these geographies, usually defined by
 </ol>
 <p>As you will see again, there are plenty of worksheets available - again, we want to select the <strong>Mid-2019 Persons</strong> tab. Let us have a look at our data - once again, there’s a lot to take in - but what we’re interested is in columns <code>A</code>, <code>B</code>, and now <code>D</code> and <code>G</code>. Let us follow the same process we used above to copy our data across.</p>
 <ol start="11" style="list-style-type: decimal">
-<li><p>To make our processing easier, first hide columns C, E and F in our spreadsheet - <strong>in Excel: right-click on the columns and select Hide</strong>.</p></li>
+<li><p>To make our processing easier, first hide columns C, E and F in our spreadsheet - in Excel: right-click on the columns and select <em>Hide</em>.</p></li>
 <li><p>Next, copy the data from row 5 to the final row for the Westminster data for columns <code>A</code>, <code>B</code>, <code>D</code> and <code>G</code> over into a new spreadsheet.</p></li>
 </ol>
 <p>Look at the total number of rows you have copied over. We can see that we have even fewer wards than the 2015 data set - yikes!We need to go hunting again for our missing data in the 2019 data set.</p>
@@ -367,7 +369,7 @@ They originate from the Roman era who used these geographies, usually defined by
 <p>Because, as we have seen above, we have issues with the number of wards and changes in boundaries across our three years, we will not (for now) complete any quantitative analysis of these population changes - this would require significant additional processing that we do not have time for today.</p>
 <div class="note">
 <p><strong>Note</strong> <br/>
-*Data interoperability is a key issue that you will face in spatial analysis, particularly when it comes to Administrative Geographies.</p>
+Data interoperability is a key issue that you will face in spatial analysis, particularly when it comes to Administrative Geographies.</p>
 </div>
 <ol style="list-style-type: decimal">
 <li>Start <strong>QGIS</strong>.
@@ -410,7 +412,7 @@ Figure 2.4: It looks incredibly busy.
 The main strength of a GUI GIS system is that is really helps us understand how we can visualise spatial data. Even with just these two shapefiles loaded, we can understand two key concepts of using spatial data within GIS.</p>
 <p>The first, and this is only really relevant to GUI GIS systems, is that each layer can either be turned on or off, to make it visible or not (try clicking the tick box to the left of each layer). This is probably a feature you are used to working with if you have played with interactive web mapping applications before!</p>
 <p>The second concept is the order in which your layers are drawn – and this is relevant for both GUI GIS and when using plotting libraries such as ggplot2 in RStudio. Your layers will be drawn depending on the order in which your layers are either tabled (as in a GUI GIS) or ‘called’ in your function in code.</p>
-<p>Being aware of this need for ‘order’ is important when we shift to using R-Studio and <code>ggoplot2</code> to plot our maps, as if you do not layer your data correctly in your code, your map will end up not looking as you hoped!</p>
+<p>Being aware of this need for ‘order’ is important when we shift to using RStudio and <code>ggoplot2</code> to plot our maps, as if you do not layer your data correctly in your code, your map will end up not looking as you hoped!</p>
 <p>For us using QGIS right now, the layers will be drawn from bottom to top. At the moment, we only have one layer loaded, so we do not need to worry about our order right now - but as we add in our 2015 and 2018 ward files, it is useful to know about this order as we will need to display them individually to export them at the end.</p>
 </div>
 <div id="conducting-an-attribute-join" class="section level4" number="2.4.4.1">
@@ -504,10 +506,10 @@ Figure 2.5: Your result.
 <li>Export your joined data set into a new data set within your <code>final</code> folder.</li>
 <li>Style your data appropriately.</li>
 </ul>
-<p>To make visual comparisions against our three data sets, theorectically we would need to standardise the breaks at which our classification schemes are set at. This can be a little fiddly with QGIS, so for now, you can leave your symbolisation to the default settings.</p>
+<p>To make visual comparisons against our three data sets, theoretically we would need to standardise the breaks at which our classification schemes are set at. This can be a little fiddly with QGIS, so for now, you can leave your symbolisation to the default settings.</p>
 <p>Alternatively, to set all three data sets to the same breaks, you can do the following:</p>
 <ul>
-<li>Right-click on the <code>ward_population_2019</code> data set and navigate to the <code>Symbology</code> tab. Double-click on the Values for the smallest classifcation group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click OK, then Click Apply, then Click OK to return to the main QGIS screen.</li>
+<li>Right-click on the <code>ward_population_2019</code> data set and navigate to the <code>Symbology</code> tab. Double-click on the Values for the smallest classification group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click OK, then Click Apply, then Click OK to return to the main QGIS screen.</li>
 <li>Right-click again on the <code>ward_population_2019</code> data set but this time, click on <strong>Styles</strong> -&gt; <strong>Copy Styles</strong> -&gt; <strong>Symbology</strong>.</li>
 <li>Now right-click on the <code>ward_population_2015</code> file, but this time after clicking on <strong>Styles</strong> -&gt; <strong>Paste Style</strong> -&gt; <strong>Symbology</strong>. You should now see the classification breaks in the 2015 data set change to match those in the 2019 data.</li>
 <li>Repeat this for the 2011 data set as well.</li>
@@ -520,9 +522,13 @@ Figure 2.5: Your result.
 - Click on <strong>Project</strong> -&gt; <strong>Import/Export</strong> -&gt; <strong>Export to Image</strong> and save your final map in your <code>maps</code> folder. You may want to create a folder for these maps titled <code>w02</code>.</p>
 <p>Next week, we will look at how to style our maps using the main map conventions (adding North Arrows, Scale Bars and Legends) but for now a simple picture will do. To get a picture of each of your different layers, remember to turn on and off each layer (using the check box).</p>
 <p>Finally, remember to save your project!</p>
+</div>
+</div>
+</div>
+<div id="byl-w02" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Before you leave</h2>
+<p><a href="https://www.youtube.com/watch?v=Wmc8bQoL-J0">That is it for this week</a>!</p>
 
-</div>
-</div>
 </div>
 </div>
             </section>

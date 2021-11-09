@@ -14,6 +14,7 @@ r-and-rstudio-installation
 ucl-desktop-and-rstudio-server
 a-note-on-arcgis
 file-management
+byl-w01
 giscience-and-gis-software
 recording-w02
 reading-w02
@@ -29,5 +30,4 @@ using-qgis-to-map-our-population-data
 conducting-an-attribute-join
 conducting-an-attribute-join-for-20142015-and-20182019
 exporting-our-maps-for-visual-analysis
-fig:unnamed-chunk-1
-fig:unnamed-chunk-6
+byl-w02

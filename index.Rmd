@@ -22,7 +22,7 @@ knitr::include_graphics('images/general/geocomputation_welcome.png')
 ## Welcome {-}
 Welcome to **Geocomputation**, a course that introduces you to both the principles of spatial analysis and the use of programming for data analysis.
 
-Over the next ten weeks, you’ll learn about the theory, methods and tools of spatial analysis whilst implementing small research projects, first using Q-GIS, and then using the R programming language within the R-Studio software environment. You will learn how to find, manage and clean spatial, demographic and socio-economic data sets, and then analyse them using core spatial and statistical analysis techniques. 
+Over the next ten weeks, you will learn about the theory, methods and tools of spatial analysis whilst implementing small research projects, first using QGIS, and then using the R programming language within the RStudio software environment. You will learn how to find, manage and clean spatial, demographic and socio-economic data sets, and then analyse them using core spatial and statistical analysis techniques. 
 
 ## Moodle {-}
 [Moodle](https://moodle.ucl.ac.uk/) is the central point of your learning experience for GEOG0030 and contains everything you need to know about it. It is where you will find links to all lecture content, reading materials, planned activities as well as key module and assessment information
@@ -33,7 +33,7 @@ The topics covered over the next ten weeks are:
 | Week          | Section          | Topic |
 | :---          |:---------        |:------------------ |
 | 1             | Foundational Concepts | [Geocomputation: An Introduction](geocomputation-an-introduction.html) |
-| 2             | Foundational Concepts | GIScience and GIS software | 
+| 2             | Foundational Concepts | [GIScience and GIS software](giscience-and-gis-software.html) | 
 | 3             | Foundational Concepts | Cartography and Visualisation | 
 | 4             | Foundational Concepts | Programming for Statistical Analysis | 
 | 5             | Foundational Concepts | Programming for Spatial Analysis |

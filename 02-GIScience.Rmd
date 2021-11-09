@@ -1,8 +1,8 @@
 # GIScience and GIS software
 
-This week’s lecture introduced you to foundational concepts associated with GIScience and GIS software on spatial representations and sample design. Out of all our foundational concepts you will come across in the next four weeks, this is probably the most substantial to get to grips with - and has both significant theoretical and practical aspects to its learning.
+This week’s lecture introduced you to foundational concepts associated with GIScience and GIS software on spatial representations and sample design. Out of all our foundational concepts you will come across in the next four weeks, this is probably the most substantial to get to grips with and has both significant theoretical and practical aspects to its learning.
 
-The practical component of the week puts some of these learnings into practice with a quick digitisation of the river Thames in London as well as an exploration of population data within London using QGIS.
+The practical component of the week puts some of these learnings into practice with a digitisation of the river Thames in London as well as an exploration of population data within London using QGIS.
 
 ## Lecture recording {#recording-w02}
 - Lecture W1
@@ -87,16 +87,16 @@ In the UK, finding authoritative data on population and Administrative Geography
 
 [Data.gov.uk](www.data.gov.uk) is the UK government’s central database that contains open data that the central government, local authorities and public bodies publish. This includes, for example, aggregated census and health data – and even government spending. In addition to this central database, there are other authoritative databases run by the government and/or respective public bodies that contain either a specific type of data (e.g. census data, crime data) or a specific collection of data sets (e.g. health data direct from the NHS, data about London). Some portals are less up-to-date than others, so it is wise to double-check with the ‘originators’ of the data to see if there are more recent versions.
 
-For our practical, we will access data from three portals:
+For our practical, we will access data from two portals:
 
-1. For our administrative boundaries, we will download the *spatial* data from the *London Datastore* (which is exactly what it sounds like!).
-2. For population, we will download **table** data from the *Office of National Statistics (ONS)* (for 2019 data to represent 2020) and the London Datastore (currently only contains these data until 2018).
+1. For our administrative boundaries, we will download the **spatial** data from the *London Datastore* (which is exactly what it sounds like!).
+2. For population, we will download **attribute** data from the *Office of National Statistics (ONS)* for 2019 and the London Datastore (currently only contains these data until 2018).
 
 ### Downloading and processing
-The first step in our practical is to download and process our two main data sets: *administrative geography boundaries* and *population*.
+The first step in our practical is to download and process our two main data sets: *administrative geography boundaries* and *population data*.
 
 #### Administrative Geography Boundaries 
-For our administrative boundaries, we will download the ‘Statistical GIS Boundary Files for London’ data set(s) found in the London Datastore.
+For our administrative boundaries, we will download the *Statistical GIS Boundary Files for London* data set(s) found in the London Datastore.
 
 1. Navigate to the data sets: [[Link]](https://data.london.gov.uk/dataset/statistical-gis-boundary-files-london) 
 
@@ -104,20 +104,20 @@ When you navigate to this page, you will find multiple choices of data to downlo
 
 2. We will need to download all three zipfiles: `statistical-gis-boundaries-london.zip`, `London-wards-2014.zip` and `London-wards-2018.zip`.
 
-The first data set contains **ALL** levels of London’s administrative boundaries. In descending size order: Borough, Ward, Middle layer Super Output Area / MSOA, Lower layer Super Output Area / LSOA, and Output Area / OA) from 2011. The second data set contains an *UPDATED* version of the Ward boundaries, as of 2014. The third data set contains an *UPDATED* version of the Ward boundaries, as of 2020.
-
-As we will be looking at population data for 2015 and 2020, it is best practice to use those boundaries that are most reflective of the ‘geography’ at the time; therefore, we will use these 2014 / 2018 ward boundaries for our 2015 / 2020 population data set, respectively. When downloaded, you will need to unzip the file.
+The first data set contains **ALL** levels of London’s administrative boundaries. In descending size order: Borough, Ward, Middle layer Super Output Area (MSOA), Lower layer Super Output Area (LSOA), and Output Area (OA) from 2011. The second data set contains an *UPDATED* version of the Ward boundaries, as of 2014. The third data set contains an *UPDATED* version of the Ward boundaries, as of 2018. Once downloaded, you will need to unzip the file.
 
 :::note
 **Note** <br/>
 To unzip the file, you can use the built-in functionality of your computer’s operating system. For Windows: right click on the zip file, select Extract All, and then follow the instructions. For Mac OS: double-click the zip file.
 :::
 
+As we will be looking at population data for 2015 and 2019, it is best practice to use those boundaries that are most reflective of the ‘geography’ at the time; therefore, we will use these 2014 / 2018 ward boundaries for our 2015 / 2019 population data set, respectively. 
+
 Once unzipped, you will find two folder options: *Esri* and *MapInfo.* These folders contain the **same set of data**, but simply in two data formats: **Esri shapefile** and **MapInfo TAB**.
 
 :::note
 **Note**<br/>
-MapInfo is another proprietary GIS software, which has historically been used in public sectors services in the UK and abroad(and many councils still use the software!), although has generally been replaced by either Esri’s ecosystem or open-source software GIS. The TAB format is the main format that the software uses for vector data, similar to Esri and its shapefile format.
+MapInfo is another proprietary GIS software, which has historically been used in public sectors services in the UK and abroad (and many councils still use the software!), although has generally been replaced by either Esri’s ecosystem or open-source software GIS. The TAB format is the main format that the software uses for vector data, similar to Esri and its shapefile format.
 :::
 
 3. In your `GEOG0030/data/raw/` folder, create a new folder called `boundaries`. Within this folder, create three new folders: `2011`, `2014` and `2018`.
@@ -142,7 +142,7 @@ These geographies are updated as populations evolve and as a result, the boundar
 
 In the modern spatial analysis, we use administrative geographies to aggregate individual level data and individual event data. One of the motivations for this is the fact that census data (and many other sources of socio-economic and public health data) are provided at specific administrative levels, whilst other data sets can often be easily geo-referenced or aggregated to these levels. Furthermore, administrative geographies are concerned with the hierarchy of areas – hence we are able to conduct analyses at a variety of scales to understand local and global trends.
 
-The UK has quite a complex administrative geography (see more [here](https://ago-item-storage.s3.us-east-1.amazonaws.com/c2eb89ab698144bf825873c1ae161c06/hierarchy_poster_v2.9_DEC_2020_A3.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKb%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIQD8PJq9PvtWhQd%2BJX0xBVOqhM1%2BaAtORW9NfOaZw84T2gIgckpNcJj1ag0qslYy%2BeEiG2a6TRRqfyJDHAOfJPNAhGIqtAMIfhAAGgw2MDQ3NTgxMDI2NjUiDEjfKh08JBejWtgt5iqRAyp%2BcVwX4Yt5QOcMr6qbxowDzHD%2BP9WfTykmHAMHQ93mB8eCRJMPZLDknV8nsc8C7c0A%2BWspHkdI%2BoG2fE9TGWI%2BuC1fFeqEvPz3KLZNoaIWYmbLAeiVArL83ltdqpEX0wFLmWFN1F4xcx2w5CxeKFnWJO2O7pcQUXHLuxG7HwIfpStYnZ8grEcUFmaivqnqq%2B3SE2y1NCD7FK8rSVRrjAKf3fx8zget0ak4yYh4H4QkkCV7ude%2B2CB0V%2B1%2FFjn%2Bqlsw5EVqVKmtb8Am3v4huJG%2FqQGaOqT3fD%2BeezTue7QTza19rzTY8vnZmQIV3Xd8CMbALBmys8wf8RiYaSNx%2Fl8tXqgqFfcEwqOHU%2B7hDjkKcySK3H0uYBy1naB9aYd9HYResbnVCiAAQkN7GHf1mo0inrizFxw1QRXfBntOqktbjy%2BzT%2FXvJaB7uu%2BddRsJsDRXZpeCb68FgzYZ0pzkTjtjn38gnkwSxfSZrwL63vuzoIDaTrMx05rd%2Fw6tUVjuXBJpHM4v7O%2B7BVAg2klQcXjDMJyXnYAGOusB6pdTypeysnUpHfZzR6AjpECbr3mKKDUlZBoOhZrUGoVkahsy0GrUFA5BPT4qYn60d%2BWjJ7KwoLrxgyE2wYqoxK%2FFsz3BzIABi%2BH5fWgmvo6CfMssohCBCQV83OTi6bxpns7C5aqdBBvnsWqq4799AgJRP5sjj1PTW1lENGKPaWJlfA%2BxaVvzZGzgTX1AR8jWQlyc4YiRTdhVUXR99EA5UqLP%2BCxLYeZOKb727wYmUhsXtRFAJRnDoUFjT6ticS2urA3iDOoWDWeDKPjb3YhwCS8VpnSb%2BUwKQzfCNKQUgCMpXIM2jjwq2MzURA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20210119T222256Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAYZTTEKKE3PCDAXH7%2F20210119%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=6884eede98e166b62f6fcf3bf3891cd901f6f033668d45640ac20be4e72d12d4)), particularly due to having several countries within one overriding administration and then multiple ways of dividing the countries according to specific applications. 
+The UK has quite a complex administrative geography, particularly due to having several countries within one overriding administration and then multiple ways of dividing the countries according to specific applications. 
 
 For the majority of your practicals, we will be keeping it simple with a focus on London, which is divided into:
 
@@ -156,14 +156,14 @@ We will be looking at wards in our practical analysis – although even at this 
 :::
 
 #### Population data 
-For our population data sets, we will use the ONS mid-year estimates (MYE). These population data sets are **estimates** that have been modelled based on the previous 2011 census count and then forecasted population growth (plus some additional data). They are released a year, with a delay of a year. Today we will use the data for 2011, 2015, and 2019.
+For our population data sets, we will use the ONS mid-year estimates (MYE). These population data sets are **estimates** that have been modelled based on the previous 2011 census count and then forecasted population growth (in combination with several additional data sources). They are released once a year, with a delay of a year. Today we will use the data for 2011, 2015, and 2019.
 
 As the London Datastore only has these MYE for up to 2018, we will download some more recent data from ONS directly. *It is always worth checking the ‘originators’ of the data to see if there are more recent versions.*
 
 1. Navigate to the **Ward** level data sets: [[Link]](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/wardlevelmidyearpopulationestimatesexperimental)
 2. When you navigate to this page, you will find multiple choices of data to download. We will need to download the estimates for **2011, 2015 and 2019**. Click to download each of the zipfiles. Choose the **revised** versions for 2015 and the (Census-based) 2011 wards edition for 2011. 
 
-3. In your `GEOG0030/data/raw/` folder, create a new folder called `population` and copy the three spreadsheets into this folder.
+3. In your `GEOG0030/data/raw/` folder, create a new folder called `population`, unzip your download, and copy the three spreadsheets into this folder.
 
 Now it is time to do some quite **extensive** data cleaning. 
 
@@ -196,7 +196,7 @@ As you will see again, there are plenty of worksheets available - again, we want
 
 If we head back to the original 2015 raw data set, we can actually find this data (as well as the City of London) further down in the spreadsheet. It seems like these LAs had their codes revised in the 2014 revision and are no longer in the same order as the 2011 data set - oh, the joys of using data!
 
-7. Locate the data for the *City of London*, *Hackney*, *Kensington and Chelsea* and *Tower Hamlets* and copy this over into our new spreadsheet. Double-check that you now have in total **636** wards within your data set.
+7. Locate the data for the *City of London*, *Hackney*, *Kensington and Chelsea* and *Tower Hamlets* and copy this over into our new spreadsheet. Double-check that you now have in total **637** wards within your data set.
 
 8. Remember to rename the fields as above, but change your population field to **POP2015**. Also, remember to reformat your population values.
 
@@ -208,7 +208,7 @@ We now need to repeat this for our 2019 data.
 
 As you will see again, there are plenty of worksheets available - again, we want to select the **Mid-2019 Persons** tab. Let us have a look at our data - once again, there's a lot to take in - but what we're interested is in columns `A`, `B`, and now `D` and `G`. Let us follow the same process we used above to copy our data across.
 
-11. To make our processing easier, first hide columns C, E and F in our spreadsheet - **in Excel: right-click on the columns and select Hide**.
+11. To make our processing easier, first hide columns C, E and F in our spreadsheet - in Excel: right-click on the columns and select *Hide*.
 
 12. Next, copy the data from row 5 to the final row for the Westminster data for columns `A`, `B`, `D` and `G` over into a new spreadsheet.
 
@@ -245,7 +245,7 @@ Because, as we have seen above, we have issues with the number of wards and chan
 
 :::note
 **Note** <br/>
-*Data interoperability is a key issue that you will face in spatial analysis, particularly when it comes to Administrative Geographies. 
+Data interoperability is a key issue that you will face in spatial analysis, particularly when it comes to Administrative Geographies. 
 :::
 
 1. Start **QGIS**.
@@ -292,7 +292,7 @@ The first, and this is only really relevant to GUI GIS systems, is that each lay
 
 The second concept is the order in which your layers are drawn – and this is relevant for both GUI GIS and when using plotting libraries such as ggplot2 in RStudio. Your layers will be drawn depending on the order in which your layers are either tabled (as in a GUI GIS) or ‘called’ in your function in code.
 
-Being aware of this need for 'order' is important when we shift to using R-Studio and `ggoplot2` to plot our maps, as if you do not layer your data correctly in your code, your map will end up not looking as you hoped!
+Being aware of this need for 'order' is important when we shift to using RStudio and `ggoplot2` to plot our maps, as if you do not layer your data correctly in your code, your map will end up not looking as you hoped!
 
 For us using QGIS right now, the layers will be drawn from bottom to top. At the moment, we only have one layer loaded, so we do not need to worry about our order right now - but as we add in our 2015 and 2018 ward files, it is useful to know about this order as we will need to display them individually to export them at the end.
 :::
@@ -398,11 +398,11 @@ You now need to **repeat this whole process** for your 2015 and 2019 data sets. 
 - Export your joined data set into a new data set within your `final` folder.
 * Style your data appropriately.
 
-To make visual comparisions against our three data sets, theorectically we would need to standardise the breaks at which our classification schemes are set at. This can be a little fiddly with QGIS, so for now, you can leave your symbolisation to the default settings.
+To make visual comparisons against our three data sets, theoretically we would need to standardise the breaks at which our classification schemes are set at. This can be a little fiddly with QGIS, so for now, you can leave your symbolisation to the default settings.
 
 Alternatively, to set all three data sets to the same breaks, you can do the following:
 
-- Right-click on the `ward_population_2019` data set and navigate to the `Symbology` tab. Double-click on the Values for the smallest classifcation group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click OK, then Click Apply, then Click OK to return to the main QGIS screen.
+- Right-click on the `ward_population_2019` data set and navigate to the `Symbology` tab. Double-click on the Values for the smallest classification group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click OK, then Click Apply, then Click OK to return to the main QGIS screen.
 -  Right-click again on the `ward_population_2019` data set but this time, click on **Styles** -> **Copy Styles** -> **Symbology**.
 - Now right-click on the `ward_population_2015` file, but this time after clicking on **Styles** -> **Paste Style** -> **Symbology**. You should now see the classification breaks in the 2015 data set change to match those in the 2019 data.
 - Repeat this for the 2011 data set as well.
@@ -416,3 +416,10 @@ To export each of your maps (as is):
 Next week, we will look at how to style our maps using the main map conventions (adding North Arrows, Scale Bars and Legends) but for now a simple picture will do. To get a picture of each of your different layers, remember to turn on and off each layer (using the check box).
 
 Finally, remember to save your project!
+
+
+
+
+
+## Before you leave {#byl-w02}
+[That is it for this week](https://www.youtube.com/watch?v=Wmc8bQoL-J0)!

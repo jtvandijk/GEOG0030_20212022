@@ -4,7 +4,7 @@ This week’s lecture provided you with a thorough introduction into what is Geo
 
 We set the scene for the remainder of the module and explained how the foundational concepts that you will learn about in the first half of term fit together to form the overall Geocomputation curriculum.
 
-For this week only, there is no practical per se, but you will need to complete a few practical tasks in preparation for our future practicals.
+For this week only, there is no practical but you will need to complete a few practical tasks in preparation for our future practicals.
 
 ## Lecture recording {#recording-w01}
 - Lecture W1
@@ -14,22 +14,20 @@ For this week only, there is no practical per se, but you will need to complete 
 - Reading #2
 
 ## Getting started
-Over the next few weeks, we will be taking a deeper look at many of these foundational concepts that will ultimately enable you to be able to confidently and competently analyse spatial data using both programming and GIS software.
+Over the next few weeks, we will be taking a closer look at many of the foundational concepts that will ultimately enable you to confidently and competently analyse spatial data using both programming and GIS software.
 
 As you might guess, you will therefore be going on many learning curves over the coming weeks - some that may feel familiar (e.g. applying descriptive statistics) and others that are more challenging (e.g. learning how to write code and debug it as you find errors).
 
-To help with this, we highly recommend that you try to stay organised with your work, including taking notes and making yourself a coding handbook. We would also suggest to list the different data sets you come across - and importantly, the scales and different projections you use them at - more on this in the next two weeks. Finally, you should also make notes about the different spatial analysis techniques you will come across, including the different properties they assess and parameters they require to run.
+To help with this, we highly recommend that you try to stay organised with your work, including taking notes and making yourself a coding handbook. We would also suggest to list the different data sets you come across - and importantly, the scales and different projections you use them at - more on this over the next weeks. Finally, you should also make notes about the different spatial analysis techniques you come across, including the different properties they assess and parameters they require to run.
 
 Furthermore, over the next nine weeks, you will learn how to plan, structure and conduct your own spatial analysis using programming – whilst making decisions on how to best present your work, which is a crucial aspect of any type of investigation but of particular relevance to your dissertation.
 
-Establishing an organised file system, for both your data and your documents, is essential to working effectively and efficiently as a researcher, whether in Geocomputation, Spatial Data Science or any other application you might think of!
-
 ## Software 
-This course primarily uses the R data science programming language and we strongly advise you complete the assignment using it. We briefly touch upon QGIS in the first few weeks to give you a basic foundation in spatial analysis alongside the range of spatial software available.
+This course primarily uses the [R](https://www.r-project.org/) programming language. We briefly touch upon [QGIS](https://qgis.org/en/site/) in the first few weeks to give you a basic foundation in spatial analysis alongside the range of spatial software available.
 
 :::note
 **Note**<br/>
-Please follow the instructions below before the first hands-on practical session.
+Please follow the instructions below to install both [R](https://www.r-project.org/) and [QGIS](https://qgis.org/en/site/) onto your own personal computer. Please make sure everything works **before** the first hands-on practical session next week.
 :::
 
 ### QGIS Installation
@@ -40,69 +38,75 @@ QGIS is an open-source graphic user interface GIS with many community developed 
 We recommend installing the **Long Term Release** as this version should be the most stable, recent version.
 :::
 
-After installation, start QGIS to see if the installation was successful and no errors are shown after startup.
+After installation, start QGIS to see if the installation was successful and no errors are shown after start up.
 
 ### R and RStudio Installation 
 R is both a programming language and software environment - in the form of RStudio- originally designed for statistical computing and graphics. R’s great strength is that it is open-source, can be used on any computer operating system, and is free for anyone to use and contribute to. Because of this, it is rapidly becoming the statistical language of choice for many academics and has a huge user community with people constantly contributing new packages to carry out all manner of statistical, graphical, and importantly for us, geographical tasks.
 
 Installing R takes a few relatively simple steps involving two programmes. First there is the R programme itself. Follow these steps to get it installed on your computer:
 
-1. Go to your nearest CRAN mirror: [[Link]](https://cran.ma.imperial.ac.uk/)
+1. Navigate in your browser to your nearest CRAN mirror: [[Link]](https://cran.ma.imperial.ac.uk/)
 2. If you use a Windows computer, click on *Download R for Windows*. Then click on *base*.  Download and install **R 4.1.1 for Windows**. If you use a Mac computer, click on *Download R for macOS* and download and install **R-4.1.1.pkg**
 
-That is it! You now have installed the latest version of R on your own machine. However, to make working with R a little bit easier we also need to install something called an *Integrated Development Environment*. We will use RStudio:
+That is it! You now have installed the latest version of R on your own machine. However, to make working with R a little bit easier we also need to install something called an Integrated Development Environment (IDE). We will use RStudio:
 
-1. Go to the official webpage of RStudio: [[Link]](https://www.rstudio.com/products/rstudio/download/#download)
+1. Navigate to the official webpage of RStudio: [[Link]](https://www.rstudio.com/products/rstudio/download/#download)
 2. Download and install RStudio Desktop on your computer (**free version!**)
 
 After this, start RStudio to see if the installation was successful. 
 
 ### UCL Desktop and RStudio Server
-As an alternative to installing QGIS and R with RStudio on your personal device, there are some other options. Firstly, both programmes are available through [Desktop@UCL Anywhere](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere) as well as all UCL computer on campus. Specifically for R, there is also an RStudio server version available: open a web browser and navigate to UCL's RStudio Server installation: [[Link]](https://rstudio.data-science.rc.ucl.ac.uk/) 
+As an alternative to installing QGIS and R with RStudio on your personal device, there are some other options. Firstly, both programmes are available through [Desktop@UCL Anywhere](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere) as well as all UCL computers on campus. In case of R, there is also an RStudio server version available which you can accesst through your web browser: [[Link]](https://rstudio.data-science.rc.ucl.ac.uk/) 
 
 You should be able to log in with your normal UCL username and password. After logging in, you should see the RStudio interface appear. 
 
-```{r 01-rstudio-interface, echo=FALSE, fig.align='center', fig.cap='The RStudio interface.'}
+```{r 01-rstudio-interface, echo=FALSE, fig.align='center', fig.cap='The RStudio Server interface.'}
 knitr::include_graphics('images/w01/01_rstudio_interface.png')
 ```
 
 :::note
 **Note**<br>
-If it is the first time you log on to RStudio server you may only see the RStudio interface appear once you have clicked on the start a new session button. More importantly: if you are not on campus, RStudio server will only work with an active Virtual Private Network (VPN) connection that links your personal computer into UCL’s network. Details on setting up a VPN connection can be found on UCL's VPN connection guides: [[Link]](https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn) 
+If it is the first time you log on to RStudio server you may only see the RStudio interface appear once you have clicked on the *start a new session* button. More importantly: if you are not on campus, RStudio server will only work with an active Virtual Private Network (VPN) connection that links your personal computer into UCL’s network. Details on setting up a VPN connection can be found in UCL's VPN connection guides: [[Link]](https://www.ucl.ac.uk/isd/services/get-connected/ucl-virtual-private-network-vpn) 
 :::
 
 ### A note on ArcGIS
-ArcGIS Pro (previously ArcMap) is the main commercial GIS software that you may have already used - or seen/heard about through other modules or even job adverts. We do not use ArcGIS Pro in our Practicals for several reasons:
+[ArcGIS Pro](https://www.esri.com/en-us/arcgis/products/arcgis-pro/overview) (previously ArcMap) is the main commercial GIS software that you may have already used - or seen/heard about through other modules or even job adverts. We do not use ArcGIS Pro in our Practicals for several reasons:
 
-- Computing requirements for ArcGIS Pro are substantial and it **only** operates on the Windows Operating System. For Mac users, using ArcGIS Pro (and ArcMap) would require using either a Virtual Machine or "splitting your own harddrive" to install a Windows OS (dualboot).
-- It is **proprietary** software, which means you need a license to use the software. For those of us in education, the University covers the cost of this license, but when you leave, you will need to pay for a personal license (around £100! for non-commercial use) to continue using the software and repeat any analysis you have used the software for.
+- Computing requirements for ArcGIS Pro are substantial and it **only** operates on the Windows Operating System. For Mac users, using ArcGIS Pro (and ArcMap) would require using either a Virtual Machine or running a copy of Windows OS on a separate partition of your hard drive.
+- It is **proprietary** software, which means you need a license to use the software. For those of us in education, the University covers the cost of this license, but when you leave, you will need to pay for a personal license (around £100 for non-commercial use) to continue using the software and repeat any analysis you have used the software for.
 - Whilst ArcPro can use pure [Python](https://www.python.org/) (and even R) as a programming language within it through scripts and notebooks, it primarily relies on its own **ArcPy** and **ArcGIS API for Python**  packages to run the in-built tools and analytical functions. To use these packages, you still need a license which makes it difficult to share your code with others *if* they do not have their own ArcGIS license.
 
-Recent developments in the ArcPro software however does make it an attractive tool for spatial data science - it has cross-user functionality, from data analysts who like to use a tool called Notebooks for their code development, to those focused more on cartography and visualisation with in-built bridges to Adobe's Creative Suite. We therefore do not want to put you off looking into ArcGIS in the future, but for this course, we want to ensure the reproducibility of work.
+Recent developments in the ArcPro software, however, does make it an attractive tool for spatial data science and quantitative geography - it has cross-user functionality, from data analysts who like to use a tool called Notebooks for their code development, to those focused more on cartography and visualisation with in-built bridges to Adobe's Creative Suite. We therefore do not want to put you off looking into ArcGIS in the future, but for this course, we want to ensure the reproducibility of your work.
 
 :::note
-**Note**<br/> The analysis for your coursework must be completed in R and QGIS (where permissible, see guidance that will be released at the end of Reading Week).
+**Note**<br/> This also means that the analysis you will be doing for your coursework assignment must be completed in R and QGIS. Specific guidance on the coursework assignment and permitted software will be made available at the end of Reading Week.
 :::
 
 ## File management
+Establishing an organised file system, for both your data and your documents, is essential to working effectively and efficiently as a researcher, whether in Geocomputation, Spatial Data Science or any other application you might think of!
+
 To get ready for our practicals, which start next week, we would like you to set-up a file management system as follows (either on your local computer, [Desktop@UCL Anywhere](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere) or [RStudio server](https://rstudio.data-science.rc.ucl.ac.uk/)).
 
-1. Create a **GEOG0030** folder in your Documents folder on your computer (most likely inside a UCL or Undergraduate or Geography folder).
+1. Create a `GEOG0030` folder in your `Documents` folder on your computer (most likely inside a UCL or Undergraduate or Geography folder).
+2. Next, within your **GEOG0030** folder, create the following subfolders: 
 
-2. Next, within your **GEOG0030** folder, create the following subfolders:
-* **data**
-* **slides**
-* **maps**
-* **qgis**
-* **notes**
-* any other folder types you may think you need for this course (although you can of course add these as the module continues)
+| Folder name | Purpose      |
+| :----        | :----------- |
+| `data`      | To store both raw data sets and final outputs. |
+| `slides`    | To store a copy of the lecture slides. |
+| `maps`      | To save the maps you produce during your practicals. |
+| `qgis`      | To save any data related to QGIS. |
+| `notes`     | To store your notes, codebook, etc. |
 
-3. Within your **data** folder, create the following subfolders:
-* **raw**
-* **working**
-* **final**
+3. Within your `data` folder, create the following subfolders: 
 
-4. If you have have downloaded the lecture slides, move these into your **slides** folder.
+| Folder name | Purpose      |
+| :---        | :----------- |
+| `raw`       | To store all your raw data files that have not yet been processed. |
+| `working`   | To store all your intermediate data files that have had some processing, but are not yet a final product. |
+| `final`     | To store all your final data files that have been processed and analysed, potentially ready to be mapped. |
 
-And that is it. You should now all be set up to start our practicals next week.
+4. If you have have downloaded the lecture slides, move these into your `slides` folder.
 
+## Before you leave {#byl-w01}
+You should now be all ready to go with the computer practicals the coming week. [That is it for this week](https://www.youtube.com/watch?v=d8Fmu3RLEOY)!
