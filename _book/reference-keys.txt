@@ -31,3 +31,5 @@ conducting-an-attribute-join
 conducting-an-attribute-join-for-20142015-and-20182019
 exporting-our-maps-for-visual-analysis
 byl-w02
+fig:unnamed-chunk-1
+fig:unnamed-chunk-6

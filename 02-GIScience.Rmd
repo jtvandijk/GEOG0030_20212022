@@ -269,13 +269,13 @@ We will first focus on loading and joining the 2011 data sets.
 We can take a moment just to look at our Ward data - and recognise the shape of London. Can you see the City of London in the data set? It has the smallest wards in the entire London area. With the data set loaded, we can now explore it in a little more detail. We want to check out two things about our data: first, its **Properties** and secondly, its **Attribute Table**. 
 
 8. Right-click on the `London_Ward` layer and open the **Attribute Table** and look at how the attributes are stored and presented in the table. Explore the different buttons in the Attribute Table and see if you can figure out what they mean. Once done, close the Attribute Table.
-9. Right-click on the `London_Ward` layer and select `Properties`. Click through the different tabs and see what they contain. Keep the `Properties` box open.
+9. Right-click on the `London_Ward` layer and select **Properties**. Click through the different tabs and see what they contain. Keep the **Properties** box open.
 
-Before adding our population data, we can make a quick map of the wards in London - we can add **labels** and change the **symbolisation** of our wards.
+Before adding our population data, we can make a quick map of the wards in London - we can add labels and change the *symbolisation* of our wards.
 
-10. In the `Properties` box, click on the `Symbology` tab - this is where we can change how our data layer looks. For example, here we can change the line and fill colour of our Wards utilising either the default options available or clicking on **Simple Fill** and changing these properties directly. Keep the overall **styling** to a **Single Symbol** for now - we will get back to this once we have added the population data. You can also click on the `Labels` tab - and set the Labels option to `Single labels`. 
+10. In the **Properties** box, click on the **Symbology** tab - this is where we can change how our data layer looks. For example, here we can change the line and fill colour of our Wards utilising either the default options available or clicking on **Simple Fill** and changing these properties directly. Keep the overall **styling** to a **Single Symbol** for now - we will get back to this once we have added the population data. You can also click on the **Labels** tab - and set the Labels option to **Single labels**. 
 
-11. QGIS will default to the **NAME** column within our data. You can change the properties of these labels using the options available. We will add a small buffer to our labels and change the font to **Futura** and size **8**. You can click **Apply** to see what your labels look like.
+11. QGIS will default to the **NAME** column within our data. You can change the properties of these labels using the options available. Change the font to **Futura** and size **8** and under the add a small buffer to the labels by selecting **Draw text bufer** under the **Buffer** tab. You can click **Apply** to see what your labels look like. Please note that the background colour may differ.
 
 ```{r echo=FALSE, fig.align='center', fig.cap='It looks incredibly busy.'}
 knitr::include_graphics('images/w02/wardlabels.png')
@@ -302,9 +302,9 @@ We are now going to join our 2011 population data to our 2011 shapefile. First, 
 
 13. Click on **Layer** -> **Add Layer** -> **Add Delimited Text Layer**.
 
-14. Click on the three dots button again and navigate to your **2011 population data** in your `working` folder. Your file format should be set to `csv`. You should have the following boxes clicked: *Decimal separator is comma; First record has field names' Detect field types; Discard empty fields*. QGIS does many of these by default, but do double-check!
+14. Click on the three dots button again and navigate to your **2011 population data** in your `working` folder. Your file format should be set to `csv`. You should have the following boxes clicked under the **Record and Field options** menu: *Decimal separator is comma; First record has field names; Detect field types; Discard empty fields*. QGIS does many of these by default, but do double-check!
 
-15. Set the Geometry to *No geometry (attribute only table)*. Then click **Add** and **Close***. You should now see a table added to your `Layers` box.
+15. Set the Geometry to *No geometry (attribute only table)* under the **Geometry Definition** menu. Then click **Add** and **Close**. You should now see a table added to your `Layers` box.
 
 We can now join this table data to our spatial data using an **Attribute Join**.
 
@@ -316,7 +316,7 @@ An attribute join is one of two types of data joins you will use in spatial anal
 knitr::include_graphics('images/w02/attribute_joins.png')
 ```
 
-Essentially you need a **single identifying ID** field for your records within both data sets: this can be a code, a name or any other string of information. In spatial analysis, we always **join our table data to our shape data** (One way to think about it as putting the table data into each shape). 
+Essentially you need a **single identifying ID** field for your records within both data sets: this can be a code, a name or any other string of information. In spatial analysis, we always **join our table data to our shape data** (One way to think about it as attaching the table data to each shape). 
 
 As a result, your target layer is always the shapefile (or spatial data) whereas your join layer is the table data. These are known as the left- and right-side tables when working with code. 
 
@@ -329,18 +329,18 @@ Common errors, such as adding in spaces or using `0` instead `O` (and vice versa
 
 To make our join work, we need to check that we have a matching **UID** across both our data sets. We therefore need to look at the tables of both data sets and check what attributes we have that could be used for this possible match.
 
-16. Open up the Attribute Tables of each layer and check what fields we have that could be used for the join. We can see that both our respective `*_Code` fields have the same codes so we can use these to create our joins.
+16. Open up the Attribute Tables of each layer and check what fields we have that could be used for the join. We can see that both our respective "code" fields have the same codes (`ward_code` and `GSS_code`) so we can use these to create our joins.
 
 17. Right-click on your `London_Ward` layer -> **Properties** and then click on the **Joins** tab. 
-- Click on the **+** button.Make sure the **Join Layer** is set to `ward_population_2011`.
+- Click on the **+** button. Make sure the **Join Layer** is set to `ward_population_2011`.
 - Set the **Join field** to `ward_code`.
 - Set the **Target field** to `GSS_code`.
-- Click the `Joined Fields` box and click to only select the `POP2011` field.
+- Click the **Joined Fields** box and click to only select the `POP2011` field.
 - Click on the **Custom Field Name Prefix** and **remove** the pre-entered text to leave it blank.
 - Click on **OK**.
 - Click on **Apply** in the main Join tab and then click OK to return to the main QGIS window.
 
-We can now check to see if our join has worked by opening up our `London_Ward` **Attribute Table** and looking to see if our wards now have a **Population** field attached to it:
+We can now check to see if our join has worked by opening up our `London_Ward` **Attribute Table** and looking to see if our wards now have a **Population** field attached to it.
 
 18. Right-click on the `London_Ward` layer and open the **Attribute Table** and check that the population data column has been added to the table.
 
@@ -353,19 +353,18 @@ Now, the join that you have created between your ward and population data sets i
 
 Let's do this now:
 
-19. Right-click on your `London_Ward` shapefile and click **Export** -> **Save Vector Layer as..**. The format should be set to an ESRI shapefile.
+19. Right-click on your `London_Ward` shapefile and click **Export** -> **Save Features As...**. The format should be set to an ESRI shapefile.
 - Then click on the three dots buttons and navigate to your `final` folder and enter: `ward_population_2011` as your file name.
 - Check that the **CRS** is **British National Grid**.
-- Leave the remaining fields as selected, but check that the **Add saved file to map** is checked.
-- Click **OK**.
+- Leave the remaining fields as selected, but check that the **Add saved file to map** is checked. Click OK.
 
-You should now see our new shapefile add itself to our map. You can now remove the original `London_Ward` and `ward_population_2011` data sets from our Layers box (**Right-click on the layers** -> **Remove Layer**).
+You should now see our new shapefile add itself to our map. You can now remove the original `London_Ward` and `ward_population_2011` data sets from our Layers box (Right-click on the layers and opt for **Remove Layer...**).
 
 The final thing we would like to do with this data set is to style our data set by our newly added population field to show population distribution around London.
 
 20. To do this, again right-click on the **Layer** -> **Properties** -> **Symbology**.
 - This time, we want to style our data using a **Graduated** symbology.
-- Change this option in the tab and then choose `POP2011` as your column. 
+- Change this option in the tab and then choose `pop2011` as your column. 
 - We can then change the color ramp to suit our aesthetic preferences - *Viridis* seems to be the cool colour scheme at the moment, and we will choose to invert our ramp as well. 
 - The final thing we need to do is **classify** our data - what this simply means is to decide how to group the values in our data set together to create the graduated representation. 
 - We will be looking at this in later weeks, but for now, we will use the **Natural Breaks** option. 
@@ -406,20 +405,14 @@ Alternatively, to set all three data sets to the same breaks, you can do the fol
 -  Right-click again on the `ward_population_2019` data set but this time, click on **Styles** -> **Copy Styles** -> **Symbology**.
 - Now right-click on the `ward_population_2015` file, but this time after clicking on **Styles** -> **Paste Style** -> **Symbology**. You should now see the classification breaks in the 2015 data set change to match those in the 2019 data.
 - Repeat this for the 2011 data set as well.
-- The final thing you need to do is to now change the classification column in the `Symbology` tab for the 2015 and 2011 data sets back to their original columns and press **Apply**. You will see when you first load up their Symbology options this is set to *POP2019*, which of course does not exist within this data set.
+- The final thing you need to do is to now change the classification column in the `Symbology` tab for the 2015 and 2011 data sets back to their original columns and press **Apply**. You will see when you first load up their Symbology options this is set to *pop2019*, which of course does not exist within this data set.
 
 #### Exporting our maps for visual analysis
 
 To export each of your maps (as is):
-- Click on **Project** -> **Import/Export** -> **Export to Image** and save your final map in your `maps` folder. You may want to create a folder for these maps titled `w02`.
+- Click on select only the map layer you want to export and then opt for **Project** -> **Import/Export** -> **Export to Image** and save your final map in your `maps` folder. You may want to create a folder for these maps titled `w02`.
 
-Next week, we will look at how to style our maps using the main map conventions (adding North Arrows, Scale Bars and Legends) but for now a simple picture will do. To get a picture of each of your different layers, remember to turn on and off each layer (using the check box).
-
-Finally, remember to save your project!
-
-
-
-
+Next week, we will look at how to style our maps using the main map conventions (adding North Arrows, Scale Bars and Legends) but for now a simple picture will do. 
 
 ## Before you leave {#byl-w02}
-[That is it for this week](https://www.youtube.com/watch?v=Wmc8bQoL-J0)!
+Finally, [that is it for this week](https://www.youtube.com/watch?v=Wmc8bQoL-J0)! Remember to save your project!
