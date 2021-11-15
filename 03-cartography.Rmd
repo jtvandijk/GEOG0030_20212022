@@ -1,0 +1,76 @@
+# Cartography and Visualisation
+
+This week’s lecture has given you an in-depth introduction into how we can create a successful map, including understanding map projections, cartographic conventions and issues faced with the analysis of aggregated data at areal units.
+
+The practical component of the week puts some of these learnings into practice as we analyse crime rates within London at two different scales.
+
+:::note
+**Note**<br/>
+The data sets you will create in this practical will be used in the Week 4 practical, so make sure to follow every step and export your data into your working and final folders (respectively) at the end.
+
+The practical will also introduce you to point-in-polygon counts. You will be using these counts throughout this module, so it is incredibly important that you understand how they work – even as simple as they may be!
+:::
+
+## Lecture recording {#recording-w03}
+- Lecture W3
+
+## Reading list {#reading-w03}
+- Reading #1
+- Reading #2
+
+## Crime in London
+Over the next few weeks, we will look to model driving factors behind crime across London from both a statistical and spatial perspective. As [Reid *et al.* (2018)](https://www.oxfordbibliographies.com/view/document/obo-9780195396607/obo-9780195396607-0123.xml) explain:
+
+> Spatial analysis can be employed in both an exploratory and well as a more confirmatory manner with the primary purpose of identifying how certain community or ecological factors (such as population characteristics or the built environment) influence the spatial patterns of crime. Crime mapping allows researchers and practitioners to explore crime patterns, offender mobility, and serial offenses over time and space. Within the context of local policing, crime mapping provides the visualization of crime clusters by types of crimes, thereby validating the street knowledge of patrol officers. Crime mapping can be used for allocating resources (patrol, specialized enforcement) and also to inform how the concerns of local citizens are being addressed.
+Mapping crime and its spatial distribution is of significant interest to a variety of stakeholders - it also serves as a relatable and understandable geographical phenomena for learning different types of spatial analysis techniques as well as many of the 'nuances' analysts face when using this type of 'event' data.
+
+As a result, within this practical, we are actually going to answer a very simple question: **Does our perception of crime (and its distribution) in London vary at different scales?** Here we are looking to test whether we would make the ‘ecological fallacy’ mistake of assuming patterns at the ward level are the same at the borough level by looking to directly account for the impact of the Modifiable Area Unit Problem within our results. To test this, we will use these two administrative geographies (**borough and ward**) to aggregate crime data for London in 2020. Here we will be looking specifically at a specific type of crime: **the theft from a person**.
+
+### Finding our data sets {#w03-finding} 
+As we saw last week, accessing data within the UK, and specifically for London, is relatively straight-forward - you simply need to know which data portal contains the data set you want!
+
+#### Crime data {-}
+For our crime data, we will use data directly from the **Police** Data Portal, which you can find at https://data.police.uk/. This Data Portal allows you to access and generate tabular data for crime recorded in the U.K. across different the different Police Forces since 2017. 
+
+In total, there are 45 territorial police forces (TPF) and 3 special police forces (SPF) of the United Kingdom. Each TPF covers a specific area in the UK (e.g. the "West Midlands Police Force"), whilst the SPFs are cross-jurisdiction and cover specific types of crime, such as the British Transport Police. Therefore, when we want to download data for a specific area, we need to know which Police Force covers the Area of Interest (AOI) for our investigation.
+
+When you look to download crime data for London, for example, there are **two** territorial police forces working within the city and its greater metropolitan area: 
+
+1) **The Metropolitan Police Force (The Met)**, which covers nearly the entire London area, including Greater London
+
+2) **The City of London (COL) Police**, which covers the City of London. The Met has no jurisdiction in the COL.
+
+You therefore need to decide *if* you want to include an analysis of crime in the City of London or not - we will in our current study.
+
+#### Population data {-}
+We know that if we want to study a phenomena like crime (and aggregate it to an areal unit as we will do today!), we will need to normalise this by our population. Luckily, we already have our Ward Population sorted from last week, with our `ward_population_2019.shp` that should be currently sitting in your final data folder. 
+
+In addition to our **ward** level data set, we also want to generate the same type of shapefile for our London **boroughs**, i.e. a `borough_ward_population_2019.shp`, utilising the same approach as last week, joining our population table data to our borough shape data.To do this, we need to know where to get both our required data sets from - luckily, you have already got a borough shape data in your `raw/boundaries/2011` folder. Therefore, it is just a case of tracking down the same Mid-Year Estimates (MYE) for London Boroughs as we did for the wards, which with the ONS's central MYE database, this also will not be too difficult!
+
+### Downloading and processing {#w03-downloading}
+As outlined above, to get going with our analysis, we need to download both the **population** data for our boroughs and the 2020 **crime** data for our two police forces in London. 
+
+Let us tackle the population data first.
+
+#### Borough Population {-}
+Through a quick search, we can find our Borough Population table data pretty much in the same place as our Ward data - however it is a separate spreadsheet to download.
+
+1. Navigate to the data [here](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland).
+
+2. Download the **Mid-2019: April 2020 local authority district codes** `.xls` file.
+
+3. Open the data set in your spreadsheet editing software.
+
+4. Navigate to the `MYE2-Persons` tab.
+
+5. Utilising your preferred approach, extract: `Code`, `Name`, `Geography` and `All ages` data for all London boroughs.
+You should have a total of **33 boroughs**.
+
+6. Once you have your 33 boroughs separated from the rest of the data, copy the columns (`Code`, `Name`, `Geography` and `All ages`) and respective data for each borough into a new csv.
+
+7. Remember to format the **field names** as well as the **number field** for the population as we did last week.
+
+8. Save as a new `csv` in your `working` population folder: `borough_population_2019.csv`.
+
+## Before you leave {#byl-w03}
+Finally, [that is it for this week](https://www.youtube.com/watch?v=Wmc8bQoL-J0)! Remember to save your project!

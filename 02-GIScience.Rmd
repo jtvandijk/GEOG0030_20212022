@@ -5,7 +5,7 @@ This week’s lecture introduced you to foundational concepts associated with GI
 The practical component of the week puts some of these learnings into practice with a digitisation of the river Thames in London as well as an exploration of population data within London using QGIS.
 
 ## Lecture recording {#recording-w02}
-- Lecture W1
+- Lecture W2
 
 ## Reading list {#reading-w02}
 - Reading #1
@@ -79,10 +79,12 @@ We can also see first-hand the impact of wider socio-economic processes, such as
 
 This data will be used in our future practicals to **normalise** certain data, such as the crime data sets for next week.
 
-#### Why do we need to normalise by population? {-}
-When we record events created by humans, there is often a population bias: simply, more people in an area will by probability lead to a higher occurrence of said event, such as crime. We will look at this in greater detail next week.
+:::note
+**Note**<br/>
+Why do we need to normalise by population? When we record events created by humans, there is often a population bias: simply, more people in an area will by probability lead to a higher occurrence of said event, such as crime. We will look at this in greater detail next week.
+:::
 
-### Finding our data sets
+### Finding our data sets {w02-finding}
 In the UK, finding authoritative data on population and Administrative Geography boundaries is increasingly straight-forward. Over the last ten years, the UK government has opened up many of its data sets as part of an Open Data precedent that began in 2010 with the creation of [data.gov.uk](data.gov.uk) and the Open Government Licence (the terms and conditions for using data).
 
 [Data.gov.uk](www.data.gov.uk) is the UK government’s central database that contains open data that the central government, local authorities and public bodies publish. This includes, for example, aggregated census and health data – and even government spending. In addition to this central database, there are other authoritative databases run by the government and/or respective public bodies that contain either a specific type of data (e.g. census data, crime data) or a specific collection of data sets (e.g. health data direct from the NHS, data about London). Some portals are less up-to-date than others, so it is wise to double-check with the ‘originators’ of the data to see if there are more recent versions.
@@ -92,7 +94,7 @@ For our practical, we will access data from two portals:
 1. For our administrative boundaries, we will download the **spatial** data from the *London Datastore* (which is exactly what it sounds like!).
 2. For population, we will download **attribute** data from the *Office of National Statistics (ONS)* for 2019 and the London Datastore (currently only contains these data until 2018).
 
-### Downloading and processing
+### Downloading and processing {w02-downloading}
 The first step in our practical is to download and process our two main data sets: *administrative geography boundaries* and *population data*.
 
 #### Administrative Geography Boundaries 

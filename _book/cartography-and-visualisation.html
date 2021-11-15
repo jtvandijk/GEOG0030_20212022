@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | GEOG0030: Geocomputation</title>
-  <meta name="description" content="Page not found | GEOG0030: Geocomputation handbook." />
+  <title>3 Cartography and Visualisation | GEOG0030: Geocomputation</title>
+  <meta name="description" content="3 Cartography and Visualisation | GEOG0030: Geocomputation handbook." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | GEOG0030: Geocomputation" />
+  <meta property="og:title" content="3 Cartography and Visualisation | GEOG0030: Geocomputation" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://jtvandijk.github.io/GEOG0030/" />
   
-  <meta property="og:description" content="Page not found | GEOG0030: Geocomputation handbook." />
+  <meta property="og:description" content="3 Cartography and Visualisation | GEOG0030: Geocomputation handbook." />
   <meta name="github-repo" content="jtvandijk/GEOG0030" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | GEOG0030: Geocomputation" />
+  <meta name="twitter:title" content="3 Cartography and Visualisation | GEOG0030: Geocomputation" />
   
-  <meta name="twitter:description" content="Page not found | GEOG0030: Geocomputation handbook." />
+  <meta name="twitter:description" content="3 Cartography and Visualisation | GEOG0030: Geocomputation handbook." />
   
 
 <meta name="author" content="Justin van Dijk" />
@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
+<link rel="prev" href="giscience-and-gis-software.html"/>
 
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -141,18 +141,89 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="cartography-and-visualisation" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Cartography and Visualisation</h1>
+<p>This week’s lecture has given you an in-depth introduction into how we can create a successful map, including understanding map projections, cartographic conventions and issues faced with the analysis of aggregated data at areal units.</p>
+<p>The practical component of the week puts some of these learnings into practice as we analyse crime rates within London at two different scales.</p>
+<div class="note">
+<p><strong>Note</strong><br/>
+The data sets you will create in this practical will be used in the Week 4 practical, so make sure to follow every step and export your data into your working and final folders (respectively) at the end.</p>
+<p>The practical will also introduce you to point-in-polygon counts. You will be using these counts throughout this module, so it is incredibly important that you understand how they work – even as simple as they may be!</p>
+</div>
+<div id="recording-w03" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Lecture recording</h2>
+<ul>
+<li>Lecture W3</li>
+</ul>
+</div>
+<div id="reading-w03" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Reading list</h2>
+<ul>
+<li>Reading #1</li>
+<li>Reading #2</li>
+</ul>
+</div>
+<div id="crime-in-london" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Crime in London</h2>
+<p>Over the next few weeks, we will look to model driving factors behind crime across London from both a statistical and spatial perspective. As <a href="https://www.oxfordbibliographies.com/view/document/obo-9780195396607/obo-9780195396607-0123.xml">Reid <em>et al.</em> (2018)</a> explain:</p>
+<blockquote>
+<p>Spatial analysis can be employed in both an exploratory and well as a more confirmatory manner with the primary purpose of identifying how certain community or ecological factors (such as population characteristics or the built environment) influence the spatial patterns of crime. Crime mapping allows researchers and practitioners to explore crime patterns, offender mobility, and serial offenses over time and space. Within the context of local policing, crime mapping provides the visualization of crime clusters by types of crimes, thereby validating the street knowledge of patrol officers. Crime mapping can be used for allocating resources (patrol, specialized enforcement) and also to inform how the concerns of local citizens are being addressed.
+Mapping crime and its spatial distribution is of significant interest to a variety of stakeholders - it also serves as a relatable and understandable geographical phenomena for learning different types of spatial analysis techniques as well as many of the ‘nuances’ analysts face when using this type of ‘event’ data.</p>
+</blockquote>
+<p>As a result, within this practical, we are actually going to answer a very simple question: <strong>Does our perception of crime (and its distribution) in London vary at different scales?</strong> Here we are looking to test whether we would make the ‘ecological fallacy’ mistake of assuming patterns at the ward level are the same at the borough level by looking to directly account for the impact of the Modifiable Area Unit Problem within our results. To test this, we will use these two administrative geographies (<strong>borough and ward</strong>) to aggregate crime data for London in 2020. Here we will be looking specifically at a specific type of crime: <strong>the theft from a person</strong>.</p>
+<div id="w03-finding" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Finding our data sets</h3>
+<p>As we saw last week, accessing data within the UK, and specifically for London, is relatively straight-forward - you simply need to know which data portal contains the data set you want!</p>
+<div id="crime-data" class="section level4 unnumbered">
+<h4>Crime data</h4>
+<p>For our crime data, we will use data directly from the <strong>Police</strong> Data Portal, which you can find at <a href="https://data.police.uk/" class="uri">https://data.police.uk/</a>. This Data Portal allows you to access and generate tabular data for crime recorded in the U.K. across different the different Police Forces since 2017.</p>
+<p>In total, there are 45 territorial police forces (TPF) and 3 special police forces (SPF) of the United Kingdom. Each TPF covers a specific area in the UK (e.g. the “West Midlands Police Force”), whilst the SPFs are cross-jurisdiction and cover specific types of crime, such as the British Transport Police. Therefore, when we want to download data for a specific area, we need to know which Police Force covers the Area of Interest (AOI) for our investigation.</p>
+<p>When you look to download crime data for London, for example, there are <strong>two</strong> territorial police forces working within the city and its greater metropolitan area:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>The Metropolitan Police Force (The Met)</strong>, which covers nearly the entire London area, including Greater London</p></li>
+<li><p><strong>The City of London (COL) Police</strong>, which covers the City of London. The Met has no jurisdiction in the COL.</p></li>
+</ol>
+<p>You therefore need to decide <em>if</em> you want to include an analysis of crime in the City of London or not - we will in our current study.</p>
+</div>
+<div id="population-data-1" class="section level4 unnumbered">
+<h4>Population data</h4>
+<p>We know that if we want to study a phenomena like crime (and aggregate it to an areal unit as we will do today!), we will need to normalise this by our population. Luckily, we already have our Ward Population sorted from last week, with our <code>ward_population_2019.shp</code> that should be currently sitting in your final data folder.</p>
+<p>In addition to our <strong>ward</strong> level data set, we also want to generate the same type of shapefile for our London <strong>boroughs</strong>, i.e. a <code>borough_ward_population_2019.shp</code>, utilising the same approach as last week, joining our population table data to our borough shape data.To do this, we need to know where to get both our required data sets from - luckily, you have already got a borough shape data in your <code>raw/boundaries/2011</code> folder. Therefore, it is just a case of tracking down the same Mid-Year Estimates (MYE) for London Boroughs as we did for the wards, which with the ONS’s central MYE database, this also will not be too difficult!</p>
+</div>
+</div>
+<div id="w03-downloading" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Downloading and processing</h3>
+<p>As outlined above, to get going with our analysis, we need to download both the <strong>population</strong> data for our boroughs and the 2020 <strong>crime</strong> data for our two police forces in London.</p>
+<p>Let us tackle the population data first.</p>
+<div id="borough-population" class="section level4 unnumbered">
+<h4>Borough Population</h4>
+<p>Through a quick search, we can find our Borough Population table data pretty much in the same place as our Ward data - however it is a separate spreadsheet to download.</p>
+<ol style="list-style-type: decimal">
+<li><p>Navigate to the data <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland">here</a>.</p></li>
+<li><p>Download the <strong>Mid-2019: April 2020 local authority district codes</strong> <code>.xls</code> file.</p></li>
+<li><p>Open the data set in your spreadsheet editing software.</p></li>
+<li><p>Navigate to the <code>MYE2-Persons</code> tab.</p></li>
+<li><p>Utilising your preferred approach, extract: <code>Code</code>, <code>Name</code>, <code>Geography</code> and <code>All ages</code> data for all London boroughs.
+You should have a total of <strong>33 boroughs</strong>.</p></li>
+<li><p>Once you have your 33 boroughs separated from the rest of the data, copy the columns (<code>Code</code>, <code>Name</code>, <code>Geography</code> and <code>All ages</code>) and respective data for each borough into a new csv.</p></li>
+<li><p>Remember to format the <strong>field names</strong> as well as the <strong>number field</strong> for the population as we did last week.</p></li>
+<li><p>Save as a new csv in your <code>working</code> population folder: <code>borough_population_2019.csv</code>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="byl-w03" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Before you leave</h2>
+<p>Finally, <a href="https://www.youtube.com/watch?v=Wmc8bQoL-J0">that is it for this week</a>! Remember to save your project!</p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
+<a href="giscience-and-gis-software.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -184,7 +255,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jtvandijk/GEOG0030/edit/master/%s",
+"link": "https://github.com/jtvandijk/GEOG0030/edit/master/03-cartography.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -195,7 +266,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["https://github.com/jtvandijk/GEOG0030/raw/master/%s"],
+"download": ["https://github.com/jtvandijk/GEOG0030/raw/master/03-cartography.Rmd"],
 "search": {
 "engine": "fuse",
 "options": null
