@@ -30,7 +30,7 @@ As a result, within this practical, we are actually going to answer a very simpl
 As we saw last week, accessing data within the UK, and specifically for London, is relatively straight-forward - you simply need to know which data portal contains the data set you want!
 
 #### Crime data {-}
-For our crime data, we will use data directly from the **Police** Data Portal, which you can find at https://data.police.uk/. This Data Portal allows you to access and generate tabular data for crime recorded in the U.K. across different the different Police Forces since 2017. 
+For our crime data, we will use data directly from the **Police Data Portal**, which you can find at https://data.police.uk/. This Data Portal allows you to access and generate tabular data for crime recorded in the U.K. across different the different Police Forces since 2017. 
 
 In total, there are 45 territorial police forces (TPF) and 3 special police forces (SPF) of the United Kingdom. Each TPF covers a specific area in the UK (e.g. the "West Midlands Police Force"), whilst the SPFs are cross-jurisdiction and cover specific types of crime, such as the British Transport Police. Therefore, when we want to download data for a specific area, we need to know which Police Force covers the Area of Interest (AOI) for our investigation.
 
@@ -161,14 +161,14 @@ QGIS can at times be a little bit buggy so when it creates new data layers in yo
 
 Before moving on, let us do some housekeeping.
 
-6. Remove the `crime_theft_2020` original dataset.
+6. Remove the `crime_theft_2020` original data set.
 
 7. Rename the `Reprojected` data set to `crime_theft_2020`.
 
 Now we have an organised Layers and project, we are ready to start our crime analysis!
 
 #### Counting points-in-polygons 
-The next step of our analysis is incrediby simple - as QGIS has an in-built tool for us to use. We will use the `Count Points in Polygons` in the `Analysis` toolset for `Vector` data to count how many crimes have occured in both our **wards** and our **boroughs**. We will then have our count statistic which we will need to normalise by our population data to create our **crime rate** final statistic.
+The next step of our analysis is incredibly simple - as QGIS has an in-built tool for us to use. We will use the `Count Points in Polygons` in the `Analysis` toolset for `Vector` data to count how many crimes have occured in both our **wards** and our **boroughs**. We will then have our count statistic which we will need to normalise by our population data to create our **crime rate** final statistic.
 
 Let's get going and first start with calculating the crime rate for the borough scale:
 

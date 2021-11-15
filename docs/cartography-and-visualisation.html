@@ -180,7 +180,7 @@ Mapping crime and its spatial distribution is of significant interest to a varie
 <p>As we saw last week, accessing data within the UK, and specifically for London, is relatively straight-forward - you simply need to know which data portal contains the data set you want!</p>
 <div id="crime-data" class="section level4 unnumbered">
 <h4>Crime data</h4>
-<p>For our crime data, we will use data directly from the <strong>Police</strong> Data Portal, which you can find at <a href="https://data.police.uk/" class="uri">https://data.police.uk/</a>. This Data Portal allows you to access and generate tabular data for crime recorded in the U.K. across different the different Police Forces since 2017.</p>
+<p>For our crime data, we will use data directly from the <strong>Police Data Portal</strong>, which you can find at <a href="https://data.police.uk/" class="uri">https://data.police.uk/</a>. This Data Portal allows you to access and generate tabular data for crime recorded in the U.K. across different the different Police Forces since 2017.</p>
 <p>In total, there are 45 territorial police forces (TPF) and 3 special police forces (SPF) of the United Kingdom. Each TPF covers a specific area in the UK (e.g. the “West Midlands Police Force”), whilst the SPFs are cross-jurisdiction and cover specific types of crime, such as the British Transport Police. Therefore, when we want to download data for a specific area, we need to know which Police Force covers the Area of Interest (AOI) for our investigation.</p>
 <p>When you look to download crime data for London, for example, there are <strong>two</strong> territorial police forces working within the city and its greater metropolitan area:</p>
 <ol style="list-style-type: decimal">
@@ -316,14 +316,14 @@ QGIS can at times be a little bit buggy so when it creates new data layers in yo
 </div>
 <p>Before moving on, let us do some housekeeping.</p>
 <ol start="6" style="list-style-type: decimal">
-<li><p>Remove the <code>crime_theft_2020</code> original dataset.</p></li>
+<li><p>Remove the <code>crime_theft_2020</code> original data set.</p></li>
 <li><p>Rename the <code>Reprojected</code> data set to <code>crime_theft_2020</code>.</p></li>
 </ol>
 <p>Now we have an organised Layers and project, we are ready to start our crime analysis!</p>
 </div>
 <div id="counting-points-in-polygons" class="section level4" number="3.3.3.3">
 <h4><span class="header-section-number">3.3.3.3</span> Counting points-in-polygons</h4>
-<p>The next step of our analysis is incrediby simple - as QGIS has an in-built tool for us to use. We will use the <code>Count Points in Polygons</code> in the <code>Analysis</code> toolset for <code>Vector</code> data to count how many crimes have occured in both our <strong>wards</strong> and our <strong>boroughs</strong>. We will then have our count statistic which we will need to normalise by our population data to create our <strong>crime rate</strong> final statistic.</p>
+<p>The next step of our analysis is incredibly simple - as QGIS has an in-built tool for us to use. We will use the <code>Count Points in Polygons</code> in the <code>Analysis</code> toolset for <code>Vector</code> data to count how many crimes have occured in both our <strong>wards</strong> and our <strong>boroughs</strong>. We will then have our count statistic which we will need to normalise by our population data to create our <strong>crime rate</strong> final statistic.</p>
 <p>Let’s get going and first start with calculating the crime rate for the borough scale:</p>
 <ol style="list-style-type: decimal">
 <li><p>Click on <strong>Vector</strong> -&gt; <strong>Analysis Tools</strong> -&gt; <strong>Count Points in Polygons</strong>.</p></li>
