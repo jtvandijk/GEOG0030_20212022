@@ -82,6 +82,7 @@
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#moodle"><i class="fa fa-check"></i>Moodle</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#module-overview"><i class="fa fa-check"></i>Module overview</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="troubleshooting.html"><a href="troubleshooting.html"><i class="fa fa-check"></i>Troubleshooting</a></li>
 <li class="part"><span><b>Foundational Concepts</b></span></li>
 <li class="chapter" data-level="1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html"><i class="fa fa-check"></i><b>1</b> Geocomputation: An Introduction</a>
 <ul>
@@ -123,9 +124,9 @@
 <li class="chapter" data-level="3.3.1" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#w03-finding"><i class="fa fa-check"></i><b>3.3.1</b> Finding our data sets</a></li>
 <li class="chapter" data-level="3.3.2" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#w03-downloading"><i class="fa fa-check"></i><b>3.3.2</b> Downloading and processing</a></li>
 <li class="chapter" data-level="3.3.3" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#using-qgis-to-map-our-crime-data"><i class="fa fa-check"></i><b>3.3.3</b> Using QGIS to map our crime data</a></li>
-<li class="chapter" data-level="3.3.4" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#assignment-w03"><i class="fa fa-check"></i><b>3.3.4</b> Assignment</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#byl-w03"><i class="fa fa-check"></i><b>3.4</b> Before you leave</a></li>
+<li class="chapter" data-level="3.4" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#assignment-w03"><i class="fa fa-check"></i><b>3.4</b> Assignment</a></li>
+<li class="chapter" data-level="3.5" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#byl-w03"><i class="fa fa-check"></i><b>3.5</b> Before you leave</a></li>
 </ul></li>
 </ul>
 
@@ -164,7 +165,7 @@
 <div id="simple-digitisation-of-spatial-features" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> Simple digitisation of spatial features</h2>
 <p>To get spatial features in a digital form, they need to be digitised. Let’s take what should be a straight-forward example of digitising the River Thames in London.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
 <img src="images/w02/river_thames.png" alt="The Thames." width="470" />
 <p class="caption">
 Figure 2.1: The Thames.
@@ -199,7 +200,7 @@ The data sets you will create in this practical will be used in next week’s pr
 <p>When using spatial data, there is generally a very specific workflow that you will need to go through - and believe it or not, the majority of this is not actually focused on analysing your data.</p>
 <p>Along with the idea that <strong>80% of data is geographic data</strong>, the second most often-quoted GIS-related unreferenced ‘fact’ is that anyone working with spatial data will spend <strong>80% of their time simply finding, retrieving, managing and processing the data</strong> – before any analysis can be done.</p>
 <p>One of the reasons behind this need for a substantial amount of processing is that the data you often need to use is not in the format that you require for analysis. For example, for our investigation, there is not a ‘ready-made’ spatial population data set (i.e. population <code>shapefile</code>) we can download to explore population change across England:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
 <img src="images/w02/datasearch.png" alt="Alas a quick Google search shows that finding a shapefile of England's population is incredibly difficult." width="458" />
 <p class="caption">
 Figure 2.2: Alas a quick Google search shows that finding a shapefile of England’s population is incredibly difficult.
@@ -269,7 +270,7 @@ MapInfo is another proprietary GIS software, which has historically been used in
 <li>In your <code>GEOG0030/data/raw/</code> folder, create a new folder called <code>boundaries</code>. Within this folder, create three new folders: <code>2011</code>, <code>2014</code> and <code>2018</code>.</li>
 <li>Copy the entire contents of <code>Esri</code> folder of each year into their respective year folder within your new <code>boundaries</code> folder. We <strong>do not</strong> want to add the additional <code>Esri</code> folder as a step in our filesystem, i.e. your file path should read: <code>GEOG0030/data/raw/boundaries/2011</code> for the 2011 boundaries and <code>GEOG0030/data/raw/boundaries/2014</code> for the 2014 boundaries etc.</li>
 </ol>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
 <img src="images/w02/w2files.png" alt="Your setup should look like this." width="412" />
 <p class="caption">
 Figure 2.3: Your setup should look like this.
@@ -416,7 +417,7 @@ We will explain CRSs and using CRSs in GIS software in more detail next week.</p
 <li><p>In the <strong>Properties</strong> box, click on the <strong>Symbology</strong> tab - this is where we can change how our data layer looks. For example, here we can change the line and fill colour of our Wards utilising either the default options available or clicking on <strong>Simple Fill</strong> and changing these properties directly. Keep the overall <strong>styling</strong> to a <strong>Single Symbol</strong> for now - we will get back to this once we have added the population data. You can also click on the <strong>Labels</strong> tab - and set the Labels option to <strong>Single labels</strong>.</p></li>
 <li><p>QGIS will default to the <strong>NAME</strong> column within our data. You can change the properties of these labels using the options available. Change the font to <strong>Futura</strong> and size <strong>8</strong> and under the add a small buffer to the labels by selecting <strong>Draw text bufer</strong> under the <strong>Buffer</strong> tab. You can click <strong>Apply</strong> to see what your labels look like. Please note that the background colour may differ.</p></li>
 </ol>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="images/w02/wardlabels.png" alt="It looks incredibly busy." width="1127" />
 <p class="caption">
 Figure 2.4: It looks incredibly busy.
@@ -506,7 +507,7 @@ Understanding what classification is appropriate to visualise your data is an im
 <p>Feel free to explore using the different options with your data set at the moment – the results are almost instantaneous using QGIS, which makes it a good playground to see how certain parameters or settings can change your output.</p>
 </div>
 <p>You should now be looking at something like this:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
 <img src="images/w02/ward_2011.png" alt="Your result." width="1436" />
 <p class="caption">
 Figure 2.5: Your result.

@@ -6,7 +6,7 @@ The practical component of the week puts some of these learnings into practice a
 
 :::note
 **Note**<br/>
-The data sets you will create in this practical will be used in the Week 4 practical, so make sure to follow every step and export your data into your working and final folders (respectively) at the end.
+The data sets you will create in this practical will be used in other practicals, so make sure to follow every step and export your data into your working and final folders (respectively) at the end.
 
 The practical will also introduce you to point-in-polygon counts. You will be using these counts throughout this module, so it is incredibly important that you understand how they work – even as simple as they may be!
 :::
@@ -45,7 +45,7 @@ You therefore need to decide *if* you want to include an analysis of crime in th
 #### Population data {-}
 We know that if we want to study a phenomena like crime (and aggregate it to an areal unit as we will do today!), we will need to normalise this by our population. Luckily, we already have our ward population sorted from last week, with our `ward_population_2019.shp` that should be currently sitting in your final data folder. 
 
-In addition to our **ward** level data set, we also want to generate the same type of shapefile for our London **boroughs**, i.e. a `borough_ward_population_2019.shp`, utilising the same approach as last week, joining our population table data to our borough shape data.To do this, we need to know where to get both our required data sets from - luckily, you have already got a borough shape data in your `raw/boundaries/2011` folder. Therefore, it is just a case of tracking down the same Mid-Year Estimates (MYE) for London boroughs as we did for the wards, which with the ONS's central MYE database, this also will not be too difficult!
+In addition to our **ward** level data set, we also want to generate the same type of shapefile for our London **boroughs**, i.e. a `borough_ward_population_2019.shp`, utilising the same approach as last week, joining our population table data to our borough shape data.To do this, we need to know where to get both our required data sets from - luckily, you have already got a borough shape data in your `raw/boundaries/2011` folder. Therefore, it is just a case of tracking down the same Mid-Year Estimates (MYE) for London boroughs as we did for the wards.
 
 ### Downloading and processing {#w03-downloading}
 As outlined above, to get going with our analysis, we need to download both the **population** data for our boroughs and the 2020 **crime** data for our two police forces in London. 
@@ -83,7 +83,7 @@ Normally, we would now head to the Police Data Portal and download our crime dat
 #### File download {-}
 | File                                                 | Type           | Link |
 | :------                                              | :------        | :------ |
-| Theft from persons in 2020                           | `csv`    | [Download](https://github.com/jtvandijk/GEOG0114/tree/master/data/zip/crime_theft.zip) |
+| Theft from persons in 2020                           | `csv`    | [Download](https://github.com/jtvandijk/GEOG0114/tree/master/data/zip/crime_theft_2020.zip) |
 
 :::note
 **Note** <br/>
@@ -364,4 +364,4 @@ At the moment, we have looked at the crime rate as an amount, therefore we use a
 - All calculations can be done using the field calculator in QGIS, but will require some thinking about the right expression.
 
 ## Before you leave {#byl-w03}
-That is it all done. Remember to save your project!
+[That is us all done](https://www.youtube.com/watch?v=3wxyN3z9PL4). Remember to save your project and export your ward and borough shapefiles to your `final` folder!
