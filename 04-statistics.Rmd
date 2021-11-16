@@ -71,7 +71,7 @@ The main windows (panel/pane) to keep focused on for now are:
 
 * **Console**: where we write "one-off" code, such as installing libraries/packages, as well as running quick views or plots of our data.
 * **Files**: where our files are stored on our computer system - can help with checking file paths as well as file names, and general file management.
-* **Environment**: where our variables are recorded - we can find out **a lot** about our variables by looking at the Environment window, including data structure, data type(s) and the fields and 'attributes' of our variables.
+* **Environment**: where our variables are recorded - we can find out **a lot** about our variables by looking at the environment window, including data structure, data type(s) and the fields and 'attributes' of our variables.
 * **Plots**: the outputs of our graphs, charts and maps are shown here.
 * **Help**: where you an search for help, e.g. by typing in a function to find out its parameters.
 
@@ -79,7 +79,7 @@ You may also have your **Script Window** open, which is where we build up and wr
 
 We will see how we use these windows as we progress through this tutorial and understand in more detail what we mean by words such as 'attributes' (do not get confused here with the **Attribute Table** for QGIS) and data structures.
 
-## The RStudio console
+## RStudio console
 We will first start off with using **RStudio's console** to test out some of R's in-built functionality by creating a few variables as well as a dummy data set that we will be able to analyse - and to get familiar with writing code.
 
 :::note
@@ -110,7 +110,7 @@ Type in `ten <- 10` into the console and execute.
 ten <- 10
 ```
 
-You have just created your first variable. You will see nothing is returned in the console - but if you check your Environment window, it has now appeared as a new variable that contains the associated value.
+You have just created your first variable. You will see nothing is returned in the console - but if you check your environment window, it has now appeared as a new variable that contains the associated value.
 
 Type in `twelve <- 12` into the console and execute.
 ```{r 04-math3, warnings=FALSE, message=FALSE}
@@ -118,7 +118,7 @@ Type in `twelve <- 12` into the console and execute.
 twelve <- 12
 ```
 
-Once again, you will see nothing returned to the console but do check your Environment window for your variable. We have now stored two numbers into our environment - and given them variable names for easy reference. R stores these objects as variables in your computer's RAM so they can be processed quickly. Without saving your environment (we will come onto this below), these variables would be lost if you close R (or it crashes). Now we have our variables, we can go ahead and execute the same simple multiplication:
+Once again, you will see nothing returned to the console but do check your environment window for your variable. We have now stored two numbers into our environment - and given them variable names for easy reference. R stores these objects as variables in your computer's RAM so they can be processed quickly. Without saving your environment (we will come onto this below), these variables would be lost if you close R (or it crashes). Now we have our variables, we can go ahead and execute the same simple multiplication:
 
 Type in `ten * twelve` into the console and execute.
 
@@ -281,7 +281,7 @@ Type in `two_str_variable <- c("This is our second variable", "It has two parts 
 two_str_variable <- c("This is our second string variable", "It has two parts to it")
 ```
 
-In this piece of code, we have created a new variable using the `c()` function in R, that stands for *combine values into a vector or list*.  We have provided that function with two sets of strings, using a *comma* to separate our two strings - all contained within the function's brackets (`()`). You should now see a new variable in your Environment window which tells us it is a) chr: characters, b) contains two items, and c) lists those items.
+In this piece of code, we have created a new variable using the `c()` function in R, that stands for *combine values into a vector or list*.  We have provided that function with two sets of strings, using a *comma* to separate our two strings - all contained within the function's brackets (`()`). You should now see a new variable in your environment window which tells us it is a) chr: characters, b) contains two items, and c) lists those items.
 
 Let us now try both our `length()` and `nchar()` on our new variable and see what the results are.
 
@@ -305,6 +305,329 @@ attributes(two_str_variable)
 In addition to make notes about the functions you are coming across in the workshop, you should notice that with each line of code in the examples, an additional **comment** is used to explain what the code does. Comments are denoted using the hash symbol `#`. This comments out that particular line so that R ignores it when the code is run. These comments will help you in future when you return to scripts a week or so after writing the code - as well as help others understand what is going on when sharing your code. It is good practice to get into writing comments **as you code** and not leave it to do retrospectively. Whilst we are using the console, using comments is not necessary - but as we start to build up a script later on, you will find them essential to help understand your workflow in the future.
 :::
 
+## Simple analysis
+The objects we created and played with above are very simple: we have stored either simple strings or numeric values -  but the real power of R comes when we can begin to execute functions on more complex objects. R accepts four main types of data structures: **vectors**, **matrices**, **data frames**, and **lists**. So far, we have dabbled with a single item or a dual item **vector** - for the latter, we used the `c()` function to allow us to combine our two strings together within a single vector. We can use this same function to create and build more complex objects - which we can then use with some common statistical functions. 
+
+We are going to try this out by using a simple set of dummy data: we are going to use the total number of pages and publication dates of the various editions of **Geographic Information Systems and Science** for a brief analysis:
+
+| Book Edition | Year | Total Number of Pages
+| :------ | :---- | :------- |
+| 1st | 2001 | 454 |
+| 2nd | 2005 | 517 |
+| 3rd | 2011 | 560 |
+| 4th | 2015 | 477 |
+
+As we can see, we will ultimately want to store the data in a table as above (and we could easily copy this to a csv to load into R if we wanted). But we want to learn a little more about data structures in R, therefore, we are going to go ahead and build this table "manually".
+
+### Housekeeping
+First, let us clear up our workspace and remove our current variables. Type `rm(ten, twelve, output, str_variable, two_str_variable)` into the console and execute.
+
+```{r 04-da1, warnings=FALSE, message=FALSE}
+# clear our workspace
+rm(ten, twelve, output, str_variable, two_str_variable)
+```
+
+You should now see we no longer have any variables in our window - we just used the `rm()` function to remove these variables from our environment and free up some RAM. Keeping a clear workspace is another recommendation of good practice moving forward. Of course, we do not want to get rid of any variables we might need to use later - but removing any variables we no longer need (such as test variables) will help you understand and manage your code and your working environment.
+
+### Atomic vectors
+The first complex data object we will create is a vector. A vector is the most common and basic data structure in R and is pretty much the workhorse of R. Vectors are a collection of elements that are mostly of either character, logical integer or numeric data types. Technically, vectors can be one of two types:
+
+* **Atomic vectors** (all elements are of the same data type)
+* **Lists** (elements can be of different data types)
+
+Although in practice the term “vector” most commonly refers to the atomic types and not to lists. 
+
+The variables we created above are actually vectors - however they are made of only one or two elements. We want to make complex vectors with more elements to them.
+
+Let us create our first official "complex" vector, detailing the different total page numbers for GISS. Type `giss_page_no <- c(454, 517, 560, 477)` into the console and execute.
+
+```{r 04-page-no, warnings=FALSE, message=FALSE}
+# store our total number of pages, in chronological order, as a variable
+giss_page_no <- c(454, 517, 560, 477)
+```
+
+Type `print(giss_page_no)` into the console and execute to check the results.
+
+```{r 04-page-no-show, warnings=FALSE, message=FALSE}
+# print our giss... variable
+print(giss_page_no)
+```
+
+We can see we have our total number of pages collected together in a single vector. We could if we want, execute some statistical functions on our vector object.
+
+```{r 04-mean-giss, warnings=FALSE, message=FALSE}
+# calculate the arithmetic mean on our variable
+mean(giss_page_no)
+# calculate the median on our variable
+median(giss_page_no)
+# calculate the range numbers of our variable
+range(giss_page_no)
+```
+
+We have now completed our first set of descriptive statistics in R. We now know that the average number of pages the GISS book has contain is 497 pages - this is of course truly thrilling stuff, but hopefully an easy example to get on-board with.
+
+Let us see how we can build on our vector object by adding in a second vector object that details the relevant years of our book. Note that the total number of pages are entered in a specific order to correspond to these publishing dates (i.e. chronological), as outlined by the table above. As a result, we will need to enter the publication year in the same order.
+
+Type `giss_year <- c(2001, 2005, 2011, 2015)` into the console and execute.
+```{r 04-year, warnings=FALSE, message=FALSE}
+# store our publication years, in chronological order, as a variable
+giss_year <- c(2001, 2005, 2011, 2015)
+```
+
+Type `print(giss_year)` into the console and execute.
+
+```{r 04-year-show, warnings=FALSE, message=FALSE}
+# print our giss_year variable
+print(giss_year)
+```
+
+Of course, on their own, the two vectors do not mean much - but we can use the same `c()` function to combine the two together to create a matrix.
+
+### Matrices
+In R, a matrix is simply an extension of the numeric or character vectors. They are not a separate type of object per se but simply a vector that has two dimensions. That is they contain both **rows** and **columns**. As with atomic vectors, the elements of a matrix must be of the **same data type**. As both our page numbers and our years are numeric, we can add them together to create a matrix using the `matrix()` function.
+
+Type `giss_year_nos <- matrix(c(giss_year, giss_page_no), ncol=2)` into the console and execute.
+
+```{r 04-matrix, warnings=FALSE, message=FALSE}
+# create a new matrix from our two vectors with two columns
+giss_year_nos <- matrix(c(giss_year, giss_page_no), ncol=2)
+# note the inclusion of a new argument to our matrix: ncol=2
+# this stands for "number of columns" and we want two.
+```
+
+Type `print(giss_year_nos)` into the console and execute to check the result.
+
+```{r 04-all-show, warnings=FALSE, message=FALSE}
+print(giss_year_nos)
+```
+
+The thing about matrices - as you might see above - is that, for us, they do not have a huge amount of use. If we were to look at this matrix in isolation from what we know it represents, we would not really know what to do with it. As a result, we tend to primarily use **Data Frames** in R as they offer the opportunity to add **field names** to our columns to help with their interpretation.
+
+:::note
+**Note**<br>
+The function we just used above, 'matrix()', was the first function that we used that took more than one argument. 
+In this case, the arguments the matrix needed to run were: 
+
+1. What data or data set should be stored in the matrix.
+2. How many columns (`ncol=`) do we need to store our data in.
+
+The function can actually accept several more arguments - but these were not of use for us in this scenario, so we did not include them. For almost any R package, the documentation will contain a list of the arguments that the function will takes, as well as in which format the functions expects these arguments and a set of usage examples.
+
+Understanding how to find out what object and data type a variable is essential therefore to knowing whether it can be used within a function - and whether we will need to transform our variable into a different data structure to be used for that specific function. For any function, there will be **mandatory** arguments (i.e. it will not run without these) or **optional** arguments (i.e. it will run without these, as the default to this argument has been set usually to `FALSE`, `0` or `NULL`).
+:::
+
+### Dataframes
+A data frame is an extremely important data type in R. It is pretty much the **de-facto data structure** for most tabular data and what we use for statistics. It also is the underlying structure to the table data (what we would call the **attribute table** in Q-GIS) that we associate with spatial data - more on this next week.
+
+A data frame is a special type of list where every element of the list will have the same length (i.e. data frame is a “rectangular” list), Essentially, a data frame is constructed from columns (which represent a list) and rows (which represents a corresponding element on each list). Each column will have the same amount of entries - even if, for that row, for example, the entry is simply `NULL`.
+
+Data frames can have additional attributes such as `rownames()`, which can be useful for annotating data, like `subject_id` or `sample_id` or even `UID`. In statistics, they are often not used - but in spatial analysis, these IDs can be very useful. Some additional information on data frames:
+
+* They are usually created by `read.csv()` and `read.table()`, i.e. when importing the data into R.
+* Assuming all columns in a data frame are of same type, a data frame can be converted to a matrix with `data.matrix()` (preferred) or` as.matrix()`.
+* You can also create a new data frame with `data.frame()` function, e.g. a matrix can be converted to a data frame.
+* You can find out the number of rows and columns with `nrow()` and `ncol()`, respectively.
+* Rownames are often automatically generated and look like 1, 2, …, n. Consistency in numbering of rownames may not be honoured when rows are reshuffled or subset.
+
+Let us go ahead and create a new data frame from our matrix.
+
+Type `giss_df <- data.frame(giss_year_nos)` into the console and execute.
+
+```{r 04-data-frame, warnings=FALSE, message=FALSE}
+# create a new dataframe from our matrix
+giss_df <- data.frame(giss_year_nos)
+```
+
+We now have a data frame, we can use the `View()` function in R. Still in your **console**, type: `View(giss_df)`
+
+```{r 04-view-data-frame, warnings=FALSE, message=FALSE, eval=FALSE }
+# view our data frame
+View(giss_df)
+```
+
+You should now see a table pop-up as a new tab on your script window. It is now starting to look like our original table - but we are not exactly going to be happy with **X1** and **X2** as our field names - they are not very informative.
+
+### Column names
+We can rename our data frame column field names by using the `names()` function. Before we do this, have a read of what the `names()` function does. Still in your **console**, type: `?names`
+
+```{r 04-names-help, warnings=FALSE, message=FALSE, eval=FALSE }
+# get the help documentation for the names function
+?names
+```
+
+As you can see, the function will get or set the names of an object, with renaming occuring by using the following syntax: `names(x) <- value`
+
+The value itself needs to be *a character vector of up to the same length as x, or NULL.* We have two columns in our data frame, so we need to parse our `names()` function with a character vector with **two elements**. In the console, we shall enter two lines of code, one after another. First our character vector with our new names, `new_names <- c("year", "page_nos")`, and then the `names()` function containing this vector for renaming, `names(giss_df) <- new_names`:
+
+```{r 04-data-frame-names, warnings=FALSE, message=FALSE}
+# create a vector with our new column names
+new_names <- c("year", "page_nos")
+#rename our columns with our next names
+names(giss_df) <- new_names
+```
+
+You can go and check your data frame again and see the new names using either `View()` function or by clicking on the tab at the top.
+
+### Adding columns
+We are still missing one final column from our data frame - that is our **edition** of the textbook. As this is a `character` data type, we would not have been able to add this directly to our matrix - and instead have waited until we have our data frame to do so. This is because data frames can take different data types, unlike matrices - so let us go ahead and add the **edition** as a new column.
+
+To do so, we follow a similar process of creating a vector with our editions listed in chronological order, but then add this to our data frame by storing this vector as a new column in our data frame. We use the `$` sign with our code that gives us "access" to the data frame's column  - we then specify the column `edition`, which whilst it does not exist at the moment, will be created from our code that assigns our edition variable to this column. 
+
+Create a `edition` vector variable containing our textbook edition numbers - type and execute `edition <- c("1st", "2nd", "3rd", "4th")`. We then store this as a new column in our data frame under the column name **edition** by typing and executing `giss_df$edition <- edition`:
+
+```{r 04-data-frame-edition, warnings=FALSE, message=FALSE}
+# create a vector with our editions
+edition <- c("1st", "2nd", "3rd", "4th")
+# add this vector as a new column to our data frame
+giss_df$edition <- edition
+```
+
+Again, you can go and check your data frame and see the new column using either `View()` function or by clicking on the tab at the top or by typing `giss_df` in your console window.
+
+```{r 04-data-frame-edition-final, warnings=FALSE, message=FALSE}
+# inspect
+giss_df
+```
+
+Now we have our data frame, let us find out a little about it. We can first return the dimensions (the size) of our data frame by using the `dim()` function. In your **console**, type `dim(giss_df)` and execute.
+
+```{r 04-data-frame-dim, warnings=FALSE, message=FALSE}
+# check our data frame dimensions
+dim(giss_df)
+```
+
+We can see we have **four rows** and **three columns**.  We can also finally use our `attributes()` function to get the attributes of our data frame. In your **console**, type `attributes(giss_df)` and execute:
+
+```{r 04-data-frame-att, warnings=FALSE, message=FALSE}
+# check our data frame attributes
+attributes(giss_df)
+```
+
+Before we leave the console and move to a script, we will enter one last line of code for now to install an additoinal R library, called `tidyverse`. Type in `install.packages("tidyverse")` into the console and execute.
+
+```{r 04-install-tidy-verse, warnings=FALSE, message=FALSE, eval=FALSE}
+# install the tidyverse library
+install.packages("tidyverse")
+```
+
+:::note
+**Note**<br>
+When working in R it is important to keep in mind that:
+
+* R is case-sensitive so you need to make sure that you capitalise everything correctly if required.
+* The spaces between the words do not matter but the positions of the commas and brackets do. Remember, if you find the prompt, `>`, is replaced with a `+` it is because the command is incomplete. If necessary, hit the escape (`esc`) key and try again.
+* It is important to come up with good names for your objects. In the case of the majority of our variables, we used a underscore `_` to separate the words. It is good practice to keep the object names as short as possible but they still need to be easy to read and clear what they are referring to. Be aware: **you cannot start an object name with a number!**
+* If you press the up arrow in the command line you will be able to edit the previous lines of code you have inputted.
+:::
+
+## Crime analysis
+The last command you executed was the installation of a new R library: `tidyverse`. The `tidyverse` is a collection of packages that are specifically designed for data wrangling, management, cleaning, analysis and visualisation within RStudio. Whilst in many cases different packages work all slightly differently, all packages of the `tidyverse` share the underlying design philosophy, grammar, and data structures.
+
+The tidyverse itself is treated and loaded as a single package, but this means if you load the `tidyverse` package within your script (through `library(tidyverse)`), you will directly have access to all the functions that are part of each of the packages that are within the overall `tidyverse.` This means you do not have to load each package separately. For more information on tidyverse, have a look at https://www.tidyverse.org/.
+
+There are some specific functions in `tidyverse` suite of packages that will help us cleaning and preparing our data sets now and in the future - which is one of the main reasons of using this library. The most important and useful functions, from the `tidyr` and `dplyr` packages, are:
+
+| Package   | Function          | Use to |
+| :------   | :------           | :------ |
+| dplyr	    | select            | select columns |
+| dplyr	    | filter            | select rows |
+| dplyr	    | mutate            | transform or recode variables |
+| dplyr	    | summarise         | summarise data |
+| dplyr	    | group by          | group data into subgropus for further processing |
+| tidyr	    | pivot_longer      | convert data from wide format to long format |
+| tidyr	    | pivot_wider       | convert long format data set to wide format |
+
+These functions all complete very fundamental tasks that we need to manipulate and wrangle our data.
+
+:::note
+**Note** <br />
+The `tidyr` and `dplyr` packages with the tidyverse are just two examples of additional libraries created by the wider R community. The code you just ran asked **R** to fetch and install the `tidyverse` into your copy of R - so this means we will be able to use these libraries in our practical below simply by using the `library(tidyverse)` code at the top of our script.
+
+One thing we need to be aware of when it comes to using functions in these additional libraries, is that sometimes these functions are called the same thing as the base **R** package, or even, in some cases, another additional library. We therefore often need to specify which library we want to use this function from, and this can be done with a simple command (`library::function`) in our code.
+:::
+
+Whilst we have gone ahead and installed the `tidyverse`, each time we start a new script, we will need to load the `tidyverse`. 
+
+### Starting a project
+In the previous section, R may have seemed fairly labour-intensive. We had to enter all our data manually and each line of code had to be written into the command line. Fortunately this is not routinely the case.  In RStudio, we can use **scripts** to build up our code that we can run repeatedly - and save for future use. Before we start a new script, we first want to set up ourselves ready for the rest of our practicals by **creating a new project**.
+
+To put it succinctly, **projects** in RStudio keep all the files associated with a project together — input data, R scripts, analytical results, figures. This means we can easily keep track of - and access - inputs and outputs from different weeks across our module, whilst still creating standalone scripts for each bit of processing analysis we do. It also makes dealing with **directories** and **paths** a whole lot easier - particularly if you **have followed the folder structure that was advised at the start of the module**.
+
+Click on **File** -> **New Project** -> **Existing Directory** and browse to your **GEOG0030** folder. Click on **Create Project**.
+
+```{r 04-new-project, echo=FALSE, fig.align='center', fig.cap='Create a new project in an existing directory.'}
+knitr::include_graphics('images/w04/new-project.png')
+```
+
+You should now see your main window switch to this new project - and if you check your **Files** window, you should now see a new **R Project** called **GEOG0030**:
+
+```{r 04-R-project, echo=FALSE, fig.align='center', out.width='250pt', fig.cap='A new R project.'}
+knitr::include_graphics('images/w04/r-project.png')
+```
+
+We are now "in" the GEOG0030 project - and any folders within the GEOG0030 project can be easily accessed by our code. Furthermore, any scripts we create will be saved in this project. Note, there is not a "script" folder per se, but rather your scripts will simply exist in this project.
+
+:::note
+**Note** <br />
+Please ensure that **folder names** and **file names** do not contain spaces or special characters such as `*` `.` `"` `/` `\` `[` `]` `:` `;` `|` `=` `,` `<` `?` `>` `&` `$` `#` `!` `'` `{` `}` `(` `)`. Different operating systems and programming languages deal differently with spaces and special characters and as such including these in your folder names and file names can cause many problems and unexpected errors. As an alternative to using white space you can use an underscore `_` if you like.
+:::
+
+### Setting up a script
+For the majority of our analysis work, we will type our code **within a script** and not the console. Let us create our first script. Click on **File** -> **New File** -> **R Script**. This should give you a blank document that looks a bit like the command line. The difference is that anything you type here can be saved as a script and re-run at a later date. 
+
+```{r 04-rstudio-interface-script-open, echo=FALSE, fig.align='center', fig.cap='Creating a new script.'}
+knitr::include_graphics('images/w04/new-script.png')
+```
+
+Save your script as: `wk4-csv-processing.r`. Through our name, we know now that our script was created in Week 4 of Geocomputation and the code it will contain is something to do with `csv` processing. This will help us a lot in the future when we come to find code that we need for other projects.
+
+The **first** bit of code you will want to add to any script is to add a **title**. This title should give any reader a quick understanding of what your code achieves. When writing a script it is important to keep notes about what each step is doing. To do this, the hash (`#`) symbol is put before any code. This comments out that particular line so that R ignores it when the script is run.
+
+Let us go ahead and give our script a **TITLE** - and maybe some additional information (substitute accordingly):
+
+```{r 04-scr-title, warnings=FALSE, message=FALSE, cache=TRUE}
+# Combining Police Data csv's from 2020 into a single csv
+# Followed by analysis of data on monthly basis
+# Date: January 2021
+# Name: Justin 
+```
+
+Now we have our title, the **second** bit of code we want to include in our script is to load **our libraries** (i.e. the installed packages we want to use in our script):
+
+```{r 04-scr-lib, warnings=FALSE, message=FALSE, eval=FALSE, cache=TRUE}
+# libraries used in this script:
+library(tidyverse)
+```
+
+By loading simply the `tidyverse`, we have a pretty good estimate that we will be able to access all the functions that we are going to need today. However, often when developing a script, you will realise that you will need to add libraries as you go along in order to use a specific function etc. When you do this, **always add your library to the top of your script** - if you ever share your script, it helps the person you are sharing with recognise quickly if they need to install any additional packages prior to trying to run the script. It also means your libraries do not get lost in the multiple lines of code you are writing.
+
+We are now ready to run these first two lines of code. Remember to save your script.
+
+### Running a script
+There are two main ways to run a script in RStudio - all at once or by line/chunk by line/chunk. It can be advantageous to pursue with the second option as you first start out to build your script as it allows you to test your code iteratively.
+
+#### To run line-by-line {-}
+By clicking:
+
+* Select the line or chunk of code you want to run, then click on **Code** and choose **Run selected lines**.
+
+By key commands:
+
+* Select the line or chunk of code you want to run and then hold **Ctl** or **Cmd** and press **Return**.
+
+#### To run the whole script {-}
+By clicking:
+
+* Click on **Run** on the top-right of the scripting window and choose **Run All**.
+
+By key commands:
+
+* Hold **Option** plus **Ctl** or **Cmd** and **R**.
+
+#### Stopping a script from running {-}
+If you are running a script that seems to be stuck (for whatever reason) or you notice some of your code is wrong, you will need to **interrupt** R. To do so, click on **Session** -> **Interrupt R**. If this does not work, you may end up needing to **Terminate R** but this may lose any unsaved progress.
+
+### Crime data
 
 
 ## Before you leave {#byl-w04}

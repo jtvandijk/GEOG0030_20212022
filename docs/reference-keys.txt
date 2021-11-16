@@ -9,6 +9,9 @@ fig:unnamed-chunk-9
 fig:unnamed-chunk-11
 fig:04-programming-languages
 fig:01-rstudio-interface-script
+fig:04-new-project
+fig:04-R-project
+fig:04-rstudio-interface-script-open
 geocomputation-an-introduction
 recording-w01
 reading-w01
@@ -57,7 +60,7 @@ reading-w04
 programming
 programming-in-r
 the-rstudio-interface
-the-rstudio-console
+rstudio-console
 command-input
 storing-variables
 accessing-and-returning-variables
@@ -66,4 +69,16 @@ calling-functions-on-our-variables
 returning-functions
 examining-our-variables-using-functions
 creating-a-two-element-object
+simple-analysis
+housekeeping
+atomic-vectors
+matrices
+dataframes
+column-names
+adding-columns
+crime-analysis
+starting-a-project
+setting-up-a-script
+running-a-script
+crime-data-2
 byl-w04
