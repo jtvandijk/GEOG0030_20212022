@@ -1,4 +1,5 @@
 # Programming for Spatial Analysis
+This week we are going to look at how to use R and RStudio as a piece of GIS software. Like last week, we will be completing an analysis of our theft crime data set in London. However, rather than solely looking at crime change over time, we are going to add in a spatial component to our analysis: how has crime changed across our wards over the year.
 
 ## Lecture recording {#recording-w05}
 - Lecture W4
@@ -7,5 +8,33 @@
 - Reading #1
 - Reading #2
 
+## Crime analysis II
+To analyse crime by ward over time, we will go through several steps of data preparation ('data wrangling') before joining our data to ward polygons. Specifically, we will:
+
+1. Take our `all_theft_df` dataframe and wrangle it to produce a dataframe with a **ward per row** with a **crime count for each month in our fields**.
+2. Join this dataframe to our `ward_population_2019` shapefile (which should still be sitting in your `working` folder) and then produce a **crime rate** for each **month, for each ward**.
+3. Create **a map for January 2020** using the `tmap` library.
+
+### Data preparation
+Before we get started, we first need to head back to our script from last week, run our script - and then write our `all_theft_df` to a `csv` file. If you had saved your environment from last week, keeping your variables in  memory, theoretically you would not need to export the data frame as you should have access to this variable within your new script - but it would be good practice to write out the data and then load it back in.
+
+1. Open up RStudio (Server or Desktop), and make sure you open up your **GEOG0030** project.
+2. Next open your script from last week - it should be saved as: `wk4-csv-processing.r` and should be visible in your **files** from your **GEOG0030** project.
+3. Run your full script to and **including** the code that **filters** our large `all_crime_df` to only the `all_theft_df`.
+4. Scroll to the bottom of the script and enter the following code and execute:
+
+```{r 05-export-theft-data-frame, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+# write out the theft_crime_df to a csv within our raw crime data folder
+write.csv(all_theft_df,"data/raw/crime/crime_theft_2020.csv", row.names = FALSE)
+```
+
+Remember, if using a Windows machine, you'll need to submit your forward-slashes (`/`) with backslashes, and in this case, within R, it will need to be **two** backslashes (`\\`).
+
+You should now see a new `csv` within your raw crime data folder (**data -> raw -> crime**).
+
+5. Save your `wk4-csv-processing.r` script and then close the script.
+
+
+## Assignment {#assignment-w05}
 
 ## Before you leave {#byl-w05}

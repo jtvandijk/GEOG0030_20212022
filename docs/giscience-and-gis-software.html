@@ -169,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#recording-w02"><i class="fa fa-check"></i><b>2.1</b> Lecture recording</a></li>
 <li class="chapter" data-level="2.2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#reading-w02"><i class="fa fa-check"></i><b>2.2</b> Reading list</a></li>
 <li class="chapter" data-level="2.3" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#simple-digitisation-of-spatial-features"><i class="fa fa-check"></i><b>2.3</b> Simple digitisation of spatial features</a></li>
-<li class="chapter" data-level="2.4" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#population-change-in-london"><i class="fa fa-check"></i><b>2.4</b> Population Change in London</a>
+<li class="chapter" data-level="2.4" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#population-change-in-london"><i class="fa fa-check"></i><b>2.4</b> Population change in London</a>
 <ul>
 <li class="chapter" data-level="2.4.1" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#setting-the-scene"><i class="fa fa-check"></i><b>2.4.1</b> Setting the scene</a></li>
 <li class="chapter" data-level="2.4.2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#w02-finding"><i class="fa fa-check"></i><b>2.4.2</b> Finding our data sets</a></li>
@@ -222,7 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6.5" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#column-names"><i class="fa fa-check"></i><b>4.6.5</b> Column names</a></li>
 <li class="chapter" data-level="4.6.6" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#adding-columns"><i class="fa fa-check"></i><b>4.6.6</b> Adding columns</a></li>
 </ul></li>
-<li class="chapter" data-level="4.7" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#crime-analysis"><i class="fa fa-check"></i><b>4.7</b> Crime analysis</a>
+<li class="chapter" data-level="4.7" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#crime-analysis-i"><i class="fa fa-check"></i><b>4.7</b> Crime analysis I</a>
 <ul>
 <li class="chapter" data-level="4.7.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#starting-a-project"><i class="fa fa-check"></i><b>4.7.1</b> Starting a project</a></li>
 <li class="chapter" data-level="4.7.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#setting-up-a-script"><i class="fa fa-check"></i><b>4.7.2</b> Setting up a script</a></li>
@@ -236,7 +236,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.1" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#recording-w05"><i class="fa fa-check"></i><b>5.1</b> Lecture recording</a></li>
 <li class="chapter" data-level="5.2" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#reading-w05"><i class="fa fa-check"></i><b>5.2</b> Reading list</a></li>
-<li class="chapter" data-level="5.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#byl-w05"><i class="fa fa-check"></i><b>5.3</b> Before you leave</a></li>
+<li class="chapter" data-level="5.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#crime-analysis-ii"><i class="fa fa-check"></i><b>5.3</b> Crime analysis II</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#data-preparation"><i class="fa fa-check"></i><b>5.3.1</b> Data preparation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#assignment-w05"><i class="fa fa-check"></i><b>5.4</b> Assignment</a></li>
+<li class="chapter" data-level="5.5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#byl-w05"><i class="fa fa-check"></i><b>5.5</b> Before you leave</a></li>
 </ul></li>
 </ul>
 
@@ -301,7 +306,7 @@ Figure 2.1: The Thames.
 </div>
 </div>
 <div id="population-change-in-london" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Population Change in London</h2>
+<h2><span class="header-section-number">2.4</span> Population change in London</h2>
 <p>The second part of this practical will introduces you to <strong>attribute joins</strong> and making a simple choropleth map. You will be using these joins throughout this module, so it is incredibly important that you understand how they work – even as simple as they may be!</p>
 <div class="note">
 <p><strong>Note</strong><br/>
@@ -412,10 +417,9 @@ They originate from the Roman era who used these geographies, usually defined by
 <div id="population-data" class="section level4" number="2.4.3.2">
 <h4><span class="header-section-number">2.4.3.2</span> Population data</h4>
 <p>For our population data sets, we will use the ONS mid-year estimates (MYE). These population data sets are <strong>estimates</strong> that have been modelled based on the previous 2011 census count and then forecasted population growth (in combination with several additional data sources). They are released once a year, with a delay of a year. Today we will use the data for 2011, 2015, and 2019.</p>
-<p>As the London Datastore only has these MYE for up to 2018, we will download some more recent data from ONS directly. <em>It is always worth checking the ‘originators’ of the data to see if there are more recent versions.</em></p>
 <ol style="list-style-type: decimal">
 <li><p>Navigate to the <strong>Ward</strong> level data sets: <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/wardlevelmidyearpopulationestimatesexperimental">[Link]</a></p></li>
-<li><p>When you navigate to this page, you will find multiple choices of data to download. We will need to download the estimates for <strong>2011, 2015 and 2019</strong>. Click to download each of the zipfiles. Choose the <strong>revised</strong> versions for 2015 and the (Census-based) 2011 wards edition for 2011.</p></li>
+<li><p>When you navigate to this page, you will find multiple choices of data to download. We will need to download the estimates for <strong>2011, 2015</strong> and <strong>2019</strong>. Click to download each of the zipfiles. Choose the <strong>revised</strong> versions for 2015 and the (Census-based) 2011 wards edition for 2011.</p></li>
 <li><p>In your <code>GEOG0030/data/raw/</code> folder, create a new folder called <code>population</code>, unzip your download, and copy the three spreadsheets into this folder.</p></li>
 </ol>
 <p>Now it is time to do some quite <strong>extensive</strong> data cleaning.</p>
@@ -429,7 +433,7 @@ They originate from the Roman era who used these geographies, usually defined by
 <p>As you should be able to see, we have a set of different fields (e.g. Ward Code, Ward Name), including population statistics. Right now, we have too much data - so what we will want to do is simplify and extract only the data we need for analysis. For this, we need the total population (<strong>All Ages</strong>), alongside some identifying information that distinguishes each record from one another. Here we can see that both <strong>Ward Code</strong> and <strong>Ward Name</strong> suit this requirement. We can also think that the <strong>Local Authority</strong> column might be of use - so it might be worthwhile keeping this information as well.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Create a new spreadsheet within your programme. From the <strong>Mid-2011 Persons</strong> spreadsheet, copy over all cells from columns <strong>A</strong> to <strong>D</strong> and rows <strong>4 to 636</strong> into this new spreadsheet. <strong>Row 636</strong> denotes the end of the <strong>Greater London</strong> wards (i.e. the end of the Westminster LA) which are kept (in most scenarios) at the top of the spreadsheet as their <strong>Ward Codes</strong> are the first in sequential order.</li>
-<li>Before we go any further, we need to format our data. First, we want to rename our fields to remove the spaces and superscript formatting. Re-title the fields as follows: <strong>ward_code</strong>, <strong>ward_name</strong>, <strong>local_authority</strong> and <strong>POP2011</strong>.</li>
+<li>Before we go any further, we need to format our data. First, we want to rename our fields to remove the spaces and superscript formatting. Re-title the fields as follows: <strong>ward_code</strong>, <strong>ward_name</strong>, <strong>local_authority</strong> and <strong>pop2011</strong>.</li>
 </ol>
 <p>One further bit of formatting that you <strong>MUST</strong> do before saving your data is to format our population field. At the moment, you will see that there are commas separating the <strong>thousands</strong> within our values. If we leave this <strong>commas</strong> in our values, QGIS will read them as decimal points, creating decimal values of our population. There are many points at which we could solve this issue, but the easiest point is now - we will strip our population values of the commas and set them to integer (whole numbers) values.</p>
 <ol start="4" style="list-style-type: decimal">
@@ -452,7 +456,7 @@ They originate from the Roman era who used these geographies, usually defined by
 <p>If we head back to the original 2015 raw data set, we can actually find this data (as well as the City of London) further down in the spreadsheet. It seems like these LAs had their codes revised in the 2014 revision and are no longer in the same order as the 2011 data set - oh, the joys of using data!</p>
 <ol start="7" style="list-style-type: decimal">
 <li><p>Locate the data for the <em>City of London</em>, <em>Hackney</em>, <em>Kensington and Chelsea</em> and <em>Tower Hamlets</em> and copy this over into our new spreadsheet. Double-check that you now have in total <strong>637</strong> wards within your data set.</p></li>
-<li><p>Remember to rename the fields as above, but change your population field to <strong>POP2015</strong>. Also, remember to reformat your population values.</p></li>
+<li><p>Remember to rename the fields as above, but change your population field to <strong>pop2015</strong>. Also, remember to reformat your population values.</p></li>
 <li><p>Once complete, save your spreadsheet into your <strong>working</strong> folder as <code>ward_population_2015.csv</code>.</p></li>
 </ol>
 <p>We now need to repeat this for our 2019 data.</p>
@@ -538,7 +542,6 @@ Figure 2.4: It looks incredibly busy.
 </ol>
 <div class="note">
 <p><strong>Note</strong><br/>
-<strong>Turning layers on/off &amp; drawing orders</strong><br>
 The main strength of a GUI GIS system is that is really helps us understand how we can visualise spatial data. Even with just these two shapefiles loaded, we can understand two key concepts of using spatial data within GIS.</p>
 <p>The first, and this is only really relevant to GUI GIS systems, is that each layer can either be turned on or off, to make it visible or not (try clicking the tick box to the left of each layer). This is probably a feature you are used to working with if you have played with interactive web mapping applications before!</p>
 <p>The second concept is the order in which your layers are drawn – and this is relevant for both GUI GIS and when using plotting libraries such as ggplot2 in RStudio. Your layers will be drawn depending on the order in which your layers are either tabled (as in a GUI GIS) or ‘called’ in your function in code.</p>
@@ -623,7 +626,7 @@ Understanding what classification is appropriate to visualise your data is an im
 Figure 2.5: Your result.
 </p>
 </div>
-<p>You will be able to see that we have <strong>some</strong> missing data - and this is for several wards within the City of London. This is because census data is <strong>only recorded for 8 out of the 25 wards</strong> and therefore we have <strong>no data</strong> for the remaining wards. As a result, these wards are left blank, i.e. white, to represent a <code>NODATA</code> value.</p>
+<p>You will be able to see that we have <strong>some</strong> missing data - and this is for several wards within the City of London. This is because census data is <strong>only recorded for 8 out of the 25 wards</strong> and therefore we have no data for the remaining wards. As a result, these wards are left blank, i.e. white, to represent a <code>NODATA</code> value.</p>
 <p>One thing to flag is that <code>NODATA</code> means no data - whereas <code>0</code>, particularly in a scenario like this, would be an actual numeric value. It is important to remember this when processing and visualising data, to make sure you do not represent a <code>NODATA</code> value incorrectly.</p>
 </div>
 </div>
@@ -645,8 +648,7 @@ Figure 2.5: Your result.
 <li>Style your data appropriately.</li>
 <li>Export your maps as an image to your <code>maps</code> folder.</li>
 </ul>
-<p>To make visual comparisons against our three data sets, theoretically we would need to standardise the breaks at which our classification schemes are set at. This can be a little fiddly with QGIS, so for now, you can leave your symbolisation to the default settings.</p>
-<p>Alternatively, to set all three data sets to the same breaks, you can do the following:</p>
+<p>To make visual comparisons against our three data sets, theoretically we would need to standardise the breaks at which our classification schemes are set at. To set all three data sets to the same breaks, you can do the following:</p>
 <ul>
 <li>Right-click on the <code>ward_population_2019</code> data set and navigate to the <code>Symbology</code> tab. Double-click on the Values for the smallest classification group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click OK, then Click Apply, then Click OK to return to the main QGIS screen.</li>
 <li>Right-click again on the <code>ward_population_2019</code> data set but this time, click on <strong>Styles</strong> -&gt; <strong>Copy Styles</strong> -&gt; <strong>Symbology</strong>.</li>

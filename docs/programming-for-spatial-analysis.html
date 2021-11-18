@@ -169,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#recording-w02"><i class="fa fa-check"></i><b>2.1</b> Lecture recording</a></li>
 <li class="chapter" data-level="2.2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#reading-w02"><i class="fa fa-check"></i><b>2.2</b> Reading list</a></li>
 <li class="chapter" data-level="2.3" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#simple-digitisation-of-spatial-features"><i class="fa fa-check"></i><b>2.3</b> Simple digitisation of spatial features</a></li>
-<li class="chapter" data-level="2.4" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#population-change-in-london"><i class="fa fa-check"></i><b>2.4</b> Population Change in London</a>
+<li class="chapter" data-level="2.4" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#population-change-in-london"><i class="fa fa-check"></i><b>2.4</b> Population change in London</a>
 <ul>
 <li class="chapter" data-level="2.4.1" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#setting-the-scene"><i class="fa fa-check"></i><b>2.4.1</b> Setting the scene</a></li>
 <li class="chapter" data-level="2.4.2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#w02-finding"><i class="fa fa-check"></i><b>2.4.2</b> Finding our data sets</a></li>
@@ -222,7 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6.5" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#column-names"><i class="fa fa-check"></i><b>4.6.5</b> Column names</a></li>
 <li class="chapter" data-level="4.6.6" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#adding-columns"><i class="fa fa-check"></i><b>4.6.6</b> Adding columns</a></li>
 </ul></li>
-<li class="chapter" data-level="4.7" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#crime-analysis"><i class="fa fa-check"></i><b>4.7</b> Crime analysis</a>
+<li class="chapter" data-level="4.7" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#crime-analysis-i"><i class="fa fa-check"></i><b>4.7</b> Crime analysis I</a>
 <ul>
 <li class="chapter" data-level="4.7.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#starting-a-project"><i class="fa fa-check"></i><b>4.7.1</b> Starting a project</a></li>
 <li class="chapter" data-level="4.7.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#setting-up-a-script"><i class="fa fa-check"></i><b>4.7.2</b> Setting up a script</a></li>
@@ -236,7 +236,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.1" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#recording-w05"><i class="fa fa-check"></i><b>5.1</b> Lecture recording</a></li>
 <li class="chapter" data-level="5.2" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#reading-w05"><i class="fa fa-check"></i><b>5.2</b> Reading list</a></li>
-<li class="chapter" data-level="5.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#byl-w05"><i class="fa fa-check"></i><b>5.3</b> Before you leave</a></li>
+<li class="chapter" data-level="5.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#crime-analysis-ii"><i class="fa fa-check"></i><b>5.3</b> Crime analysis II</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#data-preparation"><i class="fa fa-check"></i><b>5.3.1</b> Data preparation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#assignment-w05"><i class="fa fa-check"></i><b>5.4</b> Assignment</a></li>
+<li class="chapter" data-level="5.5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#byl-w05"><i class="fa fa-check"></i><b>5.5</b> Before you leave</a></li>
 </ul></li>
 </ul>
 
@@ -257,6 +262,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="programming-for-spatial-analysis" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Programming for Spatial Analysis</h1>
+<p>This week we are going to look at how to use R and RStudio as a piece of GIS software. Like last week, we will be completing an analysis of our theft crime data set in London. However, rather than solely looking at crime change over time, we are going to add in a spatial component to our analysis: how has crime changed across our wards over the year.</p>
 <div id="recording-w05" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Lecture recording</h2>
 <ul>
@@ -270,8 +276,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Reading #2</li>
 </ul>
 </div>
-<div id="byl-w05" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> Before you leave</h2>
+<div id="crime-analysis-ii" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Crime analysis II</h2>
+<p>To analyse crime by ward over time, we will go through several steps of data preparation (‘data wrangling’) before joining our data to ward polygons. Specifically, we will:</p>
+<ol style="list-style-type: decimal">
+<li>Take our <code>all_theft_df</code> dataframe and wrangle it to produce a dataframe with a <strong>ward per row</strong> with a <strong>crime count for each month in our fields</strong>.</li>
+<li>Join this dataframe to our <code>ward_population_2019</code> shapefile (which should still be sitting in your <code>working</code> folder) and then produce a <strong>crime rate</strong> for each <strong>month, for each ward</strong>.</li>
+<li>Create <strong>a map for January 2020</strong> using the <code>tmap</code> library.</li>
+</ol>
+<div id="data-preparation" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Data preparation</h3>
+<p>Before we get started, we first need to head back to our script from last week, run our script - and then write our <code>all_theft_df</code> to a <code>csv</code> file. If you had saved your environment from last week, keeping your variables in memory, theoretically you would not need to export the data frame as you should have access to this variable within your new script - but it would be good practice to write out the data and then load it back in.</p>
+<ol style="list-style-type: decimal">
+<li>Open up RStudio (Server or Desktop), and make sure you open up your <strong>GEOG0030</strong> project.</li>
+<li>Next open your script from last week - it should be saved as: <code>wk4-csv-processing.r</code> and should be visible in your <strong>files</strong> from your <strong>GEOG0030</strong> project.</li>
+<li>Run your full script to and <strong>including</strong> the code that <strong>filters</strong> our large <code>all_crime_df</code> to only the <code>all_theft_df</code>.</li>
+<li>Scroll to the bottom of the script and enter the following code and execute:</li>
+</ol>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="programming-for-spatial-analysis.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write out the theft_crime_df to a csv within our raw crime data folder</span></span>
+<span id="cb87-2"><a href="programming-for-spatial-analysis.html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(all_theft_df,<span class="st">&quot;data/raw/crime/crime_theft_2020.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Remember, if using a Windows machine, you’ll need to submit your forward-slashes (<code>/</code>) with backslashes, and in this case, within R, it will need to be <strong>two</strong> backslashes (<code>\\</code>).</p>
+<p>You should now see a new <code>csv</code> within your raw crime data folder (<strong>data -&gt; raw -&gt; crime</strong>).</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Save your <code>wk4-csv-processing.r</code> script and then close the script.</li>
+</ol>
+</div>
+</div>
+<div id="assignment-w05" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Assignment</h2>
+</div>
+<div id="byl-w05" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Before you leave</h2>
 
 </div>
 </div>

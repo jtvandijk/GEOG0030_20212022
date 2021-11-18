@@ -520,7 +520,7 @@ When working in R it is important to keep in mind that:
 * If you press the up arrow in the command line you will be able to edit the previous lines of code you have inputted.
 :::
 
-## Crime analysis
+## Crime analysis I
 The last command you executed was the installation of a new R library: `tidyverse`. The `tidyverse` is a collection of packages that are specifically designed for data wrangling, management, cleaning, analysis and visualisation within RStudio. Whilst in many cases different packages work all slightly differently, all packages of the `tidyverse` share the underlying design philosophy, grammar, and data structures.
 
 The tidyverse itself is treated and loaded as a single package, but this means if you load the `tidyverse` package within your script (through `library(tidyverse)`), you will directly have access to all the functions that are part of each of the packages that are within the overall `tidyverse.` This means you do not have to load each package separately. For more information on tidyverse, have a look at https://www.tidyverse.org/.

@@ -34,7 +34,7 @@ We are going to use a very light online tool that allows us to create digital da
 - Did you sacrifice detail over expediency or did you spend perhaps a little too long trying to capture ever small bend in the river? 
 - How well do you think your line represents the River Thames?
 
-## Population Change in London
+## Population change in London
 The second part of this practical will introduces you to **attribute joins** and making a simple choropleth map. You will be using these joins throughout this module, so it is incredibly important that you understand how they work – even as simple as they may be!
 
 :::note
@@ -160,10 +160,8 @@ We will be looking at wards in our practical analysis – although even at this 
 #### Population data 
 For our population data sets, we will use the ONS mid-year estimates (MYE). These population data sets are **estimates** that have been modelled based on the previous 2011 census count and then forecasted population growth (in combination with several additional data sources). They are released once a year, with a delay of a year. Today we will use the data for 2011, 2015, and 2019.
 
-As the London Datastore only has these MYE for up to 2018, we will download some more recent data from ONS directly. *It is always worth checking the ‘originators’ of the data to see if there are more recent versions.*
-
 1. Navigate to the **Ward** level data sets: [[Link]](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/wardlevelmidyearpopulationestimatesexperimental)
-2. When you navigate to this page, you will find multiple choices of data to download. We will need to download the estimates for **2011, 2015 and 2019**. Click to download each of the zipfiles. Choose the **revised** versions for 2015 and the (Census-based) 2011 wards edition for 2011. 
+2. When you navigate to this page, you will find multiple choices of data to download. We will need to download the estimates for **2011, 2015** and **2019**. Click to download each of the zipfiles. Choose the **revised** versions for 2015 and the (Census-based) 2011 wards edition for 2011. 
 
 3. In your `GEOG0030/data/raw/` folder, create a new folder called `population`, unzip your download, and copy the three spreadsheets into this folder.
 
@@ -177,7 +175,7 @@ If you open up the 2011 ward spreadsheet in Excel (or another spreadsheet progra
 As you should be able to see, we have a set of different fields (e.g. Ward Code, Ward Name), including population statistics. Right now, we have too much data - so what we will want to do is simplify and extract only the data we need for analysis. For this, we need the total population (**All Ages**), alongside some identifying information that distinguishes each record from one another. Here we can see that both **Ward Code** and **Ward Name** suit this requirement. We can also think that the **Local Authority** column might be of use - so it might be worthwhile keeping this information as well.
 
 2. Create a new spreadsheet within your programme. From the **Mid-2011 Persons** spreadsheet, copy over all cells from columns **A** to **D** and rows **4 to 636** into this new spreadsheet. **Row 636** denotes the end of the **Greater London** wards (i.e. the end of the Westminster LA) which are kept (in most scenarios) at the top of the spreadsheet as their **Ward Codes** are the first in sequential order. 
-3. Before we go any further, we need to format our data. First, we want to rename our fields to remove the spaces and superscript formatting. Re-title the fields as follows: **ward_code**, **ward_name**, **local_authority** and **POP2011**. 
+3. Before we go any further, we need to format our data. First, we want to rename our fields to remove the spaces and superscript formatting. Re-title the fields as follows: **ward_code**, **ward_name**, **local_authority** and **pop2011**. 
 
 One further bit of formatting that you **MUST** do before saving your data is to format our population field. At the moment, you will see that there are commas separating the **thousands** within our values. If we leave this **commas** in our values, QGIS will read them as decimal points, creating decimal values of our population. There are many points at which we could solve this issue, but the easiest point is now - we will strip our population values of the commas and set them to integer (whole numbers) values. 
 
@@ -200,7 +198,7 @@ If we head back to the original 2015 raw data set, we can actually find this dat
 
 7. Locate the data for the *City of London*, *Hackney*, *Kensington and Chelsea* and *Tower Hamlets* and copy this over into our new spreadsheet. Double-check that you now have in total **637** wards within your data set.
 
-8. Remember to rename the fields as above, but change your population field to **POP2015**. Also, remember to reformat your population values.
+8. Remember to rename the fields as above, but change your population field to **pop2015**. Also, remember to reformat your population values.
 
 9. Once complete, save your spreadsheet into your **working** folder as `ward_population_2015.csv`.
 
@@ -290,7 +288,6 @@ knitr::include_graphics('images/w02/wardlabels.png')
 
 :::note
 **Note**<br/>
-**Turning layers on/off & drawing orders**<br>
 The main strength of a GUI GIS system is that is really helps us understand how we can visualise spatial data. Even with just these two shapefiles loaded, we can understand two key concepts of using spatial data within GIS.
 
 The first, and this is only really relevant to GUI GIS systems, is that each layer can either be turned on or off, to make it visible or not (try clicking the tick box to the left of each layer). This is probably a feature you are used to working with if you have played with interactive web mapping applications before!
@@ -389,7 +386,7 @@ You should now be looking at something like this:
 knitr::include_graphics('images/w02/ward_2011.png')
 ```
 
-You will be able to see that we have **some** missing data - and this is for several wards within the City of London.  This is because census data is **only recorded for 8 out of the 25 wards** and therefore we have **no data** for the remaining wards. As a result, these wards are left blank, i.e. white, to represent a `NODATA` value. 
+You will be able to see that we have **some** missing data - and this is for several wards within the City of London.  This is because census data is **only recorded for 8 out of the 25 wards** and therefore we have no data for the remaining wards. As a result, these wards are left blank, i.e. white, to represent a `NODATA` value. 
 
 One thing to flag is that `NODATA` means no data - whereas `0`, particularly in a scenario like this, would be an actual numeric value. It is important to remember this when processing and visualising data, to make sure you do not represent a `NODATA` value incorrectly.
 
@@ -406,12 +403,10 @@ You now need to **repeat this whole process** for your 2015 and 2019 data sets. 
 - Load the respective Population data set as a Delimited Text File Layer (remember the settings!).
 - Join the two data sets together using the Join tool in the Ward data set Properties box.
 - Export your joined data set into a new data set within your `final` folder.
-* Style your data appropriately.
-* Export your maps as an image to your `maps` folder.
+- Style your data appropriately.
+- Export your maps as an image to your `maps` folder.
 
-To make visual comparisons against our three data sets, theoretically we would need to standardise the breaks at which our classification schemes are set at. This can be a little fiddly with QGIS, so for now, you can leave your symbolisation to the default settings.
-
-Alternatively, to set all three data sets to the same breaks, you can do the following:
+To make visual comparisons against our three data sets, theoretically we would need to standardise the breaks at which our classification schemes are set at. To set all three data sets to the same breaks, you can do the following:
 
 - Right-click on the `ward_population_2019` data set and navigate to the `Symbology` tab. Double-click on the Values for the smallest classification group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click OK, then Click Apply, then Click OK to return to the main QGIS screen.
 -  Right-click again on the `ward_population_2019` data set but this time, click on **Styles** -> **Copy Styles** -> **Symbology**.
