@@ -36,7 +36,7 @@ The topics covered over the next ten weeks are:
 | 2             | Foundational Concepts | [GIScience and GIS software](giscience-and-gis-software.html) | 
 | 3             | Foundational Concepts | [Cartography and Visualisation](cartography-and-visualisation.html) | 
 | 4             | Foundational Concepts | [Programming for Data Analysis](programming-for-data-analysis.html) |
-| 5             | Foundational Concepts | Programming for Spatial Analysis |
+| 5             | Foundational Concepts | [Programming for Spatial Analysis](programming-for-spatial-analysis.html) |
 |               | **Reading week** | **Reading week** |
 | 6             | Core Spatial Analysis | Analysing Spatial Patterns I: Geometric Operations |
 | 7             | Core Spatial Analysis | Analysing Spatial Patterns II: Spatial Autocorrelation |

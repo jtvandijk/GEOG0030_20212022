@@ -87,3 +87,7 @@ reading-data-into-r
 inspecting-data-in-r
 assignment-w04
 byl-w04
+programming-for-spatial-analysis
+recording-w05
+reading-w05
+byl-w05
