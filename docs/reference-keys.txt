@@ -12,6 +12,8 @@ fig:01-rstudio-interface-script
 fig:04-new-project
 fig:04-R-project
 fig:04-rstudio-interface-script-open
+fig:04-download-crimes
+fig:04-organised-crime
 geocomputation-an-introduction
 recording-w01
 reading-w01
@@ -81,4 +83,7 @@ starting-a-project
 setting-up-a-script
 running-a-script
 crime-data-2
+reading-data-into-r
+inspecting-data-in-r
+assignment-w04
 byl-w04

@@ -24,7 +24,7 @@
 <meta name="author" content="Justin van Dijk" />
 
 
-<meta name="date" content="2021-11-16" />
+<meta name="date" content="2021-11-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -145,8 +145,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#welcome"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#moodle"><i class="fa fa-check"></i>Moodle</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#module-overview"><i class="fa fa-check"></i>Module overview</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#troubleshooting"><i class="fa fa-check"></i>Troubleshooting</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="troubleshooting.html"><a href="troubleshooting.html"><i class="fa fa-check"></i>Troubleshooting</a></li>
 <li class="part"><span><b>Foundational Concepts</b></span></li>
 <li class="chapter" data-level="1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html"><i class="fa fa-check"></i><b>1</b> Geocomputation: An Introduction</a>
 <ul>
@@ -228,7 +229,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.7.3" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#running-a-script"><i class="fa fa-check"></i><b>4.7.3</b> Running a script</a></li>
 <li class="chapter" data-level="4.7.4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#crime-data-2"><i class="fa fa-check"></i><b>4.7.4</b> Crime data</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#byl-w04"><i class="fa fa-check"></i><b>4.8</b> Before you leave</a></li>
+<li class="chapter" data-level="4.8" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#assignment-w04"><i class="fa fa-check"></i><b>4.8</b> Assignment</a></li>
+<li class="chapter" data-level="4.9" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#byl-w04"><i class="fa fa-check"></i><b>4.9</b> Before you leave</a></li>
 </ul></li>
 </ul>
 
@@ -800,11 +802,128 @@ Figure 4.5: Creating a new script.
 </div>
 <div id="crime-data-2" class="section level3" number="4.7.4">
 <h3><span class="header-section-number">4.7.4</span> Crime data</h3>
+<p>Where last week we provided you with a crime data set, this week you will download and prepare the data set yourself.</p>
+<ol style="list-style-type: decimal">
+<li>Start by navigating to <a href="https://data.police.uk/">data.police.uk</a>. And click on <strong>Downloads</strong>.</li>
+<li>Under the data range select <code>January 2020</code> to <code>December 2020</code>.</li>
+<li>Under the <strong>Custom download</strong> tab select <code>Metropolitan Police Service</code> and <code>City of London Police</code>. Leave all other settings and click on <strong>Generate file</strong>.</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:04-download-crimes"></span>
+<img src="images/w04/download-crime.png" alt="Downloading our crime data." width="1082" />
+<p class="caption">
+Figure 4.6: Downloading our crime data.
+</p>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>It may take a few minutes for the download to be generated, so be patient. Once the <strong>Download now</strong> button appears, you can download the 2020 crime data set.</li>
+<li>Once downloaded, unzip the file. You will notice that the zip file contains 12 individual folders - one for each month in 2020. Each folder contains two files - one containing the data for the <code>Metropolitan Police Service</code> and one for the <code>City of London Police</code>.</li>
+<li>Create a new folder named <code>all_crime</code> in your <code>data/raw/crime</code> directory and copy all 12 folders containing our data to this new folder.</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:04-organised-crime"></span>
+<img src="images/w04/organised-crime.png" alt="Your data folder should now look something like this." width="604" />
+<p class="caption">
+Figure 4.7: Your data folder should now look something like this.
+</p>
+</div>
+<div id="reading-data-into-r" class="section level4" number="4.7.4.1">
+<h4><span class="header-section-number">4.7.4.1</span> Reading data into R</h4>
+<p>We are now ready to get started with using the crime data <code>csv's</code> currently sat in our <code>all_crime</code> folder. To do so, we need to first figure out how to import the <code>csv</code> and understand the data structure it will be in after importing. To read in a <code>csv</code> into R requires the use of a very simple function from the <code>tidyverse</code> library: <code>read_csv()</code>.</p>
+<p>We can look at the help documentation to understand what we need to provide the function (or rather the optional arguments), but as we just want to load single <code>csv</code>, we will go ahead and just use the function with a simple parameter.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="programming-for-data-analysis.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in a single csv from our crime data</span></span>
+<span id="cb69-2"><a href="programming-for-data-analysis.html#cb69-2" aria-hidden="true" tabindex="-1"></a>crime_csv <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/raw/crime/all_crime/2020-01/2020-01-metropolitan-street.csv&quot;</span>)</span></code></pre></div>
+<p>We can explore the csv we have just loaded as our new <code>crime_csv</code> variable and understand the class, attributes and dimensions of our variable.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="programming-for-data-analysis.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check class and dimensions of our data frame</span></span>
+<span id="cb70-2"><a href="programming-for-data-analysis.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(crime_csv)</span></code></pre></div>
+<pre><code>## [1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;         &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="programming-for-data-analysis.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(crime_csv)</span></code></pre></div>
+<pre><code>## [1] 90979    12</code></pre>
+<p>We have found out our variable is a data frame, containing <strong>90979 rows and 12 columns</strong>. We however do not want just the single <code>csv</code> and instead what to combine all our <code>csv's</code> in our <code>all_crime</code> folder into a single data frame - so how do we do this?</p>
+<p>This will be the most complicated section of code yo will come across today, and we will use some functions that you have not seen before..</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="programming-for-data-analysis.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in all files and append all rows to a single data frame</span></span>
+<span id="cb74-2"><a href="programming-for-data-analysis.html#cb74-2" aria-hidden="true" tabindex="-1"></a>all_crime_df <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path=</span><span class="st">&quot;data/raw/crime/all_crime/&quot;</span>, <span class="at">full.names=</span><span class="cn">TRUE</span>, <span class="at">recursive=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb74-3"><a href="programming-for-data-analysis.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(read_csv) <span class="sc">%&gt;%</span></span>
+<span id="cb74-4"><a href="programming-for-data-analysis.html#cb74-4" aria-hidden="true" tabindex="-1"></a>  bind_rows</span></code></pre></div>
+<p>This might take a little time to process (or might not), as we have a lot of data to get through. You should see a new data frame appear in your global environment called <code>all_crime_df</code>, for which we now have 1,187,847 observations!</p>
+<div class="note">
+<p><strong>Note</strong><br>
+It is a little difficult to explain the code above without going into too much detail, but essential what the code does is:</p>
+<ol style="list-style-type: decimal">
+<li>List all the files found in the data path: <code>data/raw/crime/all_crime/</code></li>
+<li>Read each of these as a <code>csv</code> by “applying” the <code>read_csv()</code> function on all files.</li>
+<li>Binding all rows of all individual data frames into a single data frame.</li>
+</ol>
+<p>These three different actions are combined by using something called a pipe (<code>%&gt;%</code>), which we will explain in more detail in later weeks.</p>
 </div>
 </div>
-<div id="byl-w04" class="section level2" number="4.8">
-<h2><span class="header-section-number">4.8</span> Before you leave</h2>
-<p><a href="https://www.youtube.com/watch?v=NKyYr2pbXUM">That concludes the tutorial for this week</a>.</p>
+<div id="inspecting-data-in-r" class="section level4" number="4.7.4.2">
+<h4><span class="header-section-number">4.7.4.2</span> Inspecting data in R</h4>
+<p>We can now have a look at our large dataframe in more detail.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="programming-for-data-analysis.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># understand our all_crime_df cols, rows and print the first five rows</span></span>
+<span id="cb75-2"><a href="programming-for-data-analysis.html#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(all_crime_df)</span></code></pre></div>
+<pre><code>## [1] 12</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="programming-for-data-analysis.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(all_crime_df)</span></code></pre></div>
+<pre><code>## [1] 1187847</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="programming-for-data-analysis.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(all_crime_df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 12
+##   `Crime ID`    Month  `Reported by` `Falls within` Longitude Latitude Location 
+##   &lt;chr&gt;         &lt;chr&gt;  &lt;chr&gt;         &lt;chr&gt;              &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    
+## 1 37c663d86a53… 2020-… City of Lond… City of Londo…   -0.106      51.5 On or ne…
+## 2 5b89923fa5e0… 2020-… City of Lond… City of Londo…   -0.118      51.5 On or ne…
+## 3 07172682a8b2… 2020-… City of Lond… City of Londo…   -0.112      51.5 On or ne…
+## 4 14e02a6048af… 2020-… City of Lond… City of Londo…   -0.111      51.5 On or ne…
+## 5 fb3350ce8e04… 2020-… City of Lond… City of Londo…   -0.113      51.5 On or ne…
+## 6 &lt;NA&gt;          2020-… City of Lond… City of Londo…   -0.0976     51.5 On or ne…
+## # … with 5 more variables: LSOA code &lt;chr&gt;, LSOA name &lt;chr&gt;, Crime type &lt;chr&gt;,
+## #   Last outcome category &lt;chr&gt;, Context &lt;lgl&gt;</code></pre>
+<p>You should now see with have the same number of columns as our previous single csv, but with much more rows. You can also see that the <code>head()</code> function provides us with the first <strong>five</strong> rows of our data frame. You can conversely use <code>tail()</code> to provide the last five rows.</p>
+<p>For now in our analysis, we only want to extract the <strong>theft</strong> crime in our data frame - so we will want to filter our data based on the <strong>Crime type</strong> column. However, as we can see, we have a space in our field name for <strong>Crime type</strong> and, in fact, many of the other fields. As we want to avoid having spaces in our field names when coding (or else our code will break!), we need to rename our fields. To do so, we will first get all of the names of our fields so we can copy and paste these over into our code:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="programming-for-data-analysis.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the field names of our all_crime_df</span></span>
+<span id="cb81-2"><a href="programming-for-data-analysis.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(all_crime_df)</span></code></pre></div>
+<pre><code>##  [1] &quot;Crime ID&quot;              &quot;Month&quot;                 &quot;Reported by&quot;          
+##  [4] &quot;Falls within&quot;          &quot;Longitude&quot;             &quot;Latitude&quot;             
+##  [7] &quot;Location&quot;              &quot;LSOA code&quot;             &quot;LSOA name&quot;            
+## [10] &quot;Crime type&quot;            &quot;Last outcome category&quot; &quot;Context&quot;</code></pre>
+<p>We can then rename the field names in our data set - just as we did with our GISS table earlier:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="programming-for-data-analysis.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new vector containing updated no space / no capital field names</span></span>
+<span id="cb83-2"><a href="programming-for-data-analysis.html#cb83-2" aria-hidden="true" tabindex="-1"></a>no_space_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;crime_id&quot;</span>, <span class="st">&quot;month&quot;</span>, <span class="st">&quot;reported_by&quot;</span>, <span class="st">&quot;falls_within&quot;</span>, <span class="st">&quot;longitude&quot;</span>,<span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;location&quot;</span>, <span class="st">&quot;lsoa_code&quot;</span>, <span class="st">&quot;lsoa_name&quot;</span>, <span class="st">&quot;crime_type&quot;</span>, <span class="st">&quot;last_outcome_category&quot;</span>, <span class="st">&quot;context&quot;</span>)</span>
+<span id="cb83-3"><a href="programming-for-data-analysis.html#cb83-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-4"><a href="programming-for-data-analysis.html#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="co"># rename our df field names using these new names</span></span>
+<span id="cb83-5"><a href="programming-for-data-analysis.html#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(all_crime_df) <span class="ot">&lt;-</span> no_space_names</span></code></pre></div>
+<p>We now have our dataframe ready for filtering - and to do so, we’ll use the <code>filter()</code> function from the <code>dplyr</code> library (which is library within our <code>tidyverse</code>). This function is really easy to use - but there is also a <code>filter()</code> function in the R base library - that does something different to the function in <code>dplyr</code>. As a result, we need to use a specific type of syntax - <code>library::function</code> - to tell R to look for and use the the filter function from the <code>dplyr</code> library rather than the default base library.</p>
+<p>We then also need to populate our <code>filter()</code> function with the necessary parameters to extract only the “Theft from the person” crime type. This includes providing the function with our main data frame plus the filter query, as outliend below:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="programming-for-data-analysis.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter all_crime_df to contain only theft, store as a new variable: all_theft_df</span></span>
+<span id="cb84-2"><a href="programming-for-data-analysis.html#cb84-2" aria-hidden="true" tabindex="-1"></a>all_theft_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(all_crime_df, crime_type <span class="sc">==</span> <span class="st">&quot;Theft from the person&quot;</span>)</span></code></pre></div>
+<p>You should now see the new variable appear in your environment with 31,578 observations. We now want to do some further housekeeping and create on final data frame that will allow us to analyse crime in London by month. To do so, we want to count how many thefts occur each month in London - and luckily for us <code>dplyr</code> has another function that will do this for us, known simply as <code>count()</code>.</p>
+<p>Go ahead and search the help to understand the <code>count()</code> function - you will also see that there is only one function called <code>count()</code> so far, i.e. the one in the <code>dplyr</code> library, so we do not need to use the additional syntax we used above.</p>
+<p>Let us go ahead and count the number of thefts in London <strong>by month</strong>. The code for this is quite simple:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="programming-for-data-analysis.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count in the all_theft_df the number of crimes by month and store as a new dataframe</span></span>
+<span id="cb85-2"><a href="programming-for-data-analysis.html#cb85-2" aria-hidden="true" tabindex="-1"></a>theft_month_df <span class="ot">&lt;-</span> <span class="fu">count</span>(all_theft_df,month)</span></code></pre></div>
+<p>We have stored the output of our <code>count()</code> function to a new data frame: <code>theft_month_df</code>. Go ahead and look at the data frame to see the output - it is a very simple table containing simply the month and <code>n</code>, i.e. the number of thefts occurring per month. We can and should go ahead and rename this column to help with our interpretation of the data frame. We will use a quick approach to do this, that uses <strong>selection</strong> of the precise column to rename only the second column:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="programming-for-data-analysis.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename the second column of our new data frame to crime_totals</span></span>
+<span id="cb86-2"><a href="programming-for-data-analysis.html#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(theft_month_df)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">&quot;crime_totals&quot;</span></span></code></pre></div>
+<p>This selection is made through the <code>[2]</code> element of code added after the <code>names()</code> function we have used earlier. We will look more at selection, slicing and indexing in next week’s practical.</p>
+</div>
+</div>
+</div>
+<div id="assignment-w04" class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> Assignment</h2>
+<p>We now have our final data set ready for our simple analysis and answer some simple questions.</p>
+<ol style="list-style-type: decimal">
+<li><p>What is the mean average of crime per month in London in 2020?</p></li>
+<li><p>What is the median average crime per month in London in 2020?</p></li>
+<li><p>What are the minimum and maximum values of crime in London in 2020?</p></li>
+<li><p>Besides descriptive statistics, it would be really useful to generate a simple chart. Use the documentation of the <code>barplot()</code> function to create the barplot below:</p></li>
+</ol>
+<p><img src="GEOG0030_files/figure-html/04-bar-plot-1.png" width="672" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>Do you notice anything interesting in the distribution of the theft from persons over time?</li>
+<li>As this barplot is still a little basic, also try to figure out how to change the bar chart fill and borders to another colour from grey and black respectively.</li>
+</ol>
+<p>Now, make sure to save your script, so we can return to it next week. You do not need to save your workspace - but can do so if you like. Saving the workspace will keep any variables generated during your current session saved and available in a future session.</p>
+</div>
+<div id="byl-w04" class="section level2" number="4.9">
+<h2><span class="header-section-number">4.9</span> Before you leave</h2>
+<p>We have managed to take a data set of over 1 million records and clean and filter it to provide a chart that actually shows the potential impact of the COVID-19 lockdown on theft crime in London. Of course, there is a lot more research and exploratory data analysis we would need to complete before we could really substantiate our findings, but this first chart is certainly a step in the right direction. Next week, we will be doing a lot more with our data set - including a lot more data wrangling and of course spatial analysis, but hopefully this week has shown you want you can achieve with just a few lines of code. <a href="https://www.youtube.com/watch?v=NKyYr2pbXUM">That concludes the tutorial for this week</a>.</p>
 
 </div>
 </div>

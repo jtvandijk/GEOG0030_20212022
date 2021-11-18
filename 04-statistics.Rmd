@@ -594,7 +594,7 @@ Let us go ahead and give our script a **TITLE** - and maybe some additional info
 
 Now we have our title, the **second** bit of code we want to include in our script is to load **our libraries** (i.e. the installed packages we want to use in our script):
 
-```{r 04-scr-lib, warnings=FALSE, message=FALSE, eval=FALSE, cache=TRUE}
+```{r 04-scr-lib, warnings=FALSE, message=FALSE}
 # libraries used in this script:
 library(tidyverse)
 ```
@@ -628,7 +628,142 @@ By key commands:
 If you are running a script that seems to be stuck (for whatever reason) or you notice some of your code is wrong, you will need to **interrupt** R. To do so, click on **Session** -> **Interrupt R**. If this does not work, you may end up needing to **Terminate R** but this may lose any unsaved progress.
 
 ### Crime data
+Where last week we provided you with a crime data set, this week you will download and prepare the data set yourself. 
 
+1. Start by navigating to [data.police.uk](https://data.police.uk/). And click on **Downloads**.
+2. Under the data range select `January 2020` to `December 2020`.
+3. Under the **Custom download** tab select `Metropolitan Police Service` and `City of London Police`. Leave all other settings and click on **Generate file**.
+
+```{r 04-download-crimes, echo=FALSE, fig.align='center', fig.cap='Downloading our crime data.'}
+knitr::include_graphics('images/w04/download-crime.png')
+```
+
+3. It may take a few minutes for the download to be generated, so be patient. Once the **Download now** button appears, you can download the 2020 crime data set.
+4. Once downloaded, unzip the file. You will notice that the zip file contains 12 individual folders - one for each month in 2020. Each folder contains two files - one containing the data for the `Metropolitan Police Service` and one for the `City of London Police`. 
+5. Create a new folder named `all_crime` in your `data/raw/crime` directory and copy all 12 folders containing our data to this new folder.
+
+```{r 04-organised-crime, echo=FALSE, fig.align='center', fig.cap='Your data folder should now look something like this.'}
+knitr::include_graphics('images/w04/organised-crime.png')
+```
+
+#### Reading data into R
+We are now ready to get started with using the crime data `csv's` currently sat in our `all_crime` folder. To do so, we need to first figure out how to import the `csv` and understand the data structure it will be in after importing. To read in a `csv` into R requires the use of a very simple function from the `tidyverse` library: `read_csv()`.
+
+We can look at the help documentation to understand what we need to provide the function (or rather the optional arguments), but as we just want to load single `csv`, we will go ahead and just use the function with a simple parameter.
+
+```{r 04-data-load-csv, warnings=FALSE, message=FALSE, cache=TRUE}
+# read in a single csv from our crime data
+crime_csv <- read_csv("data/raw/crime/all_crime/2020-01/2020-01-metropolitan-street.csv")
+```
+
+We can explore the csv we have just loaded as our new `crime_csv` variable and understand the class, attributes and dimensions of our variable. 
+
+```{r 04-data-csv-class, warnings=FALSE, message=FALSE, cache=TRUE}
+# check class and dimensions of our data frame
+class(crime_csv)
+dim(crime_csv)
+```
+
+We have found out our variable is a data frame, containing **90979 rows and 12 columns**. We however do not want just the single `csv` and instead what to combine all our `csv's` in our `all_crime` folder into a single data frame - so how do we do this?
+
+This will be the most complicated section of code yo will come across today, and we will use some functions that you have not seen before..
+
+```{r 04-combine-csv, warnings=FALSE, message=FALSE, cache=TRUE}
+# read in all files and append all rows to a single data frame
+all_crime_df <- list.files(path="data/raw/crime/all_crime/", full.names=TRUE, recursive=TRUE) %>%
+  lapply(read_csv) %>%
+  bind_rows
+```
+
+This might take a little time to process (or might not), as we have a lot of data to get through. You should see a new data frame appear in your global environment called `all_crime_df`, for which we now have 1,187,847 observations!
+
+:::note
+**Note**<br>
+It is a little difficult to explain the code above without going into too much detail, but essential what the code does is:
+
+1. List all the files found in the data path: `data/raw/crime/all_crime/`
+2. Read each of these as a `csv` by "applying" the `read_csv()` function on all files.
+3. Binding all rows of all individual data frames into a single data frame.
+
+These three different actions are combined by using something called a pipe (`%>%`), which we will explain in more detail in later weeks.
+:::
+
+#### Inspecting data in R
+We can now have a look at our large dataframe in more detail.
+
+```{r 04-data-frame-analysis, warnings=FALSE, message=FALSE, cache=TRUE}
+# understand our all_crime_df cols, rows and print the first five rows
+ncol(all_crime_df)
+nrow(all_crime_df)
+head(all_crime_df)
+```
+
+You should now see with have the same number of columns as our previous single csv, but with much more rows. You can also see that the `head()` function provides us with the first **five** rows of our data frame. You can conversely use `tail()` to provide the last five rows.
+
+For now in our analysis, we only want to extract the **theft** crime in our data frame - so we will want to filter our data based on the **Crime type** column. However, as we can see, we have a space in our field name for **Crime type** and, in fact, many of the other fields. As we want to avoid having spaces in our field names when coding (or else our code will break!), we need to rename our fields. To do so, we will first get all of the names of our fields so we can copy and paste these over into our code:
+
+```{r 04-get-field-names, warnings=FALSE, message=FALSE, cache=TRUE}
+# get the field names of our all_crime_df
+names(all_crime_df)
+```
+
+We can then rename the field names in our data set - just as we did with our GISS table earlier:
+
+```{r 04-rename-field-names, warnings=FALSE, message=FALSE, cache=TRUE}
+# create a new vector containing updated no space / no capital field names
+no_space_names <- c("crime_id", "month", "reported_by", "falls_within", "longitude","latitude", "location", "lsoa_code", "lsoa_name", "crime_type", "last_outcome_category", "context")
+
+# rename our df field names using these new names
+names(all_crime_df) <- no_space_names
+```
+
+We now have our dataframe ready for filtering - and to do so, we'll use the `filter()` function from the `dplyr` library (which is library within our `tidyverse`). This function is really easy to use - but there is also a `filter()` function in the R base library - that does something different to the function in `dplyr`. As a result, we need to use a specific type of syntax - `library::function` - to tell R to look for and use the the filter function from the `dplyr` library rather than the default base library.
+
+We then also need to populate our `filter()` function with the necessary parameters to extract only the "Theft from the person" crime type. This includes providing the function with our main data frame plus the filter query, as outliend below:
+
+```{r 04-filter-data-frame, warnings=FALSE, message=FALSE, cache=TRUE}
+# filter all_crime_df to contain only theft, store as a new variable: all_theft_df
+all_theft_df <- dplyr::filter(all_crime_df, crime_type == "Theft from the person")
+```
+
+You should now see the new variable appear in your environment with 31,578 observations. We now want to do some further housekeeping and create on final data frame that will allow us to analyse crime in London by month. To do so, we want to count how many thefts occur each month in London - and luckily for us `dplyr` has another function that will do this for us, known simply as `count()`.
+
+Go ahead and search the help to understand the `count()` function - you will also see that there is only one function called `count()` so far, i.e. the one in the `dplyr` library, so we do not need to use the additional syntax we used above. 
+
+Let us go ahead and count the number of thefts in London **by month**. The code for this is quite simple:
+
+```{r 04-count-theft, warnings=FALSE, message=FALSE, cache=TRUE}
+# count in the all_theft_df the number of crimes by month and store as a new dataframe
+theft_month_df <- count(all_theft_df,month)
+```
+
+We have stored the output of our `count()` function to a new data frame: `theft_month_df`. Go ahead and look at the data frame to see the output - it is a very simple table containing simply the month and `n`, i.e. the number of thefts occurring per month. We can and should go ahead and rename this column to help with our interpretation of the data frame. We will use a quick approach to do this, that uses **selection** of the precise column to rename only the second column: 
+
+```{r 04-rename-df-column, warnings=FALSE, message=FALSE, cache=TRUE}
+# rename the second column of our new data frame to crime_totals
+names(theft_month_df)[2] <- "crime_totals"
+```
+
+This selection is made through the `[2]` element of code added after the `names()` function we have used earlier. We will look more at selection, slicing and indexing in next week's practical.
+
+## Assignment {#assignment-w04}
+We now have our final data set ready for our simple analysis and answer some simple questions.
+
+1. What is the mean average of crime per month in London in 2020?
+2. What is the median average crime per month in London in 2020?
+3. What are the minimum and maximum values of crime in London in 2020?
+
+4. Besides descriptive statistics, it would be really useful to generate a simple chart. Use the documentation of the `barplot()` function to create the barplot below:
+
+```{r 04-bar-plot, warnings=FALSE, message=FALSE, echo=FALSE}
+# barplot
+barplot(theft_month_df$crime_totals, main="Theft from persons in London by month in 2020", names.arg = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))
+```
+
+5. Do you notice anything interesting in the distribution of the theft from persons over time? 
+6. As this barplot is still a little basic, also try to figure out how to change the bar chart fill and borders to another colour from grey and black respectively. 
+
+Now, make sure to save your script, so we can return to it next week. You do not need to save your workspace - but can do so if you like. Saving the workspace will keep any variables generated during your current session saved and available in a future session.
 
 ## Before you leave {#byl-w04}
-[That concludes the tutorial for this week](https://www.youtube.com/watch?v=NKyYr2pbXUM).
+We have managed to take a data set of over 1 million records and clean and filter it to provide a chart that actually shows the potential impact of the COVID-19 lockdown on theft crime in London. Of course, there is a lot more research and exploratory data analysis we would need to complete before we could really substantiate our findings, but this first chart is certainly a step in the right direction. Next week, we will be doing a lot more with our data set - including a lot more data wrangling and of course spatial analysis, but hopefully this week has shown you want you can achieve with just a few lines of code. [That concludes the tutorial for this week](https://www.youtube.com/watch?v=NKyYr2pbXUM).

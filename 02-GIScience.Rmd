@@ -389,12 +389,11 @@ You should now be looking at something like this:
 knitr::include_graphics('images/w02/ward_2011.png')
 ```
 
-You will be able to see that we have **some** missing data - and this is for several wards within the City of London.  This is because census data is **only recorded for 8 out of the 25 wards** and therefore we have **no data** for the remaining wards. As a result, these wards are left blank, i.e. white, to represent a **NODATA** value. 
+You will be able to see that we have **some** missing data - and this is for several wards within the City of London.  This is because census data is **only recorded for 8 out of the 25 wards** and therefore we have **no data** for the remaining wards. As a result, these wards are left blank, i.e. white, to represent a `NODATA` value. 
 
-One thing to flag is that **NODATA** means no data - whereas 0, particularly in a scenario like this, would be an actual numeric value. It iss important to remember this when processing and visualising data, to make sure you do not represent a **NODATA** value incorrectly.
+One thing to flag is that `NODATA` means no data - whereas `0`, particularly in a scenario like this, would be an actual numeric value. It is important to remember this when processing and visualising data, to make sure you do not represent a `NODATA` value incorrectly.
 
 ### Exporting map for visual analysis
-
 To export your map (as is):
 - Select only the map layers you want to export and then opt for **Project** -> **Import/Export** -> **Export to Image** and save your final map in your `maps` folder. You may want to create a folder for these maps titled `w02`.
 
@@ -408,6 +407,7 @@ You now need to **repeat this whole process** for your 2015 and 2019 data sets. 
 - Join the two data sets together using the Join tool in the Ward data set Properties box.
 - Export your joined data set into a new data set within your `final` folder.
 * Style your data appropriately.
+* Export your maps as an image to your `maps` folder.
 
 To make visual comparisons against our three data sets, theoretically we would need to standardise the breaks at which our classification schemes are set at. This can be a little fiddly with QGIS, so for now, you can leave your symbolisation to the default settings.
 

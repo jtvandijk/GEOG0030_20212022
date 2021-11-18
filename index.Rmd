@@ -44,7 +44,7 @@ The topics covered over the next ten weeks are:
 | 9             | Advanced Spatial Analysis | Rasters, Zonal Statistics and Interpolation | 
 | 10            | Advanced Spatial Analysis | Geodemographics | 
 
-# Troubleshooting {-}
+## Troubleshooting {-}
 Spatial analysis can yield fascinating insights into geographical relationships. However, at times it can be difficult to work with - particularly when we combine this with learning how to program at the same time. You will get lots of error messages and have software crash, you will end up with bugs in your code that are difficult to find, and you may spend a whole day trying to track down a single data set. But the rewards of learning how to do all of this will become apparent. 
 
 If you need specific assistance with this course please:
@@ -59,7 +59,7 @@ If you need specific assistance with this course please:
 
 * Attend the Department's **Coding Therapy sessions** that are run on a weekly basis
 
-Due to the size of the class we will **only reply** to tech and R help messages **on Teams** so all students can see the discussion. We'd also encourage you to monitor the *tech-help* or *r-help* channels and contribute to/answer questions as/if you can! Creating a small community across our course will help all of us in the long-run.
+If after pursuing all these avenues you still need help, you can book into our office hours. These meetings are to discuss a geographical concept in relation to the material/assessment or for any personal matters relevant to the completion of the module.
 
-If after pursuing all these avenues you still need help, you can book into our office hours. These meetings are **to discuss a geographical concept in relation to the material/assessment or for any personal matters relevant to the completion of the module**.
-
+## Acknowledgements {-}
+This workbook is adapted from [GEOG0030: Geocomputation 2021-2021](https://jo-wilkin.github.io/GEOG0030/coursebook/index.html), as created by Dr Jo Wilkin. 
