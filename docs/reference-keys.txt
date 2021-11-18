@@ -92,5 +92,12 @@ recording-w05
 reading-w05
 crime-analysis-ii
 data-preparation
+spatial-analysis-set-up
+interacting-with-spatial-data
+getting-our-crime-data-in-shape
+attribute-join
+data-wrangling
+index-and-selection-with-base-r
+index-and-selection-with-dplyr
 assignment-w05
 byl-w05

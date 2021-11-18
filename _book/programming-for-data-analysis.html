@@ -169,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#recording-w02"><i class="fa fa-check"></i><b>2.1</b> Lecture recording</a></li>
 <li class="chapter" data-level="2.2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#reading-w02"><i class="fa fa-check"></i><b>2.2</b> Reading list</a></li>
 <li class="chapter" data-level="2.3" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#simple-digitisation-of-spatial-features"><i class="fa fa-check"></i><b>2.3</b> Simple digitisation of spatial features</a></li>
-<li class="chapter" data-level="2.4" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#population-change-in-london"><i class="fa fa-check"></i><b>2.4</b> Population Change in London</a>
+<li class="chapter" data-level="2.4" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#population-change-in-london"><i class="fa fa-check"></i><b>2.4</b> Population change in London</a>
 <ul>
 <li class="chapter" data-level="2.4.1" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#setting-the-scene"><i class="fa fa-check"></i><b>2.4.1</b> Setting the scene</a></li>
 <li class="chapter" data-level="2.4.2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#w02-finding"><i class="fa fa-check"></i><b>2.4.2</b> Finding our data sets</a></li>
@@ -236,8 +236,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.1" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#recording-w05"><i class="fa fa-check"></i><b>5.1</b> Lecture recording</a></li>
 <li class="chapter" data-level="5.2" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#reading-w05"><i class="fa fa-check"></i><b>5.2</b> Reading list</a></li>
-<li class="chapter" data-level="5.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#assignment-w05"><i class="fa fa-check"></i><b>5.3</b> Assignment</a></li>
-<li class="chapter" data-level="5.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#byl-w05"><i class="fa fa-check"></i><b>5.4</b> Before you leave</a></li>
+<li class="chapter" data-level="5.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#crime-analysis-ii"><i class="fa fa-check"></i><b>5.3</b> Crime analysis II</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#data-preparation"><i class="fa fa-check"></i><b>5.3.1</b> Data preparation</a></li>
+<li class="chapter" data-level="5.3.2" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#spatial-analysis-set-up"><i class="fa fa-check"></i><b>5.3.2</b> Spatial analysis set up</a></li>
+<li class="chapter" data-level="5.3.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#interacting-with-spatial-data"><i class="fa fa-check"></i><b>5.3.3</b> Interacting with spatial data</a></li>
+<li class="chapter" data-level="5.3.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#getting-our-crime-data-in-shape"><i class="fa fa-check"></i><b>5.3.4</b> Getting our crime data in shape</a></li>
+<li class="chapter" data-level="5.3.5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#data-wrangling"><i class="fa fa-check"></i><b>5.3.5</b> Data wrangling</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#assignment-w05"><i class="fa fa-check"></i><b>5.4</b> Assignment</a></li>
+<li class="chapter" data-level="5.5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#byl-w05"><i class="fa fa-check"></i><b>5.5</b> Before you leave</a></li>
 </ul></li>
 </ul>
 
@@ -540,7 +548,7 @@ In addition to make notes about the functions you are coming across in the works
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="programming-for-data-analysis.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store our total number of pages, in chronological order, as a variable</span></span>
 <span id="cb40-2"><a href="programming-for-data-analysis.html#cb40-2" aria-hidden="true" tabindex="-1"></a>giss_page_no <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">454</span>, <span class="dv">517</span>, <span class="dv">560</span>, <span class="dv">477</span>)</span></code></pre></div>
 <p>Type <code>print(giss_page_no)</code> into the console and execute to check the results.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="programming-for-data-analysis.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print our giss... variable</span></span>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="programming-for-data-analysis.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print our giss_page_no variable</span></span>
 <span id="cb41-2"><a href="programming-for-data-analysis.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(giss_page_no)</span></code></pre></div>
 <pre><code>## [1] 454 517 560 477</code></pre>
 <p>We can see we have our total number of pages collected together in a single vector. We could if we want, execute some statistical functions on our vector object.</p>
@@ -633,8 +641,9 @@ In this case, the arguments the matrix needed to run were:</p>
 <p>Create a <code>edition</code> vector variable containing our textbook edition numbers - type and execute <code>edition &lt;- c("1st", "2nd", "3rd", "4th")</code>. We then store this as a new column in our data frame under the column name <strong>edition</strong> by typing and executing <code>giss_df$edition &lt;- edition</code>:</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="programming-for-data-analysis.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector with our editions</span></span>
 <span id="cb59-2"><a href="programming-for-data-analysis.html#cb59-2" aria-hidden="true" tabindex="-1"></a>edition <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1st&quot;</span>, <span class="st">&quot;2nd&quot;</span>, <span class="st">&quot;3rd&quot;</span>, <span class="st">&quot;4th&quot;</span>)</span>
-<span id="cb59-3"><a href="programming-for-data-analysis.html#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add this vector as a new column to our data frame</span></span>
-<span id="cb59-4"><a href="programming-for-data-analysis.html#cb59-4" aria-hidden="true" tabindex="-1"></a>giss_df<span class="sc">$</span>edition <span class="ot">&lt;-</span> edition</span></code></pre></div>
+<span id="cb59-3"><a href="programming-for-data-analysis.html#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="programming-for-data-analysis.html#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># add this vector as a new column to our data frame</span></span>
+<span id="cb59-5"><a href="programming-for-data-analysis.html#cb59-5" aria-hidden="true" tabindex="-1"></a>giss_df<span class="sc">$</span>edition <span class="ot">&lt;-</span> edition</span></code></pre></div>
 <p>Again, you can go and check your data frame and see the new column using either <code>View()</code> function or by clicking on the tab at the top or by typing <code>giss_df</code> in your console window.</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="programming-for-data-analysis.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect</span></span>
 <span id="cb60-2"><a href="programming-for-data-analysis.html#cb60-2" aria-hidden="true" tabindex="-1"></a>giss_df</span></code></pre></div>
@@ -766,13 +775,13 @@ Figure 4.5: Creating a new script.
 </div>
 <p>Save your script as: <code>wk4-csv-processing.r</code>. Through our name, we know now that our script was created in Week 4 of Geocomputation and the code it will contain is something to do with <code>csv</code> processing. This will help us a lot in the future when we come to find code that we need for other projects.</p>
 <p>The <strong>first</strong> bit of code you will want to add to any script is to add a <strong>title</strong>. This title should give any reader a quick understanding of what your code achieves. When writing a script it is important to keep notes about what each step is doing. To do this, the hash (<code>#</code>) symbol is put before any code. This comments out that particular line so that R ignores it when the script is run.</p>
-<p>Let us go ahead and give our script a <strong>TITLE</strong> - and maybe some additional information (substitute accordingly):</p>
+<p>Let us go ahead and give our script a title - and maybe some additional information:</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="programming-for-data-analysis.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combining Police Data csv&#39;s from 2020 into a single csv</span></span>
 <span id="cb67-2"><a href="programming-for-data-analysis.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Followed by analysis of data on monthly basis</span></span>
 <span id="cb67-3"><a href="programming-for-data-analysis.html#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Date: January 2021</span></span>
-<span id="cb67-4"><a href="programming-for-data-analysis.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Name: Justin </span></span></code></pre></div>
+<span id="cb67-4"><a href="programming-for-data-analysis.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: Justin </span></span></code></pre></div>
 <p>Now we have our title, the <strong>second</strong> bit of code we want to include in our script is to load <strong>our libraries</strong> (i.e. the installed packages we want to use in our script):</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="programming-for-data-analysis.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries used in this script:</span></span>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="programming-for-data-analysis.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries</span></span>
 <span id="cb68-2"><a href="programming-for-data-analysis.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>By loading simply the <code>tidyverse</code>, we have a pretty good estimate that we will be able to access all the functions that we are going to need today. However, often when developing a script, you will realise that you will need to add libraries as you go along in order to use a specific function etc. When you do this, <strong>always add your library to the top of your script</strong> - if you ever share your script, it helps the person you are sharing with recognise quickly if they need to install any additional packages prior to trying to run the script. It also means your libraries do not get lost in the multiple lines of code you are writing.</p>
 <p>We are now ready to run these first two lines of code. Remember to save your script.</p>
@@ -804,7 +813,7 @@ Figure 4.5: Creating a new script.
 </div>
 <div id="stopping-a-script-from-running" class="section level4 unnumbered">
 <h4>Stopping a script from running</h4>
-<p>If you are running a script that seems to be stuck (for whatever reason) or you notice some of your code is wrong, you will need to <strong>interrupt</strong> R. To do so, click on <strong>Session</strong> -&gt; <strong>Interrupt R</strong>. If this does not work, you may end up needing to <strong>Terminate R</strong> but this may lose any unsaved progress.</p>
+<p>If you are running a script that seems to be stuck (for whatever reason) or you notice some of your code is wrong, you will need to interrupt R. To do so, click on <strong>Session</strong> -&gt; <strong>Interrupt R</strong>. If this does not work, you may end up needing to <strong>Terminate R</strong> but this may lose any unsaved progress.</p>
 </div>
 </div>
 <div id="crime-data-2" class="section level3" number="4.7.4">
@@ -838,6 +847,10 @@ Figure 4.7: Your data folder should now look something like this.
 <p>We can look at the help documentation to understand what we need to provide the function (or rather the optional arguments), but as we just want to load single <code>csv</code>, we will go ahead and just use the function with a simple parameter.</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="programming-for-data-analysis.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in a single csv from our crime data</span></span>
 <span id="cb69-2"><a href="programming-for-data-analysis.html#cb69-2" aria-hidden="true" tabindex="-1"></a>crime_csv <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/raw/crime/all_crime/2020-01/2020-01-metropolitan-street.csv&quot;</span>)</span></code></pre></div>
+<div class="note">
+<p><strong>Note</strong> <br />
+If using a Windows machine, you will need to submit your forward-slashes (<code>/</code>) with two backslashes (<code>\\</code>) whenever you are dealing with file paths!</p>
+</div>
 <p>We can explore the csv we have just loaded as our new <code>crime_csv</code> variable and understand the class, attributes and dimensions of our variable.</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="programming-for-data-analysis.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check class and dimensions of our data frame</span></span>
 <span id="cb70-2"><a href="programming-for-data-analysis.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(crime_csv)</span></code></pre></div>
@@ -845,7 +858,7 @@ Figure 4.7: Your data folder should now look something like this.
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="programming-for-data-analysis.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(crime_csv)</span></code></pre></div>
 <pre><code>## [1] 90979    12</code></pre>
 <p>We have found out our variable is a data frame, containing <strong>90979 rows and 12 columns</strong>. We however do not want just the single <code>csv</code> and instead what to combine all our <code>csv's</code> in our <code>all_crime</code> folder into a single data frame - so how do we do this?</p>
-<p>This will be the most complicated section of code yo will come across today, and we will use some functions that you have not seen before..</p>
+<p>This will be the most complicated section of code you will come across today, and we will use some functions that you have not seen before..</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="programming-for-data-analysis.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in all files and append all rows to a single data frame</span></span>
 <span id="cb74-2"><a href="programming-for-data-analysis.html#cb74-2" aria-hidden="true" tabindex="-1"></a>all_crime_df <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path=</span><span class="st">&quot;data/raw/crime/all_crime/&quot;</span>, <span class="at">full.names=</span><span class="cn">TRUE</span>, <span class="at">recursive=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb74-3"><a href="programming-for-data-analysis.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(read_csv) <span class="sc">%&gt;%</span></span>

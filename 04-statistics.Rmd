@@ -349,7 +349,7 @@ giss_page_no <- c(454, 517, 560, 477)
 Type `print(giss_page_no)` into the console and execute to check the results.
 
 ```{r 04-page-no-show, warnings=FALSE, message=FALSE}
-# print our giss... variable
+# print our giss_page_no variable
 print(giss_page_no)
 ```
 
@@ -478,6 +478,7 @@ Create a `edition` vector variable containing our textbook edition numbers - typ
 ```{r 04-data-frame-edition, warnings=FALSE, message=FALSE}
 # create a vector with our editions
 edition <- c("1st", "2nd", "3rd", "4th")
+
 # add this vector as a new column to our data frame
 giss_df$edition <- edition
 ```
@@ -583,19 +584,19 @@ Save your script as: `wk4-csv-processing.r`. Through our name, we know now that 
 
 The **first** bit of code you will want to add to any script is to add a **title**. This title should give any reader a quick understanding of what your code achieves. When writing a script it is important to keep notes about what each step is doing. To do this, the hash (`#`) symbol is put before any code. This comments out that particular line so that R ignores it when the script is run.
 
-Let us go ahead and give our script a **TITLE** - and maybe some additional information (substitute accordingly):
+Let us go ahead and give our script a title - and maybe some additional information:
 
 ```{r 04-scr-title, warnings=FALSE, message=FALSE, cache=TRUE}
 # Combining Police Data csv's from 2020 into a single csv
 # Followed by analysis of data on monthly basis
 # Date: January 2021
-# Name: Justin 
+# Author: Justin 
 ```
 
 Now we have our title, the **second** bit of code we want to include in our script is to load **our libraries** (i.e. the installed packages we want to use in our script):
 
 ```{r 04-scr-lib, warnings=FALSE, message=FALSE}
-# libraries used in this script:
+# libraries
 library(tidyverse)
 ```
 
@@ -625,7 +626,7 @@ By key commands:
 * Hold **Option** plus **Ctl** or **Cmd** and **R**.
 
 #### Stopping a script from running {-}
-If you are running a script that seems to be stuck (for whatever reason) or you notice some of your code is wrong, you will need to **interrupt** R. To do so, click on **Session** -> **Interrupt R**. If this does not work, you may end up needing to **Terminate R** but this may lose any unsaved progress.
+If you are running a script that seems to be stuck (for whatever reason) or you notice some of your code is wrong, you will need to interrupt R. To do so, click on **Session** -> **Interrupt R**. If this does not work, you may end up needing to **Terminate R** but this may lose any unsaved progress.
 
 ### Crime data
 Where last week we provided you with a crime data set, this week you will download and prepare the data set yourself. 
@@ -656,6 +657,11 @@ We can look at the help documentation to understand what we need to provide the 
 crime_csv <- read_csv("data/raw/crime/all_crime/2020-01/2020-01-metropolitan-street.csv")
 ```
 
+:::note
+**Note** <br />
+If using a Windows machine, you will need to submit your forward-slashes (`/`) with two backslashes (`\\`) whenever you are dealing with file paths!
+:::
+
 We can explore the csv we have just loaded as our new `crime_csv` variable and understand the class, attributes and dimensions of our variable. 
 
 ```{r 04-data-csv-class, warnings=FALSE, message=FALSE, cache=TRUE}
@@ -666,7 +672,7 @@ dim(crime_csv)
 
 We have found out our variable is a data frame, containing **90979 rows and 12 columns**. We however do not want just the single `csv` and instead what to combine all our `csv's` in our `all_crime` folder into a single data frame - so how do we do this?
 
-This will be the most complicated section of code yo will come across today, and we will use some functions that you have not seen before..
+This will be the most complicated section of code you will come across today, and we will use some functions that you have not seen before..
 
 ```{r 04-combine-csv, warnings=FALSE, message=FALSE, cache=TRUE}
 # read in all files and append all rows to a single data frame

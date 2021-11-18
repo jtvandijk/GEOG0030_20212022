@@ -53,6 +53,7 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/vembedr-0.1.4/css/vembedr.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -169,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#recording-w02"><i class="fa fa-check"></i><b>2.1</b> Lecture recording</a></li>
 <li class="chapter" data-level="2.2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#reading-w02"><i class="fa fa-check"></i><b>2.2</b> Reading list</a></li>
 <li class="chapter" data-level="2.3" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#simple-digitisation-of-spatial-features"><i class="fa fa-check"></i><b>2.3</b> Simple digitisation of spatial features</a></li>
-<li class="chapter" data-level="2.4" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#population-change-in-london"><i class="fa fa-check"></i><b>2.4</b> Population Change in London</a>
+<li class="chapter" data-level="2.4" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#population-change-in-london"><i class="fa fa-check"></i><b>2.4</b> Population change in London</a>
 <ul>
 <li class="chapter" data-level="2.4.1" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#setting-the-scene"><i class="fa fa-check"></i><b>2.4.1</b> Setting the scene</a></li>
 <li class="chapter" data-level="2.4.2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#w02-finding"><i class="fa fa-check"></i><b>2.4.2</b> Finding our data sets</a></li>
@@ -239,6 +240,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#crime-analysis-ii"><i class="fa fa-check"></i><b>5.3</b> Crime analysis II</a>
 <ul>
 <li class="chapter" data-level="5.3.1" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#data-preparation"><i class="fa fa-check"></i><b>5.3.1</b> Data preparation</a></li>
+<li class="chapter" data-level="5.3.2" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#spatial-analysis-set-up"><i class="fa fa-check"></i><b>5.3.2</b> Spatial analysis set up</a></li>
+<li class="chapter" data-level="5.3.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#interacting-with-spatial-data"><i class="fa fa-check"></i><b>5.3.3</b> Interacting with spatial data</a></li>
+<li class="chapter" data-level="5.3.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#getting-our-crime-data-in-shape"><i class="fa fa-check"></i><b>5.3.4</b> Getting our crime data in shape</a></li>
+<li class="chapter" data-level="5.3.5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#data-wrangling"><i class="fa fa-check"></i><b>5.3.5</b> Data wrangling</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#assignment-w05"><i class="fa fa-check"></i><b>5.4</b> Assignment</a></li>
 <li class="chapter" data-level="5.5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#byl-w05"><i class="fa fa-check"></i><b>5.5</b> Before you leave</a></li>
@@ -294,12 +299,410 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Scroll to the bottom of the script and enter the following code and execute:</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="programming-for-spatial-analysis.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write out the theft_crime_df to a csv within our raw crime data folder</span></span>
-<span id="cb1-2"><a href="programming-for-spatial-analysis.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(all_theft_df,<span class="st">&quot;data/raw/crime/crime_theft_2020.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p>Remember, if using a Windows machine, you’ll need to submit your forward-slashes (<code>/</code>) with backslashes, and in this case, within R, it will need to be <strong>two</strong> backslashes (<code>\\</code>).</p>
-<p>You should now see a new <code>csv</code> within your raw crime data folder (<strong>data -&gt; raw -&gt; crime</strong>).</p>
+<span id="cb1-2"><a href="programming-for-spatial-analysis.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(all_theft_df,<span class="st">&quot;data/raw/crime/crime_theft_2020_london.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Remember, if using a Windows machine, you will need to submit your forward-slashes (<code>/</code>) with two backslashes (<code>\\</code>) whenever you are dealing with file paths.</p>
+<p>You should now see a new <code>csv</code> within your raw crime data folder (<code>data/raw/crime</code>).</p>
 <ol start="5" style="list-style-type: decimal">
 <li>Save your <code>wk4-csv-processing.r</code> script and then close the script.</li>
 </ol>
+</div>
+<div id="spatial-analysis-set-up" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Spatial analysis set up</h3>
+<ol style="list-style-type: decimal">
+<li>Open a new script within your GEOG0030 project and save this script as <code>wk5-crime-spatial-processing.r</code>.</li>
+<li>At the top of your script, add the following metadata (substitute accordingly):</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="programming-for-spatial-analysis.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysing crime in 2020 by month and ward</span></span>
+<span id="cb2-2"><a href="programming-for-spatial-analysis.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Date: January 2021</span></span>
+<span id="cb2-3"><a href="programming-for-spatial-analysis.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: Justin </span></span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Using the R console, install the following new libraries:</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="programming-for-spatial-analysis.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install libraries</span></span>
+<span id="cb3-2"><a href="programming-for-spatial-analysis.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&#39;sf&#39;</span>,<span class="st">&#39;tmap&#39;</span>,<span class="st">&#39;janitor&#39;</span>))</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Now let us add <strong>all</strong> of the libraries we will be using today to the top of our script:</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="programming-for-spatial-analysis.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries</span></span>
+<span id="cb4-2"><a href="programming-for-spatial-analysis.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-3"><a href="programming-for-spatial-analysis.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb4-4"><a href="programming-for-spatial-analysis.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span></code></pre></div>
+<p>You are already familiar with the <code>tidyverse</code> library, but now we adding <code>sf</code> to read and load our spatial data as well as <code>tmap</code> to visualise our spatial data. We are going to load both of the data sets we need today straight away: 1) the <code>crime_theft_2020_london.csv</code> we have just exported and 2) the <code>ward_population_2019.shp</code> we created in Week 3.</p>
+<ol style="list-style-type: decimal">
+<li>First, let’s load our <code>crime_theft_2020_london.csv</code> into a dataframe called <code>all_theft_df</code>.</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="programming-for-spatial-analysis.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in our crime_theft_2020_london csv from our raw crime data folder</span></span>
+<span id="cb5-2"><a href="programming-for-spatial-analysis.html#cb5-2" aria-hidden="true" tabindex="-1"></a>all_theft_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/raw/crime/crime_theft_2020_london.csv&quot;</span>)</span></code></pre></div>
+<p>We can double-check what our <code>csv</code> looks like by either viewing our data or simply calling the <code>head()</code> function on our dataframe.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Call the <code>head()</code> function on our data to check the first five rows:</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="programming-for-spatial-analysis.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the first five rows of our all_theft dataframe</span></span>
+<span id="cb6-2"><a href="programming-for-spatial-analysis.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(all_theft_df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 12
+##   crime_id  month reported_by falls_within longitude latitude location lsoa_code
+##   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    
+## 1 37c663d8… 2020… City of Lo… City of Lon…   -0.106      51.5 On or n… E01000916
+## 2 dcfa16f9… 2020… City of Lo… City of Lon…   -0.0941     51.5 On or n… E01000002
+## 3 be9310ed… 2020… City of Lo… City of Lon…   -0.0945     51.5 On or n… E01000003
+## 4 0cbb0c51… 2020… City of Lo… City of Lon…   -0.0945     51.5 On or n… E01000003
+## 5 aaafbcff… 2020… City of Lo… City of Lon…   -0.0750     51.5 On or n… E01000005
+## 6 8249cc17… 2020… City of Lo… City of Lon…   -0.0750     51.5 On or n… E01000005
+## # … with 4 more variables: lsoa_name &lt;chr&gt;, crime_type &lt;chr&gt;,
+## #   last_outcome_category &lt;chr&gt;, context &lt;lgl&gt;</code></pre>
+<p>You should see these rows display in your console. Great, the data set looks as we remember, with the different fields, including, importantly for this week, the <strong>LSOA code</strong> which we will use to process and join our data together.</p>
+<p>Next, let’s add our <code>ward_population_2019.shp</code>. We will store this as a variable called <code>ward_population</code> and use the <code>sf</code> library to load the data:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="programming-for-spatial-analysis.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in our ward_population_2019 shp from our working data folder</span></span>
+<span id="cb8-2"><a href="programming-for-spatial-analysis.html#cb8-2" aria-hidden="true" tabindex="-1"></a>ward_population <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;data/working/ward_population_2019.shp&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Reading layer `ward_population_2019&#39; from data source 
+##   `/Users/justinvandijk/Dropbox/UCL/Web/jtvandijk.github.io/GEOG0030/data/working/ward_population_2019.shp&#39; 
+##   using driver `ESRI Shapefile&#39;
+## Simple feature collection with 657 features and 7 fields
+## Geometry type: POLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 503568.2 ymin: 155850.8 xmax: 561957.5 ymax: 200933.9
+## Projected CRS: OSGB 1936 / British National Grid</code></pre>
+<p>You should now see the <code>ward_population</code> variable appear in your environment window.</p>
+</div>
+<div id="interacting-with-spatial-data" class="section level3" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Interacting with spatial data</h3>
+<p>As this is the first time we have loaded spatial data into R, let’s go for a little exploration of how we can interact with our spatial data frame. The first thing we want to do when we load spatial data is, of course, map it to see its ‘spatiality’ or rather how the data looks from a spatial perspective. To do this, we can use a really simple command from R’s base library: <code>plot()</code>. As we do not necessarily want to plot this data everytime we run this script in the future, we will type this command into the console as a “one-off”.</p>
+<p>In your <strong>console</strong>, plot our new spatial data:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="programming-for-spatial-analysis.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot our ward_population data</span></span>
+<span id="cb10-2"><a href="programming-for-spatial-analysis.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ward_population)</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/05-plot-wardpop-1.png" width="672" /></p>
+<p>You should see your <code>ward_population</code> plot appear in your <strong>Plots</strong> window - as you will see, your ward data set is plotted ‘thematically’ by each of the fields within the dat aset, including our <code>pop2019</code> field we created last week.</p>
+<div class="note">
+<p><strong>Note</strong> <br>
+This <code>plot()</code> function is not to be used to make maps - but simply as a quick way of viewing our spatial data.</p>
+</div>
+<p>We can also find out more information about our <code>ward_population</code> data.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Let’s next check out our class of our data. Again, <strong>in the console</strong> type:</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="programming-for-spatial-analysis.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find out the class of our ward_population data</span></span>
+<span id="cb11-2"><a href="programming-for-spatial-analysis.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(ward_population)</span></code></pre></div>
+<pre><code>## [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
+<p>We should see our data is an <code>sf</code> dataframe, which is great as it means we can utilise our <code>tidyverse</code> libraries with our <code>ward_population</code>. We can also use the <code>attributes()</code> function we looked at last week to find out a little more about the spatial part of our data frame.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Again, in the <strong>console</strong> type:</li>
+</ol>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="programming-for-spatial-analysis.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find out the attributes of our ward_population data</span></span>
+<span id="cb13-2"><a href="programming-for-spatial-analysis.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(ward_population)</span></code></pre></div>
+<pre><code>## $names
+## [1] &quot;NAME&quot;       &quot;GSS_CODE&quot;   &quot;DISTRICT&quot;   &quot;LAGSSCODE&quot;  &quot;HECTARES&quot;  
+## [6] &quot;NONLD_AREA&quot; &quot;pop2019&quot;    &quot;geometry&quot;  
+## 
+## $row.names
+##   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
+##  [19]  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36
+##  [37]  37  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54
+##  [55]  55  56  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72
+##  [73]  73  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90
+##  [91]  91  92  93  94  95  96  97  98  99 100 101 102 103 104 105 106 107 108
+## [109] 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126
+## [127] 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144
+## [145] 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162
+## [163] 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180
+## [181] 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198
+## [199] 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216
+## [217] 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234
+## [235] 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252
+## [253] 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270
+## [271] 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288
+## [289] 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306
+## [307] 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324
+## [325] 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342
+## [343] 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360
+## [361] 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378
+## [379] 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396
+## [397] 397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414
+## [415] 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432
+## [433] 433 434 435 436 437 438 439 440 441 442 443 444 445 446 447 448 449 450
+## [451] 451 452 453 454 455 456 457 458 459 460 461 462 463 464 465 466 467 468
+## [469] 469 470 471 472 473 474 475 476 477 478 479 480 481 482 483 484 485 486
+## [487] 487 488 489 490 491 492 493 494 495 496 497 498 499 500 501 502 503 504
+## [505] 505 506 507 508 509 510 511 512 513 514 515 516 517 518 519 520 521 522
+## [523] 523 524 525 526 527 528 529 530 531 532 533 534 535 536 537 538 539 540
+## [541] 541 542 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558
+## [559] 559 560 561 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576
+## [577] 577 578 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594
+## [595] 595 596 597 598 599 600 601 602 603 604 605 606 607 608 609 610 611 612
+## [613] 613 614 615 616 617 618 619 620 621 622 623 624 625 626 627 628 629 630
+## [631] 631 632 633 634 635 636 637 638 639 640 641 642 643 644 645 646 647 648
+## [649] 649 650 651 652 653 654 655 656 657
+## 
+## $class
+## [1] &quot;sf&quot;         &quot;data.frame&quot;
+## 
+## $sf_column
+## [1] &quot;geometry&quot;
+## 
+## $agr
+##       NAME   GSS_CODE   DISTRICT  LAGSSCODE   HECTARES NONLD_AREA    pop2019 
+##       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; 
+## Levels: constant aggregate identity</code></pre>
+<p>We can see how many rows we have, the names of our rows and a few more pieces of information about our <code>ward_population</code> data - for example, we can see that the specific <code>$sf_column</code> i.e. our spatial information) in our data set is called <code>geometry</code>.</p>
+<p>We can investigate this column a little more by <strong>selecting</strong> this column within our console to return.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>In the <strong>console</strong> type:</li>
+</ol>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="programming-for-spatial-analysis.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get info about the geometry of our ward_population data</span></span>
+<span id="cb15-2"><a href="programming-for-spatial-analysis.html#cb15-2" aria-hidden="true" tabindex="-1"></a>ward_population<span class="sc">$</span>geometry</span></code></pre></div>
+<pre><code>## Geometry set for 657 features 
+## Geometry type: POLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 503568.2 ymin: 155850.8 xmax: 561957.5 ymax: 200933.9
+## Projected CRS: OSGB 1936 / British National Grid
+## First 5 geometries:</code></pre>
+<p>You should see new information about our <code>geometry</code> column display in your console.</p>
+<p>From this selection we can find out the dataset’s:</p>
+<ul>
+<li>geometry type</li>
+<li>dimension</li>
+<li>bbox (bounding box)</li>
+<li>CRS (coordinate reference system)</li>
+</ul>
+<p>And also the first five geometries of our data set.</p>
+<p>This is really useful as one of the first things we want to know about our spatial data is <strong>what coordinate system</strong> it is projected with.</p>
+<p>As we should know, our <code>ward_population</code> data was created and exported within <strong>British National Grid</strong>, therefore seeing the EPSG code of British National Grid - 27700 - as our CRS confirms to us that R has read in our data set correctly.</p>
+<p>We could also actually find out this information using the <code>st_crs()</code> function from the <code>sf</code> library.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="programming-for-spatial-analysis.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find out the CRS of our ward_population data</span></span>
+<span id="cb17-2"><a href="programming-for-spatial-analysis.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(ward_population)</span></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: OSGB 1936 / British National Grid 
+##   wkt:
+## PROJCRS[&quot;OSGB 1936 / British National Grid&quot;,
+##     BASEGEOGCRS[&quot;OSGB 1936&quot;,
+##         DATUM[&quot;OSGB 1936&quot;,
+##             ELLIPSOID[&quot;Airy 1830&quot;,6377563.396,299.3249646,
+##                 LENGTHUNIT[&quot;metre&quot;,1]]],
+##         PRIMEM[&quot;Greenwich&quot;,0,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         ID[&quot;EPSG&quot;,4277]],
+##     CONVERSION[&quot;British National Grid&quot;,
+##         METHOD[&quot;Transverse Mercator&quot;,
+##             ID[&quot;EPSG&quot;,9807]],
+##         PARAMETER[&quot;Latitude of natural origin&quot;,49,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8801]],
+##         PARAMETER[&quot;Longitude of natural origin&quot;,-2,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8802]],
+##         PARAMETER[&quot;Scale factor at natural origin&quot;,0.9996012717,
+##             SCALEUNIT[&quot;unity&quot;,1],
+##             ID[&quot;EPSG&quot;,8805]],
+##         PARAMETER[&quot;False easting&quot;,400000,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8806]],
+##         PARAMETER[&quot;False northing&quot;,-100000,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8807]]],
+##     CS[Cartesian,2],
+##         AXIS[&quot;(E)&quot;,east,
+##             ORDER[1],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##         AXIS[&quot;(N)&quot;,north,
+##             ORDER[2],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##     USAGE[
+##         SCOPE[&quot;Engineering survey, topographic mapping.&quot;],
+##         AREA[&quot;United Kingdom (UK) - offshore to boundary of UKCS within 49°45&#39;N to 61°N and 9°W to 2°E; onshore Great Britain (England, Wales and Scotland). Isle of Man onshore.&quot;],
+##         BBOX[49.75,-9,61.01,2.01]],
+##     ID[&quot;EPSG&quot;,27700]]</code></pre>
+<p>You notice that we actually get a lot more information about our CRS beyond simply the code using this function. This function is really important to us as users of spatial data as it allows us to retrieve and set the CRS of our spatial data (the latter is used in the case the data does not come with a <code>.proj</code> file but we do know what projection system should be used).</p>
+<p>The final thing we might want to do before we get started with our data analysis is to simply look at the data table part of our data set, i.e. what we called the <strong>Attribute Table</strong> in QGIS, but here it is simply the table part of our data frame. To do so, you can either use the <code>View()</code> function in the console or click on the <code>ward_population</code> variable within our environment.</p>
+</div>
+<div id="getting-our-crime-data-in-shape" class="section level3" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Getting our crime data in shape</h3>
+<p>Now we have our data loaded, our next step is to process our data to create what we need as our final output for analysis: a spatial dataframe that contains a <strong>theft crime rate</strong> for <strong>each ward</strong> for <strong>each month</strong> in 2020. However, if we look at our <code>all_theft_df</code>, we do <strong>not</strong> have a field that contains the wards our crimes have occured in. We only have <strong>two</strong> types of spatial or spatially-relevant data in our <code>all_theft_df</code>:</p>
+<ol style="list-style-type: decimal">
+<li>The approximate WGS84 <strong>latitude</strong> and <strong>longitude</strong>.</li>
+<li>The <strong>Lower Super Output Area (LSOA)</strong> in which the crime it occurred.</li>
+</ol>
+<p>From Week 3’s practical, we know we can map our points using the coordinates and then provide a count by using a <strong>point-in-polygon</strong> (PIP) operation. However to do this for each month, we would need to filter our data set for each month and repeat the PIP operation - when we know a little more advanced code, this might end up being quite simple, but for now we will try to see if we can solve it differently.</p>
+<div id="attribute-join" class="section level4" number="5.3.4.1">
+<h4><span class="header-section-number">5.3.4.1</span> Attribute join</h4>
+<p>To get the number of crimes that occurred in each ward, all we need to do is figure our which Ward our LSOAs fall within and then we can add this as an additional attribute or rather <strong>column</strong> to our <code>all_theft_df</code>.</p>
+<p>From a GIScience perspective, there are many ways to do this - but the most straight forward is to use something called a <strong>look-up table</strong>. Look-up tables are an extremely common tool in database management and programming, providing a very simple approach to storing additional information about a feature (such as a row within a dataframe) in a separate table that can quite literally be “looked up” when needed for a specific application.</p>
+<p>In our case, we will actually join our look-up table to our current <code>all_theft_df</code> to get this information “hard-coded” to our dataframe for ease of use. To be able to do this, we therefore need to find a look-up table that contains a list of <strong>LSOAs</strong> in London and the <strong>wards</strong> in which they are contained. Lucky for us, after a quick search of the internet, we can find out that the <a href="https://www.ons.gov.uk/">Office for National Statistics</a> provides this for us in their Open Geography Portal. They have a table that contains exactly what we’re looking for: <strong>Lower Layer Super Output Area (2011) to Ward (2018) Lookup in England and Wales v3</strong>. As the description on the website tells us, “<em>This file is a best-fit lookup between 2011 lower layer super output areas, electoral wards/divisions and local authority districts in England and Wales as at 31 December 2018.</em>”</p>
+<ol style="list-style-type: decimal">
+<li>Download the look-up table from the ONS: <a href="https://geoportal.statistics.gov.uk/datasets/8c05b84af48f4d25a2be35f1d984b883_0">Link</a></li>
+<li>Move this file in your <strong>data</strong> -&gt; <strong>raw</strong> -&gt; <strong>boundaries</strong> folder and rename to <code>data/raw/boundaries/lsoa_ward_lookup.csv</code>.</li>
+<li>Load the dataset using the <code>read_csv()</code> function. Do not worry if you have a few “parsing” failures, the table should still work fine.</li>
+</ol>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="programming-for-spatial-analysis.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in our lsoa_ward_lookup csv from our raw boundaries data folder</span></span>
+<span id="cb19-2"><a href="programming-for-spatial-analysis.html#cb19-2" aria-hidden="true" tabindex="-1"></a>lsoa_ward_lookup <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/raw/boundaries/lsoa_ward_lookup.csv&quot;</span>)</span></code></pre></div>
+<p>Now we have our lookup table, all we are going to do is extract the relevant ward name and code for each of the LSOAs in our <code>all_theft_df</code>. To do so, we’re going to use one of the <code>join</code> functions from the <code>dplyr</code> library.</p>
+<div class="note">
+<p><strong>Note</strong><br/>
+We have already learnt how to complete <strong>Attribute Joins</strong> in QGIS via the <strong>Joins</strong> tab in the Properties window - so it should come of no surprise that we can do exactly the same process within R. To conduct a join between two dataframes (spatial or non-spatial, it does not matter), we use the same principles of selecting a <strong>unique but matching</strong> field within our dataframes to join them together.</p>
+<p>Within R, you have two options to complete a data frame join:</p>
+<ul>
+<li>The <strong>first</strong> is to use the <code>base</code> R library and its <code>merge()</code> function:
+<ul>
+<li>By default the data frames are merged on the columns with names they both have, but you can also provide the columns to match separate by using the parameters: <code>by.x</code> and <code>by.y</code>.</li>
+<li>Your code would look something like: <code>merge(x, y, by.x = "xColName", by.y = "yColName")</code>, with <code>x</code> and <code>y</code> each representing a dataframe.</li>
+<li>The rows in the two data frames that match on the specified columns are extracted, and joined together.</li>
+<li>If there is more than one match, all possible matches contribute one row each, but you can also tell merge whether you want all rows, including ones without a match, or just rows that match, with the arguments all.x and all.</li>
+</ul></li>
+<li>The <strong>second</strong> option is to use the <code>dplyr</code> library:
+<ul>
+<li><code>dplyr</code> uses <a href="https://en.wikipedia.org/wiki/SQL">SQL</a> database syntax for its join functions.</li>
+<li>There are <strong>four types</strong> of joins possible with the <code>dplyr</code> library.
+<ul>
+<li><code>inner_join()</code>: includes all rows that exist both within <code>x</code> and <code>y.</code></li>
+<li><code>left_join()</code>: includes all rows in <code>x.</code></li>
+<li><code>right_join()</code>: includes all rows in <code>y.</code></li>
+<li><code>full_join()</code>: includes all rows in <code>x</code> and <code>y</code>.</li>
+</ul></li>
+<li>Figuring out which one you need will be on a case by case basis.</li>
+<li>Again, if the join columns have the same name, all you need is <code>left_join(x, y)</code>.</li>
+<li>If they do not have the same name, you need a <code>by</code> argument, such as <code>left_join(x, y, by = c("xName" = "yName"))</code>. Left of the equals is the column for the first data frame, right of the equals is the name of the column for the second data frame.</li>
+</ul></li>
+</ul>
+</div>
+<p>As we have seen from the list of fields above - and with our knowledge of our <code>all_theft_df</code> dataframe - we know that we have at least <strong>two</strong> fields that should match across the data sets: our <strong>lsoa codes</strong> and <strong>lsoa names</strong>. We of course need to identify the precise fields that contain these values in each of our data frames, i.e. <code>LSOA11CD</code> and <code>LSOA11NM</code> in our <code>lsoa_ward_lookup</code> dataframe and <code>lsoa_code</code> and <code>lsoa_name</code> in our <code>all_theft_df</code> dataframe, but once we know what fields we can use, we can go ahead and join our two data frames together.</p>
+<p>We are going to need to make <strong>multiple</strong> joins between our tables as we have multiple entries of crime for the same LSOA - as a result, we are going to need to use a function that allows us to keep <strong>all rows</strong> in our <code>all_theft_df</code> dataframe, but we do not need to keep <strong>all rows</strong> in our <code>lsoa_ward_lookup</code> if those wards are not within our data set.</p>
+<p>Let’s have a look in detail at how the four different types of joins from <code>dplyr</code> work:</p>
+<p><img src="images/w05/dplyr-joins.png" width="550pt" style="display: block; margin: auto;" />
+<br></p>
+<p>It looks like we’re going to need to use our <code>left_join()</code> function as we want to join matching rows from our <code>lsoa_ward_lookup</code> dataframe to our <code>all_theft_df</code> dataframe but make sure to keep all rows in the latter.</p>
+<ol style="list-style-type: decimal">
+<li>Within your <strong>script</strong>, create a join between our two dataframes and store as a new variable:</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="programming-for-spatial-analysis.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># join lsoa_ward_lookup rows to the all_theft_df on our two lsoa code fields</span></span>
+<span id="cb20-2"><a href="programming-for-spatial-analysis.html#cb20-2" aria-hidden="true" tabindex="-1"></a>all_theft_ward_df <span class="ot">&lt;-</span> <span class="fu">left_join</span>(all_theft_df, lsoa_ward_lookup, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;lsoa_code&quot;</span> <span class="ot">=</span> <span class="st">&quot;LSOA11CD&quot;</span>))</span></code></pre></div>
+<p>Let’s go ahead and check our join - we want to check that our LSOA codes and names match across our new dataframe.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>In your <strong>console</strong>, check the first five rows of our new data frame:</li>
+</ol>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="programming-for-spatial-analysis.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check our join via the first five rows</span></span>
+<span id="cb21-2"><a href="programming-for-spatial-analysis.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(all_theft_ward_df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 19
+##   crime_id  month reported_by falls_within longitude latitude location lsoa_code
+##   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    
+## 1 37c663d8… 2020… City of Lo… City of Lon…   -0.106      51.5 On or n… E01000916
+## 2 dcfa16f9… 2020… City of Lo… City of Lon…   -0.0941     51.5 On or n… E01000002
+## 3 be9310ed… 2020… City of Lo… City of Lon…   -0.0945     51.5 On or n… E01000003
+## 4 0cbb0c51… 2020… City of Lo… City of Lon…   -0.0945     51.5 On or n… E01000003
+## 5 aaafbcff… 2020… City of Lo… City of Lon…   -0.0750     51.5 On or n… E01000005
+## 6 8249cc17… 2020… City of Lo… City of Lon…   -0.0750     51.5 On or n… E01000005
+## # … with 11 more variables: lsoa_name &lt;chr&gt;, crime_type &lt;chr&gt;,
+## #   last_outcome_category &lt;chr&gt;, context &lt;lgl&gt;, LSOA11NM &lt;chr&gt;, WD18CD &lt;chr&gt;,
+## #   WD18NM &lt;chr&gt;, WD18NMW &lt;chr&gt;, LAD18CD &lt;chr&gt;, LAD18NM &lt;chr&gt;, FID &lt;dbl&gt;</code></pre>
+<p>You should now see that you have with <strong>19</strong> variables: <strong>12</strong> from <code>all_theft_df</code>, plus <strong>7</strong> from <code>lsoa_ward_lookup.</code></p>
+<p>Now we have our joined data set, we can move forward with some more data wrangling. The thing is, our data frame is getting quite busy - we have duplicate fields and some fields we just won’t need. It would be good if we could trim down our dataframe to only the relevant data that we need moving forward, particularly, for example, if we wanted to go ahead and write out a hard copy of our theft data that now contains the associated ward.</p>
+<p>To be able to “trim” our data frame, we have two choices in terms of the code we might want to run. First, we could look to drop certain columns from our data frame. Alternatively, we could create a subset of the columns we want to keep from our data frame and store this as a new variable or simply overwrite the currently stored variable. To do either of these types of data transformation, we need to know more about how we can interact with a data frame in terms of **indexing*, <strong>selecting</strong> and <strong>slicing</strong>.</p>
+</div>
+</div>
+<div id="data-wrangling" class="section level3" number="5.3.5">
+<h3><span class="header-section-number">5.3.5</span> Data wrangling</h3>
+<p>Everything we will be doing today as we progress with our data frame cleaning and processing relies on us understanding how to interact with and transform our data frame - this interaction itself relies on knowing about how <strong>indexing</strong> works in R as well as how to <strong>select</strong> and <strong>slice</strong> your data frame to extract the relevant cells, rows or columns and then manipulate them - as we’ll be doing in this practical. Whilst there are traditional programming approaches to this using the base R library, <code>dplyr</code> is making this type of data wrangling much easier. The following video provides an excellent explanation from both a <code>base</code> R perspective as well as using the <code>dplyr</code> library. It also includes a good explanation about what our pipe function , <code>%&gt;%</code> , does.</p>
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://www.youtube.com/embed/KXSPxjjS8Fc" width="533" height="300" frameborder="0" allowfullscreen=""></iframe>
+</div>
+</div>
+<p>As you can see from the video, there are two common approaches to selection and slicing in R, which rely on indexing and/or field names in different ways.</p>
+<div id="index-and-selection-with-base-r" class="section level4" number="5.3.5.1">
+<h4><span class="header-section-number">5.3.5.1</span> index and selection with base R</h4>
+<p>The most basic approach to selecting and slicing within programming relies on the principle of using <strong>indexes</strong> within our data structures. Indexes actually apply to any type of data structure, from single atomic vectors to complicated data frames as we use here. Indexing is the numbering associated with each element of a data structure. For example, if we create a simple vector that stores three strings:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="programming-for-spatial-analysis.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store a simple vector of three strings</span></span>
+<span id="cb23-2"><a href="programming-for-spatial-analysis.html#cb23-2" aria-hidden="true" tabindex="-1"></a>simple_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Aa&quot;</span>, <span class="st">&quot;Bb&quot;</span>, <span class="st">&quot;Cc&quot;</span>, <span class="st">&quot;Dd&quot;</span>, <span class="st">&quot;Ee&quot;</span>, <span class="st">&quot;Ff&quot;</span>, <span class="st">&quot;Gg&quot;</span>)</span></code></pre></div>
+<p>R will assign each element (i.e. string) within this simple vector with a number: Aa = 1, Bb = 2, Cc = 3 and so on. Now we can go ahead and select each element by using the base selection syntax which is using square brackets after your element’s variable name, as so:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="programming-for-spatial-analysis.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the first element of our variable ss</span></span>
+<span id="cb24-2"><a href="programming-for-spatial-analysis.html#cb24-2" aria-hidden="true" tabindex="-1"></a>simple_vector[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Aa&quot;</code></pre>
+<p>Which should return the first element, our first string containing “Aa”. You could change the number in the square brackets to any number up to 7 and you would return each specific element in our vector. However, say you do not want the first element of our vector but the second to fifth elements. To achieve this, we conduct what is known in programming as a <strong>slicing</strong> operation, where, using the <code>[]</code> syntax, we add a colon <code>:</code> to tell R where to <strong>start</strong> and where to <strong>end</strong> in creating a selection, known as a <strong>slice</strong>:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="programming-for-spatial-analysis.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the second to fifth element of our vector, creating a &#39;slice&#39; of our vector</span></span>
+<span id="cb26-2"><a href="programming-for-spatial-analysis.html#cb26-2" aria-hidden="true" tabindex="-1"></a>simple_vector[<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Bb&quot; &quot;Cc&quot; &quot;Dd&quot; &quot;Ee&quot;</code></pre>
+<p>You should now see our 2nd to 5th elements returned. Now what is super cool about selection and slicing is that we can add in a simple <strong>- (minus)</strong> sign to essentially reverse our selection. So for example, we want to return everything <strong>but</strong> the 3rd element:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="programming-for-spatial-analysis.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select everything but the third element of our vector</span></span>
+<span id="cb28-2"><a href="programming-for-spatial-analysis.html#cb28-2" aria-hidden="true" tabindex="-1"></a>simple_vector[<span class="sc">-</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Aa&quot; &quot;Bb&quot; &quot;Dd&quot; &quot;Ee&quot; &quot;Ff&quot; &quot;Gg&quot;</code></pre>
+<p>And with a slice, we can use the minus to slice <strong>out</strong> parts of our vector, for example, remove the 2nd to the 5th elements (note the use of a minus sign for <strong>both</strong>):</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="programming-for-spatial-analysis.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the second to fifth element of our vector, creating a &#39;slice&#39; of our vector</span></span>
+<span id="cb30-2"><a href="programming-for-spatial-analysis.html#cb30-2" aria-hidden="true" tabindex="-1"></a>simple_vector[<span class="sc">-</span><span class="dv">2</span><span class="sc">:-</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Aa&quot; &quot;Ff&quot; &quot;Gg&quot;</code></pre>
+<p>This use of <strong>square brackets</strong> for selection syntax is <strong>common</strong> across many programming languages, including Python, but there are often some differences you’ll need to be aware of if you pursue other languages. For example:</p>
+<ul>
+<li>Python always starts its index from <code>0</code>! Whereas we can see here with R, our index starts at <code>1</code>.</li>
+<li>R is unable to index the characters within strings - this is something you <strong>can</strong> do in Python, but in R, we will need to use a function such as <code>substring()</code> - more on this another week.</li>
+</ul>
+<p>We can also apply these selection techniques to data frames, but we will have a little more functionality as our data frames are made from both <strong>rows</strong> and <strong>columns</strong>. This means when it comes to selections, we can utilise an amended selection syntax that follows a specific format to select individual rows, columns, slices of each, or just a single cell: <code>[ rows, columns]</code></p>
+<p>There are many ways we can use this syntax, which we will show below using our <code>lsoa_ward_lookup</code> data frame. First, before looking through and executing these examples (in your console) familiarise yourself with the <code>lsoa_ward_lookup</code> data frame:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="programming-for-spatial-analysis.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view lsoa_ward_lookup dataframe, execute this code in your console</span></span>
+<span id="cb32-2"><a href="programming-for-spatial-analysis.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(lsoa_ward_lookup)</span></code></pre></div>
+<p>To select a single column from your data frame, you can use one of two approaches. First we can follow the syntax above carefully and simply set our column parameter in our syntax above to the number 2:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="programming-for-spatial-analysis.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the 2nd column from the data frame</span></span>
+<span id="cb33-2"><a href="programming-for-spatial-analysis.html#cb33-2" aria-hidden="true" tabindex="-1"></a>lsoa_ward_lookup[,<span class="dv">2</span>]</span></code></pre></div>
+<p>You should see your second column display in your console. Second, we can actually select our column by only typing in the number (no need for the comma). By default, when there is only <strong>one</strong> argument present in the selection brackets, R will select the column from the data frame, not the row:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="programming-for-spatial-analysis.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the 2nd column from the data frame, Opt 2</span></span>
+<span id="cb34-2"><a href="programming-for-spatial-analysis.html#cb34-2" aria-hidden="true" tabindex="-1"></a>lsoa_ward_lookup[<span class="dv">2</span>]</span></code></pre></div>
+<p>To <strong>select a specific row</strong>, we need to add in a comma after our number - this will tell R to select the relevant row instead:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="programming-for-spatial-analysis.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the 2nd row from the data frame</span></span>
+<span id="cb35-2"><a href="programming-for-spatial-analysis.html#cb35-2" aria-hidden="true" tabindex="-1"></a>lsoa_ward_lookup[<span class="dv">2</span>,]</span></code></pre></div>
+<p>You should see your second row appear. Now, to select a specific cell in our data frame, we simply provide both arguments in our selection parameters:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="programming-for-spatial-analysis.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the value at the 2nd row and 2nd column in the data frame</span></span>
+<span id="cb36-2"><a href="programming-for-spatial-analysis.html#cb36-2" aria-hidden="true" tabindex="-1"></a>lsoa_ward_lookup[<span class="dv">2</span>,<span class="dv">2</span>]</span></code></pre></div>
+<p>What is also helpful in R is that we can select our columns by their field names by passing these field names to our selection brackets as a string. For a single column:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="programming-for-spatial-analysis.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the LSOA11NM column (2nd column) by name</span></span>
+<span id="cb37-2"><a href="programming-for-spatial-analysis.html#cb37-2" aria-hidden="true" tabindex="-1"></a>lsoa_ward_lookup[<span class="st">&quot;LSOA11NM&quot;</span>]</span></code></pre></div>
+<p>Or for more than one columns, we can supply a combined vector:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="programming-for-spatial-analysis.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the LSOA11CD (1st column) and LSOA11NM column (2nd column) by name</span></span>
+<span id="cb38-2"><a href="programming-for-spatial-analysis.html#cb38-2" aria-hidden="true" tabindex="-1"></a>lsoa_ward_lookup[<span class="fu">c</span>(<span class="st">&quot;LSOA11CD&quot;</span>, <span class="st">&quot;LSOA11NM&quot;</span>)]</span></code></pre></div>
+<p>To retrieve our 2nd - 4th columns in our data frame, we can use:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="programming-for-spatial-analysis.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the 2nd to 4th columns from our data frame</span></span>
+<span id="cb39-2"><a href="programming-for-spatial-analysis.html#cb39-2" aria-hidden="true" tabindex="-1"></a>lsoa_ward_lookup[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb39-3"><a href="programming-for-spatial-analysis.html#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="programming-for-spatial-analysis.html#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># select the 2nd to 4th columns from our data frame</span></span>
+<span id="cb39-5"><a href="programming-for-spatial-analysis.html#cb39-5" aria-hidden="true" tabindex="-1"></a> lsoa_ward_lookup[,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
+<p>We can also apply the negative</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="programming-for-spatial-analysis.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select everything but the 2nd to 4th columns from our data frame</span></span>
+<span id="cb40-2"><a href="programming-for-spatial-analysis.html#cb40-2" aria-hidden="true" tabindex="-1"></a>lsoa_ward_lookup[<span class="sc">-</span><span class="dv">2</span><span class="sc">:-</span><span class="dv">4</span>]</span></code></pre></div>
+<p>If you do not want a slide, we can also provide a combined list of the columns we want to extract:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="programming-for-spatial-analysis.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the 2nd, 3rd, 4th and 7th columns from our data frame</span></span>
+<span id="cb41-2"><a href="programming-for-spatial-analysis.html#cb41-2" aria-hidden="true" tabindex="-1"></a>lsoa_ward_lookup[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>)]</span></code></pre></div>
+<p>We can apply this slicing approach to our rows:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="programming-for-spatial-analysis.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the 2nd to 4th rows from our data frame</span></span>
+<span id="cb42-2"><a href="programming-for-spatial-analysis.html#cb42-2" aria-hidden="true" tabindex="-1"></a>lsoa_ward_lookup[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,]</span></code></pre></div>
+<p>As well as a negative selection:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="programming-for-spatial-analysis.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select everything but the 2nd to 4th rows from our data frame</span></span>
+<span id="cb43-2"><a href="programming-for-spatial-analysis.html#cb43-2" aria-hidden="true" tabindex="-1"></a>lsoa_ward_lookup[<span class="sc">-</span><span class="dv">2</span><span class="sc">:-</span><span class="dv">4</span>,]</span></code></pre></div>
+</div>
+<div id="index-and-selection-with-dplyr" class="section level4" number="5.3.5.2">
+<h4><span class="header-section-number">5.3.5.2</span> index and selection with dplyr</h4>
+<p>Instead of using the square brackets <code>[]</code> syntax, we now have functions that we can use to select or slice our data frames accordingly:</p>
+<ul>
+<li>For columns, we use the <code>select()</code> function that enables us to select a (or more) column(s) using their column names or a range of “helpers” such as <code>ends_with()</code> to select specific columns from our data frame.</li>
+<li>For rows, we use the <code>slice()</code> function that enables us to select a (or more) row(s) using their position (i.e. similar to the proess above)</li>
+</ul>
+<p>For <strong>both</strong> functions, we can also use the <strong>negative / - </strong> approach we saw in the base R approach to “reverse a selection”, e.g.:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="programming-for-spatial-analysis.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select column 2</span></span>
+<span id="cb44-2"><a href="programming-for-spatial-analysis.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(lsoa_ward_lookup, <span class="dv">2</span>)</span>
+<span id="cb44-3"><a href="programming-for-spatial-analysis.html#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="programming-for-spatial-analysis.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># select everything but column 2</span></span>
+<span id="cb44-5"><a href="programming-for-spatial-analysis.html#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(lsoa_ward_lookup, <span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb44-6"><a href="programming-for-spatial-analysis.html#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="programming-for-spatial-analysis.html#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co">#select LSOA11CD column, note no &quot;&quot;</span></span>
+<span id="cb44-8"><a href="programming-for-spatial-analysis.html#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(lsoa_ward_lookup, LSOA11CD)</span>
+<span id="cb44-9"><a href="programming-for-spatial-analysis.html#cb44-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-10"><a href="programming-for-spatial-analysis.html#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="co"># select everything but column 2, note no &quot;&quot;</span></span>
+<span id="cb44-11"><a href="programming-for-spatial-analysis.html#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(lsoa_ward_lookup, <span class="sc">-</span>LSOA11CD)</span>
+<span id="cb44-12"><a href="programming-for-spatial-analysis.html#cb44-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-13"><a href="programming-for-spatial-analysis.html#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="co"># select LSOA* columns</span></span>
+<span id="cb44-14"><a href="programming-for-spatial-analysis.html#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(lsoa_ward_lookup, <span class="fu">starts_with</span>(<span class="st">&quot;LSOA&quot;</span>))</span>
+<span id="cb44-15"><a href="programming-for-spatial-analysis.html#cb44-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-16"><a href="programming-for-spatial-analysis.html#cb44-16" aria-hidden="true" tabindex="-1"></a><span class="co"># select everything but column 2</span></span>
+<span id="cb44-17"><a href="programming-for-spatial-analysis.html#cb44-17" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(lsoa_ward_lookup, <span class="sc">-</span>LSOA11CD)</span></code></pre></div>
+<p>In addition to these index-based functions, within <code>dplyr</code>, we also have <code>filter()</code> that enables us to easily filter rows within our data frame based on specific conditions (such as being a City of London ward). In addition, <code>dplyr</code> provides lots of functions that we can use directly with these selections to apply certain data wrangling processes to only specific parts of our data frame, such as <code>mutate()</code> or <code>count()</code>.</p>
+<div class="note">
+<p><strong>Note</strong><br/>
+We will be using quite a few of these functions in the remaining data wrangling section below - plus throughout our module, so it is highly recommend to download the <code>dplyr</code> <a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">cheat sheet</a> to keep track of what functions we are using and why!</p>
+</div>
+</div>
 </div>
 </div>
 <div id="assignment-w05" class="section level2" number="5.4">
