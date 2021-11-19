@@ -97,9 +97,11 @@ interacting-with-spatial-data
 getting-our-crime-data-in-shape
 attribute-join
 data-wrangling
+selection-with-base-r
+selection-with-dplyr
+improving-your-workflow
 assignment-w05
 byl-w05
-base-r
-dplyr-approach
-index-and-selection-with-base-r
-index-and-selection-with-dplyr
+aggregate-crime-by-ward
+joining-crime-data-to-wards
+mapping-crime-data

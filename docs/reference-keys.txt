@@ -14,6 +14,7 @@ fig:04-R-project
 fig:04-rstudio-interface-script-open
 fig:04-download-crimes
 fig:04-organised-crime
+fig:unnamed-chunk-13
 geocomputation-an-introduction
 recording-w01
 reading-w01
@@ -100,5 +101,8 @@ data-wrangling
 selection-with-base-r
 selection-with-dplyr
 improving-your-workflow
+aggregate-crime-by-ward
+joining-crime-data-to-wards
+mapping-crime-data
 assignment-w05
 byl-w05
