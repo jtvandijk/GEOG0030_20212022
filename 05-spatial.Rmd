@@ -2,7 +2,7 @@
 This week we are going to look at how to use R and RStudio as a piece of GIS software. Like last week, we will be completing an analysis of our theft crime data set in London. However, rather than solely looking at crime change over time, we are going to add in a spatial component to our analysis: how has crime changed across our wards over the year.
 
 ## Lecture recording {#recording-w05}
-- Lecture W4
+- Lecture W5
 
 ## Reading list {#reading-w05}
 - Reading #1
@@ -167,7 +167,7 @@ To get the number of crimes that occurred in each ward, all we need to do is fig
 
 From a GIScience perspective, there are many ways to do this - but the most straight forward is to use something called a **look-up table**. Look-up tables are an extremely common tool in database management and programming, providing a very simple approach to storing additional information about a feature (such as a row within a dataframe) in a separate table that can quite literally be "looked up" when needed for a specific application. 
 
-In our case, we will actually join our look-up table to our current `all_theft_df` to get this information "hard-coded" to our dataframe for ease of use. To be able to do this, we therefore need to find a look-up table that contains a list of **LSOAs** in London and the **wards** in which they are contained. Lucky for us, after a quick search of the internet, we can find out that the [Office for National Statistics](https://www.ons.gov.uk/) provides this for us in their Open Geography Portal. They have a table that contains exactly what we're looking for: **Lower Layer Super Output Area (2011) to Ward (2018) Lookup in England and Wales v3**. As the description on the website tells us, "*This file is a best-fit lookup between 2011 lower layer super output areas, electoral wards/divisions and local authority districts in England and Wales as at 31 December 2018.*"
+In our case, we will actually join our look-up table to our current `all_theft_df` to get this information "hard-coded" to our dataframe for ease of use. To be able to do this, we therefore need to find a look-up table that contains a list of **LSOAs** in London and the **wards** in which they are contained. Lucky for us, after a quick search of the internet, we can find out that the [Office for National Statistics](https://www.ons.gov.uk/) provides this for us in their Open Geography Portal. They have a table that contains exactly what we're looking for: **Lower Layer Super Output Area (2011) to Ward (2018) Lookup in England and Wales v3**. As the description on the website tells us: "*This file is a best-fit lookup between 2011 lower layer super output areas, electoral wards/divisions and local authority districts in England and Wales as at 31 December 2018.*"
 
 1. Download the look-up table from the ONS: [Link](https://geoportal.statistics.gov.uk/datasets/8c05b84af48f4d25a2be35f1d984b883_0)
 2. Move this file in your **data** -> **raw** -> **boundaries** folder and rename to `data/raw/boundaries/lsoa_ward_lookup.csv`.
@@ -236,7 +236,7 @@ You should now see that you have with **19** variables: **12** from `all_theft_d
 
 Now we have our joined data set, we can move forward with some more data wrangling. The thing is, our data frame is getting quite busy - we have duplicate fields and some fields we just won’t need. It would be good if we could trim down our dataframe to only the relevant data that we need moving forward, particularly, for example, if we wanted to go ahead and write out a hard copy of our theft data that now contains the associated ward. 
 
-To be able to “trim” our data frame, we have two choices in terms of the code we might want to run. First, we could look to drop certain columns from our data frame. Alternatively, we could create a subset of the columns we want to keep from our data frame and store this as a new variable or simply overwrite the currently stored variable. To do either of these types of data transformation, we need to know more about how we can interact with a data frame in terms of **indexing*, **selecting** and **slicing**.
+To be able to “trim” our data frame, we have two choices in terms of the code we might want to run. First, we could look to drop certain columns from our data frame. Alternatively, we could create a subset of the columns we want to keep from our data frame and store this as a new variable or simply overwrite the currently stored variable. To do either of these types of data transformation, we need to know more about how we can interact with a data frame in terms of **indexing**, **selecting** and **slicing**.
 
 ### Data wrangling
 Everything we will be doing today as we progress with our data frame cleaning and processing relies on us understanding how to interact with and transform our data frame - this interaction itself relies on knowing about how **indexing** works in R as well as how to **select** and **slice** your data frame to extract the relevant cells, rows or columns and then manipulate them - as we'll be doing in this practical. Whilst there are traditional programming approaches to this using the base R library, `dplyr` is making this type of data wrangling much easier. The following video provides an excellent explanation from both a `base` R perspective as well as using the `dplyr` library. It also includes a good explanation about what our pipe function , `%>%` , does.
@@ -248,7 +248,7 @@ embed_youtube('KXSPxjjS8Fc') %>% use_align('center')
 
 As you can see from the video, there are two common approaches to selection and slicing in R, which rely on indexing and/or field names in different ways.
 
-#### index and selection with base R
+#### Selection with base R
 The most basic approach to selecting and slicing within programming relies on the principle of using **indexes** within our data structures. Indexes actually apply to any type of data structure, from single atomic vectors to complicated data frames as we use here. Indexing is the numbering associated with each element of a data structure. For example, if we create a simple vector that stores three strings:
 
 ```{r 05-select-1, warnings=FALSE, message=FALSE, cache=TRUE}
@@ -378,13 +378,13 @@ As well as a negative selection:
 lsoa_ward_lookup[-2:-4,]
 ```
 
-#### index and selection with dplyr
+#### Selection with dplyr
 Instead of using the square brackets `[]` syntax, we now have functions that we can use to select or slice our data frames accordingly:
 
 * For columns, we use the `select()` function that enables us to select a (or more) column(s) using their column names or a range of "helpers" such as `ends_with()` to select specific columns from our data frame.
 * For rows, we use the `slice()` function that enables us to select a (or more) row(s) using their position (i.e. similar to the proess above)
 
-For **both** functions, we can also use the **negative / - ** approach we saw in the base R approach to "reverse a selection", e.g.:
+For **both** functions, we can also use the negative `-` approach we saw in the base R approach to "reverse a selection", e.g.:
 
 ```{r 05-lsoalueg-13, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
 # select column 2
@@ -413,6 +413,33 @@ In addition to these index-based functions, within `dplyr`, we also have `filter
 We will be using quite a few of these functions in the remaining data wrangling section below - plus throughout our module, so it is highly recommend to download the `dplyr` [cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf) to keep track of what functions we are using and why!
 :::
 
+As we have seen above, whilst there are two approaches to selection using either `base` R library or the `dplyr` library, we will continue to focus on using functions directly from the `dplyr` library to ensure efficiently and compatibility within our code. Within `dplyr`, as you also saw, whether we want to keep or drop columns, we always use the same function: `select()`.
+
+To use this function, we provide our function with a single or list of the columns we want to keep - or if we want to drop them, we use the same approach, but add a `-` before our selection. Let’s see how we can extract just the relevant columns we will need for our future analysis - note, in this case we’ll overwrite our `all_theft_ward_df` variable.
+
+In your script, add the following code to extract only the relevant columns we need for our future analysis:
+
+```{r 05-select-rel-columns, warnings=FALSE, message=FALSE, cache=TRUE}
+# reduce our data frame using the select function
+all_theft_ward_df <- select(all_theft_ward_df, crime_id, month, longitude, latitude, lsoa_name, lsoa_code, crime_type, WD18CD, WD18NM)
+``` 
+
+You should now see that your `all_theft_ward_df` data frame should only contain nine variables - you can go and view this data frame or call the `head()` function on the data in the console if you'd like to check out this new formatting.
+
+### Improving your workflow
+Our current workflow looks good - we now have our data frame ready for use in wrangling but we could have done this a little more efficiently by using the pipe function `%>%`. A pipe is used to push the outcome of one function/process into another - when "piped", we do not need to include the first "data frame" (or which data structure you are using) in the next function. The pipe "automates" this and pipes the results of the previous function directly into this function.
+
+It might sound a little confusing at first, but once you start using it, it really can make your code quicker and easier to write and run - and it stops us having to create lots of additional variables to store outputs along the way. It also enabled the code we used last week to load/read all the `csvs` at once - without the pipe, that code breaks.
+
+In our workflow, we have so far:
+
+* Joined our two data frames together.
+* Removed the columns not needed for our future analysis.
+
+Let's see how we can combine this process into a single line of code:
+
+
 ## Assignment {#assignment-w05}
 
 ## Before you leave {#byl-w05}
+And that is how you use R as a GIS in its most basic form. More RGIS in the coming weeks, but [this concludes the tutorial for this week](https://www.youtube.com/watch?v=Ydg4T2MP7Z8).

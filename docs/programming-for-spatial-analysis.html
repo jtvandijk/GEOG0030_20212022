@@ -24,7 +24,7 @@
 <meta name="author" content="Justin van Dijk" />
 
 
-<meta name="date" content="2021-11-18" />
+<meta name="date" content="2021-11-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -244,6 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#interacting-with-spatial-data"><i class="fa fa-check"></i><b>5.3.3</b> Interacting with spatial data</a></li>
 <li class="chapter" data-level="5.3.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#getting-our-crime-data-in-shape"><i class="fa fa-check"></i><b>5.3.4</b> Getting our crime data in shape</a></li>
 <li class="chapter" data-level="5.3.5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#data-wrangling"><i class="fa fa-check"></i><b>5.3.5</b> Data wrangling</a></li>
+<li class="chapter" data-level="5.3.6" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#improving-your-workflow"><i class="fa fa-check"></i><b>5.3.6</b> Improving your workflow</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#assignment-w05"><i class="fa fa-check"></i><b>5.4</b> Assignment</a></li>
 <li class="chapter" data-level="5.5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#byl-w05"><i class="fa fa-check"></i><b>5.5</b> Before you leave</a></li>
@@ -271,7 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="recording-w05" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Lecture recording</h2>
 <ul>
-<li>Lecture W4</li>
+<li>Lecture W5</li>
 </ul>
 </div>
 <div id="reading-w05" class="section level2" number="5.2">
@@ -525,7 +526,7 @@ This <code>plot()</code> function is not to be used to make maps - but simply as
 <h4><span class="header-section-number">5.3.4.1</span> Attribute join</h4>
 <p>To get the number of crimes that occurred in each ward, all we need to do is figure our which Ward our LSOAs fall within and then we can add this as an additional attribute or rather <strong>column</strong> to our <code>all_theft_df</code>.</p>
 <p>From a GIScience perspective, there are many ways to do this - but the most straight forward is to use something called a <strong>look-up table</strong>. Look-up tables are an extremely common tool in database management and programming, providing a very simple approach to storing additional information about a feature (such as a row within a dataframe) in a separate table that can quite literally be “looked up” when needed for a specific application.</p>
-<p>In our case, we will actually join our look-up table to our current <code>all_theft_df</code> to get this information “hard-coded” to our dataframe for ease of use. To be able to do this, we therefore need to find a look-up table that contains a list of <strong>LSOAs</strong> in London and the <strong>wards</strong> in which they are contained. Lucky for us, after a quick search of the internet, we can find out that the <a href="https://www.ons.gov.uk/">Office for National Statistics</a> provides this for us in their Open Geography Portal. They have a table that contains exactly what we’re looking for: <strong>Lower Layer Super Output Area (2011) to Ward (2018) Lookup in England and Wales v3</strong>. As the description on the website tells us, “<em>This file is a best-fit lookup between 2011 lower layer super output areas, electoral wards/divisions and local authority districts in England and Wales as at 31 December 2018.</em>”</p>
+<p>In our case, we will actually join our look-up table to our current <code>all_theft_df</code> to get this information “hard-coded” to our dataframe for ease of use. To be able to do this, we therefore need to find a look-up table that contains a list of <strong>LSOAs</strong> in London and the <strong>wards</strong> in which they are contained. Lucky for us, after a quick search of the internet, we can find out that the <a href="https://www.ons.gov.uk/">Office for National Statistics</a> provides this for us in their Open Geography Portal. They have a table that contains exactly what we’re looking for: <strong>Lower Layer Super Output Area (2011) to Ward (2018) Lookup in England and Wales v3</strong>. As the description on the website tells us: “<em>This file is a best-fit lookup between 2011 lower layer super output areas, electoral wards/divisions and local authority districts in England and Wales as at 31 December 2018.</em>”</p>
 <ol style="list-style-type: decimal">
 <li>Download the look-up table from the ONS: <a href="https://geoportal.statistics.gov.uk/datasets/8c05b84af48f4d25a2be35f1d984b883_0">Link</a></li>
 <li>Move this file in your <strong>data</strong> -&gt; <strong>raw</strong> -&gt; <strong>boundaries</strong> folder and rename to <code>data/raw/boundaries/lsoa_ward_lookup.csv</code>.</li>
@@ -593,7 +594,7 @@ We have already learnt how to complete <strong>Attribute Joins</strong> in QGIS 
 ## #   WD18NM &lt;chr&gt;, WD18NMW &lt;chr&gt;, LAD18CD &lt;chr&gt;, LAD18NM &lt;chr&gt;, FID &lt;dbl&gt;</code></pre>
 <p>You should now see that you have with <strong>19</strong> variables: <strong>12</strong> from <code>all_theft_df</code>, plus <strong>7</strong> from <code>lsoa_ward_lookup.</code></p>
 <p>Now we have our joined data set, we can move forward with some more data wrangling. The thing is, our data frame is getting quite busy - we have duplicate fields and some fields we just won’t need. It would be good if we could trim down our dataframe to only the relevant data that we need moving forward, particularly, for example, if we wanted to go ahead and write out a hard copy of our theft data that now contains the associated ward.</p>
-<p>To be able to “trim” our data frame, we have two choices in terms of the code we might want to run. First, we could look to drop certain columns from our data frame. Alternatively, we could create a subset of the columns we want to keep from our data frame and store this as a new variable or simply overwrite the currently stored variable. To do either of these types of data transformation, we need to know more about how we can interact with a data frame in terms of **indexing*, <strong>selecting</strong> and <strong>slicing</strong>.</p>
+<p>To be able to “trim” our data frame, we have two choices in terms of the code we might want to run. First, we could look to drop certain columns from our data frame. Alternatively, we could create a subset of the columns we want to keep from our data frame and store this as a new variable or simply overwrite the currently stored variable. To do either of these types of data transformation, we need to know more about how we can interact with a data frame in terms of <strong>indexing</strong>, <strong>selecting</strong> and <strong>slicing</strong>.</p>
 </div>
 </div>
 <div id="data-wrangling" class="section level3" number="5.3.5">
@@ -605,8 +606,8 @@ We have already learnt how to complete <strong>Attribute Joins</strong> in QGIS 
 </div>
 </div>
 <p>As you can see from the video, there are two common approaches to selection and slicing in R, which rely on indexing and/or field names in different ways.</p>
-<div id="index-and-selection-with-base-r" class="section level4" number="5.3.5.1">
-<h4><span class="header-section-number">5.3.5.1</span> index and selection with base R</h4>
+<div id="selection-with-base-r" class="section level4" number="5.3.5.1">
+<h4><span class="header-section-number">5.3.5.1</span> Selection with base R</h4>
 <p>The most basic approach to selecting and slicing within programming relies on the principle of using <strong>indexes</strong> within our data structures. Indexes actually apply to any type of data structure, from single atomic vectors to complicated data frames as we use here. Indexing is the numbering associated with each element of a data structure. For example, if we create a simple vector that stores three strings:</p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="programming-for-spatial-analysis.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store a simple vector of three strings</span></span>
 <span id="cb109-2"><a href="programming-for-spatial-analysis.html#cb109-2" aria-hidden="true" tabindex="-1"></a>simple_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Aa&quot;</span>, <span class="st">&quot;Bb&quot;</span>, <span class="st">&quot;Cc&quot;</span>, <span class="st">&quot;Dd&quot;</span>, <span class="st">&quot;Ee&quot;</span>, <span class="st">&quot;Ff&quot;</span>, <span class="st">&quot;Gg&quot;</span>)</span></code></pre></div>
@@ -672,14 +673,14 @@ We have already learnt how to complete <strong>Attribute Joins</strong> in QGIS 
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="programming-for-spatial-analysis.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select everything but the 2nd to 4th rows from our data frame</span></span>
 <span id="cb129-2"><a href="programming-for-spatial-analysis.html#cb129-2" aria-hidden="true" tabindex="-1"></a>lsoa_ward_lookup[<span class="sc">-</span><span class="dv">2</span><span class="sc">:-</span><span class="dv">4</span>,]</span></code></pre></div>
 </div>
-<div id="index-and-selection-with-dplyr" class="section level4" number="5.3.5.2">
-<h4><span class="header-section-number">5.3.5.2</span> index and selection with dplyr</h4>
+<div id="selection-with-dplyr" class="section level4" number="5.3.5.2">
+<h4><span class="header-section-number">5.3.5.2</span> Selection with dplyr</h4>
 <p>Instead of using the square brackets <code>[]</code> syntax, we now have functions that we can use to select or slice our data frames accordingly:</p>
 <ul>
 <li>For columns, we use the <code>select()</code> function that enables us to select a (or more) column(s) using their column names or a range of “helpers” such as <code>ends_with()</code> to select specific columns from our data frame.</li>
 <li>For rows, we use the <code>slice()</code> function that enables us to select a (or more) row(s) using their position (i.e. similar to the proess above)</li>
 </ul>
-<p>For <strong>both</strong> functions, we can also use the <strong>negative / - </strong> approach we saw in the base R approach to “reverse a selection”, e.g.:</p>
+<p>For <strong>both</strong> functions, we can also use the negative <code>-</code> approach we saw in the base R approach to “reverse a selection”, e.g.:</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="programming-for-spatial-analysis.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select column 2</span></span>
 <span id="cb130-2"><a href="programming-for-spatial-analysis.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(lsoa_ward_lookup, <span class="dv">2</span>)</span>
 <span id="cb130-3"><a href="programming-for-spatial-analysis.html#cb130-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -702,7 +703,24 @@ We have already learnt how to complete <strong>Attribute Joins</strong> in QGIS 
 <p><strong>Note</strong><br/>
 We will be using quite a few of these functions in the remaining data wrangling section below - plus throughout our module, so it is highly recommend to download the <code>dplyr</code> <a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">cheat sheet</a> to keep track of what functions we are using and why!</p>
 </div>
+<p>As we have seen above, whilst there are two approaches to selection using either <code>base</code> R library or the <code>dplyr</code> library, we will continue to focus on using functions directly from the <code>dplyr</code> library to ensure efficiently and compatibility within our code. Within <code>dplyr</code>, as you also saw, whether we want to keep or drop columns, we always use the same function: <code>select()</code>.</p>
+<p>To use this function, we provide our function with a single or list of the columns we want to keep - or if we want to drop them, we use the same approach, but add a <code>-</code> before our selection. Let’s see how we can extract just the relevant columns we will need for our future analysis - note, in this case we’ll overwrite our <code>all_theft_ward_df</code> variable.</p>
+<p>In your script, add the following code to extract only the relevant columns we need for our future analysis:</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="programming-for-spatial-analysis.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reduce our data frame using the select function</span></span>
+<span id="cb131-2"><a href="programming-for-spatial-analysis.html#cb131-2" aria-hidden="true" tabindex="-1"></a>all_theft_ward_df <span class="ot">&lt;-</span> <span class="fu">select</span>(all_theft_ward_df, crime_id, month, longitude, latitude, lsoa_name, lsoa_code, crime_type, WD18CD, WD18NM)</span></code></pre></div>
+<p>You should now see that your <code>all_theft_ward_df</code> data frame should only contain nine variables - you can go and view this data frame or call the <code>head()</code> function on the data in the console if you’d like to check out this new formatting.</p>
 </div>
+</div>
+<div id="improving-your-workflow" class="section level3" number="5.3.6">
+<h3><span class="header-section-number">5.3.6</span> Improving your workflow</h3>
+<p>Our current workflow looks good - we now have our data frame ready for use in wrangling but we could have done this a little more efficiently by using the pipe function <code>%&gt;%</code>. A pipe is used to push the outcome of one function/process into another - when “piped”, we do not need to include the first “data frame” (or which data structure you are using) in the next function. The pipe “automates” this and pipes the results of the previous function directly into this function.</p>
+<p>It might sound a little confusing at first, but once you start using it, it really can make your code quicker and easier to write and run - and it stops us having to create lots of additional variables to store outputs along the way. It also enabled the code we used last week to load/read all the <code>csvs</code> at once - without the pipe, that code breaks.</p>
+<p>In our workflow, we have so far:</p>
+<ul>
+<li>Joined our two data frames together.</li>
+<li>Removed the columns not needed for our future analysis.</li>
+</ul>
+<p>Let’s see how we can combine this process into a single line of code:</p>
 </div>
 </div>
 <div id="assignment-w05" class="section level2" number="5.4">
@@ -710,6 +728,7 @@ We will be using quite a few of these functions in the remaining data wrangling 
 </div>
 <div id="byl-w05" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> Before you leave</h2>
+<p>And that is how you use R as a GIS in its most basic form. More RGIS in the coming weeks, but <a href="https://www.youtube.com/watch?v=Ydg4T2MP7Z8">this concludes the tutorial for this week</a>.</p>
 
 </div>
 </div>
