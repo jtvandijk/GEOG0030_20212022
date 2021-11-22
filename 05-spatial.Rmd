@@ -573,9 +573,182 @@ The map does not really look great. We can continue to add and change parameters
 When it comes to setting colours within a map or any graphic, we can either pass through a colour as a **word**, a **HEX code** or a pre-defined **palette**. You can find out more [here](http://www.sthda.com/english/wiki/colors-in-r), which is a great quick reference to just some of the possible colours and palettes you will be able to use in R.
 :::
 
+The main approach to creating maps in `tmap` is to use the [grammar of graphics](https://towardsdatascience.com/a-comprehensive-guide-to-the-grammar-of-graphics-for-effective-visualization-of-multi-dimensional-1f92b4ed4149) to build up a map based on what is called the `tm_shape()` function. Essentially this function, when populated with a spatial data frame, takes the spatial information of our data (including the projection and geometry of our data) and creates a spatial "object". This object contains some information about our original spatial data frame that we can override (such as the projection) within this function's parameters, but ultimately, by using this function, you are instructing R that this is the object from which to "draw my shape".
 
+To actually draw the shape, we next need to add a layer to specify the type of shape we want R to draw from this information - in our case, our polygon data. We need to add a function therefore that tells R to "draw my spatial object as X" and within this "layer", you can also specific additional information to tell R how to draw your layer. You can then add in additional layers, including other spatial objects (and their related shapes) that you want drawn on your map, plus a specify your layout options through a layout layer.
+
+Let's see how we can build up our first map in `tmap`.
+
+```{r 05-mapping-101, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+# set our tm_shape equal to our spatial data frame
+tm_shape(theft_crime_rate_sdf) +
+  # draw out spatial objects as polygons
+  tm_polygons()
+```
+
+As you should now see, we have now mapped the spatial polygons of our `theft_crime_rate_sdf` spatial data frame - great! A step in the right direction. However, this is not the map we want - we want to have our polygons represented by a choropleth map where the colours reflect the theft crime rate in January, rather than the default grey polygons we see before us. To do so, we use the `col=` parameter that is within our `tm_polygons()` shape. 
+
+:::note
+**Note** <br/>
+The `col` parameter within `tm_polygons()` is used to fill our polygons with a specific fill type, of either:
+
+* a single color value (e.g. "red")
+* the name of a data variable that is contained in the spatial data file Either the data variable contains color values, or values (numeric or categorical) that will be depicted by a specific color palette. 
+* "MAP_COLORS". In this case polygons will be colored such that adjacent polygons do not get the same color. 
+
+:::
+
+Let's go ahead and pass our `jan_2020` column within the `col=` parameter and see what we get.
+
+3. Add `col = "jan_2020"` to our `tm_polygons()` function as a parameter:
+
+```{r 05-choro-1, warnings=FALSE, message=FALSE, cache=TRUE}
+# set our tm_shape equal to our spatial data frame
+tm_shape(theft_crime_rate_sdf) +
+  # draw out spatial objects as polygons, specifying a data column
+  tm_polygons(col = "jan_2020")
+```
+
+It looks like we have a choropleth map. We are slowly getting there. But there are two things we can notice straight away that do not look right about our data. The first is that our **classification breaks** do not really reflect the variation in our dataset - this is because `tmap` has defaulted to its favourite break type: **pretty breaks**, whereas, as we know, using an approach such as **natural** breaks, aka **jenks**, may reveal better variation in our data.
+
+Using the documentation for `tm_polygons()`, it looks like the following parameters are relevant to help us create the right classification for our map:
+
+* `n`: state the number of classification breaks you want.
+* `style`: state the style of breaks you want, e.g. `fixed`, `sd`, `equal`, `quantile`.
+* `breaks`: state the numeric breaks you want to use when using the **fixed** style approach.
+
+Let's say we want to change our choropleth map to have 5 classes, determined via the `jenks` method - we simply need to add the `n` and `style` parameters into our `tm_polygons()` layer.
+
+```{r 05-choro-2, warnings=FALSE, message=FALSE, cache=TRUE}
+# set our tm_shape equal to our spatial data frame
+tm_shape(theft_crime_rate_sdf) + 
+  # draw out spatial objects as polygons, specifying a data column, specifying jenks
+  tm_polygons(col = "jan_2020", n = 5, style = "jenks")
+``` 
+
+We now have a choropleth that reflects better the distribution of our data, but we can make them a little prettier by rounding the values. To do so, we can change the `style` of the map to `fixed` and then supply a new argument for `breaks` that contains the rounded classification breaks:
+
+```{r 05-choro-3, warnings=FALSE, message=FALSE, cache=TRUE}
+# set our tm_shape equal to our spatial data frame
+tm_shape(theft_crime_rate_sdf) + 
+  # draw out spatial objects as polygons, specifying a data column, specifying fixed breaks
+  tm_polygons(col = "jan_2020", n = 5, style = "fixed", breaks = c(0, 5, 16, 40, 118, 434))
+``` 
+
+That looks a little better from the classification side of things. We still have one final data-related challenge to solve, before we start to style our map - and that is showing the polygons for City of London wards, even though we have no data for them. The easiest way to do so is to simply add a spatial object to our map that symbolises our polygons as grey wards and then draw the crime data on top:
+
+```{r 05-choro-4, message=FALSE, cache=TRUE, warnings=FALSE}
+# set out tm_shape equal to our original ward data frame
+tm_shape(ward_population) + 
+  # draw out spatial objects as polygons, set to grey
+  tm_polygons("gray") +
+# set our tm_shape equal to our spatial data frame
+tm_shape(theft_crime_rate_sdf) + 
+  # draw out spatial objects as polygons, specifying a data column, specifying fixed breaks
+  tm_polygons(col = "jan_2020", n = 5, style = "fixed", breaks = c(0, 5, 16, 40, 118, 434)) 
+``` 
+
+#### Question {-}
+
+- What happens if you were to switch the layers around, i.e. first add the crime rate layer and then the "grey" ward layer? Why?
+
+### Styling crime data
+To style our map takes a further understanding and familiarity with our `tmap` library, but it is only something you will only really learn by having to make your own maps. As a result, we will not go into explaining **exactly** every aspect of map styling - but instead provide you with some example code that you can use as well as experiment with to try to see how you can adjust aspects of the map to your preferences.
+
+Fundamentally, the **key functions** to be aware of:
+
+* `tm_layout()`: contains parameters to style titles, fonts, the legend, etc.;
+* `tm_compass()`: contains parameters to create and style a North arrow or compass;
+* `tm_scale_bar()`: contains parameters to create and style a scale bar.
+
+To be able to start styling our map, we need to interrogate each of these functions and their parameters to trial and error options to ultimately create a map we are happy with:
+
+```{r 05-map-template-1, warnings=FALSE, message=FALSE, cache=TRUE}
+# set out tm_shape equal to our original ward data frame
+tm_shape(ward_population) + 
+  # draw out spatial objects as polygons, set to grey
+  tm_polygons("gray", border.col = "gray") + 
+# set our tm_shape equal to our spatial data frame
+tm_shape(theft_crime_rate_sdf) + 
+  # draw out spatial objects as polygons, specifying a data column, 
+  # specifying fixed breaks, colour palette, and borders
+  tm_polygons(col = "jan_2020", n = 5, style = "fixed", 
+              breaks = c(0, 5, 16, 40, 118, 434), 
+              palette="Blues", border.col="white", 
+              title="Rate per 10,000 people") + 
+  # add title
+  tm_layout(main.title='Theft Crime January 2020', 
+            main.title.fontface = 2, 
+            fontfamily = "Helvetica", 
+            legend.outside = TRUE, 
+            legend.position = c("left","top"), 
+            legend.title.size = 1, 
+            legend.title.fontface = 2) +
+  # add North arrow
+  tm_compass(type="arrow", 
+             position = c("right", "bottom")) + 
+  # add scale bar
+  tm_scale_bar(breaks = c(0, 5, 10, 15, 20), 
+               position = c("left", "bottom"))
+``` 
+
+We will leave it at this, although there is a few more things we would want to do - and that would be to add an additional legend property to state why the City of London wards are grey (`No Data`) as well as add our data source information. 
+
+### Exporting our crime data
+Once we are finished making our map, we can go ahead and export it to our `maps` folder. To do so, we need to save our map-making code to as a variable and then use the `tmap_save()` function to save the output of this code to a picture within our maps folder.
+
+```{r 05-export-map, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+# add map object to variable
+jan2020_map <- 
+  # set out tm_shape equal to our original ward data frame
+  tm_shape(ward_population) + 
+  # draw out spatial objects as polygons, set to grey
+  tm_polygons("gray", border.col = "gray") + 
+# set our tm_shape equal to our spatial data frame
+tm_shape(theft_crime_rate_sdf) + 
+  # draw out spatial objects as polygons, specifying a data column, 
+  # specifying fixed breaks, colour palette, and borders
+  tm_polygons(col = "jan_2020", n = 5, style = "fixed", 
+              breaks = c(0, 5, 16, 40, 118, 434), 
+              palette="Blues", border.col="white", 
+              title="Rate per 10,000 people") + 
+  # add title
+  tm_layout(main.title='Theft Crime January 2020', 
+            main.title.fontface = 2, 
+            fontfamily = "Helvetica", 
+            legend.outside = TRUE, 
+            legend.position = c("left","top"), 
+            legend.title.size = 1, 
+            legend.title.fontface = 2) +
+  # add North arrow
+  tm_compass(type="arrow", 
+             position = c("right", "bottom")) + 
+  # add scale bar
+  tm_scale_bar(breaks = c(0, 5, 10, 15, 20), 
+               position = c("left", "bottom"))
+
+# save as image
+tmap_save(jan2020_map, filename = "maps/jan2020_theft_crime_map.png")
+```
+
+We also want to export the rest of our hard work in terms of data wrangling that we have completed for this practical - so let's go ahead and export our data frames so we can use them in future projects.
+
+```{r 05-export-data-frames, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+# write out the all_theft_ward_sdf to a shapefile within our working data folder
+st_write(theft_crime_rate_sdf,"data/working/theft_rate_by_ward_per_month_2020.shp", row.names = FALSE)
+# write out the all_theft_ward_sdf to a shapefile within our working data folder
+st_write(all_theft_ward_sdf,"data/working/theft_count_by_ward_per_month_2020.shp", row.names = FALSE)
+# write out the all_theft_ward_sdf to a csv within our raw crime data folder
+write.csv(all_theft_ward_sdf,"data/working/theft_count_by_ward_per_month_2020.csv", row.names = FALSE)
+```
 
 ## Assignment {#assignment-w05}
+For your assignment for this week, we want you to create a map for a different month of 2020 with a different layout and look. Keep in mind:
+
+- You will need to really think about your classification breaks when you change to map a different data set.
+- Play with the different settings, e.g. change the colours of the map, change the legend title name, change the type of North arrow, etc.
+
+If you are up for a challenge: now try to create a map in which you incorporate the maps of two different months together in one figure. Google is your friend!
 
 ## Before you leave {#byl-w05}
 And that is how you use R as a GIS in its most basic form. More RGIS in the coming weeks, but [this concludes the tutorial for this week](https://www.youtube.com/watch?v=Ydg4T2MP7Z8).

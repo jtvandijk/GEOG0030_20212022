@@ -24,7 +24,7 @@
 <meta name="author" content="Justin van Dijk" />
 
 
-<meta name="date" content="2021-11-19" />
+<meta name="date" content="2021-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -248,6 +248,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.7" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#aggregate-crime-by-ward"><i class="fa fa-check"></i><b>5.3.7</b> Aggregate crime by ward</a></li>
 <li class="chapter" data-level="5.3.8" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#joining-crime-data-to-wards"><i class="fa fa-check"></i><b>5.3.8</b> Joining crime data to wards</a></li>
 <li class="chapter" data-level="5.3.9" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#mapping-crime-data"><i class="fa fa-check"></i><b>5.3.9</b> Mapping crime data</a></li>
+<li class="chapter" data-level="5.3.10" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#styling-crime-data"><i class="fa fa-check"></i><b>5.3.10</b> Styling crime data</a></li>
+<li class="chapter" data-level="5.3.11" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#exporting-our-crime-data"><i class="fa fa-check"></i><b>5.3.11</b> Exporting our crime data</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#assignment-w05"><i class="fa fa-check"></i><b>5.4</b> Assignment</a></li>
 <li class="chapter" data-level="5.5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#byl-w05"><i class="fa fa-check"></i><b>5.5</b> Before you leave</a></li>
@@ -826,10 +828,158 @@ Figure 5.1: Documentatoin for the <code>pivot_wider()</code> function.
 <p><strong>Note</strong><br/>
 When it comes to setting colours within a map or any graphic, we can either pass through a colour as a <strong>word</strong>, a <strong>HEX code</strong> or a pre-defined <strong>palette</strong>. You can find out more <a href="http://www.sthda.com/english/wiki/colors-in-r">here</a>, which is a great quick reference to just some of the possible colours and palettes you will be able to use in R.</p>
 </div>
+<p>The main approach to creating maps in <code>tmap</code> is to use the <a href="https://towardsdatascience.com/a-comprehensive-guide-to-the-grammar-of-graphics-for-effective-visualization-of-multi-dimensional-1f92b4ed4149">grammar of graphics</a> to build up a map based on what is called the <code>tm_shape()</code> function. Essentially this function, when populated with a spatial data frame, takes the spatial information of our data (including the projection and geometry of our data) and creates a spatial “object”. This object contains some information about our original spatial data frame that we can override (such as the projection) within this function’s parameters, but ultimately, by using this function, you are instructing R that this is the object from which to “draw my shape”.</p>
+<p>To actually draw the shape, we next need to add a layer to specify the type of shape we want R to draw from this information - in our case, our polygon data. We need to add a function therefore that tells R to “draw my spatial object as X” and within this “layer”, you can also specific additional information to tell R how to draw your layer. You can then add in additional layers, including other spatial objects (and their related shapes) that you want drawn on your map, plus a specify your layout options through a layout layer.</p>
+<p>Let’s see how we can build up our first map in <code>tmap</code>.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="programming-for-spatial-analysis.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set our tm_shape equal to our spatial data frame</span></span>
+<span id="cb145-2"><a href="programming-for-spatial-analysis.html#cb145-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(theft_crime_rate_sdf) <span class="sc">+</span></span>
+<span id="cb145-3"><a href="programming-for-spatial-analysis.html#cb145-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># draw out spatial objects as polygons</span></span>
+<span id="cb145-4"><a href="programming-for-spatial-analysis.html#cb145-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>()</span></code></pre></div>
+<p>As you should now see, we have now mapped the spatial polygons of our <code>theft_crime_rate_sdf</code> spatial data frame - great! A step in the right direction. However, this is not the map we want - we want to have our polygons represented by a choropleth map where the colours reflect the theft crime rate in January, rather than the default grey polygons we see before us. To do so, we use the <code>col=</code> parameter that is within our <code>tm_polygons()</code> shape.</p>
+<div class="note">
+<p><strong>Note</strong> <br/>
+The <code>col</code> parameter within <code>tm_polygons()</code> is used to fill our polygons with a specific fill type, of either:</p>
+<ul>
+<li>a single color value (e.g. “red”)</li>
+<li>the name of a data variable that is contained in the spatial data file Either the data variable contains color values, or values (numeric or categorical) that will be depicted by a specific color palette.</li>
+<li>“MAP_COLORS”. In this case polygons will be colored such that adjacent polygons do not get the same color.</li>
+</ul>
+</div>
+<p>Let’s go ahead and pass our <code>jan_2020</code> column within the <code>col=</code> parameter and see what we get.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Add <code>col = "jan_2020"</code> to our <code>tm_polygons()</code> function as a parameter:</li>
+</ol>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="programming-for-spatial-analysis.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set our tm_shape equal to our spatial data frame</span></span>
+<span id="cb146-2"><a href="programming-for-spatial-analysis.html#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(theft_crime_rate_sdf) <span class="sc">+</span></span>
+<span id="cb146-3"><a href="programming-for-spatial-analysis.html#cb146-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># draw out spatial objects as polygons, specifying a data column</span></span>
+<span id="cb146-4"><a href="programming-for-spatial-analysis.html#cb146-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="st">&quot;jan_2020&quot;</span>)</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/05-choro-1-1.png" width="672" /></p>
+<p>It looks like we have a choropleth map. We are slowly getting there. But there are two things we can notice straight away that do not look right about our data. The first is that our <strong>classification breaks</strong> do not really reflect the variation in our dataset - this is because <code>tmap</code> has defaulted to its favourite break type: <strong>pretty breaks</strong>, whereas, as we know, using an approach such as <strong>natural</strong> breaks, aka <strong>jenks</strong>, may reveal better variation in our data.</p>
+<p>Using the documentation for <code>tm_polygons()</code>, it looks like the following parameters are relevant to help us create the right classification for our map:</p>
+<ul>
+<li><code>n</code>: state the number of classification breaks you want.</li>
+<li><code>style</code>: state the style of breaks you want, e.g. <code>fixed</code>, <code>sd</code>, <code>equal</code>, <code>quantile</code>.</li>
+<li><code>breaks</code>: state the numeric breaks you want to use when using the <strong>fixed</strong> style approach.</li>
+</ul>
+<p>Let’s say we want to change our choropleth map to have 5 classes, determined via the <code>jenks</code> method - we simply need to add the <code>n</code> and <code>style</code> parameters into our <code>tm_polygons()</code> layer.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="programming-for-spatial-analysis.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set our tm_shape equal to our spatial data frame</span></span>
+<span id="cb147-2"><a href="programming-for-spatial-analysis.html#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(theft_crime_rate_sdf) <span class="sc">+</span> </span>
+<span id="cb147-3"><a href="programming-for-spatial-analysis.html#cb147-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># draw out spatial objects as polygons, specifying a data column, specifying jenks</span></span>
+<span id="cb147-4"><a href="programming-for-spatial-analysis.html#cb147-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="st">&quot;jan_2020&quot;</span>, <span class="at">n =</span> <span class="dv">5</span>, <span class="at">style =</span> <span class="st">&quot;jenks&quot;</span>)</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/05-choro-2-1.png" width="672" /></p>
+<p>We now have a choropleth that reflects better the distribution of our data, but we can make them a little prettier by rounding the values. To do so, we can change the <code>style</code> of the map to <code>fixed</code> and then supply a new argument for <code>breaks</code> that contains the rounded classification breaks:</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="programming-for-spatial-analysis.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set our tm_shape equal to our spatial data frame</span></span>
+<span id="cb148-2"><a href="programming-for-spatial-analysis.html#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(theft_crime_rate_sdf) <span class="sc">+</span> </span>
+<span id="cb148-3"><a href="programming-for-spatial-analysis.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># draw out spatial objects as polygons, specifying a data column, specifying fixed breaks</span></span>
+<span id="cb148-4"><a href="programming-for-spatial-analysis.html#cb148-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="st">&quot;jan_2020&quot;</span>, <span class="at">n =</span> <span class="dv">5</span>, <span class="at">style =</span> <span class="st">&quot;fixed&quot;</span>, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">16</span>, <span class="dv">40</span>, <span class="dv">118</span>, <span class="dv">434</span>))</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/05-choro-3-1.png" width="672" /></p>
+<p>That looks a little better from the classification side of things. We still have one final data-related challenge to solve, before we start to style our map - and that is showing the polygons for City of London wards, even though we have no data for them. The easiest way to do so is to simply add a spatial object to our map that symbolises our polygons as grey wards and then draw the crime data on top:</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="programming-for-spatial-analysis.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set out tm_shape equal to our original ward data frame</span></span>
+<span id="cb149-2"><a href="programming-for-spatial-analysis.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(ward_population) <span class="sc">+</span> </span>
+<span id="cb149-3"><a href="programming-for-spatial-analysis.html#cb149-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># draw out spatial objects as polygons, set to grey</span></span>
+<span id="cb149-4"><a href="programming-for-spatial-analysis.html#cb149-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;gray&quot;</span>) <span class="sc">+</span></span>
+<span id="cb149-5"><a href="programming-for-spatial-analysis.html#cb149-5" aria-hidden="true" tabindex="-1"></a><span class="co"># set our tm_shape equal to our spatial data frame</span></span>
+<span id="cb149-6"><a href="programming-for-spatial-analysis.html#cb149-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(theft_crime_rate_sdf) <span class="sc">+</span> </span>
+<span id="cb149-7"><a href="programming-for-spatial-analysis.html#cb149-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># draw out spatial objects as polygons, specifying a data column, specifying fixed breaks</span></span>
+<span id="cb149-8"><a href="programming-for-spatial-analysis.html#cb149-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="st">&quot;jan_2020&quot;</span>, <span class="at">n =</span> <span class="dv">5</span>, <span class="at">style =</span> <span class="st">&quot;fixed&quot;</span>, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">16</span>, <span class="dv">40</span>, <span class="dv">118</span>, <span class="dv">434</span>)) </span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/05-choro-4-1.png" width="672" /></p>
+<div id="question" class="section level4 unnumbered">
+<h4>Question</h4>
+<ul>
+<li>What happens if you were to switch the layers around, i.e. first add the crime rate layer and then the “grey” ward layer? Why?</li>
+</ul>
+</div>
+</div>
+<div id="styling-crime-data" class="section level3" number="5.3.10">
+<h3><span class="header-section-number">5.3.10</span> Styling crime data</h3>
+<p>To style our map takes a further understanding and familiarity with our <code>tmap</code> library, but it is only something you will only really learn by having to make your own maps. As a result, we will not go into explaining <strong>exactly</strong> every aspect of map styling - but instead provide you with some example code that you can use as well as experiment with to try to see how you can adjust aspects of the map to your preferences.</p>
+<p>Fundamentally, the <strong>key functions</strong> to be aware of:</p>
+<ul>
+<li><code>tm_layout()</code>: contains parameters to style titles, fonts, the legend, etc.;</li>
+<li><code>tm_compass()</code>: contains parameters to create and style a North arrow or compass;</li>
+<li><code>tm_scale_bar()</code>: contains parameters to create and style a scale bar.</li>
+</ul>
+<p>To be able to start styling our map, we need to interrogate each of these functions and their parameters to trial and error options to ultimately create a map we are happy with:</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="programming-for-spatial-analysis.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set out tm_shape equal to our original ward data frame</span></span>
+<span id="cb150-2"><a href="programming-for-spatial-analysis.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(ward_population) <span class="sc">+</span> </span>
+<span id="cb150-3"><a href="programming-for-spatial-analysis.html#cb150-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># draw out spatial objects as polygons, set to grey</span></span>
+<span id="cb150-4"><a href="programming-for-spatial-analysis.html#cb150-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;gray&quot;</span>, <span class="at">border.col =</span> <span class="st">&quot;gray&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb150-5"><a href="programming-for-spatial-analysis.html#cb150-5" aria-hidden="true" tabindex="-1"></a><span class="co"># set our tm_shape equal to our spatial data frame</span></span>
+<span id="cb150-6"><a href="programming-for-spatial-analysis.html#cb150-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(theft_crime_rate_sdf) <span class="sc">+</span> </span>
+<span id="cb150-7"><a href="programming-for-spatial-analysis.html#cb150-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># draw out spatial objects as polygons, specifying a data column, </span></span>
+<span id="cb150-8"><a href="programming-for-spatial-analysis.html#cb150-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># specifying fixed breaks, colour palette, and borders</span></span>
+<span id="cb150-9"><a href="programming-for-spatial-analysis.html#cb150-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="st">&quot;jan_2020&quot;</span>, <span class="at">n =</span> <span class="dv">5</span>, <span class="at">style =</span> <span class="st">&quot;fixed&quot;</span>, </span>
+<span id="cb150-10"><a href="programming-for-spatial-analysis.html#cb150-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">16</span>, <span class="dv">40</span>, <span class="dv">118</span>, <span class="dv">434</span>), </span>
+<span id="cb150-11"><a href="programming-for-spatial-analysis.html#cb150-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">palette=</span><span class="st">&quot;Blues&quot;</span>, <span class="at">border.col=</span><span class="st">&quot;white&quot;</span>, </span>
+<span id="cb150-12"><a href="programming-for-spatial-analysis.html#cb150-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">title=</span><span class="st">&quot;Rate per 10,000 people&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb150-13"><a href="programming-for-spatial-analysis.html#cb150-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add title</span></span>
+<span id="cb150-14"><a href="programming-for-spatial-analysis.html#cb150-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title=</span><span class="st">&#39;Theft Crime January 2020&#39;</span>, </span>
+<span id="cb150-15"><a href="programming-for-spatial-analysis.html#cb150-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.fontface =</span> <span class="dv">2</span>, </span>
+<span id="cb150-16"><a href="programming-for-spatial-analysis.html#cb150-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, </span>
+<span id="cb150-17"><a href="programming-for-spatial-analysis.html#cb150-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.outside =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb150-18"><a href="programming-for-spatial-analysis.html#cb150-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;top&quot;</span>), </span>
+<span id="cb150-19"><a href="programming-for-spatial-analysis.html#cb150-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.title.size =</span> <span class="dv">1</span>, </span>
+<span id="cb150-20"><a href="programming-for-spatial-analysis.html#cb150-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.title.fontface =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb150-21"><a href="programming-for-spatial-analysis.html#cb150-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add North arrow</span></span>
+<span id="cb150-22"><a href="programming-for-spatial-analysis.html#cb150-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>(<span class="at">type=</span><span class="st">&quot;arrow&quot;</span>, </span>
+<span id="cb150-23"><a href="programming-for-spatial-analysis.html#cb150-23" aria-hidden="true" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb150-24"><a href="programming-for-spatial-analysis.html#cb150-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add scale bar</span></span>
+<span id="cb150-25"><a href="programming-for-spatial-analysis.html#cb150-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_scale_bar</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), </span>
+<span id="cb150-26"><a href="programming-for-spatial-analysis.html#cb150-26" aria-hidden="true" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/05-map-template-1-1.png" width="672" /></p>
+<p>We will leave it at this, although there is a few more things we would want to do - and that would be to add an additional legend property to state why the City of London wards are grey (<code>No Data</code>) as well as add our data source information.</p>
+</div>
+<div id="exporting-our-crime-data" class="section level3" number="5.3.11">
+<h3><span class="header-section-number">5.3.11</span> Exporting our crime data</h3>
+<p>Once we are finished making our map, we can go ahead and export it to our <code>maps</code> folder. To do so, we need to save our map-making code to as a variable and then use the <code>tmap_save()</code> function to save the output of this code to a picture within our maps folder.</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="programming-for-spatial-analysis.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add map object to variable</span></span>
+<span id="cb151-2"><a href="programming-for-spatial-analysis.html#cb151-2" aria-hidden="true" tabindex="-1"></a>jan2020_map <span class="ot">&lt;-</span> </span>
+<span id="cb151-3"><a href="programming-for-spatial-analysis.html#cb151-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set out tm_shape equal to our original ward data frame</span></span>
+<span id="cb151-4"><a href="programming-for-spatial-analysis.html#cb151-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(ward_population) <span class="sc">+</span> </span>
+<span id="cb151-5"><a href="programming-for-spatial-analysis.html#cb151-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># draw out spatial objects as polygons, set to grey</span></span>
+<span id="cb151-6"><a href="programming-for-spatial-analysis.html#cb151-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;gray&quot;</span>, <span class="at">border.col =</span> <span class="st">&quot;gray&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb151-7"><a href="programming-for-spatial-analysis.html#cb151-7" aria-hidden="true" tabindex="-1"></a><span class="co"># set our tm_shape equal to our spatial data frame</span></span>
+<span id="cb151-8"><a href="programming-for-spatial-analysis.html#cb151-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(theft_crime_rate_sdf) <span class="sc">+</span> </span>
+<span id="cb151-9"><a href="programming-for-spatial-analysis.html#cb151-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># draw out spatial objects as polygons, specifying a data column, </span></span>
+<span id="cb151-10"><a href="programming-for-spatial-analysis.html#cb151-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># specifying fixed breaks, colour palette, and borders</span></span>
+<span id="cb151-11"><a href="programming-for-spatial-analysis.html#cb151-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="st">&quot;jan_2020&quot;</span>, <span class="at">n =</span> <span class="dv">5</span>, <span class="at">style =</span> <span class="st">&quot;fixed&quot;</span>, </span>
+<span id="cb151-12"><a href="programming-for-spatial-analysis.html#cb151-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">16</span>, <span class="dv">40</span>, <span class="dv">118</span>, <span class="dv">434</span>), </span>
+<span id="cb151-13"><a href="programming-for-spatial-analysis.html#cb151-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">palette=</span><span class="st">&quot;Blues&quot;</span>, <span class="at">border.col=</span><span class="st">&quot;white&quot;</span>, </span>
+<span id="cb151-14"><a href="programming-for-spatial-analysis.html#cb151-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">title=</span><span class="st">&quot;Rate per 10,000 people&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb151-15"><a href="programming-for-spatial-analysis.html#cb151-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add title</span></span>
+<span id="cb151-16"><a href="programming-for-spatial-analysis.html#cb151-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title=</span><span class="st">&#39;Theft Crime January 2020&#39;</span>, </span>
+<span id="cb151-17"><a href="programming-for-spatial-analysis.html#cb151-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.fontface =</span> <span class="dv">2</span>, </span>
+<span id="cb151-18"><a href="programming-for-spatial-analysis.html#cb151-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, </span>
+<span id="cb151-19"><a href="programming-for-spatial-analysis.html#cb151-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.outside =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb151-20"><a href="programming-for-spatial-analysis.html#cb151-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>,<span class="st">&quot;top&quot;</span>), </span>
+<span id="cb151-21"><a href="programming-for-spatial-analysis.html#cb151-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.title.size =</span> <span class="dv">1</span>, </span>
+<span id="cb151-22"><a href="programming-for-spatial-analysis.html#cb151-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.title.fontface =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb151-23"><a href="programming-for-spatial-analysis.html#cb151-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add North arrow</span></span>
+<span id="cb151-24"><a href="programming-for-spatial-analysis.html#cb151-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>(<span class="at">type=</span><span class="st">&quot;arrow&quot;</span>, </span>
+<span id="cb151-25"><a href="programming-for-spatial-analysis.html#cb151-25" aria-hidden="true" tabindex="-1"></a>             <span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb151-26"><a href="programming-for-spatial-analysis.html#cb151-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add scale bar</span></span>
+<span id="cb151-27"><a href="programming-for-spatial-analysis.html#cb151-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_scale_bar</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), </span>
+<span id="cb151-28"><a href="programming-for-spatial-analysis.html#cb151-28" aria-hidden="true" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</span>
+<span id="cb151-29"><a href="programming-for-spatial-analysis.html#cb151-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-30"><a href="programming-for-spatial-analysis.html#cb151-30" aria-hidden="true" tabindex="-1"></a><span class="co"># save as image</span></span>
+<span id="cb151-31"><a href="programming-for-spatial-analysis.html#cb151-31" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_save</span>(jan2020_map, <span class="at">filename =</span> <span class="st">&quot;maps/jan2020_theft_crime_map.png&quot;</span>)</span></code></pre></div>
+<p>We also want to export the rest of our hard work in terms of data wrangling that we have completed for this practical - so let’s go ahead and export our data frames so we can use them in future projects.</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="programming-for-spatial-analysis.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write out the all_theft_ward_sdf to a shapefile within our working data folder</span></span>
+<span id="cb152-2"><a href="programming-for-spatial-analysis.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="fu">st_write</span>(theft_crime_rate_sdf,<span class="st">&quot;data/working/theft_rate_by_ward_per_month_2020.shp&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb152-3"><a href="programming-for-spatial-analysis.html#cb152-3" aria-hidden="true" tabindex="-1"></a><span class="co"># write out the all_theft_ward_sdf to a shapefile within our working data folder</span></span>
+<span id="cb152-4"><a href="programming-for-spatial-analysis.html#cb152-4" aria-hidden="true" tabindex="-1"></a><span class="fu">st_write</span>(all_theft_ward_sdf,<span class="st">&quot;data/working/theft_count_by_ward_per_month_2020.shp&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb152-5"><a href="programming-for-spatial-analysis.html#cb152-5" aria-hidden="true" tabindex="-1"></a><span class="co"># write out the all_theft_ward_sdf to a csv within our raw crime data folder</span></span>
+<span id="cb152-6"><a href="programming-for-spatial-analysis.html#cb152-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(all_theft_ward_sdf,<span class="st">&quot;data/working/theft_count_by_ward_per_month_2020.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="assignment-w05" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Assignment</h2>
+<p>For your assignment for this week, we want you to create a map for a different month of 2020 with a different layout and look. Keep in mind:</p>
+<ul>
+<li>You will need to really think about your classification breaks when you change to map a different data set.</li>
+<li>Play with the different settings, e.g. change the colours of the map, change the legend title name, change the type of North arrow, etc.</li>
+</ul>
+<p>If you are up for a challenge: now try to create a map in which you incorporate the maps of two different months together in one figure. Google is your friend!</p>
 </div>
 <div id="byl-w05" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> Before you leave</h2>
