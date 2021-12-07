@@ -29,7 +29,7 @@ Open a new script within your GEOG0030 project and save this script as `wk6-bike
 Before continuing, please install the following libraries through your console: `leaflet`, `osmdata`, `RColorBrewer`
 
 Within your script, add the following libraries for loading:
-```{r 06-scr-libs-all, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 06-scr-libs-all, warnings=FALSE, message=FALSE, tidy=TRUE}
 # libraries
 library(tidyverse)
 library(sf)
@@ -311,7 +311,7 @@ tm_shape(london_outline) + tm_fill() +
 
 What we can see is that it looks like our OSM data actual does a much better job at covering all train and tube stations across London (not a surprise with 300 more stations in the data set) - but still it is pretty hard to get a sense of comparison from a static map like this whether it contains all of the tube and train stations in our `london_stations` spatial dataframe. An interactive map would enable us to interrogate the spatial coverage of our two station spatial dataframes further. To do so, we use the `tmap_mode()` function and change it from its default `plot()` mode to a `view()` model:
 
-```{r 06-map-some-data-4, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 06-map-some-data-4, warnings=FALSE, message=FALSE}
 # change tmap mode to view / interactive mapping
 tmap_mode("view")
 
@@ -325,7 +325,7 @@ tm_shape(london_outline) + tm_borders() +
 
 Using the interactive map, what we can see is that whilst we **do** have overlap with our data sets, and more importantly, our `london_stations_osm` spatial dataframe seems to contain all of the data within the `london_stations` spatial dataframe, although there are definitely differences in their precise location. Now depending on what level of accuracy we are willing to accept with our assumption that our OSM data contains the **same** data as our Transport for London data, we could leave our comparison here and move forward with our analysis. There are, however. several more steps we could complete to validate this assumption. The easiest first step is to simply reverse the order of our data sets to check that each `london_stations` spatial dataframe point is covered by reversing the drawing order:
 
-```{r 06-map-some-data-5, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 06-map-some-data-5, warnings=FALSE, message=FALSE}
 # plot the outline of our London Wards first
 tm_shape(london_outline) + tm_borders() + 
     # plot TfL station data in red
@@ -334,6 +334,7 @@ tm_shape(london_outline) + tm_borders() +
     tm_shape(london_stations_osm) + tm_dots(col = "black")
 ```
 
+### Spatial operations I
 This looks pretty good - but still the question is: can we be sure? Using geometric operations and spatial queries, we can look to find if any of our stations in our `london_stations` spatial dataframe are not present the `london_stations_osm` spatial dataframe. We can use specific geometric operations and/or queries that let us check whether or not all points within our `london_stations` spatial dataframe spatially intersect with our `london_stations_osm` spatial dataframe, i.e. we can complete the opposite our clip/intersection that we conducted earlier. The issue we face however is that, as we saw above, our points are slightly offset from one another as the data sets have ultimately given the same stations slightly different locations.This offset means we need to think a little about the geometric operation or spatial query that we want to use.
 
 We will approach this question in two different ways to highlight the differences between geometric operations and spatial queries:
@@ -341,7 +342,7 @@ We will approach this question in two different ways to highlight the difference
 1. We'll use **geometric operations** to generate geometries that highlight missing stations from our `london_stations` spatial dataframe (i.e. ones that are not present in the`london_stations_osm` spatial dataframe.)
 2. We'll use **spatial queries** to provide us with a list of features in our `london_stations` spatial dataframe that do not meet our spatial requirements (i.e. are not present in the`london_stations_osm` spatial dataframe.)
 
-### Geometric operations
+#### Geometric operations
 As highlighted above, the offset between our spatial dataframes adds a little complexity to our geometric operations code. To be able to make our direct spatial comparisons across our spatial dataframes, what we first need to do is try to **snap*'** the geometry of our `london_stations` spatial dataframe to our `london_stations_osm` spatial dataframe for points within a given distance threshold. This will mean that any points in the `london_stations` spatial dataframe that are within a specific distance of the `london_stations_osm` spatial dataframe will have their geometry changed to that of the `london_stations_osm` spatial dataframe.
 
 ```{r echo=FALSE, fig.align='center', cache=TRUE, fig.cap='Snapping points to a line. In our case we snap our points to other points.'}
@@ -373,7 +374,7 @@ missing_stations <- st_difference(london_stations_snap, london_stations_osm_comp
 
 You should now find that we have an answer - and apparently have **3** missing stations with our `london_stations_osm` spatial dataframe. We can now plot our missing stations against our `london_stations_osm` spatial dataframe and identify whether these stations are missing or not! 
 
-```{r 06-map-some-data-3, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 06-map-some-data-3, warnings=FALSE, message=FALSE}
 # plot our london_stations_osm spatial dataframe in black
 tm_shape(london_stations_osm) + tm_dots(col = "black") + 
   # plot our missing_stations spatial dataframe in green
@@ -384,7 +385,169 @@ Zoom in to our three missing stations - are these stations actually missing, or 
 
 If you investigate these three missing stations, you can actually see that our `london_stations_osm` spatial dataframe data set is actually more accurate than the TfL locations. All three missing stations were not in fact missing, but a) in our OSM data set but b) at a greater offset than 150m - and in all three cases, or OSM locations were more accurate. We can safely suggest that we can move forward with only using the `london_stations_osm` spatial dataframe and do not need to follow through with adding any more data to this data set.
 
+#### Spatial queries
+Before we go ahead and move forward with our analysis, we woll have a look at how we can implement the above quantification using spatial queries instead of geometric operations.
+
+Usually, when we want to find out if two spatial dataframes have the same or similar geometries, we would use one of the following queries:
+
+* `st_equals()`
+* `st_intersects()`
+* `st_crosses()`
+* `st_overlaps()`
+* `st_touches()`
+
+Ultimately which query (or spatial relationship conceptualisation) you would choose would depend on the qualifications you are trying to place on your dataset. In our case, considering our `london_stations` spatial dataframe and our `london_stations_osm` spatial dataframe, we have to consider **the offset between our datasets**. We could, of course, *snap* our spatial dataframe as above - but wouldn't it be great if we could skip this step? 
+
+To do so, instead of *snapping* the `london_stations` spatial dataframe to the `london_stations_osm` spatial dataframe, we can use the `st_is_within_distance()` spatial query to ask whether our points in our `london_stations` spatial dataframe are within 150m of our `london_stations_osm` spatial dataframe. This ultimately means we can skip the snapping and `st_difference` steps - and complete our processing in two simple steps.
+
+:::note
+**Note** <br />
+one thing to be aware of when running spatial queries in R and `sf` is that whichever spatial dataframe is the comparison geometry (i.e. spatial dataframe `y` in our queries), this spatial dataframe **must** (again) be a **single geometry** - as we saw above in our `st_difference()` geometric operation. If it is not a single geometry, then the query will be run `x` number of observations * `y` spatial dataframe number of observations times, which is not the output that we want. By converting our comparison spatial dataframe to a single geometry, the query is only run for the number of observations in `x`.
+
+You should also be aware that any of our spatial queries will return **one** of **two potential outputs**: a **list** detailing the **indexes** of all those observation features in `x` that do intersect with `y`, or a **matrix** that contains a `TRUE` or `FALSE` statement about this relationship. To define whether we want a list or a matrix output, we set the `sparse` parameter within our query to `TRUE` or `FALSE` respectively.
+:::
+
+Query whether the points in our `london_stations` spatial dataframe are within 150m of our `london_stations_osm` spatial dataframe:
+
+```{r 06-missing-nodes-sq, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# create a single geometry version of our `london_stations_osm` spatial dataframe for comparison
+london_stations_osm_compare <- london_stations_osm %>% st_union()
+
+# compare our two point geometries to identify missing stations
+london_stations$in_osm_data <- st_is_within_distance(london_stations, london_stations_osm_compare, dist=150, sparse=FALSE)
+```
+
+We can go ahead and `count()` the results of our query.
+
+```{r 06-missing-nodes-count, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# count the number of stations within 150m of our the OSM spatial dataframe
+count(london_stations, in_osm_data)
+```
+
+Great - we can see we have **3** stations missing (3 `FALSE` observations), just like we had in our geometric operations approach. We can double-check this by mapping our two layers together:
+
+```{r 06-map-some-data-143, warnings=FALSE, message=FALSE, cache=TRUE}
+# plot our london_stations by the in_osm_data column
+tm_shape(london_stations) + tm_dots(col = "in_osm_data") + 
+  # add our missing_stations spatial dataframe
+  tm_shape(missing_stations) + tm_dots(col = "green")
+```
+
+You can turn on and off the `missing_stations` layer to compare the locations of these points to the `FALSE` stations within our `london_stations_osm` spatial dataframe, generated by our spatial query. 
+
+### Spatial operations II
+We now have our London bike theft and train stations ready for analysis - we just need to complete one last step of processing with this dataset - calculating **whether or not a bike theft occurs near to a train station or not**. As above, we can use both geometric operations or spatial queries to complete this analysis.
+
+#### Geometric operations
+Our first approach using geometric operations will involve the creation of a **buffer** around each train station to then identify which bike thefts occur within 400m of a train or tube station. Once again, the `sf` library has a function for generating buffers - we just need to know how to deploy it successfully on our `london_stations_osm` spatial dataframe.
+
+When it comes to buffers, we need to consider two main things - what distance will we use (and are we in the right CRS to use a buffer) and do we want individual buffers or a single buffer.
+
+```{r echo=FALSE, fig.align='center', out.width='500pt', cache=TRUE, fig.cap='A single versus multiple buffer. The single buffer represents a dissolved version of the multiple buffer option. Source: Q-GIS, 2020.'}
+knitr::include_graphics('images/w06/buffer.png')
+```
+
+In terms of CRS, we want to make sure we use a CRS that defines its measurement units in metres - this is because it makes life significantly easier when calculating these buffers. If our CRS does not use metres as its measurement unit, it might be in a base unit of an Arc Degree or something else that creates difficulties when converting between a required metre distance and the measurement unit of that CRS. In our case, we are using British National Grid and, luckily for us, the units of the CRS is metres, so we do not need to worry about this.
+
+In terms of determing whether we can create a single or multiple buffers, we can investigate the documentation of the function `st_buffer()` to find out what additional parameters it takes - and how. What we can find out is that we need to (of course!) provide a distance for our buffer - but whatever figure we supply, this will be interpreted within the units of the CRS we are using. Fortunately none of this is our concern - we know we can simply input the figure or 400 into our buffer and this will generate a buffer of 400m. 
+
+```{r 06-buffer-stations, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# generate a 400m buffer around our london_stations_osm dataset, union it to create one buffer
+station_400m_buffer <- london_stations_osm %>% st_buffer(dist = 400) %>% st_union()
+```
+
+You can then go ahead and plot our buffer to see the results, entering `plot(station_400m_buffer)` within the console:
+
+```{r 06-plot-buffer-stations, warnings=FALSE, message=FALSE, cache=TRUE, echo=FALSE}
+# plot buffer
+plot(station_400m_buffer)
+```
+
+To find out which bike thefts have occured within 400m of a station, we will use the `st_intersects()` function.
+
+:::note
+**Note** <br />
+Before we move forward, one thing to clarify is that there is a difference between `st_intersects()` and the `st_intersections()` function we have been used so far. Unlike the `st_intersections()` function which creates a 'clip' of our dataset, i.e. produces a new spatial dataframe containing the clipped geometry, the `st_intersects()` function simply identifies whether "x and y geometry share any space". As explained above, as with all spatial queries, the `st_intersects()` function can produce two different outputs: either a list detailing the **indexes** of all those observation features in `x` that do intersect with `y` or a matrix that contains a `TRUE` or `FALSE` statement about this relationship. As with our previous spatial query, we will continue to use the matrix approach -  this means for every single bike theft in London, we will know whether or not it occured within our chosen distance of a train station and join this as a new column to our `bike_theft_2019` spatial dataframe.
+:::
+
+To detect which bike thefts occur within 400m of a train or tube station, we can do:
+```{r 06-intersect-test, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# test whether a bike theft intersects with our station buffer and store this as a new column called nr_train_400m
+bike_theft_2019$nr_train_400 <- bike_theft_2019 %>% st_intersects(station_400m_buffer, sparse=FALSE)
+```
+
+We could go ahead and recode this to create a 1 or 0, or YES or NO after processing, but for now we will leave it as `TRUE` or `FALSE`. We can go ahead and now visualise our `bike_theft_2019` based on this column, to see those occuring near to a train station:
+
+```{r 06-intersect-map, warnings=FALSE, message=FALSE, cache=TRUE}
+# set tmap back to drawing mode 
+tmap_mode("plot")
+
+# plot our london outline border
+tm_shape(london_outline) + tm_borders() + 
+  # plot our bike theft and visualise the nr_train_400m column
+  tm_shape(bike_theft_2019) + tm_dots(col = "nr_train_400", palette = "BuGn") +
+  # add our train stations on top
+  tm_shape(london_stations_osm) + tm_dots(palette = "gray") +
+  # add our OSM contributors statement
+  tm_credits("© OpenStreetMap contributors")
+```
+
+It should be of no surprise that visually we can of course see some defined clusters of our points around the various train stations. We can then utilise this resulting dataset to calculate the percentage of bike thefts have occured at this distance - but first we will look at the spatial query approach to obtaining the same data.
+
+#### Spatial queries
+Like earlier, we can use the `st_is_within_distance()` function to identify those bike thefts that fall within 400m of a tube or train station in London.
+We will again need to use the **single geometry** version of our `london_stations_osm` spatial dataframe for this comparison - and again use `sparse = FALSE` to create a matrix that we simply join back to our `bike_theft_2019` spatial dataframe as a new column:
+
+```{r 06-check-missing-nodes, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# compare our two point geometries to identify missing stations
+bike_theft_2019$nr_train_400_sq <- st_is_within_distance(bike_theft_2019, london_stations_osm_compare, dist=400, sparse=FALSE)
+```
+
+We can compare the outputs of our two different approaches to check that we have the same output - either through our `count()` or mapping approach. If you were to do this you will see that we have achieved the exact same output - with fewer lines of code and, as a result, quicker processing. However, unlike with the geometric operations, we do not have a buffer to visualise this distance around a train station, which we might want to do for maps in a report or presentation, for example. Once again, it will be up to you to determine which approach you prefer to use - some people prefer using the more visual techniques of **geometric operations**, whereas others might find **spatial queries** to answer the same questions.
+
+#### Theft at train and tube locations?
+Now we have, for each bike theft in our `bike_theft_2019` spatial dataframe, an attribute of whether it occurs within 400m of a train or tube station.
+We can quite quickly use the `count()` function to find out just how many thefts these clusters of theft represent.
+
+```{r 06-intersect-count, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# count the number of bike thefts occuring 400m within a station
+count(bike_theft_2019, nr_train_400)
+```
+Over 40 per cent of bike thefts occur within 400m of a train station - that is quite a staggering amount, but if we consider commuter behaviour - and certain "crime theories" such as routine activity theory - this occurence is not be unexpected. After all, if a bike is left at a train station, it is unlikely to be watched by a 'suitable guardian' nor is a simple bike lock likely to deter a thief, making it  a 'suitable target'. Furthermore, train stations are often located in areas of high areas of daytime populations - particularly in London.  Overall, our main hypothesis - that bike thefts occur primarily near train and tube stations - is perhaps not quite proven, but so far we have managed to quantify that a substantial amount of bike thefts do occur within 400m of these areas.
+
+In a final step, we will conduct a very familiar procedure: aggregating our data to the ward level. At the moment, we have now calculated for each bike theft whether or not it occurs within 400m of a tube or train station. We can use this to see if specific wards are **hotspots** of bike crimes near stations across London. To do this, we’ll be using the same process we used in QGIS - counting **the number of points in each of our polygons**, i.e. the number of bike thefts in each ward.
+
+To create a PIP count within sf, we use the `st_intersects()` function again - but instead of using the matrix output of `TRUE` or `FALSE` that we have used before, what we actually want to extract from our function is the total number of points it identifies as intersecting with our `london_ward_shp` spatial dataframe. To achieve this, we use the `lengths()` function from the `base` R package to count the number of wards returned within the index list its `sparse` output creates. 
+
+Remember, this `sparse` output creates a list of the bike thefts (by their index) that intersect with each ward - therefore, the `lengths()` function will return the length of this list, i.e. how many bike thefts each ward contains or, in other words, a **Point-in-Polygon** count. This time around therefore we do not set the `sparse` function to `FALSE` but leave it as `TRUE` (its default) by not entering the parameter. As a result, we can calculate the number of bike thefts per ward and the number of bike thefts within 400m of a station per ward and use this to generate a **theft rate** for each ward of the number of bikes thefts that occur near a train station for identification of these **hotspots**.
+
+Calculate the number of bike thefts per ward and the number of bike thefts within 400m of a station per ward using the PIP operation via `intersects()`:
+```{r 06-intersect-test-2, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# run a PIP for total number of bike thefts occuring within a ward using st_intersects function
+london_ward_shp$total_bike_theft <- lengths(st_intersects(london_ward_shp, bike_theft_2019))
+
+# run a PIP for number of bike thefts within 400m of train station within a ward using st_intersects function
+london_ward_shp$nr_station_bike_theft <- lengths(st_intersects(london_ward_shp, filter(bike_theft_2019, nr_train_400 == TRUE)))
+```
+
+As you can see from the code above, we’ve now calculated our total bike theft and bike theft near a train station for each ward. The final step in our processing therefore is to create our rate of potentially station-related bike theft = bike theft near train station / total bike theft.
+
+:::note
+**Note** <br />
+We are looking specifically at the phenomena of whether bike theft occurs near to a train or tube station or not. By normalising by the total bike theft, we are creating a rate that shows specifically where there are hotspots of bike theft near train stations. This, however, will be of course influenced by the number of train stations within a ward, the size of the ward, and of course the number of bikes and potentially daytime and residential populations within an area.
+:::
+
+Calculate the rate of bike theft within 400m of a train or tube station out of all bike thefts for each ward:
+```{r 06-rate-calc, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# calculate the rate of bike thefts within 400m of train or tube station
+london_ward_shp$btns_rate <- (london_ward_shp$nr_station_bike_theft/london_ward_shp$total_bike_theft)*100
+```
 
 ## Assignment {#assignment-w06}
+Now we worked through all this, for this week's assignment:
+
+1. Create a proper map of the rate of bike thefts within 400m of a train or tube station.
+2. Re-run the above analysis at four more distances: **100m**, **200m**, **300m**, **500m** and calculate the percentage of bike theft at these different distances. You can choose whether you would like to use the **geometric operations** or **spatial queries** approach. What do you think could explain the substantial differences in counts as we increase away from the train station from 100 to 200m?
 
 ## Before you leave {#byl-w06}
+And that is how you can conduct basic geometric operations and spatial queries using R and `sf`. Of course: more RGIS in the coming weeks, but [this concludes the tutorial for this week](https://www.youtube.com/watch?v=Ydg4T2MP7Z8).

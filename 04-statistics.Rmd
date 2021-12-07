@@ -455,7 +455,7 @@ We can rename our data frame column field names by using the `names()` function.
 ?names
 ```
 
-As you can see, the function will get or set the names of an object, with renaming occuring by using the following syntax: `names(x) <- value`
+As you can see, the function will get or set the names of an object, with renaming occurring by using the following syntax: `names(x) <- value`
 
 The value itself needs to be *a character vector of up to the same length as x, or NULL.* We have two columns in our data frame, so we need to parse our `names()` function with a character vector with **two elements**. In the console, we shall enter two lines of code, one after another. First our character vector with our new names, `new_names <- c("year", "page_nos")`, and then the `names()` function containing this vector for renaming, `names(giss_df) <- new_names`:
 

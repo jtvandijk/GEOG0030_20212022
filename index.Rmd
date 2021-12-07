@@ -17,6 +17,7 @@ url: 'https\://jtvandijk.github.io/GEOG0030/'
 ```{r echo=FALSE, out.width = "100%", fig.align='center', cache=TRUE,}
 knitr::include_graphics('images/general/geocomputation_welcome.png') 
 ```
+
 <br />
 
 ## Welcome {-}

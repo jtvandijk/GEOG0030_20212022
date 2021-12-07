@@ -16,6 +16,7 @@ fig:04-download-crimes
 fig:04-organised-crime
 fig:unnamed-chunk-13
 fig:unnamed-chunk-14
+fig:unnamed-chunk-15
 geocomputation-an-introduction
 recording-w01
 reading-w01
@@ -116,7 +117,13 @@ bike-theft-in-london
 housekeeping-w06
 loading-data-w06
 data-preparation-w06
+spatial-operations-i
 geometric-operations
+spatial-queries
+spatial-operations-ii
+geometric-operations-1
+spatial-queries-1
+theft-at-train-and-tube-locations
 assignment-w06
 byl-w06
 analysing-spatial-patterns-ii-spatial-autocorrelation
@@ -139,5 +146,3 @@ recording-w10
 reading-w10
 assignment-w10
 byl-w10
-fig:unnamed-chunk-1
-fig:unnamed-chunk-6
