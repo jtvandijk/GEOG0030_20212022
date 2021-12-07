@@ -190,7 +190,7 @@ print(str_variable)
 
 We have just used our first function: `print()`. This function actively finds the variable and then returns this to our screen. You can type `?print` into the console to find out more about the `print()` function. 
 
-```{r 04-var4, warnings=FALSE, message=FALSE, eval=FALSE, tidy=TRUE}
+```{r 04-var4, warnings=FALSE, message=FALSE, eval=FALSE, tidy=FALSE}
 # gain access to the documentation for our print function
 ?print
 ```
@@ -392,7 +392,7 @@ Type `giss_year_nos <- matrix(c(giss_year, giss_page_no), ncol=2)` into the cons
 # create a new matrix from our two vectors with two columns
 giss_year_nos <- matrix(c(giss_year, giss_page_no), ncol=2)
 # note the inclusion of a new argument to our matrix: ncol=2
-# this stands for "number of columns" and we want two.
+# this stands for "number of columns" and we want two
 ```
 
 Type `print(giss_year_nos)` into the console and execute to check the result.
@@ -450,7 +450,7 @@ You should now see a table pop-up as a new tab on your script window. It is now 
 ### Column names
 We can rename our data frame column field names by using the `names()` function. Before we do this, have a read of what the `names()` function does. Still in your **console**, type: `?names`
 
-```{r 04-names-help, warnings=FALSE, message=FALSE, eval=FALSE , tidy=TRUE}
+```{r 04-names-help, warnings=FALSE, message=FALSE, eval=FALSE , tidy=FALSE}
 # get the help documentation for the names function
 ?names
 ```
