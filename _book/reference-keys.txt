@@ -111,8 +111,10 @@ byl-w05
 analysing-spatial-patterns-i-geometric-operations
 recording-w06
 reading-w06
-bike-theft
+bike-theft-in-london
 housekeeping-w06
+loading-data-w06
+data-preparation-w06
 assignment-w06
 byl-w06
 analysing-spatial-patterns-ii-spatial-autocorrelation
@@ -135,9 +137,3 @@ recording-w10
 reading-w10
 assignment-w10
 byl-w10
-bike-data
-fig:unnamed-chunk-1
-section
-bike-theft-in-london
-loading-data-w06
-data-preparation-w06
