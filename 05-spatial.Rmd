@@ -23,7 +23,7 @@ Before we get started, we first need to head back to our script from last week, 
 3. Run your full script to and **including** the code that **filters** our large `all_crime_df` to only the `all_theft_df`.
 4. Scroll to the bottom of the script and enter the following code and execute:
 
-```{r 05-export-theft-data-frame, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-export-theft-data-frame, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # write out the theft_crime_df to a csv within our raw crime data folder
 write.csv(all_theft_df,"data/raw/crime/crime_theft_2020_london.csv", row.names = FALSE)
 ```
@@ -38,21 +38,21 @@ You should now see a new `csv` within your raw crime data folder (`data/raw/crim
 1. Open a new script within your GEOG0030 project and save this script as `wk5-crime-spatial-processing.r`.
 2. At the top of your script, add the following metadata (substitute accordingly):
 
-```{r 05-scr-title, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-scr-title, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # Analysing crime in 2020 by month and ward
 # Date: January 2021
 # Author: Justin 
 ```
 
 3. Using the R console, install the following new libraries:
-```{r 05-oinstall-libs-all, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-oinstall-libs-all, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # install libraries
 install.packages(c('sf','tmap','janitor'))
 ```
 
 4. Now let us add **all** of the libraries we will be using today to the top of our script:
 
-```{r 05-scr-libs-all, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-scr-libs-all, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # libraries
 library(tidyverse)
 library(sf)
@@ -62,7 +62,7 @@ You are already familiar with the `tidyverse` library, but now we adding `sf` to
 
 1. First, let's load our `crime_theft_2020_london.csv` into a dataframe called `all_theft_df`. 
 
-```{r 05-load-csv, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-load-csv, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # read in our crime_theft_2020_london csv from our raw crime data folder
 all_theft_df <- read_csv("data/raw/crime/crime_theft_2020_london.csv")
 ``` 
@@ -70,7 +70,7 @@ We can double-check what our `csv` looks like by either viewing our data or simp
   
 2. Call the `head()` function on our data to check the first five rows:
 
-```{r 05-head-csv, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-head-csv, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # check the first five rows of our all_theft dataframe
 head(all_theft_df)
 ``` 
@@ -79,7 +79,7 @@ You should see these rows display in your console. Great, the data set looks as 
 
 Next, let's add our `ward_population_2019.shp`. We will store this as a variable called `ward_population` and use the `sf` library to load the data:
 
-```{r 05-load-shp, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-load-shp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # read in our ward_population_2019 shp from our working data folder
 ward_population <- st_read("data/working/ward_population_2019.shp", stringsAsFactors = FALSE)
 ``` 
@@ -89,7 +89,7 @@ You should now see the `ward_population` variable appear in your environment win
 As this is the first time we have loaded spatial data into R, let's go for a little exploration of how we can interact with our spatial data frame. The first thing we want to do when we load spatial data is, of course, map it to see its ‘spatiality’ or rather how the data looks from a spatial perspective. To do this, we can use a really simple command from R’s base library: `plot()`. As we do not necessarily want to plot this data everytime we run this script in the future, we will type this command into the console as a “one-off”.
 
 In your **console**, plot our new spatial data:
-```{r 05-plot-wardpop, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-plot-wardpop, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # plot our ward_population data
 plot(ward_population)
 ``` 
@@ -104,7 +104,7 @@ This `plot()` function is not to be used to make maps - but simply as a quick wa
 We can also find out more information about our `ward_population` data.
 
 2. Let's next check out our class of our data. Again, **in the console** type:
-```{r 05-class-wardpop, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-class-wardpop, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # find out the class of our ward_population data
 class(ward_population)
 ``` 
@@ -112,7 +112,7 @@ class(ward_population)
 We should see our data is an `sf` dataframe, which is great as it means we can utilise our `tidyverse` libraries with our `ward_population`. We can also use the `attributes()` function we looked at last week to find out a little more about the spatial part of our data frame.
 
 3. Again, in the **console** type:
-```{r 05-att-wardpop, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-att-wardpop, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # find out the attributes of our ward_population data
 attributes(ward_population)
 ``` 
@@ -123,7 +123,7 @@ We can investigate this column a little more by **selecting** this column within
 
 4. In the **console** type:
 
-```{r 05-geom-wardpop, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-geom-wardpop, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # get info about the geometry of our ward_population data
 ward_population$geometry
 ``` 
@@ -145,7 +145,7 @@ As we should know, our `ward_population` data was created and exported within **
 
 We could also actually find out this information using the `st_crs()` function from the `sf` library.
 
-```{r 05-crs-wardpop, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-crs-wardpop, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # find out the CRS of our ward_population data
 st_crs(ward_population)
 ``` 
@@ -173,7 +173,7 @@ In our case, we will actually join our look-up table to our current `all_theft_d
 2. Move this file in your **data** -> **raw** -> **boundaries** folder and rename to `data/raw/boundaries/lsoa_ward_lookup.csv`.
 3. Load the dataset using the `read_csv()` function. Do not worry if you have a few "parsing" failures, the table should still work fine.
     
-```{r 05-lookup-csv, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-lookup-csv, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # read in our lsoa_ward_lookup csv from our raw boundaries data folder
 lsoa_ward_lookup <- read_csv("data/raw/boundaries/lsoa_ward_lookup.csv")
 ``` 
@@ -218,7 +218,7 @@ It looks like we're going to need to use our `left_join()` function as we want t
 
 1. Within your **script**, create a join between our two dataframes and store as a new variable:
 
-```{r 05-ward-lsoa-lookup-csv, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-ward-lsoa-lookup-csv, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # join lsoa_ward_lookup rows to the all_theft_df on our two lsoa code fields
 all_theft_ward_df <- left_join(all_theft_df, lsoa_ward_lookup, by = c("lsoa_code" = "LSOA11CD"))
 ``` 
@@ -227,7 +227,7 @@ Let's go ahead and check our join - we want to check that our LSOA codes and nam
 
 2. In your **console**, check the first five rows of our new data frame:
 
-```{r 05-join-check, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-join-check, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # check our join via the first five rows
 head(all_theft_ward_df)
 ``` 
@@ -251,35 +251,35 @@ As you can see from the video, there are two common approaches to selection and 
 #### Selection with base R
 The most basic approach to selecting and slicing within programming relies on the principle of using **indexes** within our data structures. Indexes actually apply to any type of data structure, from single atomic vectors to complicated data frames as we use here. Indexing is the numbering associated with each element of a data structure. For example, if we create a simple vector that stores three strings:
 
-```{r 05-select-1, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-select-1, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # store a simple vector of three strings
 simple_vector <- c("Aa", "Bb", "Cc", "Dd", "Ee", "Ff", "Gg")
 ```
 
 R will assign each element (i.e. string) within this simple vector with a number: Aa = 1, Bb = 2, Cc = 3 and so on. Now we can go ahead and select each element by using the base selection syntax which is using square brackets after your element's variable name, as so:
 
-```{r 05-select-1b, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-select-1b, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # select the first element of our variable ss
 simple_vector[1]
 ```
 
 Which should return the first element, our first string containing "Aa". You could change the number in the square brackets to any number up to 7 and you would return each specific element in our vector. However, say you do not want the first element of our vector but the second to fifth elements. To achieve this, we conduct what is known in programming as a **slicing** operation, where, using the `[]` syntax, we add a colon `:` to tell R where to **start** and where to **end** in creating a selection, known as a **slice**:
 
-```{r 05-slice-1, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-slice-1, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # select the second to fifth element of our vector, creating a 'slice' of our vector
 simple_vector[2:5]
 ```
 
 You should now see our 2nd to 5th elements returned. Now what is super cool about selection and slicing is that we can add in a simple **- (minus)** sign to essentially reverse our selection. So for example, we want to return everything **but** the 3rd element:
 
-```{r 05-slice-2, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-slice-2, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # select everything but the third element of our vector
 simple_vector[-3]
 ```
 
 And with a slice, we can use the minus to slice **out** parts of our vector, for example, remove the 2nd to the 5th elements (note the use of a minus sign for **both**):
 
-```{r 05-slice-3, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-slice-3, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # select the second to fifth element of our vector, creating a 'slice' of our vector
 simple_vector[-2:-5]
 ```
@@ -293,56 +293,56 @@ We can also apply these selection techniques to data frames, but we will have a 
 
 There are many ways we can use this syntax, which we will show below using our `lsoa_ward_lookup` data frame. First, before looking through and executing these examples (in your console) familiarise yourself with the `lsoa_ward_lookup` data frame:
 
-```{r 05-lsoalueg-1, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-lsoalueg-1, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # view lsoa_ward_lookup dataframe, execute this code in your console
 View(lsoa_ward_lookup)
 ```
 
 To select a single column from your data frame, you can use one of two approaches. First we can follow the syntax above carefully and simply set our column parameter in our syntax above to the number 2:
 
-```{r 05-lsoalueg-2, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-lsoalueg-2, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # select the 2nd column from the data frame
 lsoa_ward_lookup[,2]
 ```
 
 You should see your second column display in your console. Second, we can actually select our column by only typing in the number (no need for the comma). By default, when there is only **one** argument present in the selection brackets, R will select the column from the data frame, not the row:
 
-```{r 05-lsoalueg-3, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-lsoalueg-3, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # select the 2nd column from the data frame, Opt 2
 lsoa_ward_lookup[2]
 ```
 
 To **select a specific row**, we need to add in a comma after our number - this will tell R to select the relevant row instead:
 
-```{r 05-lsoalueg-4, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-lsoalueg-4, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # select the 2nd row from the data frame
 lsoa_ward_lookup[2,]
 ```
 
 You should see your second row appear. Now, to select a specific cell in our data frame, we simply provide both arguments in our selection parameters:
 
-```{r 05-lsoalueg-5, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-lsoalueg-5, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # select the value at the 2nd row and 2nd column in the data frame
 lsoa_ward_lookup[2,2]
 ```
 
 What is also helpful in R is that we can select our columns by their field names by passing these field names to our selection brackets as a string. For a single column:
 
-```{r 05-lsoalueg-6, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-lsoalueg-6, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # select the LSOA11NM column (2nd column) by name
 lsoa_ward_lookup["LSOA11NM"]
 ```
 
 Or for more than one columns, we can supply a combined vector:
 
-```{r 05-lsoalueg-7, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-lsoalueg-7, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # select the LSOA11CD (1st column) and LSOA11NM column (2nd column) by name
 lsoa_ward_lookup[c("LSOA11CD", "LSOA11NM")]
 ```
 
 To retrieve our 2nd - 4th columns in our data frame, we can use:
 
-```{r 05-lsoalueg-8, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-lsoalueg-8, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # select the 2nd to 4th columns from our data frame
 lsoa_ward_lookup[2:4]
 
@@ -352,28 +352,28 @@ lsoa_ward_lookup[2:4]
 
 We can also apply the negative
 
-```{r 05-lsoalueg-9, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-lsoalueg-9, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # select everything but the 2nd to 4th columns from our data frame
 lsoa_ward_lookup[-2:-4]
 ```
 
 If you do not want a slide, we can also provide a combined list of the columns we want to extract:
 
-```{r 05-lsoalueg-10, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-lsoalueg-10, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # select the 2nd, 3rd, 4th and 7th columns from our data frame
 lsoa_ward_lookup[c(2, 3, 4, 7)]
 ```
 
 We can apply this slicing approach to our rows:
 
-```{r 05-lsoalueg-11, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-lsoalueg-11, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # select the 2nd to 4th rows from our data frame
 lsoa_ward_lookup[2:4,]
 ```
 
 As well as a negative selection:
 
-```{r 05-lsoalueg-12, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-lsoalueg-12, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # select everything but the 2nd to 4th rows from our data frame
 lsoa_ward_lookup[-2:-4,]
 ```
@@ -386,7 +386,7 @@ Instead of using the square brackets `[]` syntax, we now have functions that we 
 
 For **both** functions, we can also use the negative `-` approach we saw in the base R approach to "reverse a selection", e.g.:
 
-```{r 05-lsoalueg-13, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-lsoalueg-13, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # select column 2
 select(lsoa_ward_lookup, 2)
 
@@ -419,7 +419,7 @@ To use this function, we provide our function with a single or list of the colum
 
 In your script, add the following code to extract only the relevant columns we need for our future analysis:
 
-```{r 05-select-rel-columns, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-select-rel-columns, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # reduce our data frame using the select function
 all_theft_ward_df <- select(all_theft_ward_df, crime_id, month, longitude, latitude, lsoa_name, lsoa_code, crime_type, WD18CD, WD18NM)
 ``` 
@@ -439,7 +439,7 @@ In our workflow, we have so far:
 Let's see how we can combine this process into a single line of code:
 
 **Option 1: Original code, added pipe**
-```{r 05-speedy-1, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-speedy-1, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # join dataframes, then select only relevant columns
 all_theft_ward_df_speedy_1 <- left_join(all_theft_df, lsoa_ward_lookup, by = c("lsoa_code" = "LSOA11CD")) %>% select(crime_id, month, longitude, latitude, lsoa_name, lsoa_code, crime_type, WD18CD, WD18NM)
 ``` 
@@ -447,7 +447,7 @@ all_theft_ward_df_speedy_1 <- left_join(all_theft_df, lsoa_ward_lookup, by = c("
 You should see that we now end up with a data frame akin to our final output above - the same number of observations and variables, all from one line of course. We could also take another approach in writing code, by completing our selection **prior** to our join, which would mean having to write out fewer field names when piping this output into our join:
 
 **Option 2: New code, remove columns first**
-```{r 05-speedy-2, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-speedy-2, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # select the relevant fields from the lookup table, then join to dataframe
 all_theft_ward_df_speedy_2 <- select(lsoa_ward_lookup, LSOA11CD, WD18CD, WD18NM) %>% right_join(all_theft_df, by = c( "LSOA11CD" = "lsoa_code"))
 ``` 
@@ -461,7 +461,7 @@ The `group_by()` function creates a "grouped" copy of the table (in memory) - th
 
 If we solely run the `group_by()` function, we won't really see this effect on its own - instead we need to add our summarising function -in our case the `count()` function, which "counts the number of rows in each group defined by the variables provided within the function, in our case, `month`.
 
-```{r 05-group-ward-count-month, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-group-ward-count-month, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # group our crimes by ward, then count the number of thefts occurring in each month
 theft_count_month_ward <- group_by(all_theft_ward_df, WD18CD) %>% count(month)
 ``` 
@@ -481,7 +481,7 @@ knitr::include_graphics('images/w05/pivot_wider.png')
 
 If we read through the documentation, we can figure our that our two parameters of interest are the `names_from` and `values_from` fields. We use the `names_from` parameter to set our `month` column as the column from which to derive output fields from, and the `values_from` field as our `n` field (count field) to set our values. As we do not have a field that uniquely identifies each of our rows, we can not use the `id_cols` parameter. We will therefore need to state the parameters in our code to make sure the function reads in our fields for the right parameter:
 
-```{r 05-pivot-theft-month, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-pivot-theft-month, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # pivot wider
 theft_by_ward_month_df <- pivot_wider(theft_count_month_ward, names_from = month, values_from = n)
 
@@ -491,14 +491,14 @@ theft_by_ward_month_df
 
 One final thing we want to do is clean up the names of our fields to mean a little more to us. Let's transform our numeric dates to text dates (and change our `WD18CD` in the process).
 
-```{r 05-rename-fields-df, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-rename-fields-df, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # rename columns
 names(theft_by_ward_month_df) <- c('ward_code', 'jan_2020', 'feb_2020', 'mar_2020', 'apr_2020', 'may_2020', 'jun_2020', 'jul_2020', 'aug_2020', 'sept_2020', 'oct_2020', 'nov_2020','dec_2020')
 ```
 
 Write out the completed theft table to a new `csv` file for future reference:
 
-```{r 05-export-theft-by-ward-month, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-export-theft-by-ward-month, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # write out the theft_crime_df to a csv within our working data folder
 write.csv(theft_by_ward_month_df, "data/working/theft_by_ward_per_month_2020.csv", row.names = FALSE)
 ```
@@ -508,7 +508,7 @@ We are now getting to the final stages of our data processing - we just need to 
 
 Let's go ahead and use the same `left_join()` function to join our two data frames together - in this case, we want to keep all rows in our `ward_population` spatial data frame, so this will be our `x` data frame, whilst the `theft_by_ward_month_df` will be our `y`.
 
-```{r 05-theft-ward-join, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-theft-ward-join, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # join theft by month to the correct wards in our ward_population data frame
 all_theft_ward_sdf <- left_join(ward_population, theft_by_ward_month_df, by = c("GSS_CODE" = "ward_code"))
 ``` 
@@ -517,14 +517,14 @@ To double-check our join, we want to do one extra step of **quality checks** - w
 
 We can compute a new column by using the `mutate()` function from the `dplyr` library. We use the `rowsums()` function from the base library to compute the sum of rows and we use the `across()` function from the `dplyr` library to identify the columns for which we want to know the sum.
 
-```{r 05-total-theft-column, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-total-theft-column, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # total number of thefts for each ward, create new column
 all_theft_ward_sdf <- all_theft_ward_sdf %>% mutate(theft_total = rowSums(across(8:19), na.rm = T))
 ``` 
 
 You can now `View()` our updated `all_theft_ward_sdf` spatial data frame - and sort out columns to see those with a `theft_total` of 0. What you should see is that we have approximately 20 City of London wards without data, whilst we do indeed have 10 additional wards without data. This seems not unlikely, so we can move forward with our data set as it is, but what we will need to do is adjust the values present within these wards prior to our visualisation analysis - these should not have `NA` as their value but rather `0.` In comparison our City of London wards should only contain `NA`. To make sure our data is as correct as possible prior to visualisation, we will remove our City of London wards that do not have any data (crime or population), and then convert the `NA` in our theft counts to `0`.
 
-```{r 05-tidy-tidy, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-tidy-tidy, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # filter out City of London wards with a crime count of 0 or a population of 0
 all_theft_ward_sdf <- filter(all_theft_ward_sdf, theft_total > 0 | DISTRICT != "City and County of the City of London") 
 
@@ -539,7 +539,7 @@ The final step we need to take before we can map our theft data is, of course, c
 
 Once again, after a bit of searching, we can find out that the `mutate()` function comes in handy - and we can follow a specific approach in our code that allows us to apply the above equation to all of our columns within our data frame. Now this is certainly a big jump in terms of complexity of our code - below, we are going to store within our `crime_rate` variable our own function that calculates crime rate on a given value, currently called `x`, but will be (through our second line our code) each individual cell within our `all_theft_ward_sdf` spatial data frame contained within our month columns (using the `mutate_at()` function).
 
-```{r 05-crime-rate-calc, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-crime-rate-calc, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # create a new function called crime rate, which takes an argument, x, and the crime rate calculation
 crime_rate = function(x, na.rm = FALSE) ((x/all_theft_ward_sdf$pop2019)*10000)
 
@@ -554,14 +554,14 @@ For making our maps, we will be using one of two main visualisation libraries th
 
 We can use this function to plot the theft crime rate for one of our months really quickly. Within your script, use the `qtm` function to create a map of theft crime rate in London in January 2020.
 
-```{r 05-jan-2020-cr, warnings=FALSE, message=FALSE, cache=TRUE,}
+```{r 05-jan-2020-cr, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # quick thematic map for January 2020
 qtm(theft_crime_rate_sdf, fill="jan_2020")
 ``` 
 
 In this case, the `fill` argument is how we tell `tmap` to create a choropleth map based on the values in the column we provide it with - if we simply set it to `NULL`, we would only draw the borders of our polygon (you can try this out in your console if you'd like). Within our `qtm` function, we can pass quite a few different parameters that would enable us to change specific aesthetics of our map - if you go ahead and look up the documentation for the function, you will see a list of these parameters. We can, for example, set the lines of our ward polygons to white by adding the `borders` parameter:
 
-```{r 05-jan-2020-cr-white, warnings=FALSE, message=FALSE, cache=TRUE}
+```{r 05-jan-2020-cr-white, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # quick thematic map for January 2020, include white borders
 qtm(theft_crime_rate_sdf, fill="jan_2020", borders = "white")
 ``` 
@@ -674,10 +674,10 @@ tm_shape(theft_crime_rate_sdf) +
   # specifying fixed breaks, colour palette, and borders
   tm_polygons(col = "jan_2020", n = 5, style = "fixed", 
               breaks = c(0, 5, 16, 40, 118, 434), 
-              palette="Blues", border.col="white", 
-              title="Rate per 10,000 people") + 
+              palette = "Blues", border.col = "white", 
+              title = "Rate per 10,000 people") + 
   # add title
-  tm_layout(main.title='Theft Crime January 2020', 
+  tm_layout(main.title = 'Theft Crime January 2020', 
             main.title.fontface = 2, 
             fontfamily = "Helvetica", 
             legend.outside = TRUE, 
@@ -685,7 +685,7 @@ tm_shape(theft_crime_rate_sdf) +
             legend.title.size = 1, 
             legend.title.fontface = 2) +
   # add North arrow
-  tm_compass(type="arrow", 
+  tm_compass(type = "arrow", 
              position = c("right", "bottom")) + 
   # add scale bar
   tm_scale_bar(breaks = c(0, 5, 10, 15, 20), 
@@ -710,10 +710,10 @@ tm_shape(theft_crime_rate_sdf) +
   # specifying fixed breaks, colour palette, and borders
   tm_polygons(col = "jan_2020", n = 5, style = "fixed", 
               breaks = c(0, 5, 16, 40, 118, 434), 
-              palette="Blues", border.col="white", 
-              title="Rate per 10,000 people") + 
+              palette = "Blues", border.col = "white", 
+              title = "Rate per 10,000 people") + 
   # add title
-  tm_layout(main.title='Theft Crime January 2020', 
+  tm_layout(main.title = "Theft Crime January 2020", 
             main.title.fontface = 2, 
             fontfamily = "Helvetica", 
             legend.outside = TRUE, 
@@ -721,7 +721,7 @@ tm_shape(theft_crime_rate_sdf) +
             legend.title.size = 1, 
             legend.title.fontface = 2) +
   # add North arrow
-  tm_compass(type="arrow", 
+  tm_compass(type = "arrow", 
              position = c("right", "bottom")) + 
   # add scale bar
   tm_scale_bar(breaks = c(0, 5, 10, 15, 20), 
@@ -733,7 +733,7 @@ tmap_save(jan2020_map, filename = "maps/jan2020_theft_crime_map.png")
 
 We also want to export the rest of our hard work in terms of data wrangling that we have completed for this practical - so let's go ahead and export our data frames so we can use them in future projects.
 
-```{r 05-export-data-frames, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE}
+```{r 05-export-data-frames, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # write out the all_theft_ward_sdf to a shapefile within our working data folder
 st_write(theft_crime_rate_sdf,"data/working/theft_rate_by_ward_per_month_2020.shp", row.names = FALSE)
 # write out the all_theft_ward_sdf to a shapefile within our working data folder

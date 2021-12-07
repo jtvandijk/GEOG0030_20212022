@@ -1,10 +1,6 @@
 # (PART\*) Foundational Concepts {-}
 # Geocomputation: An Introduction
-This week’s lecture provided you with a thorough introduction into what is Geocomputation, outlining how and why it is different to a traditional ‘GIScience’ course.
-
-We set the scene for the remainder of the module and explained how the foundational concepts that you will learn about in the first half of term fit together to form the overall Geocomputation curriculum.
-
-For this week only, there is no practical but you will need to complete a few practical tasks in preparation for our future practicals.
+This week’s lecture provided you with a thorough introduction into what is Geocomputation, outlining how and why it is different to a traditional ‘GIScience’ course. We set the scene for the remainder of the module and explained how the foundational concepts that you will learn about in the first half of term fit together to form the overall Geocomputation curriculum. There is no actual computer practical this week, but you will need to complete a few practical tasks in preparation for our future practicals.
 
 ## Lecture recording {#recording-w01}
 - Lecture W1
@@ -27,7 +23,7 @@ This course primarily uses the [R](https://www.r-project.org/) programming langu
 
 :::note
 **Note**<br/>
-Please follow the instructions below to install both [R](https://www.r-project.org/) and [QGIS](https://qgis.org/en/site/) onto your own personal computer. Please make sure everything works **before** the first hands-on practical session next week.
+Please follow the instructions below to install both [R](https://www.r-project.org/) and [QGIS](https://qgis.org/en/site/) onto your own personal computer. If you cannot install the software on your personal computer or you are not planning to bring your own laptop to the computer practicals, please refer to the [UCL Desktop and RStudio Server](#ucl) section below. Please make sure that you have access to a working installation of both R and QGIS **before** the first hands-on practical session next week.
 :::
 
 ### QGIS Installation
@@ -53,15 +49,15 @@ That is it! You now have installed the latest version of R on your own machine. 
 1. Navigate to the official webpage of RStudio: [[Link]](https://www.rstudio.com/products/rstudio/download/#download)
 2. Download and install RStudio Desktop on your computer (**free version!**)
 
-After this, start RStudio to see if the installation was successful. 
+After this, start RStudio to see if the installation was successful and no errors are shown after start up.
 
-### UCL Desktop and RStudio Server
-As an alternative to installing QGIS and R with RStudio on your personal device, there are some other options. Firstly, both programmes are available through [Desktop@UCL Anywhere](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere) as well as all UCL computers on campus. In case of R, there is also an RStudio server version available which you can accesst through your web browser: [[Link]](https://rstudio.data-science.rc.ucl.ac.uk/) 
+### UCL Desktop and RStudio Server {#ucl}
+As an alternative to installing QGIS and R with RStudio on your personal device, there are some other options. Firstly, both programmes are available through [Desktop@UCL Anywhere](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere) as well as all UCL computers on campus. In case of R, there is also an RStudio server version available which you can access through your web browser: [[Link]](https://rstudio.data-science.rc.ucl.ac.uk/) 
 
 You should be able to log in with your normal UCL username and password. After logging in, you should see the RStudio interface appear. 
 
 ```{r 01-rstudio-interface, echo=FALSE, fig.align='center', fig.cap='The RStudio Server interface.'}
-knitr::include_graphics('images/w01/01_rstudio_interface.png')
+knitr::include_graphics('images/w01/rstudio_interface.png')
 ```
 
 :::note
@@ -83,9 +79,9 @@ Recent developments in the ArcPro software, however, does make it an attractive 
 :::
 
 ## File management
-Establishing an organised file system, for both your data and your documents, is essential to working effectively and efficiently as a researcher, whether in Geocomputation, Spatial Data Science or any other application you might think of!
+Establishing an organised file system, for both your data and your documents, is essential to working effectively and efficiently as a researcher, whether in Geocomputation, Spatial Data Science or any other application you might think of.
 
-To get ready for our practicals, which start next week, we would like you to set-up a file management system as follows (either on your local computer, [Desktop@UCL Anywhere](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere) or [RStudio server](https://rstudio.data-science.rc.ucl.ac.uk/)).
+To get ready for our practicals, we would recommend you to set-up a file management system as follows (either on your local computer, [Desktop@UCL Anywhere](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere) or [RStudio server](https://rstudio.data-science.rc.ucl.ac.uk/)).
 
 1. Create a `GEOG0030` folder in your `Documents` folder on your computer (most likely inside a UCL or Undergraduate or Geography folder).
 2. Next, within your **GEOG0030** folder, create the following subfolders: 

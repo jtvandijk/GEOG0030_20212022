@@ -38,7 +38,7 @@ The topics covered over the next ten weeks are:
 | 4             | Foundational Concepts | [Programming for Data Analysis](programming-for-data-analysis.html) |
 | 5             | Foundational Concepts | [Programming for Spatial Analysis](programming-for-spatial-analysis.html) |
 |               | **Reading week** | **Reading week** |
-| 6             | Core Spatial Analysis | [Analysing Spatial Patterns I: Geometric Operations](analysing-spatial-patterns-i-geometric-operations.html) |
+| 6             | Core Spatial Analysis | [Analysing Spatial Patterns I: Geometric Operations and Spatial Queries](analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html) |
 | 7             | Core Spatial Analysis | [Analysing Spatial Patterns II: Spatial Autocorrelation](analysing-spatial-patterns-ii-spatial-autocorrelation.html) |
 | 8             | Core Spatial Analysis | [Analysing Spatial Patterns III: Point Pattern Analysis](analysing-spatial-patterns-iii-point-pattern-analysis.html) |
 | 9             | Advanced Spatial Analysis | [Rasters, Zonal Statistics and Interpolation](rasters-zonal-statistics-and-interpolation.html) | 

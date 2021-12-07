@@ -35,7 +35,7 @@ We are going to use a very light online tool that allows us to create digital da
 - How well do you think your line represents the River Thames?
 
 ## Population change in London
-The second part of this practical will introduces you to **attribute joins** and making a simple choropleth map. You will be using these joins throughout this module, so it is incredibly important that you understand how they work – even as simple as they may be!
+The second part of this practical will introduces you to **attribute joins** and making a simple choropleth map. You will be using these joins throughout this module, and probably the rest of your career, so it is incredibly important that you understand how they work – even as simple as they may be!
 
 :::note
 **Note**<br/>

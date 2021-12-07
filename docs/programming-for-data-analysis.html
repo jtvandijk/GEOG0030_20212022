@@ -54,6 +54,16 @@
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <link href="libs/vembedr-0.1.4/css/vembedr.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -159,7 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#qgis-installation"><i class="fa fa-check"></i><b>1.4.1</b> QGIS Installation</a></li>
 <li class="chapter" data-level="1.4.2" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#r-and-rstudio-installation"><i class="fa fa-check"></i><b>1.4.2</b> R and RStudio Installation</a></li>
-<li class="chapter" data-level="1.4.3" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#ucl-desktop-and-rstudio-server"><i class="fa fa-check"></i><b>1.4.3</b> UCL Desktop and RStudio Server</a></li>
+<li class="chapter" data-level="1.4.3" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#ucl"><i class="fa fa-check"></i><b>1.4.3</b> UCL Desktop and RStudio Server</a></li>
 <li class="chapter" data-level="1.4.4" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#a-note-on-arcgis"><i class="fa fa-check"></i><b>1.4.4</b> A note on ArcGIS</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#file-management"><i class="fa fa-check"></i><b>1.5</b> File management</a></li>
@@ -206,7 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#rstudio-console"><i class="fa fa-check"></i><b>4.5</b> RStudio console</a>
 <ul>
 <li class="chapter" data-level="4.5.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#command-input"><i class="fa fa-check"></i><b>4.5.1</b> Command Input</a></li>
-<li class="chapter" data-level="4.5.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#storing-variables"><i class="fa fa-check"></i><b>4.5.2</b> Storing Variables</a></li>
+<li class="chapter" data-level="4.5.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#storing-variables"><i class="fa fa-check"></i><b>4.5.2</b> Storing variables</a></li>
 <li class="chapter" data-level="4.5.3" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#accessing-and-returning-variables"><i class="fa fa-check"></i><b>4.5.3</b> Accessing and returning variables</a></li>
 <li class="chapter" data-level="4.5.4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#variables-of-different-data-types"><i class="fa fa-check"></i><b>4.5.4</b> Variables of different data types</a></li>
 <li class="chapter" data-level="4.5.5" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#calling-functions-on-our-variables"><i class="fa fa-check"></i><b>4.5.5</b> Calling functions on our variables</a></li>
@@ -255,18 +265,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#byl-w05"><i class="fa fa-check"></i><b>5.5</b> Before you leave</a></li>
 </ul></li>
 <li class="part"><span><b>Core Spatial Analysis</b></span></li>
-<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Geometric Operations</a>
+<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Geometric Operations and Spatial Queries</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#recording-w06"><i class="fa fa-check"></i><b>6.1</b> Lecture recording</a></li>
-<li class="chapter" data-level="6.2" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#reading-w06"><i class="fa fa-check"></i><b>6.2</b> Reading list</a></li>
-<li class="chapter" data-level="6.3" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#bike-theft-in-london"><i class="fa fa-check"></i><b>6.3</b> Bike theft in London</a>
+<li class="chapter" data-level="6.1" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#recording-w06"><i class="fa fa-check"></i><b>6.1</b> Lecture recording</a></li>
+<li class="chapter" data-level="6.2" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#reading-w06"><i class="fa fa-check"></i><b>6.2</b> Reading list</a></li>
+<li class="chapter" data-level="6.3" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#bike-theft-in-london"><i class="fa fa-check"></i><b>6.3</b> Bike theft in London</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#housekeeping-w06"><i class="fa fa-check"></i><b>6.3.1</b> Housekeeping</a></li>
-<li class="chapter" data-level="6.3.2" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#loading-data-w06"><i class="fa fa-check"></i><b>6.3.2</b> Loading data</a></li>
-<li class="chapter" data-level="6.3.3" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#data-preparation-w06"><i class="fa fa-check"></i><b>6.3.3</b> Data preparation</a></li>
+<li class="chapter" data-level="6.3.1" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#housekeeping-w06"><i class="fa fa-check"></i><b>6.3.1</b> Housekeeping</a></li>
+<li class="chapter" data-level="6.3.2" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#loading-data-w06"><i class="fa fa-check"></i><b>6.3.2</b> Loading data</a></li>
+<li class="chapter" data-level="6.3.3" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#data-preparation-w06"><i class="fa fa-check"></i><b>6.3.3</b> Data preparation</a></li>
+<li class="chapter" data-level="6.3.4" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#geometric-operations"><i class="fa fa-check"></i><b>6.3.4</b> Geometric operations</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#assignment-w06"><i class="fa fa-check"></i><b>6.4</b> Assignment</a></li>
-<li class="chapter" data-level="6.5" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#byl-w06"><i class="fa fa-check"></i><b>6.5</b> Before you leave</a></li>
+<li class="chapter" data-level="6.4" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#assignment-w06"><i class="fa fa-check"></i><b>6.4</b> Assignment</a></li>
+<li class="chapter" data-level="6.5" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#byl-w06"><i class="fa fa-check"></i><b>6.5</b> Before you leave</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><i class="fa fa-check"></i><b>7</b> Analysing Spatial Patterns II: Spatial Autocorrelation</a>
 <ul>
@@ -414,7 +425,7 @@ You might need to click on the console window to get it to expand - you can then
 <p>Once you press return, you should see the answer of 120 returned below.</p>
 </div>
 <div id="storing-variables" class="section level3" number="4.5.2">
-<h3><span class="header-section-number">4.5.2</span> Storing Variables</h3>
+<h3><span class="header-section-number">4.5.2</span> Storing variables</h3>
 <p>Rather than use ‘raw’ or ‘standalone’ numbers and values, we primarily want to use variables that stores these values (or groups of them) under a memorable name for easy reference later. In R terminology this is called *creating an object<strong> and this object becomes stored as a </strong>variable**. The <code>&lt;-</code> symbol is used to assign the value to the variable name you have given. Let us create two variables for experimenting with.</p>
 <p>Type in <code>ten &lt;- 10</code> into the console and execute.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="programming-for-data-analysis.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store our ten variable</span></span>
@@ -469,7 +480,7 @@ You might need to click on the console window to get it to expand - you can then
 <pre><code>## [1] &quot;This is our 1st string variable&quot;</code></pre>
 <p>We have just used our first function: <code>print()</code>. This function actively finds the variable and then returns this to our screen. You can type <code>?print</code> into the console to find out more about the <code>print()</code> function.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="programming-for-data-analysis.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gain access to the documentation for our print function</span></span>
-<span id="cb17-2"><a href="programming-for-data-analysis.html#cb17-2" aria-hidden="true" tabindex="-1"></a>?print</span></code></pre></div>
+<span id="cb17-2"><a href="programming-for-data-analysis.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">?</span><span class="st">`</span>(print)</span></code></pre></div>
 <p>This can be used with any function to get access to their documentation which is essential to know how to use the function correctly and understand its output. In many cases, a function will take more than one argument or parameter, so it is important to know what you need to provide the function with in order for it to work. For now, we are using functions that only need one argument.</p>
 </div>
 <div id="returning-functions" class="section level3" number="4.5.6">
@@ -485,14 +496,16 @@ You might need to click on the console window to get it to expand - you can then
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>You should see the answer: <em>character</em>. As evident, our <code>str_variable</code> is a character data type. We can try testing this out on one of our earlier variables too.</p>
 <p>Type in <code>typeof(ten)</code> into the console and execute.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="programming-for-data-analysis.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call the typeof() function on ten variable to return the data type of our variable</span></span>
-<span id="cb20-2"><a href="programming-for-data-analysis.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(ten)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="programming-for-data-analysis.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call the typeof() function on ten variable to return the data type of our</span></span>
+<span id="cb20-2"><a href="programming-for-data-analysis.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># variable</span></span>
+<span id="cb20-3"><a href="programming-for-data-analysis.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(ten)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
 <p>You should see the answer: <em>double</em>. As evident, our <code>ten</code> is a double data type.</p>
 <p>For high-level objects that involve (more complicated) data structures, such as when we load a <code>csv</code> into R as a <strong>data frame</strong>, we are also able to check what <strong>class</strong> our object is, as follows:</p>
 <p>Type in <code>class(str_variable)</code> into the console and execute.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="programming-for-data-analysis.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call the class() function on str_variable to return the object of our variable</span></span>
-<span id="cb22-2"><a href="programming-for-data-analysis.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(str_variable)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="programming-for-data-analysis.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call the class() function on str_variable to return the object of our</span></span>
+<span id="cb22-2"><a href="programming-for-data-analysis.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># variable</span></span>
+<span id="cb22-3"><a href="programming-for-data-analysis.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(str_variable)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>In this case, you will get the same answer - <em>character</em> - because, in R, both its class and type are the same: a character. In other programming languages, you might have had <em>string</em> returned instead, but this effectively means the same thing.</p>
 <p>Type in <code>class(ten)</code> into the console and execute.</p>
@@ -508,13 +521,15 @@ You might need to click on the console window to get it to expand - you can then
 <p>Whilst knowing this might not seem important now, but when it comes to our data analysis, the difference of a decimal number versus a whole number can quite easily add bugs into our code. We can incorporate these tests into our code when we need to evaluate an output of a process and do some quality assurance testing of our data analysis.</p>
 <p>We can also ask how long our variable is - in this case, we will find out how many different sets of characters (strings) are stored in our variable, <code>str_variable</code>.</p>
 <p>Type in <code>length(str_variable)</code> into the console and execute.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="programming-for-data-analysis.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call the length() function on str_variable to return the length of our variable</span></span>
-<span id="cb28-2"><a href="programming-for-data-analysis.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(str_variable)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="programming-for-data-analysis.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call the length() function on str_variable to return the length of our</span></span>
+<span id="cb28-2"><a href="programming-for-data-analysis.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># variable</span></span>
+<span id="cb28-3"><a href="programming-for-data-analysis.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(str_variable)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>You should get the answer <code>1</code> - as we only have one set of characters. We can also ask how long each set of characters is within our variable, i.e. ask how long the string contained by our variable is.</p>
 <p>Type in <code>nchar(str_variable)</code> into the console and execute.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="programming-for-data-analysis.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call the nchar() function on str_variable to return the length of each of our elements within our variable</span></span>
-<span id="cb30-2"><a href="programming-for-data-analysis.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(str_variable)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="programming-for-data-analysis.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># call the nchar() function on str_variable to return the length of each of our</span></span>
+<span id="cb30-2"><a href="programming-for-data-analysis.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># elements within our variable</span></span>
+<span id="cb30-3"><a href="programming-for-data-analysis.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(str_variable)</span></code></pre></div>
 <pre><code>## [1] 31</code></pre>
 <p>You should get an answer of <code>31</code>.</p>
 </div>
@@ -627,9 +642,9 @@ In addition to make notes about the functions you are coming across in the works
 <p>In R, a matrix is simply an extension of the numeric or character vectors. They are not a separate type of object per se but simply a vector that has two dimensions. That is they contain both <strong>rows</strong> and <strong>columns</strong>. As with atomic vectors, the elements of a matrix must be of the <strong>same data type</strong>. As both our page numbers and our years are numeric, we can add them together to create a matrix using the <code>matrix()</code> function.</p>
 <p>Type <code>giss_year_nos &lt;- matrix(c(giss_year, giss_page_no), ncol=2)</code> into the console and execute.</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="programming-for-data-analysis.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new matrix from our two vectors with two columns</span></span>
-<span id="cb52-2"><a href="programming-for-data-analysis.html#cb52-2" aria-hidden="true" tabindex="-1"></a>giss_year_nos <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(giss_year, giss_page_no), <span class="at">ncol=</span><span class="dv">2</span>)</span>
-<span id="cb52-3"><a href="programming-for-data-analysis.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># note the inclusion of a new argument to our matrix: ncol=2</span></span>
-<span id="cb52-4"><a href="programming-for-data-analysis.html#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co"># this stands for &quot;number of columns&quot; and we want two.</span></span></code></pre></div>
+<span id="cb52-2"><a href="programming-for-data-analysis.html#cb52-2" aria-hidden="true" tabindex="-1"></a>giss_year_nos <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(giss_year, giss_page_no), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb52-3"><a href="programming-for-data-analysis.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># note the inclusion of a new argument to our matrix: ncol=2 this stands for</span></span>
+<span id="cb52-4"><a href="programming-for-data-analysis.html#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co"># &#39;number of columns&#39; and we want two.</span></span></code></pre></div>
 <p>Type <code>print(giss_year_nos)</code> into the console and execute to check the result.</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="programming-for-data-analysis.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(giss_year_nos)</span></code></pre></div>
 <pre><code>##      [,1] [,2]
@@ -675,12 +690,12 @@ In this case, the arguments the matrix needed to run were:</p>
 <h3><span class="header-section-number">4.6.5</span> Column names</h3>
 <p>We can rename our data frame column field names by using the <code>names()</code> function. Before we do this, have a read of what the <code>names()</code> function does. Still in your <strong>console</strong>, type: <code>?names</code></p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="programming-for-data-analysis.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the help documentation for the names function</span></span>
-<span id="cb57-2"><a href="programming-for-data-analysis.html#cb57-2" aria-hidden="true" tabindex="-1"></a>?names</span></code></pre></div>
+<span id="cb57-2"><a href="programming-for-data-analysis.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">?</span><span class="st">`</span>(names)</span></code></pre></div>
 <p>As you can see, the function will get or set the names of an object, with renaming occuring by using the following syntax: <code>names(x) &lt;- value</code></p>
 <p>The value itself needs to be <em>a character vector of up to the same length as x, or NULL.</em> We have two columns in our data frame, so we need to parse our <code>names()</code> function with a character vector with <strong>two elements</strong>. In the console, we shall enter two lines of code, one after another. First our character vector with our new names, <code>new_names &lt;- c("year", "page_nos")</code>, and then the <code>names()</code> function containing this vector for renaming, <code>names(giss_df) &lt;- new_names</code>:</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="programming-for-data-analysis.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector with our new column names</span></span>
 <span id="cb58-2"><a href="programming-for-data-analysis.html#cb58-2" aria-hidden="true" tabindex="-1"></a>new_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;page_nos&quot;</span>)</span>
-<span id="cb58-3"><a href="programming-for-data-analysis.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co">#rename our columns with our next names</span></span>
+<span id="cb58-3"><a href="programming-for-data-analysis.html#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co"># rename our columns with our next names</span></span>
 <span id="cb58-4"><a href="programming-for-data-analysis.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(giss_df) <span class="ot">&lt;-</span> new_names</span></code></pre></div>
 <p>You can go and check your data frame again and see the new names using either <code>View()</code> function or by clicking on the tab at the top.</p>
 </div>
@@ -910,9 +925,10 @@ If using a Windows machine, you will need to submit your forward-slashes (<code>
 <p>We have found out our variable is a data frame, containing <strong>90979 rows and 12 columns</strong>. We however do not want just the single <code>csv</code> and instead what to combine all our <code>csv's</code> in our <code>all_crime</code> folder into a single data frame - so how do we do this?</p>
 <p>This will be the most complicated section of code you will come across today, and we will use some functions that you have not seen before..</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="programming-for-data-analysis.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in all files and append all rows to a single data frame</span></span>
-<span id="cb74-2"><a href="programming-for-data-analysis.html#cb74-2" aria-hidden="true" tabindex="-1"></a>all_crime_df <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path=</span><span class="st">&quot;data/raw/crime/all_crime/&quot;</span>, <span class="at">full.names=</span><span class="cn">TRUE</span>, <span class="at">recursive=</span><span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb74-3"><a href="programming-for-data-analysis.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(read_csv) <span class="sc">%&gt;%</span></span>
-<span id="cb74-4"><a href="programming-for-data-analysis.html#cb74-4" aria-hidden="true" tabindex="-1"></a>  bind_rows</span></code></pre></div>
+<span id="cb74-2"><a href="programming-for-data-analysis.html#cb74-2" aria-hidden="true" tabindex="-1"></a>all_crime_df <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">&quot;data/raw/crime/all_crime/&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb74-3"><a href="programming-for-data-analysis.html#cb74-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">recursive =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb74-4"><a href="programming-for-data-analysis.html#cb74-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">lapply</span>(read_csv) <span class="sc">%&gt;%</span></span>
+<span id="cb74-5"><a href="programming-for-data-analysis.html#cb74-5" aria-hidden="true" tabindex="-1"></a>    bind_rows</span></code></pre></div>
 <p>This might take a little time to process (or might not), as we have a lot of data to get through. You should see a new data frame appear in your global environment called <code>all_crime_df</code>, for which we now have 1,187,847 observations!</p>
 <div class="note">
 <p><strong>Note</strong><br>
@@ -955,19 +971,23 @@ It is a little difficult to explain the code above without going into too much d
 ## [10] &quot;Crime type&quot;            &quot;Last outcome category&quot; &quot;Context&quot;</code></pre>
 <p>We can then rename the field names in our data set - just as we did with our GISS table earlier:</p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="programming-for-data-analysis.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new vector containing updated no space / no capital field names</span></span>
-<span id="cb83-2"><a href="programming-for-data-analysis.html#cb83-2" aria-hidden="true" tabindex="-1"></a>no_space_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;crime_id&quot;</span>, <span class="st">&quot;month&quot;</span>, <span class="st">&quot;reported_by&quot;</span>, <span class="st">&quot;falls_within&quot;</span>, <span class="st">&quot;longitude&quot;</span>,<span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;location&quot;</span>, <span class="st">&quot;lsoa_code&quot;</span>, <span class="st">&quot;lsoa_name&quot;</span>, <span class="st">&quot;crime_type&quot;</span>, <span class="st">&quot;last_outcome_category&quot;</span>, <span class="st">&quot;context&quot;</span>)</span>
-<span id="cb83-3"><a href="programming-for-data-analysis.html#cb83-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-4"><a href="programming-for-data-analysis.html#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="co"># rename our df field names using these new names</span></span>
-<span id="cb83-5"><a href="programming-for-data-analysis.html#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(all_crime_df) <span class="ot">&lt;-</span> no_space_names</span></code></pre></div>
+<span id="cb83-2"><a href="programming-for-data-analysis.html#cb83-2" aria-hidden="true" tabindex="-1"></a>no_space_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;crime_id&quot;</span>, <span class="st">&quot;month&quot;</span>, <span class="st">&quot;reported_by&quot;</span>, <span class="st">&quot;falls_within&quot;</span>, <span class="st">&quot;longitude&quot;</span>,</span>
+<span id="cb83-3"><a href="programming-for-data-analysis.html#cb83-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;latitude&quot;</span>, <span class="st">&quot;location&quot;</span>, <span class="st">&quot;lsoa_code&quot;</span>, <span class="st">&quot;lsoa_name&quot;</span>, <span class="st">&quot;crime_type&quot;</span>, <span class="st">&quot;last_outcome_category&quot;</span>,</span>
+<span id="cb83-4"><a href="programming-for-data-analysis.html#cb83-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;context&quot;</span>)</span>
+<span id="cb83-5"><a href="programming-for-data-analysis.html#cb83-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-6"><a href="programming-for-data-analysis.html#cb83-6" aria-hidden="true" tabindex="-1"></a><span class="co"># rename our df field names using these new names</span></span>
+<span id="cb83-7"><a href="programming-for-data-analysis.html#cb83-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(all_crime_df) <span class="ot">&lt;-</span> no_space_names</span></code></pre></div>
 <p>We now have our dataframe ready for filtering - and to do so, we’ll use the <code>filter()</code> function from the <code>dplyr</code> library (which is library within our <code>tidyverse</code>). This function is really easy to use - but there is also a <code>filter()</code> function in the R base library - that does something different to the function in <code>dplyr</code>. As a result, we need to use a specific type of syntax - <code>library::function</code> - to tell R to look for and use the the filter function from the <code>dplyr</code> library rather than the default base library.</p>
 <p>We then also need to populate our <code>filter()</code> function with the necessary parameters to extract only the “Theft from the person” crime type. This includes providing the function with our main data frame plus the filter query, as outliend below:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="programming-for-data-analysis.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter all_crime_df to contain only theft, store as a new variable: all_theft_df</span></span>
-<span id="cb84-2"><a href="programming-for-data-analysis.html#cb84-2" aria-hidden="true" tabindex="-1"></a>all_theft_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(all_crime_df, crime_type <span class="sc">==</span> <span class="st">&quot;Theft from the person&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="programming-for-data-analysis.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter all_crime_df to contain only theft, store as a new variable:</span></span>
+<span id="cb84-2"><a href="programming-for-data-analysis.html#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="co"># all_theft_df</span></span>
+<span id="cb84-3"><a href="programming-for-data-analysis.html#cb84-3" aria-hidden="true" tabindex="-1"></a>all_theft_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(all_crime_df, crime_type <span class="sc">==</span> <span class="st">&quot;Theft from the person&quot;</span>)</span></code></pre></div>
 <p>You should now see the new variable appear in your environment with 31,578 observations. We now want to do some further housekeeping and create on final data frame that will allow us to analyse crime in London by month. To do so, we want to count how many thefts occur each month in London - and luckily for us <code>dplyr</code> has another function that will do this for us, known simply as <code>count()</code>.</p>
 <p>Go ahead and search the help to understand the <code>count()</code> function - you will also see that there is only one function called <code>count()</code> so far, i.e. the one in the <code>dplyr</code> library, so we do not need to use the additional syntax we used above.</p>
 <p>Let us go ahead and count the number of thefts in London <strong>by month</strong>. The code for this is quite simple:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="programming-for-data-analysis.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count in the all_theft_df the number of crimes by month and store as a new dataframe</span></span>
-<span id="cb85-2"><a href="programming-for-data-analysis.html#cb85-2" aria-hidden="true" tabindex="-1"></a>theft_month_df <span class="ot">&lt;-</span> <span class="fu">count</span>(all_theft_df,month)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="programming-for-data-analysis.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count in the all_theft_df the number of crimes by month and store as a new</span></span>
+<span id="cb85-2"><a href="programming-for-data-analysis.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dataframe</span></span>
+<span id="cb85-3"><a href="programming-for-data-analysis.html#cb85-3" aria-hidden="true" tabindex="-1"></a>theft_month_df <span class="ot">&lt;-</span> <span class="fu">count</span>(all_theft_df, month)</span></code></pre></div>
 <p>We have stored the output of our <code>count()</code> function to a new data frame: <code>theft_month_df</code>. Go ahead and look at the data frame to see the output - it is a very simple table containing simply the month and <code>n</code>, i.e. the number of thefts occurring per month. We can and should go ahead and rename this column to help with our interpretation of the data frame. We will use a quick approach to do this, that uses <strong>selection</strong> of the precise column to rename only the second column:</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="programming-for-data-analysis.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename the second column of our new data frame to crime_totals</span></span>
 <span id="cb86-2"><a href="programming-for-data-analysis.html#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(theft_month_df)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">&quot;crime_totals&quot;</span></span></code></pre></div>

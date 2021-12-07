@@ -1,6 +1,6 @@
 # (PART\*) Core Spatial Analysis {-}
 
-# Analysing Spatial Patterns I: Geometric Operations
+# Analysing Spatial Patterns I: Geometric Operations and Spatial Queries
 This week, we will be looking at the use of geometric operations within spatial data processing and analysis. Geometric operations and spatial queries are not really a theoretical topic per se in spatial "pattern" analysis but rather essential building blocks to overall spatial data processing and analysis. This is because - and the clue is in the name - they conduct incredibly useful operations and queries on or using the geometry of our data sets, from calculating the area covered by an individual polygon in an areal unit data set, or subsetting the spatial extent of a data set based on another, to running **buffer** and **point-in-polygon** calculations.
 
 ## Lecture recording {#recording-w06}
@@ -69,21 +69,21 @@ Check the **CRS** of our `london_ward_shp` spatial dataframe:
 st_crs(london_ward_shp)
 ``` 
 
-Of course it should be of no surprise that our `london_ward_shp` spatial dataframe is in **BNG / ESPG: 27700**, however, it is always good to check. Let's go ahead and read in our `tfl_stations` dataset:
+Of course it should be of no surprise that our `london_ward_shp` spatial dataframe is in **BNG / ESPG: 27700**, however, it is always good to check. Let's go ahead and read in our `tfl_stations` data set:
 
 ```{r 06-load-stations, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
-# read in our London stations dataset
+# read in our London stations data set
 london_stations <- read_sf("data/raw/transport/tfl_stations.kml")
 ``` 
 
-This dataset is provided as a `kml` file, which stands for **Keyhole Markup Language (KML)**.  **KML** was originally created as a file format used to display geographic data in Google Earth. So we definitely need to check what CRS this dataset is in and decide whether we will need to do some reprojecting.
+This data set is provided as a `kml` file, which stands for **Keyhole Markup Language (KML)**.  **KML** was originally created as a file format used to display geographic data in Google Earth. So we definitely need to check what CRS this data set is in and decide whether we will need to do some reprojecting.
 
 ```{r 06-kml-crs, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # check the CRS for the London stations
 st_crs(london_stations)
 ```
 
-The result informs us that we are going to need to reproject our data in order to use this dataframe with our `london_ward_shp` spatial dataframe. Luckily in **R** and the `sf` library, this reprojection is a relatively straight-forward transformation, requiring only one function: `st_transform()`. The function is very simple to use - you only need to provide the function with the dataset and the code for the new CRS you wish to use with the data:
+The result informs us that we are going to need to reproject our data in order to use this dataframe with our `london_ward_shp` spatial dataframe. Luckily in **R** and the `sf` library, this reprojection is a relatively straight-forward transformation, requiring only one function: `st_transform()`. The function is very simple to use - you only need to provide the function with the data set and the code for the new CRS you wish to use with the data:
 
 ```{r 06-kml-crs-transform, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # reproject our data from WGS84 to BNG
@@ -97,7 +97,7 @@ We can double-check whether our new variable is in the correct CRS by using the 
 st_crs(london_stations)
 ``` 
 
-You should see that our `london_stations` spatial dataframe is now in **BNG / EPSG: 27700**. We are now ready to load our final dataset - our `csv` that contains our crime from 2019.
+You should see that our `london_stations` spatial dataframe is now in **BNG / EPSG: 27700**. We are now ready to load our final data set - our `csv` that contains our crime from 2019.
 
 From this `csv`, we want to do three things:
 
@@ -107,23 +107,23 @@ From this `csv`, we want to do three things:
 
 Since we are getting pretty used to looking at code and cleaning data we should be able to chain these operations using the `%>%` operator:
 
-```{r 06-bike-theft, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 06-bike-theft, warnings=FALSE, message=FALSE, cache=TRUE}
 # read in our crime data csv from our raw data folder
 bike_theft_2019 <- read_csv("data/raw/crime/crime_all_2019_london.csv") %>% 
   # clean names
   clean_names() %>%
-  # filter according to crime type and ensure we have no NAs in our dataset
+  # filter according to crime type and ensure we have no NAs in our data set
   filter(crime_type == "Bicycle theft" & !is.na(longitude) & !is.na(latitude)) %>% 
   # select just the longitude and latitude columns
   select(longitude, latitude) %>%
   # transform into a point spatial dataframe
   # note providing the columns as the coordinates to use
   # plus the CRS, which as our columns are long/lat is WGS84/4236
-  st_as_sf(coords=c('longitude', 'latitude'), crs=4236) %>% 
+  st_as_sf(coords = c('longitude', 'latitude'), crs = 4236) %>% 
   # convert into BNG
   st_transform(27700)
 ``` 
-We now have our three datasets loaded, it is time for a little data checking. We can see just from our Environment window that in total, we have **302** stations and **18,744** crimes to look at in our analysis. We can double-check the (Attribute) tables of our newly created spatial dataframes to see what data we have to work with. 
+We now have our three data sets loaded, it is time for a little data checking. We can see just from our Environment window that in total, we have **302** stations and **18,744** crimes to look at in our analysis. We can double-check the (Attribute) tables of our newly created spatial dataframes to see what data we have to work with. 
 
 You can either do this manually by clicking on the variable, or using commands such as `head()`, `summary()` and `names()` to get an understanding of our dataframe structures and the field names present - you can choose your approach, but make sure to look at your data.
 
@@ -131,15 +131,15 @@ As you should remember from the code above, for our bicycle theft data, we actua
 
 Now, let's nap all three layers of data onto a single map using `tmap`:
 
-```{r 06-map-all-data, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 06-map-all-data, warnings=FALSE, message=FALSE, cache=TRUE}
 # plot our London Wards first
 tm_shape(london_ward_shp) + tm_fill() + 
   # then add bike crime as blue
   tm_shape(bike_theft_2019) + tm_dots(col="blue") + 
   # then add our stations as red
-  tm_shape(london_stations) + tm_dots(col="red") + 
+  tm_shape(london_stations) + tm_dots(col = "red") + 
   # then add a north arrow
-  tm_compass(type="arrow", position = c("right", "bottom")) + 
+  tm_compass(type = "arrow", position = c("right", "bottom")) + 
   # then add a scale bar
   tm_scale_bar(breaks = c(0, 5, 10, 15, 20), position = c("left", "bottom"))
 ```
@@ -148,29 +148,29 @@ Let's think about the distribution of our data - we can already see that our bik
 
 To remove the bike data, simply put a comment sign in front of that piece of code and re-run the code:
 
-```{r 06-map-all-data-no-bike, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 06-map-all-data-no-bike, warnings=FALSE, message=FALSE, cache=TRUE}
 # plot our London Wards first
 tm_shape(london_ward_shp) + tm_fill() + 
   # then add bike crime as blue
   # tm_shape(bike_theft_2019) + tm_dots(col="blue") + 
   # then add our stations as red
-  tm_shape(london_stations) + tm_dots(col="red") + 
+  tm_shape(london_stations) + tm_dots(col = "red") + 
   # then add a north arrow
-  tm_compass(type="arrow", position = c("right", "bottom")) + 
+  tm_compass(type = "arrow", position = c("right", "bottom")) + 
   # then add a scale bar
   tm_scale_bar(breaks = c(0, 5, 10, 15, 20), position = c("left", "bottom"))
 ```
 
-We can see our train and tube stations are only present in primarily the north of London - and not really present in the south. This isn't quite right and as it turns out the dataset only contains those train stations used by Transfort for London within the tube network rather than all the stations in London. We will need to fix this before conducting our full analysis. But this isn't the only problem with our dataset - we can see that both our `bike_theft` spatial dataframe and our `london_stations` spatial dataframe extend beyond our London boundary.
+We can see our train and tube stations are only present in primarily the north of London - and not really present in the south. This isn't quite right and as it turns out the data set only contains those train stations used by Transfort for London within the tube network rather than all the stations in London. We will need to fix this before conducting our full analysis. But this isn't the only problem with our data set - we can see that both our `bike_theft` spatial dataframe and our `london_stations` spatial dataframe extend beyond our London boundary.
 
 ### Data preparation {#data-preparation-w06}
-When we want to reduce a dataset to the spatial extent of another, there are two different approaches to conducting this in spatial analysis - a subset or a clip - which each deal with the geometry of the resulting dataset in slightly different ways.
+When we want to reduce a data set to the spatial extent of another, there are two different approaches to conducting this in spatial analysis - a subset or a clip - which each deal with the geometry of the resulting data set in slightly different ways.
 
 A clip-type operation works a bit like a cookie-cutter - it will take the geometry of “dough” layer (i.e. the layer you want to clip), places a “cookie-cutter” layer on top (i.e. the layer you want to clip by) and then returns only the dough contained within the cookie-cutter. This will mean that the geometry of our resulting “dough” layer will be modified, if it contains observation features that extend further than the “cookie-cutter” extent - it will literally “cut” the geometry of our data.
 
 A subset-type operation is what is known in GIScience-speak as a select by location query - in this case, our subset will return the full geometry of each observation feature that intersects with our “clip when our”’“cookie-cutter” layer. Any geometry that does not intersect with our clip layer will be removed from the geometry of our resulting layer.
 
-Luckily for us, as we are using point data, we can (theorectically) use either approach because it is not possible to split the geometry of a single point feature. However, if a point feature does fall on the same geometry as our "clip" layer, it will be excluded from our dataset. 
+Luckily for us, as we are using point data, we can (theorectically) use either approach because it is not possible to split the geometry of a single point feature. However, if a point feature does fall on the same geometry as our "clip" layer, it will be excluded from our data set. 
 
 When it comes to polygon and line data, not understanding the differences between the two approaches can lead you into difficulties with your data processing - as outlined by our examples in the GIFs above and below - there will be differences in the feature geometry between the clipped layer and the subset layer.
 
@@ -190,14 +190,14 @@ bike_theft_2019 <- bike_theft_2019 %>% st_intersection(london_ward_shp)
 
 :::note
 **Note** <br />
-Which approach you use with future data is always dependent on the dataset you want to use - and the output you need. For example, is keeping the geometry of your observation features in your dataset important? Out of the two, the **subset** approach is the fastest to use as R is simply comparing the geometries rather than also editing the geometries.
+Which approach you use with future data is always dependent on the data set you want to use - and the output you need. For example, is keeping the geometry of your observation features in your data set important? Out of the two, the **subset** approach is the fastest to use as R is simply comparing the geometries rather than also editing the geometries.
 :::
 
-Before we go ahead and sort out our `london_stations` spatial dataframe, we are going to look at how we can **dissolve** our `london_ward_shp` spatial dataframe into a single feature. Reducing a spatial dataframe to a single observation is often required when using R and `sf`'s geometric operations to complete geometric comparisons. Sometimes, also, we simply want to map an outline of an area, such as London, rather than add in the additional spatial complexities of our wards. To achieve just a single 'observation' that represents the **outline geometry** of our dataset, we use the geometric operation, `st_union()`. 
+Before we go ahead and sort out our `london_stations` spatial dataframe, we are going to look at how we can **dissolve** our `london_ward_shp` spatial dataframe into a single feature. Reducing a spatial dataframe to a single observation is often required when using R and `sf`'s geometric operations to complete geometric comparisons. Sometimes, also, we simply want to map an outline of an area, such as London, rather than add in the additional spatial complexities of our wards. To achieve just a single 'observation' that represents the **outline geometry** of our data set, we use the geometric operation, `st_union()`. 
 
 :::note
 **Note** <br/>
-You can also use the `st_union()` function to union two datasets into one - this can be used to **merge** data together that are of the same spatial type.
+You can also use the `st_union()` function to union two data sets into one - this can be used to **merge** data together that are of the same spatial type.
 :::
 
 Let's go ahead and see if we can use this to create our London outline:
@@ -228,19 +228,162 @@ In addition to this key-value pair, we also need to obtain the **bounding box** 
 
 Let's try to extract elements from OSM that are tagged as `public_transport = station` from OSM into an `osmdata_sf()` object:
 
-```{r 07-osm-export, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 06-osm-export, warnings=FALSE, message=FALSE, cache=TRUE}
 # extract the coordinates from our London outline using the st_bbox() function
 # note we also temporally reproject the london_outline spatial dataframe before obtaining the bbox
 # we need our bbox coordinates in WGS84 (not BNG), hence reprojection
 p_bbox <- st_bbox(st_transform(london_outline, 4326))
 
 # pass our bounding box coordinates into the OverPassQuery (opq) function
-london_stations_osm <- opq(bbox = p_bbox ) %>%
+london_stations_osm <- opq(bbox = p_bbox) %>%
   # pipe this into the add_osm_feature data query function to extract our stations
-  add_osm_feature(key = 'public_transport', value = 'station') %>% 
+  add_osm_feature(key = "public_transport", value = "station") %>% 
   # pipe this into our osmdata_sf object
   osmdata_sf()
 ``` 
+
+:::note
+**Note** <br/>
+When we download OSM data - and extract it as above - our query will return all elements tagged as our key-value pair into our `osmdata_sf()` OSM data object. This means all elements - any **points, lines and polygons** - associated with our tag will be returned. Obviously we would think with our `public_transport = station` tag, we would only return point data representing our train and tube stations in London. But if we use the `summary()` function on our `london_stations_osm` OSM data object, we can see that not only is a lot of other data stored in our OSM data object (including the bounding box we used within our query, plus metadata about our query), but our query has returned both **points** and **polygons** - currently stored within this OSM data object as individual spatial data frames. 
+
+To extract only the points of our tube and train stations from our `london_stations_osm` OSM data object, we simply need to extract this from the dataframe and store this under a separate variable. But, whenever you are dealing with OSM data, just remember that your query can return multiple different types of map elements (and their respective geometries), so always be clear in knowing which type of spatial data you will need and remember to extract this from your OSM data object.
+:::
+
+Extract train station points from our OSM data object and process/clean ready for analysis:
+
+```{r 06-osm-stations, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# extract only the points data from the osmdata object 
+london_stations_osm <- london_stations_osm$osm_points %>% 
+  # add projection to the point spatial dataframe
+  st_set_crs(4326) %>%
+  # reproject our data set to BNG 
+  st_transform(27700) %>%  
+  # clip to the London outline shapefile  
+  st_intersection(london_outline) %>% 
+  # select only attributes that seem relevant
+  select(c("osm_id", "name", "network", "operator", "public_transport", "railway"))
+
+# inspect
+plot(london_stations_osm)
+```
+
+With the accuracy of OSM a little questionable, we want to complete some data validation tasks to check its quality and to confirm that it at least contains the data we see in our authoritative `london_stations` spatial dataframe. The total number of data points also seems rather high. In fact, a quick search online can tell us that there are [**272** tube stations](https://tfl.gov.uk/corporate/about-tfl/what-we-do) in the London network as well as [**335** train stations](https://en.wikipedia.org/wiki/List_of_London_railway_stations) in Greater London.
+
+As we can see in our plot above, not all of our stations appear to be of the same value in our `railway` field. If we check the field using our `count()` function, you'll see that there are some different values and `NAs` in our data set:
+
+```{r 06-count-stations, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# inspect values
+count(london_stations_osm, railway)
+```
+
+As we can see, not everything in our `london_stations_osm` spatial dataframe is a 'station' as recorded by OSM and we have a high number of `NAs` which are unlikely to actually represent stations in London. The number of points marked as 'station' in the `railway` field are most likely the only points in our data set that represent actual stations in London. There is still a difference between the official numbers and the OSM extract, but we will go on and use the best information we have from this attribute and our search and remove all other points from our OSM data set:
+
+```{r 06-osm-stations-clean, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# extract only the points that we think are actual train and tube stations
+london_stations_osm <- london_stations_osm %>% filter(railway == "station")
+```
+
+We have now cleaned our `london_stations_osm` spatial dataframe to remove all those points within our data set that are not tagged as `railway == "station"`.Our `london_stations` spatial dataframe is of course an **authoritative** data set from TfL, so we know at least that this data should be accurate - therefore, it would be great if we could compare our two data sets to one another spatially to double-check our `london_stations_osm` spatial dataframe contains all the data within our `london_stations` spatial dataframe.
+
+We can first look at this by comparing their distributions visually on a map. But first, as our `london_stations` spatial dataframe still extends outside of London, we will go ahead and clip this:
+
+```{r 06-intersect-ldn-wd, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# clip London stations
+london_stations <- london_stations %>% st_intersection(london_ward_shp)
+```
+
+Map our two spatial dataframes to compare their spatial coverage:
+
+```{r 06-map-some-data-23, warnings=FALSE, message=FALSE, cache=TRUE}
+# plot our London Wards first with a grey background
+tm_shape(london_outline) + tm_fill() + 
+    # plot OSM station data in black
+    tm_shape(london_stations_osm) + tm_dots(col = "black") + 
+    # plot TfL station data in red
+    tm_shape(london_stations) + tm_dots(col = "red") + 
+    # add north arrow
+    tm_compass(type = "arrow", position = c("right", "bottom")) + 
+    # add scale bar  
+    tm_scale_bar(breaks = c(0, 5, 10, 15, 20), position = c("left", "bottom")) +
+    # add our OSM contributors statement
+    tm_credits("© OpenStreetMap contributors")
+```
+
+What we can see is that it looks like our OSM data actual does a much better job at covering all train and tube stations across London (not a surprise with 300 more stations in the data set) - but still it is pretty hard to get a sense of comparison from a static map like this whether it contains all of the tube and train stations in our `london_stations` spatial dataframe. An interactive map would enable us to interrogate the spatial coverage of our two station spatial dataframes further. To do so, we use the `tmap_mode()` function and change it from its default `plot()` mode to a `view()` model:
+
+```{r 06-map-some-data-4, warnings=FALSE, message=FALSE, cache=TRUE}
+# change tmap mode to view / interactive mapping
+tmap_mode("view")
+
+# plot the outline of our London Wards first
+tm_shape(london_outline) + tm_borders() + 
+    # plot OSM station data in black
+    tm_shape(london_stations_osm) + tm_dots(col = "black") + 
+    # plot TfL station data in red
+    tm_shape(london_stations) + tm_dots(col = "red")
+```
+
+Using the interactive map, what we can see is that whilst we **do** have overlap with our data sets, and more importantly, our `london_stations_osm` spatial dataframe seems to contain all of the data within the `london_stations` spatial dataframe, although there are definitely differences in their precise location. Now depending on what level of accuracy we are willing to accept with our assumption that our OSM data contains the **same** data as our Transport for London data, we could leave our comparison here and move forward with our analysis. There are, however. several more steps we could complete to validate this assumption. The easiest first step is to simply reverse the order of our data sets to check that each `london_stations` spatial dataframe point is covered by reversing the drawing order:
+
+```{r 06-map-some-data-5, warnings=FALSE, message=FALSE, cache=TRUE}
+# plot the outline of our London Wards first
+tm_shape(london_outline) + tm_borders() + 
+    # plot TfL station data in red
+    tm_shape(london_stations) + tm_dots(col = "red") + 
+    # plot OSM station data in black
+    tm_shape(london_stations_osm) + tm_dots(col = "black")
+```
+
+This looks pretty good - but still the question is: can we be sure? Using geometric operations and spatial queries, we can look to find if any of our stations in our `london_stations` spatial dataframe are not present the `london_stations_osm` spatial dataframe. We can use specific geometric operations and/or queries that let us check whether or not all points within our `london_stations` spatial dataframe spatially intersect with our `london_stations_osm` spatial dataframe, i.e. we can complete the opposite our clip/intersection that we conducted earlier. The issue we face however is that, as we saw above, our points are slightly offset from one another as the data sets have ultimately given the same stations slightly different locations.This offset means we need to think a little about the geometric operation or spatial query that we want to use.
+
+We will approach this question in two different ways to highlight the differences between geometric operations and spatial queries:
+
+1. We'll use **geometric operations** to generate geometries that highlight missing stations from our `london_stations` spatial dataframe (i.e. ones that are not present in the`london_stations_osm` spatial dataframe.)
+2. We'll use **spatial queries** to provide us with a list of features in our `london_stations` spatial dataframe that do not meet our spatial requirements (i.e. are not present in the`london_stations_osm` spatial dataframe.)
+
+### Geometric operations
+As highlighted above, the offset between our spatial dataframes adds a little complexity to our geometric operations code. To be able to make our direct spatial comparisons across our spatial dataframes, what we first need to do is try to **snap*'** the geometry of our `london_stations` spatial dataframe to our `london_stations_osm` spatial dataframe for points within a given distance threshold. This will mean that any points in the `london_stations` spatial dataframe that are within a specific distance of the `london_stations_osm` spatial dataframe will have their geometry changed to that of the `london_stations_osm` spatial dataframe.
+
+```{r echo=FALSE, fig.align='center', cache=TRUE, fig.cap='Snapping points to a line. In our case we snap our points to other points.'}
+knitr::include_graphics('images/w06/snap1.png')
+```
+
+By placing a threshold on this **snap**, we stop too many points moving about if they are unlikely to be representing the same station (e.g. further than 150m or so away) - but this still allows us to create more uniformity across our data sets' geometries (and tries to reduce the uncertainty we add by completing this process).
+
+Snap our our `london_stations` spatial dataframe to our `london_stations_osm` spatial dataframe for points within a 150m distance threshold:
+
+```{r 06-snap-data, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# snap points 
+london_stations_snap <- st_snap(london_stations, london_stations_osm, 150)
+```
+
+Now we have out snapped geometry, we can look to compare our two data sets to calculate whether or not our `london_stations_osm` spatial dataframe is missing any data from our `london_stations_snap` spatial dataframe. 
+
+To do so, we will use the `st_difference()` function which will return us the geometries of those points in our `london_stations_snap` spatial dataframe that are missing in our our `london_stations_osm` spatial dataframe.However to use this function successfully (and this seems to be required for many of the comparison geometric operations in `sf`), we need to convert our our `london_stations_osm` spatial dataframe into a single geometry to enable this comparison. 
+
+To simplify our `london_stations_osm` spatial dataframe into a single geometry, we simply use the `st_union()` code we used with our London outline above:
+
+```{r 06-missing-nodes, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# create a single geometry version of our `london_stations_osm` spatial dataframe 
+london_stations_osm_compare <- london_stations_osm %>% st_union()
+
+# compare our two point geometries to identify missing stations
+missing_stations <- st_difference(london_stations_snap, london_stations_osm_compare)
+```
+
+You should now find that we have an answer - and apparently have **3** missing stations with our `london_stations_osm` spatial dataframe. We can now plot our missing stations against our `london_stations_osm` spatial dataframe and identify whether these stations are missing or not! 
+
+```{r 06-map-some-data-3, warnings=FALSE, message=FALSE, cache=TRUE}
+# plot our london_stations_osm spatial dataframe in black
+tm_shape(london_stations_osm) + tm_dots(col = "black") + 
+  # plot our missing_stations spatial dataframe in green
+  tm_shape(missing_stations) + tm_dots(col = "green")
+```
+
+Zoom in to our three missing stations - are these stations actually missing, or simply are the two locations (between the TfL data set and the OSM data set) too far apart that our snapping did not work?
+
+If you investigate these three missing stations, you can actually see that our `london_stations_osm` spatial dataframe data set is actually more accurate than the TfL locations. All three missing stations were not in fact missing, but a) in our OSM data set but b) at a greater offset than 150m - and in all three cases, or OSM locations were more accurate. We can safely suggest that we can move forward with only using the `london_stations_osm` spatial dataframe and do not need to follow through with adding any more data to this data set.
+
 
 ## Assignment {#assignment-w06}
 
