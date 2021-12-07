@@ -25,7 +25,7 @@ Welcome to **Geocomputation**, a course that introduces you to both the principl
 Over the next ten weeks, you will learn about the theory, methods and tools of spatial analysis whilst implementing small research projects, first using QGIS, and then using the R programming language within the RStudio software environment. You will learn how to find, manage and clean spatial, demographic and socio-economic data sets, and then analyse them using core spatial and statistical analysis techniques. 
 
 ## Moodle {-}
-[Moodle](https://moodle.ucl.ac.uk/) is the central point of your learning experience for GEOG0030 and contains everything you need to know about it. It is where you will find links to all lecture content, reading materials, planned activities as well as key module and assessment information
+[Moodle](https://moodle.ucl.ac.uk/) is the central point of your learning experience for GEOG0030 and it is where all important information will be communicated such as key module and assessment information. This workbook contains all reading material as well as the content of all computer practicals.
 
 ## Module overview {-}
 The topics covered over the next ten weeks are:
@@ -38,28 +38,23 @@ The topics covered over the next ten weeks are:
 | 4             | Foundational Concepts | [Programming for Data Analysis](programming-for-data-analysis.html) |
 | 5             | Foundational Concepts | [Programming for Spatial Analysis](programming-for-spatial-analysis.html) |
 |               | **Reading week** | **Reading week** |
-| 6             | Core Spatial Analysis | Analysing Spatial Patterns I: Geometric Operations |
-| 7             | Core Spatial Analysis | Analysing Spatial Patterns II: Spatial Autocorrelation |
-| 8             | Core Spatial Analysis | Analysing Spatial Patterns III: Point Pattern Analysis |
-| 9             | Advanced Spatial Analysis | Rasters, Zonal Statistics and Interpolation | 
-| 10            | Advanced Spatial Analysis | Geodemographics | 
+| 6             | Core Spatial Analysis | [Analysing Spatial Patterns I: Geometric Operations](analysing-spatial-patterns-i-geometric-operations.html) |
+| 7             | Core Spatial Analysis | [Analysing Spatial Patterns II: Spatial Autocorrelation](analysing-spatial-patterns-ii-spatial-autocorrelation.html) |
+| 8             | Core Spatial Analysis | [Analysing Spatial Patterns III: Point Pattern Analysis](analysing-spatial-patterns-iii-point-pattern-analysis.html) |
+| 9             | Advanced Spatial Analysis | [Rasters, Zonal Statistics and Interpolation](rasters-zonal-statistics-and-interpolation.html) | 
+| 10            | Advanced Spatial Analysis | [Network Analysis](network-analysis.html) | 
 
 ## Troubleshooting {-}
 Spatial analysis can yield fascinating insights into geographical relationships. However, at times it can be difficult to work with - particularly when we combine this with learning how to program at the same time. You will get lots of error messages and have software crash, you will end up with bugs in your code that are difficult to find, and you may spend a whole day trying to track down a single data set. But the rewards of learning how to do all of this will become apparent. 
-
 If you need specific assistance with this course please:
 
-* Attend the weekly **Geocomputation help sessions** to ask questions directly to the PGTA.
-
-* Post in the respective *r-help* channels within the Geocomputation Team.
-
-* Ask a question at the end of a lecture or during the computer practical.
-
-* Check the Moodle assessment tab for queries relating to the assessment (more information will be provided at the end or reading week)
-
-* Attend the Department's **Coding Therapy sessions** that are run on a weekly basis
+- Attend the bi-weekly **Geocomputation help sessions** to ask questions directly to the PGTA.
+- Post in the respective *r-help* channels within the Geocomputation Team.
+- Ask a question at the end of a lecture or during the computer practical.
+- Check the Moodle assessment tab for queries relating to the assessment (more detailed information will be provided at the end or reading week).
+- Attend the Department's **Coding Therapy sessions** that are run on a weekly basis.
 
 If after pursuing all these avenues you still need help, you can book into our office hours. These meetings are to discuss a geographical concept in relation to the material/assessment or for any personal matters relevant to the completion of the module.
 
 ## Acknowledgements {-}
-This workbook is adapted from [GEOG0030: Geocomputation 2021-2021](https://jo-wilkin.github.io/GEOG0030/coursebook/index.html), as created by Dr Jo Wilkin. 
+This workbook is adapted and updated from [GEOG0030: Geocomputation 2021-2021](https://jo-wilkin.github.io/GEOG0030/coursebook/index.html), as created and compiled by Dr Jo Wilkin. 

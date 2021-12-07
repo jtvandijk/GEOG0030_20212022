@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Analysing Spatial Patterns I: Geometric Operations | GEOG0030: Geocomputation</title>
+  <meta name="description" content="6 Analysing Spatial Patterns I: Geometric Operations | GEOG0030: Geocomputation handbook." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Analysing Spatial Patterns I: Geometric Operations | GEOG0030: Geocomputation" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://jtvandijk.github.io/GEOG0030/" />
+  
+  <meta property="og:description" content="6 Analysing Spatial Patterns I: Geometric Operations | GEOG0030: Geocomputation handbook." />
+  <meta name="github-repo" content="jtvandijk/GEOG0030" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Analysing Spatial Patterns I: Geometric Operations | GEOG0030: Geocomputation" />
+  
+  <meta name="twitter:description" content="6 Analysing Spatial Patterns I: Geometric Operations | GEOG0030: Geocomputation handbook." />
+  
+
+<meta name="author" content="Justin van Dijk" />
+
+
+<meta name="date" content="2021-12-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="programming-for-spatial-analysis.html"/>
+<link rel="next" href="analysing-spatial-patterns-ii-spatial-autocorrelation.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="assets/custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="toc-logo">
+<a href="https://www.ucl.ac.uk/module-catalogue/modules/geocomputation-GEOG0030"><img src="images/general/ucl_logo.png">
+</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>Module overview</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Module Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#welcome"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#moodle"><i class="fa fa-check"></i>Moodle</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#module-overview"><i class="fa fa-check"></i>Module overview</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#troubleshooting"><i class="fa fa-check"></i>Troubleshooting</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="part"><span><b>Foundational Concepts</b></span></li>
+<li class="chapter" data-level="1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html"><i class="fa fa-check"></i><b>1</b> Geocomputation: An Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#recording-w01"><i class="fa fa-check"></i><b>1.1</b> Lecture recording</a></li>
+<li class="chapter" data-level="1.2" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#reading-w01"><i class="fa fa-check"></i><b>1.2</b> Reading list</a></li>
+<li class="chapter" data-level="1.3" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#getting-started"><i class="fa fa-check"></i><b>1.3</b> Getting started</a></li>
+<li class="chapter" data-level="1.4" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#software"><i class="fa fa-check"></i><b>1.4</b> Software</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#qgis-installation"><i class="fa fa-check"></i><b>1.4.1</b> QGIS Installation</a></li>
+<li class="chapter" data-level="1.4.2" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#r-and-rstudio-installation"><i class="fa fa-check"></i><b>1.4.2</b> R and RStudio Installation</a></li>
+<li class="chapter" data-level="1.4.3" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#ucl-desktop-and-rstudio-server"><i class="fa fa-check"></i><b>1.4.3</b> UCL Desktop and RStudio Server</a></li>
+<li class="chapter" data-level="1.4.4" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#a-note-on-arcgis"><i class="fa fa-check"></i><b>1.4.4</b> A note on ArcGIS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#file-management"><i class="fa fa-check"></i><b>1.5</b> File management</a></li>
+<li class="chapter" data-level="1.6" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#byl-w01"><i class="fa fa-check"></i><b>1.6</b> Before you leave</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html"><i class="fa fa-check"></i><b>2</b> GIScience and GIS software</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#recording-w02"><i class="fa fa-check"></i><b>2.1</b> Lecture recording</a></li>
+<li class="chapter" data-level="2.2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#reading-w02"><i class="fa fa-check"></i><b>2.2</b> Reading list</a></li>
+<li class="chapter" data-level="2.3" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#simple-digitisation-of-spatial-features"><i class="fa fa-check"></i><b>2.3</b> Simple digitisation of spatial features</a></li>
+<li class="chapter" data-level="2.4" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#population-change-in-london"><i class="fa fa-check"></i><b>2.4</b> Population change in London</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#setting-the-scene"><i class="fa fa-check"></i><b>2.4.1</b> Setting the scene</a></li>
+<li class="chapter" data-level="2.4.2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#w02-finding"><i class="fa fa-check"></i><b>2.4.2</b> Finding our data sets</a></li>
+<li class="chapter" data-level="2.4.3" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#w02-downloading"><i class="fa fa-check"></i><b>2.4.3</b> Downloading and processing</a></li>
+<li class="chapter" data-level="2.4.4" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#using-qgis-to-map-our-population-data"><i class="fa fa-check"></i><b>2.4.4</b> Using QGIS to map our population data</a></li>
+<li class="chapter" data-level="2.4.5" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#exporting-map-for-visual-analysis"><i class="fa fa-check"></i><b>2.4.5</b> Exporting map for visual analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#assignment-w02"><i class="fa fa-check"></i><b>2.5</b> Assignment</a></li>
+<li class="chapter" data-level="2.6" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#byl-w02"><i class="fa fa-check"></i><b>2.6</b> Before you leave</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html"><i class="fa fa-check"></i><b>3</b> Cartography and Visualisation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#recording-w03"><i class="fa fa-check"></i><b>3.1</b> Lecture recording</a></li>
+<li class="chapter" data-level="3.2" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#reading-w03"><i class="fa fa-check"></i><b>3.2</b> Reading list</a></li>
+<li class="chapter" data-level="3.3" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#crime-in-london"><i class="fa fa-check"></i><b>3.3</b> Crime in London</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#w03-finding"><i class="fa fa-check"></i><b>3.3.1</b> Finding our data sets</a></li>
+<li class="chapter" data-level="3.3.2" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#w03-downloading"><i class="fa fa-check"></i><b>3.3.2</b> Downloading and processing</a></li>
+<li class="chapter" data-level="3.3.3" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#using-qgis-to-map-our-crime-data"><i class="fa fa-check"></i><b>3.3.3</b> Using QGIS to map our crime data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#assignment-w03"><i class="fa fa-check"></i><b>3.4</b> Assignment</a></li>
+<li class="chapter" data-level="3.5" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#byl-w03"><i class="fa fa-check"></i><b>3.5</b> Before you leave</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html"><i class="fa fa-check"></i><b>4</b> Programming for Data Analysis</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#recording-w04"><i class="fa fa-check"></i><b>4.1</b> Lecture recording</a></li>
+<li class="chapter" data-level="4.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#reading-w04"><i class="fa fa-check"></i><b>4.2</b> Reading list</a></li>
+<li class="chapter" data-level="4.3" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#programming"><i class="fa fa-check"></i><b>4.3</b> Programming</a></li>
+<li class="chapter" data-level="4.4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#programming-in-r"><i class="fa fa-check"></i><b>4.4</b> Programming in R</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#the-rstudio-interface"><i class="fa fa-check"></i><b>4.4.1</b> The RStudio interface</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#rstudio-console"><i class="fa fa-check"></i><b>4.5</b> RStudio console</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#command-input"><i class="fa fa-check"></i><b>4.5.1</b> Command Input</a></li>
+<li class="chapter" data-level="4.5.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#storing-variables"><i class="fa fa-check"></i><b>4.5.2</b> Storing Variables</a></li>
+<li class="chapter" data-level="4.5.3" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#accessing-and-returning-variables"><i class="fa fa-check"></i><b>4.5.3</b> Accessing and returning variables</a></li>
+<li class="chapter" data-level="4.5.4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#variables-of-different-data-types"><i class="fa fa-check"></i><b>4.5.4</b> Variables of different data types</a></li>
+<li class="chapter" data-level="4.5.5" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#calling-functions-on-our-variables"><i class="fa fa-check"></i><b>4.5.5</b> Calling functions on our variables</a></li>
+<li class="chapter" data-level="4.5.6" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#returning-functions"><i class="fa fa-check"></i><b>4.5.6</b> Returning functions</a></li>
+<li class="chapter" data-level="4.5.7" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#examining-our-variables-using-functions"><i class="fa fa-check"></i><b>4.5.7</b> Examining our variables using functions</a></li>
+<li class="chapter" data-level="4.5.8" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#creating-a-two-element-object"><i class="fa fa-check"></i><b>4.5.8</b> Creating a two-element object</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#simple-analysis"><i class="fa fa-check"></i><b>4.6</b> Simple analysis</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#housekeeping"><i class="fa fa-check"></i><b>4.6.1</b> Housekeeping</a></li>
+<li class="chapter" data-level="4.6.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#atomic-vectors"><i class="fa fa-check"></i><b>4.6.2</b> Atomic vectors</a></li>
+<li class="chapter" data-level="4.6.3" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#matrices"><i class="fa fa-check"></i><b>4.6.3</b> Matrices</a></li>
+<li class="chapter" data-level="4.6.4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#dataframes"><i class="fa fa-check"></i><b>4.6.4</b> Dataframes</a></li>
+<li class="chapter" data-level="4.6.5" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#column-names"><i class="fa fa-check"></i><b>4.6.5</b> Column names</a></li>
+<li class="chapter" data-level="4.6.6" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#adding-columns"><i class="fa fa-check"></i><b>4.6.6</b> Adding columns</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#crime-analysis-i"><i class="fa fa-check"></i><b>4.7</b> Crime analysis I</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#starting-a-project"><i class="fa fa-check"></i><b>4.7.1</b> Starting a project</a></li>
+<li class="chapter" data-level="4.7.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#setting-up-a-script"><i class="fa fa-check"></i><b>4.7.2</b> Setting up a script</a></li>
+<li class="chapter" data-level="4.7.3" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#running-a-script"><i class="fa fa-check"></i><b>4.7.3</b> Running a script</a></li>
+<li class="chapter" data-level="4.7.4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#crime-data-2"><i class="fa fa-check"></i><b>4.7.4</b> Crime data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#assignment-w04"><i class="fa fa-check"></i><b>4.8</b> Assignment</a></li>
+<li class="chapter" data-level="4.9" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#byl-w04"><i class="fa fa-check"></i><b>4.9</b> Before you leave</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html"><i class="fa fa-check"></i><b>5</b> Programming for Spatial Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#recording-w05"><i class="fa fa-check"></i><b>5.1</b> Lecture recording</a></li>
+<li class="chapter" data-level="5.2" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#reading-w05"><i class="fa fa-check"></i><b>5.2</b> Reading list</a></li>
+<li class="chapter" data-level="5.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#crime-analysis-ii"><i class="fa fa-check"></i><b>5.3</b> Crime analysis II</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#data-preparation"><i class="fa fa-check"></i><b>5.3.1</b> Data preparation</a></li>
+<li class="chapter" data-level="5.3.2" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#spatial-analysis-set-up"><i class="fa fa-check"></i><b>5.3.2</b> Spatial analysis set up</a></li>
+<li class="chapter" data-level="5.3.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#interacting-with-spatial-data"><i class="fa fa-check"></i><b>5.3.3</b> Interacting with spatial data</a></li>
+<li class="chapter" data-level="5.3.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#getting-our-crime-data-in-shape"><i class="fa fa-check"></i><b>5.3.4</b> Getting our crime data in shape</a></li>
+<li class="chapter" data-level="5.3.5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#data-wrangling"><i class="fa fa-check"></i><b>5.3.5</b> Data wrangling</a></li>
+<li class="chapter" data-level="5.3.6" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#improving-your-workflow"><i class="fa fa-check"></i><b>5.3.6</b> Improving your workflow</a></li>
+<li class="chapter" data-level="5.3.7" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#aggregate-crime-by-ward"><i class="fa fa-check"></i><b>5.3.7</b> Aggregate crime by ward</a></li>
+<li class="chapter" data-level="5.3.8" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#joining-crime-data-to-wards"><i class="fa fa-check"></i><b>5.3.8</b> Joining crime data to wards</a></li>
+<li class="chapter" data-level="5.3.9" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#mapping-crime-data"><i class="fa fa-check"></i><b>5.3.9</b> Mapping crime data</a></li>
+<li class="chapter" data-level="5.3.10" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#styling-crime-data"><i class="fa fa-check"></i><b>5.3.10</b> Styling crime data</a></li>
+<li class="chapter" data-level="5.3.11" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#exporting-our-crime-data"><i class="fa fa-check"></i><b>5.3.11</b> Exporting our crime data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#assignment-w05"><i class="fa fa-check"></i><b>5.4</b> Assignment</a></li>
+<li class="chapter" data-level="5.5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#byl-w05"><i class="fa fa-check"></i><b>5.5</b> Before you leave</a></li>
+</ul></li>
+<li class="part"><span><b>Core Spatial Analysis</b></span></li>
+<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Geometric Operations</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#recording-w06"><i class="fa fa-check"></i><b>6.1</b> Lecture recording</a></li>
+<li class="chapter" data-level="6.2" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#reading-w06"><i class="fa fa-check"></i><b>6.2</b> Reading list</a></li>
+<li class="chapter" data-level="6.3" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#bike-theft-in-london"><i class="fa fa-check"></i><b>6.3</b> Bike theft in London</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#housekeeping-w06"><i class="fa fa-check"></i><b>6.3.1</b> Housekeeping</a></li>
+<li class="chapter" data-level="6.3.2" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#loading-data-w06"><i class="fa fa-check"></i><b>6.3.2</b> Loading data</a></li>
+<li class="chapter" data-level="6.3.3" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#data-preparation-w06"><i class="fa fa-check"></i><b>6.3.3</b> Data preparation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#assignment-w06"><i class="fa fa-check"></i><b>6.4</b> Assignment</a></li>
+<li class="chapter" data-level="6.5" data-path="analysing-spatial-patterns-i-geometric-operations.html"><a href="analysing-spatial-patterns-i-geometric-operations.html#byl-w06"><i class="fa fa-check"></i><b>6.5</b> Before you leave</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><i class="fa fa-check"></i><b>7</b> Analysing Spatial Patterns II: Spatial Autocorrelation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#recording-w07"><i class="fa fa-check"></i><b>7.1</b> Lecture recording</a></li>
+<li class="chapter" data-level="7.2" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#reading-w07"><i class="fa fa-check"></i><b>7.2</b> Reading list</a></li>
+<li class="chapter" data-level="7.3" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#assignment-w07"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
+<li class="chapter" data-level="7.4" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#byl-w07"><i class="fa fa-check"></i><b>7.4</b> Before you leave</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html"><i class="fa fa-check"></i><b>8</b> Analysing Spatial Patterns III: Point Pattern Analysis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#recording-w08"><i class="fa fa-check"></i><b>8.1</b> Lecture recording</a></li>
+<li class="chapter" data-level="8.2" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#reading-w08"><i class="fa fa-check"></i><b>8.2</b> Reading list</a></li>
+<li class="chapter" data-level="8.3" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#assignment-w08"><i class="fa fa-check"></i><b>8.3</b> Assignment</a></li>
+<li class="chapter" data-level="8.4" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#byl-w08"><i class="fa fa-check"></i><b>8.4</b> Before you leave</a></li>
+</ul></li>
+<li class="part"><span><b>Advanced Spatial Analysis</b></span></li>
+<li class="chapter" data-level="9" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>9</b> Rasters, Zonal Statistics and Interpolation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#recording-w09"><i class="fa fa-check"></i><b>9.1</b> Lecture recording</a></li>
+<li class="chapter" data-level="9.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#reading-w09"><i class="fa fa-check"></i><b>9.2</b> Reading list</a></li>
+<li class="chapter" data-level="9.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09"><i class="fa fa-check"></i><b>9.3</b> Assignment</a></li>
+<li class="chapter" data-level="9.4" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#byl-w09"><i class="fa fa-check"></i><b>9.4</b> Before you leave</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>10</b> Network Analysis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="network-analysis.html"><a href="network-analysis.html#recording-w10"><i class="fa fa-check"></i><b>10.1</b> Lecture recording</a></li>
+<li class="chapter" data-level="10.2" data-path="network-analysis.html"><a href="network-analysis.html#reading-w10"><i class="fa fa-check"></i><b>10.2</b> Reading list</a></li>
+<li class="chapter" data-level="10.3" data-path="network-analysis.html"><a href="network-analysis.html#assignment-w10"><i class="fa fa-check"></i><b>10.3</b> Assignment</a></li>
+<li class="chapter" data-level="10.4" data-path="network-analysis.html"><a href="network-analysis.html#byl-w10"><i class="fa fa-check"></i><b>10.4</b> Before you leave</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GEOG0030: Geocomputation</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="analysing-spatial-patterns-i-geometric-operations" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Analysing Spatial Patterns I: Geometric Operations</h1>
+<p>This week, we will be looking at the use of geometric operations within spatial data processing and analysis. Geometric operations and spatial queries are not really a theoretical topic per se in spatial “pattern” analysis but rather essential building blocks to overall spatial data processing and analysis. This is because - and the clue is in the name - they conduct incredibly useful operations and queries on or using the geometry of our data sets, from calculating the area covered by an individual polygon in an areal unit data set, or subsetting the spatial extent of a data set based on another, to running <strong>buffer</strong> and <strong>point-in-polygon</strong> calculations.</p>
+<div id="recording-w06" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Lecture recording</h2>
+<ul>
+<li>Lecture W6</li>
+</ul>
+</div>
+<div id="reading-w06" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Reading list</h2>
+<ul>
+<li>Reading #1</li>
+<li>Reading #2</li>
+</ul>
+</div>
+<div id="bike-theft-in-london" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Bike theft in London</h2>
+<p>This week, we will be investigating bike theft in London in 2019 - and look to confirm a very simple hypothesis: <em>that bike theft primarily occurs near tube and train stations.</em> We will be investigating its distribution across London using the point data provided within our crime data set. We will then compare this distribution to the location of train and tube stations using specific geometric operations and spatial queries that can compare the geometry of two (or more) data sets.</p>
+<p>We will also learn how to download data from OpenStreetMap as well as use an interactive version of <code>tmap</code> to explore the distribution of the locations of individual bike theft against the locations of these stations.</p>
+<div id="housekeeping-w06" class="section level3" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Housekeeping</h3>
+<p>Let’s get ourselves ready to start our lecture and practical content by first downloading the relevant data and loading this within our script.</p>
+<p>Open a new script within your GEOG0030 project and save this script as <code>wk6-bike-theft-analysis.r</code>. At the top of your script, add the following metadata (substitute accordingly):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysing bike theft and its relation to stations using geometric analysis</span></span>
+<span id="cb1-2"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Date: January 2021</span></span>
+<span id="cb1-3"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: Justin </span></span></code></pre></div>
+<p>Before continuing, please install the following libraries through your console: <code>leaflet</code>, <code>osmdata</code>, <code>RColorBrewer</code></p>
+<p>Within your script, add the following libraries for loading:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries</span></span>
+<span id="cb2-2"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-3"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb2-4"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb2-5"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb2-6"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb2-7"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb2-8"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata)</span></code></pre></div>
+</div>
+<div id="loading-data-w06" class="section level3" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Loading data</h3>
+<p>This week, we will start off using three data sets:</p>
+<ul>
+<li>London Ward boundaries for 2018</li>
+<li>Crime in London for 2019 from <a href="data.police.uk">data.police.uk</a></li>
+<li>Train and Tube Stations from <a href="https://data.police.uk/">Transport for London</a></li>
+</ul>
+<div id="file-download-1" class="section level4 unnumbered">
+<h4>File download</h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left">File</th>
+<th align="left">Type</th>
+<th align="left">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Crime in London 2019</td>
+<td align="left"><code>csv</code></td>
+<td align="left"><a href="https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/crime_all_2019_london.zip">Download</a></td>
+</tr>
+<tr class="even">
+<td align="left">Train and tube stations in London</td>
+<td align="left"><code>kml</code></td>
+<td align="left"><a href="https://github.com/jtvandijk/GEOG0114/tree/master/data/zip/tfl_stations.zip">Download</a></td>
+</tr>
+</tbody>
+</table>
+<p>Download the files above. Store your <code>crime_all_2019_london.csv</code> in your <code>data/raw/crime</code> folder. Move your <code>tfl_stations.kml</code> download to your <code>raw</code> data folder and create a new <code>transport</code> folder to contain it. The London Ward boundaries for 2019 shoudl still be in your <code>data/raw/boundaries</code> folder.</p>
+<p>Let’s first load our London Ward shapefile:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in our 2018 London Ward boundaries</span></span>
+<span id="cb3-2"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb3-2" aria-hidden="true" tabindex="-1"></a>london_ward_shp <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;data/raw/boundaries/2018/London_Ward.shp&quot;</span>)</span></code></pre></div>
+<p>Check the <strong>CRS</strong> of our <code>london_ward_shp</code> spatial dataframe:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the CRS for the 2018 London Ward boundaries</span></span>
+<span id="cb4-2"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(london_ward_shp)</span></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: OSGB 1936 / British National Grid 
+##   wkt:
+## PROJCRS[&quot;OSGB 1936 / British National Grid&quot;,
+##     BASEGEOGCRS[&quot;OSGB 1936&quot;,
+##         DATUM[&quot;OSGB 1936&quot;,
+##             ELLIPSOID[&quot;Airy 1830&quot;,6377563.396,299.3249646,
+##                 LENGTHUNIT[&quot;metre&quot;,1]]],
+##         PRIMEM[&quot;Greenwich&quot;,0,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         ID[&quot;EPSG&quot;,4277]],
+##     CONVERSION[&quot;British National Grid&quot;,
+##         METHOD[&quot;Transverse Mercator&quot;,
+##             ID[&quot;EPSG&quot;,9807]],
+##         PARAMETER[&quot;Latitude of natural origin&quot;,49,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8801]],
+##         PARAMETER[&quot;Longitude of natural origin&quot;,-2,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8802]],
+##         PARAMETER[&quot;Scale factor at natural origin&quot;,0.9996012717,
+##             SCALEUNIT[&quot;unity&quot;,1],
+##             ID[&quot;EPSG&quot;,8805]],
+##         PARAMETER[&quot;False easting&quot;,400000,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8806]],
+##         PARAMETER[&quot;False northing&quot;,-100000,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8807]]],
+##     CS[Cartesian,2],
+##         AXIS[&quot;(E)&quot;,east,
+##             ORDER[1],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##         AXIS[&quot;(N)&quot;,north,
+##             ORDER[2],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##     USAGE[
+##         SCOPE[&quot;Engineering survey, topographic mapping.&quot;],
+##         AREA[&quot;United Kingdom (UK) - offshore to boundary of UKCS within 49°45&#39;N to 61°N and 9°W to 2°E; onshore Great Britain (England, Wales and Scotland). Isle of Man onshore.&quot;],
+##         BBOX[49.75,-9,61.01,2.01]],
+##     ID[&quot;EPSG&quot;,27700]]</code></pre>
+<p>Of course it should be of no surprise that our <code>london_ward_shp</code> spatial dataframe is in <strong>BNG / ESPG: 27700</strong>, however, it is always good to check. Let’s go ahead and read in our <code>tfl_stations</code> dataset:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in our London stations dataset</span></span>
+<span id="cb6-2"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb6-2" aria-hidden="true" tabindex="-1"></a>london_stations <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;data/raw/transport/tfl_stations.kml&quot;</span>)</span></code></pre></div>
+<p>This dataset is provided as a <code>kml</code> file, which stands for <strong>Keyhole Markup Language (KML)</strong>. <strong>KML</strong> was originally created as a file format used to display geographic data in Google Earth. So we definitely need to check what CRS this dataset is in and decide whether we will need to do some reprojecting.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the CRS for the London stations</span></span>
+<span id="cb7-2"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(london_stations)</span></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: WGS 84 
+##   wkt:
+## GEOGCRS[&quot;WGS 84&quot;,
+##     DATUM[&quot;World Geodetic System 1984&quot;,
+##         ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
+##             LENGTHUNIT[&quot;metre&quot;,1]]],
+##     PRIMEM[&quot;Greenwich&quot;,0,
+##         ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##     CS[ellipsoidal,2],
+##         AXIS[&quot;geodetic latitude (Lat)&quot;,north,
+##             ORDER[1],
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         AXIS[&quot;geodetic longitude (Lon)&quot;,east,
+##             ORDER[2],
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##     ID[&quot;EPSG&quot;,4326]]</code></pre>
+<p>The result informs us that we are going to need to reproject our data in order to use this dataframe with our <code>london_ward_shp</code> spatial dataframe. Luckily in <strong>R</strong> and the <code>sf</code> library, this reprojection is a relatively straight-forward transformation, requiring only one function: <code>st_transform()</code>. The function is very simple to use - you only need to provide the function with the dataset and the code for the new CRS you wish to use with the data:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reproject our data from WGS84 to BNG</span></span>
+<span id="cb9-2"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb9-2" aria-hidden="true" tabindex="-1"></a>london_stations <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(london_stations, <span class="dv">27700</span>)</span></code></pre></div>
+<p>We can double-check whether our new variable is in the correct CRS by using the <code>st_crs()</code> command:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the CRS for the London stations</span></span>
+<span id="cb10-2"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(london_stations)</span></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: EPSG:27700 
+##   wkt:
+## PROJCRS[&quot;OSGB 1936 / British National Grid&quot;,
+##     BASEGEOGCRS[&quot;OSGB 1936&quot;,
+##         DATUM[&quot;OSGB 1936&quot;,
+##             ELLIPSOID[&quot;Airy 1830&quot;,6377563.396,299.3249646,
+##                 LENGTHUNIT[&quot;metre&quot;,1]]],
+##         PRIMEM[&quot;Greenwich&quot;,0,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         ID[&quot;EPSG&quot;,4277]],
+##     CONVERSION[&quot;British National Grid&quot;,
+##         METHOD[&quot;Transverse Mercator&quot;,
+##             ID[&quot;EPSG&quot;,9807]],
+##         PARAMETER[&quot;Latitude of natural origin&quot;,49,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8801]],
+##         PARAMETER[&quot;Longitude of natural origin&quot;,-2,
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+##             ID[&quot;EPSG&quot;,8802]],
+##         PARAMETER[&quot;Scale factor at natural origin&quot;,0.9996012717,
+##             SCALEUNIT[&quot;unity&quot;,1],
+##             ID[&quot;EPSG&quot;,8805]],
+##         PARAMETER[&quot;False easting&quot;,400000,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8806]],
+##         PARAMETER[&quot;False northing&quot;,-100000,
+##             LENGTHUNIT[&quot;metre&quot;,1],
+##             ID[&quot;EPSG&quot;,8807]]],
+##     CS[Cartesian,2],
+##         AXIS[&quot;(E)&quot;,east,
+##             ORDER[1],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##         AXIS[&quot;(N)&quot;,north,
+##             ORDER[2],
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##     USAGE[
+##         SCOPE[&quot;Engineering survey, topographic mapping.&quot;],
+##         AREA[&quot;United Kingdom (UK) - offshore to boundary of UKCS within 49°45&#39;N to 61°N and 9°W to 2°E; onshore Great Britain (England, Wales and Scotland). Isle of Man onshore.&quot;],
+##         BBOX[49.75,-9,61.01,2.01]],
+##     ID[&quot;EPSG&quot;,27700]]</code></pre>
+<p>You should see that our <code>london_stations</code> spatial dataframe is now in <strong>BNG / EPSG: 27700</strong>. We are now ready to load our final dataset - our <code>csv</code> that contains our crime from 2019.</p>
+<p>From this <code>csv</code>, we want to do three things:</p>
+<ol style="list-style-type: decimal">
+<li>Extract only those crimes that are bicycle thefts, i.e. <code>crime_type == "bicycle theft"</code>.</li>
+<li>Convert our csv into a spatial dataframe that shows the locations of our crimes, determined by the latitude and longitudes provided, as points.</li>
+<li>Transform our data from <strong>WGS84 / 4326</strong> to <strong>BNG / 27700</strong>.</li>
+</ol>
+<p>Since we are getting pretty used to looking at code and cleaning data we should be able to chain these operations using the <code>%&gt;%</code> operator:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in our crime data csv from our raw data folder</span></span>
+<span id="cb12-2"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb12-2" aria-hidden="true" tabindex="-1"></a>bike_theft_2019 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/raw/crime/crime_all_2019_london.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clean names</span></span>
+<span id="cb12-4"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter according to crime type and ensure we have no NAs in our dataset</span></span>
+<span id="cb12-6"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(crime_type <span class="sc">==</span> <span class="st">&quot;Bicycle theft&quot;</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(longitude) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(latitude)) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-7"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># select just the longitude and latitude columns</span></span>
+<span id="cb12-8"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(longitude, latitude) <span class="sc">%&gt;%</span></span>
+<span id="cb12-9"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># transform into a point spatial dataframe</span></span>
+<span id="cb12-10"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># note providing the columns as the coordinates to use</span></span>
+<span id="cb12-11"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># plus the CRS, which as our columns are long/lat is WGS84/4236</span></span>
+<span id="cb12-12"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&#39;longitude&#39;</span>, <span class="st">&#39;latitude&#39;</span>), <span class="at">crs=</span><span class="dv">4236</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-13"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert into BNG</span></span>
+<span id="cb12-14"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">27700</span>)</span></code></pre></div>
+<p>We now have our three datasets loaded, it is time for a little data checking. We can see just from our Environment window that in total, we have <strong>302</strong> stations and <strong>18,744</strong> crimes to look at in our analysis. We can double-check the (Attribute) tables of our newly created spatial dataframes to see what data we have to work with.</p>
+<p>You can either do this manually by clicking on the variable, or using commands such as <code>head()</code>, <code>summary()</code> and <code>names()</code> to get an understanding of our dataframe structures and the field names present - you can choose your approach, but make sure to look at your data.</p>
+<p>As you should remember from the code above, for our bicycle theft data, we actually only have our geometry column because this is all that we extracted from our crime csv.For our <code>london_stations</code> spatial dataframe, we have a little more information, including the name of the station and its address - as well as its geometry.</p>
+<p>Now, let’s nap all three layers of data onto a single map using <code>tmap</code>:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot our London Wards first</span></span>
+<span id="cb13-2"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(london_ward_shp) <span class="sc">+</span> <span class="fu">tm_fill</span>() <span class="sc">+</span> </span>
+<span id="cb13-3"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># then add bike crime as blue</span></span>
+<span id="cb13-4"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(bike_theft_2019) <span class="sc">+</span> <span class="fu">tm_dots</span>(<span class="at">col=</span><span class="st">&quot;blue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb13-5"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># then add our stations as red</span></span>
+<span id="cb13-6"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(london_stations) <span class="sc">+</span> <span class="fu">tm_dots</span>(<span class="at">col=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb13-7"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># then add a north arrow</span></span>
+<span id="cb13-8"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>(<span class="at">type=</span><span class="st">&quot;arrow&quot;</span>, <span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb13-9"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># then add a scale bar</span></span>
+<span id="cb13-10"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_scale_bar</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-map-all-data-1.png" width="672" /></p>
+<p>Let’s think about the distribution of our data - we can already see that our bike theft is obviously highly concentrated in the centre of London although we can certainly see some clusters in the Greater London areas. Let’s go ahead and temporally remove the bike theft data from our map for now to see where our tube and train stations are located.</p>
+<p>To remove the bike data, simply put a comment sign in front of that piece of code and re-run the code:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot our London Wards first</span></span>
+<span id="cb14-2"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(london_ward_shp) <span class="sc">+</span> <span class="fu">tm_fill</span>() <span class="sc">+</span> </span>
+<span id="cb14-3"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># then add bike crime as blue</span></span>
+<span id="cb14-4"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># tm_shape(bike_theft_2019) + tm_dots(col=&quot;blue&quot;) + </span></span>
+<span id="cb14-5"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># then add our stations as red</span></span>
+<span id="cb14-6"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(london_stations) <span class="sc">+</span> <span class="fu">tm_dots</span>(<span class="at">col=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb14-7"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># then add a north arrow</span></span>
+<span id="cb14-8"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>(<span class="at">type=</span><span class="st">&quot;arrow&quot;</span>, <span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb14-9"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># then add a scale bar</span></span>
+<span id="cb14-10"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_scale_bar</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/06-map-all-data-no-bike-1.png" width="672" /></p>
+<p>We can see our train and tube stations are only present in primarily the north of London - and not really present in the south. This isn’t quite right and as it turns out the dataset only contains those train stations used by Transfort for London within the tube network rather than all the stations in London. We will need to fix this before conducting our full analysis. But this isn’t the only problem with our dataset - we can see that both our <code>bike_theft</code> spatial dataframe and our <code>london_stations</code> spatial dataframe extend beyond our London boundary.</p>
+</div>
+</div>
+<div id="data-preparation-w06" class="section level3" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> Data preparation</h3>
+<p>When we want to reduce a dataset to the spatial extent of another, there are two different approaches to conducting this in spatial analysis - a subset or a clip - which each deal with the geometry of the resulting dataset in slightly different ways.</p>
+<p>A clip-type operation works a bit like a cookie-cutter - it will take the geometry of “dough” layer (i.e. the layer you want to clip), places a “cookie-cutter” layer on top (i.e. the layer you want to clip by) and then returns only the dough contained within the cookie-cutter. This will mean that the geometry of our resulting “dough” layer will be modified, if it contains observation features that extend further than the “cookie-cutter” extent - it will literally “cut” the geometry of our data.</p>
+<p>A subset-type operation is what is known in GIScience-speak as a select by location query - in this case, our subset will return the full geometry of each observation feature that intersects with our “clip when our”’“cookie-cutter” layer. Any geometry that does not intersect with our clip layer will be removed from the geometry of our resulting layer.</p>
+<p>Luckily for us, as we are using point data, we can (theorectically) use either approach because it is not possible to split the geometry of a single point feature. However, if a point feature does fall on the same geometry as our “clip” layer, it will be excluded from our dataset.</p>
+<p>When it comes to polygon and line data, not understanding the differences between the two approaches can lead you into difficulties with your data processing - as outlined by our examples in the GIFs above and below - there will be differences in the feature geometry between the clipped layer and the subset layer.</p>
+<p>Each approach is implemented differently in R - and can actually be used together to speed up the efficiency in your code. To <strong>subset</strong> our data, we only need to use the <code>base</code> R library to selection using <code>[]</code> brackets:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset our bike_theft_2019 spatial dataframe by the london_ward_shp spatial dataframe</span></span>
+<span id="cb15-2"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb15-2" aria-hidden="true" tabindex="-1"></a>bike_theft_2019_subset <span class="ot">&lt;-</span> bike_theft_2019[london_ward_shp,]</span></code></pre></div>
+<p>Conversely, if we want to <strong>clip</strong> our data, we need to use the <code>st_intersection()</code> function from the <code>sf</code> library.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clip our bike_theft_2019 spatial dataframe by the london_ward_shp spatial dataframe</span></span>
+<span id="cb16-2"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb16-2" aria-hidden="true" tabindex="-1"></a>bike_theft_2019 <span class="ot">&lt;-</span> bike_theft_2019 <span class="sc">%&gt;%</span> <span class="fu">st_intersection</span>(london_ward_shp)</span></code></pre></div>
+<pre><code>## Warning: attribute variables are assumed to be spatially constant throughout all
+## geometries</code></pre>
+<div class="note">
+<p><strong>Note</strong> <br />
+Which approach you use with future data is always dependent on the dataset you want to use - and the output you need. For example, is keeping the geometry of your observation features in your dataset important? Out of the two, the <strong>subset</strong> approach is the fastest to use as R is simply comparing the geometries rather than also editing the geometries.</p>
+</div>
+<p>Before we go ahead and sort out our <code>london_stations</code> spatial dataframe, we are going to look at how we can <strong>dissolve</strong> our <code>london_ward_shp</code> spatial dataframe into a single feature. Reducing a spatial dataframe to a single observation is often required when using R and <code>sf</code>‘s geometric operations to complete geometric comparisons. Sometimes, also, we simply want to map an outline of an area, such as London, rather than add in the additional spatial complexities of our wards. To achieve just a single ’observation’ that represents the <strong>outline geometry</strong> of our dataset, we use the geometric operation, <code>st_union()</code>.</p>
+<div class="note">
+<p><strong>Note</strong> <br/>
+You can also use the <code>st_union()</code> function to union two datasets into one - this can be used to <strong>merge</strong> data together that are of the same spatial type.</p>
+</div>
+<p>Let’s go ahead and see if we can use this to create our London outline:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use st_union to create a single outline of London from our london_ward_shp spatial dataframe</span></span>
+<span id="cb18-2"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb18-2" aria-hidden="true" tabindex="-1"></a>london_outline <span class="ot">&lt;-</span> london_ward_shp <span class="sc">%&gt;%</span> <span class="fu">st_union</span>()</span></code></pre></div>
+<p>You should see that our <code>london_outline</code> spatial data frame only has one observation. You can now go ahead and <code>plot()</code> your <code>london_outline</code> spatial dataframe from your console and see what it looks like:</p>
+<p><img src="GEOG0030_files/figure-html/06-plot-london-1.png" width="672" /></p>
+<p>Back to our train and tube stations. We have seen that our current <code>london_stations</code> spatial dataframe really does not provide the coverage of train stations in London that we expected. To add in our missing data, we will be using <a href="https://www.openstreetmap.org/#map=6/54.910/-3.432">OpenStreetMap</a>. If you have never come across OpenStreetMap (OSM) before, it is a free editable map of the world.</p>
+<div class="note">
+<p><strong>Note</strong> <br/>
+OpenStreetMap’s spatial coverage is still unequal across the world - plus, as you will find if you use the data, the accuracy and quality of the data can often be quite questionable or simply missing attribute details that we’d like to have, e.g. types of roads and their speed limits, to complete specific types of spatial analysis. As a result, do not expect OSM to contain every piece of spatial data that you would want.</p>
+</div>
+<p>Whilst there are <a href="https://wiki.openstreetmap.org/wiki/Downloading_data">various approaches</a> to downloading data from OpenStreetMap, we will use the <code>osmdata</code> library to directly extract our required OpenStreetMap (OSM) data into a variable. The <code>osmdata</code> library grants access within R to the <a href="https://overpass-turbo.eu">Overpass API</a> that allows us to run queries on OSM data and then import the data as either <code>sf</code> or <code>sp</code> objects. These queries are at the <strong>heart</strong> of these data downloads.</p>
+<p>To use the library (and API), we need to know how to write and run a query, which requires identifying the <code>key</code> and <code>value</code> that we need within our query to select the correct data. Essentially every map element (whether a point, line or polygon) in OSM is “tagged” with different attribute data. In our case, we are looking for train stations, which fall under the key, <strong>Public Transport</strong>, with a value of <strong>station</strong> as outlined in their <a href="https://wiki.OpenStreetMap.org/wiki/Key:public_transport">wiki</a>. These <strong>keys</strong> and <strong>values</strong> are used in our queries to extract only map elements of that feature type - to find out how a feature is “tagged” in OSM is simply a case of reading through the OSM documentation and <a href="https://wiki.openstreetmap.org/wiki/Tags">becoming familiar</a> with their <strong>keys</strong> and <strong>values</strong>.</p>
+<p>In addition to this key-value pair, we also need to obtain the <strong>bounding box</strong> of where we want our data to be extracted from, i.e. London, to prevent OSM searching the whole map of the world for our feature (although the API query does have in-built time and spatial coverage limits to stop this from happening).</p>
+<p>Let’s try to extract elements from OSM that are tagged as <code>public_transport = station</code> from OSM into an <code>osmdata_sf()</code> object:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the coordinates from our London outline using the st_bbox() function</span></span>
+<span id="cb19-2"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># note we also temporally reproject the london_outline spatial dataframe before obtaining the bbox</span></span>
+<span id="cb19-3"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we need our bbox coordinates in WGS84 (not BNG), hence reprojection</span></span>
+<span id="cb19-4"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb19-4" aria-hidden="true" tabindex="-1"></a>p_bbox <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(<span class="fu">st_transform</span>(london_outline, <span class="dv">4326</span>))</span>
+<span id="cb19-5"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Pass our bounding box coordinates into the OverPassQuery (opq) function</span></span>
+<span id="cb19-6"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb19-6" aria-hidden="true" tabindex="-1"></a>london_stations_osm <span class="ot">&lt;-</span> <span class="fu">opq</span>(<span class="at">bbox =</span> p_bbox ) <span class="sc">%&gt;%</span></span>
+<span id="cb19-7"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Pipe this into the add_osm_feature data query function to extract our stations</span></span>
+<span id="cb19-8"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_osm_feature</span>(<span class="at">key =</span> <span class="st">&#39;public_transport&#39;</span>, <span class="at">value =</span> <span class="st">&#39;station&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-9"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Pipe this into our osmdata_sf object</span></span>
+<span id="cb19-10"><a href="analysing-spatial-patterns-i-geometric-operations.html#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">osmdata_sf</span>()</span></code></pre></div>
+</div>
+</div>
+<div id="assignment-w06" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Assignment</h2>
+</div>
+<div id="byl-w06" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Before you leave</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="programming-for-spatial-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jtvandijk/GEOG0030/edit/master/06-operations.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["https://github.com/jtvandijk/GEOG0030/raw/master/06-operations.Rmd"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -11,3 +11,7 @@ forcats
 sf
 tmap
 vembedr
+janitor
+RColorBrewer
+leaflet
+osmdata
