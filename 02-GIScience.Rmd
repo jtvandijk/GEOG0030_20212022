@@ -125,7 +125,7 @@ MapInfo is another proprietary GIS software, which has historically been used in
 3. In your `GEOG0030/data/raw/` folder, create a new folder called `boundaries`. Within this folder, create three new folders: `2011`, `2014` and `2018`.
 4. Copy the entire contents of `Esri` folder of each year into their respective year folder within your new `boundaries` folder. We **do not** want to add the additional `Esri` folder as a step in our filesystem, i.e. your file path should read: `GEOG0030/data/raw/boundaries/2011` for the 2011 boundaries and `GEOG0030/data/raw/boundaries/2014` for the 2014 boundaries etc.
 
-```{r echo=FALSE, fig.align='center', fig.cap='Your setup should look like this.'}
+```{r echo=FALSE, fig.align='center', fig.cap='Your setup should look something like this.'}
 knitr::include_graphics('images/w02/w2files.png')
 ```
 

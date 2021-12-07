@@ -139,3 +139,5 @@ recording-w10
 reading-w10
 assignment-w10
 byl-w10
+fig:unnamed-chunk-1
+fig:unnamed-chunk-6
