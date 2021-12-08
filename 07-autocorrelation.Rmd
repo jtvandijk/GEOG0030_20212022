@@ -633,20 +633,19 @@ obesity_ward_sdf <- obesity_ward_sdf %>%
 Now we have a column detailing our cluster types, we can create a cluster map that details our four cluster types as well as those that are not significant. Creating a categorical map in R and using `tmap` is a little tricky - and we'll need to do some preparing of our colour palettes to ensure our data is mapped correctly. To do this, we first need to figure out how many cluster types we have in our `cluster_type` field:
 
 ```{r 07-LMI-cs, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
-# # count the different values within our `cluster_type` variable 
-# count(obesity_ward_sdf, cluster_type)
+# count the different values within our `cluster_type` variable 
+count(obesity_ward_sdf, cluster_type)
 ```
 
-We can see we actually on have two cluster types present within our data set - alongside the `No Significance` value. We therefore need to ensure our palette only includes two colours for these two cluster types, plus a white colour for `No Significance`:
+We can see we actually have all four cluster types present within our data set - alongside the `No Significance` value. We therefore need to ensure our palette includes four colours for these two cluster types, plus a white colour for `No Significance`:
 
 ```{r 07-plot-LMI-hscs, warnings=FALSE, message=FALSE, cache=TRUE}
 # create a colour palette
-# White (No Significance), Light Blue (Low-High) and Dark Red (High-High)
-pal <- c("#F5F5F5", '#91bfdb', '#67001f')
+pal <- c("#d7191c", "#fdae61", "#abd9e9", "#2c7bb6","#F5F5F5")
 
 # plot the clusters
 tm_shape(obesity_ward_sdf) +
-  tm_polygons(col = "cluster_type", palette = rev(pal), title = "Cluster Type") +
+  tm_polygons(col = "cluster_type", palette = pal, title = "Cluster Type") +
   tm_layout(main.title = "Cluster Map of Childhood Obesity in London, 2014",
             main.title.fontface = 2, fontfamily = "Helvetica", legend.outside = TRUE,
             legend.outside.position = "right",
