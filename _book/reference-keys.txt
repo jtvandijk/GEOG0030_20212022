@@ -149,6 +149,8 @@ global-morans-i
 geary-cs
 getis-ord-general-g
 local-morans-i
+getis-gi
+assignment-2-w07
 byl-w07
 analysing-spatial-patterns-iii-point-pattern-analysis
 recording-w08
@@ -165,3 +167,5 @@ recording-w10
 reading-w10
 assignment-w10
 byl-w10
+fig:unnamed-chunk-1
+fig:unnamed-chunk-6

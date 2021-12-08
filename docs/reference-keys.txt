@@ -149,6 +149,8 @@ global-morans-i
 geary-cs
 getis-ord-general-g
 local-morans-i
+getis-gi
+assignment-2-w07
 byl-w07
 analysing-spatial-patterns-iii-point-pattern-analysis
 recording-w08

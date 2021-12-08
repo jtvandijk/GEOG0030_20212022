@@ -343,7 +343,7 @@ If our slope is an outlier, i.e. not a value we would expect to compute if the d
 Where \({N_{extreme}}\) is the number of simulated Moran's I values that were more extreme that our observed statistic and \({N}\) is the total number of simulations. In the example above, from [Manuel Gimond](https://mgimond.github.io/Spatial/spatial-autocorrelation.html), only 1 out the 199 simulations was more extreme than the observed local Moran's I statistic. Therefore \({N_{extreme}}\) = 1 , so $p$ is equal to (1+1) / (199 + 1) = 0.01. This means that "there is a 1% probability that we would be wrong in rejecting the null hypothesis". This approach is known as a **Monte Carlo simulation** (or permutation bootstrap test).
 
 ### Defining neighbours
-For any spatial autocorrelation test that you want to conduct, you will always need one critical piece of information: **how do we define 'neighbours' in our dataset to enable the value comparison.** Every observation in a data set will need to have a set of neighbours to which its value is compared. To enable this, we need to determine how many or what type of neighbours should be taken into account for each observation when conducting a spatial autocorrelation test.
+For any spatial autocorrelation test that you want to conduct, you will always need one critical piece of information: **how do we define 'neighbours' in our data set to enable the value comparison.** Every observation in a data set will need to have a set of neighbours to which its value is compared. To enable this, we need to determine how many or what type of neighbours should be taken into account for each observation when conducting a spatial autocorrelation test.
 
 These 'neighbouring' observations can be defined in a multitude of ways, based either on geometry or proximity, and include:
 
@@ -478,9 +478,9 @@ obesity_GC
 The Geary’s C statistic calculated should be 0.46. With Geary’s C falling between 0 and 2 and 1 means no spatial autocorrelation, <1 = positive spatial autocorrelation or similar values clustering and >1 = negative spatial autocorrelation or dissimilar values clustering, we can confirm that our data shows that similar values are clustering. We can also consider the *pseudo* $p$-value as a measure of the statistical significance of the model again, which also here confirms our result is (pseudo) significant.
 
 ### Getis-Ord General G
-The Getis-Ord General G test tells us whether high or low values are clustering. For Getis-Ord, as it is **recommended** to use a proximity-based neighbour matrix, so we will use our Fixed Distance definition:
+The Getis-Ord General G test tells us whether high or low values are clustering. For Getis-Ord, as it is **recommended** to use a proximity-based neighbour matrix, we will use our Fixed Distance definition:
 
-```{r 07-run-GO, warnings=FALSE, message=FALSE, cache=FALSE, tidy=TRUE}
+```{r 07-run-GO, message=FALSE, cache=FALSE, tidy=TRUE, warnings=FALSE}
 # run the Getis-Ord General G test on our y6_obesity_2014 data, change spatial weights to fd
 obesity_GO <- obesity_ward_sdf %>% pull(y6_obesity_2014) %>% as.vector() %>% globalG.test(., ward_spatial_weights_fd)
 
@@ -559,9 +559,9 @@ tm_shape(obesity_ward_sdf) +
 
 From the map, it is possible to observe the variations in autocorrelation across space. We can interpret that there seems to be a geographic pattern to the autocorrelation. However, it is not possible to understand if these are clusters of high or low values. To be able to interpret this confidently, we also need to know the significance of the patterns we see in our map - we therefore need to map the $p$-value of local Moran's I statistic.
 
-8. Map the $p$-value of local Moran's I statistic:
+Map the $p$-value of local Moran's I statistic:
 
-```{r 07-map-LMI-p, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 07-map-LMI-p, warnings=FALSE, message=FALSE, cache=TRUE, tidy=FALSE}
 # significance breaks
 breaks <- c(0, 0.05, 0.1, 1)
 
@@ -610,7 +610,7 @@ To achieve this cluster map, we need to take several additional steps:
 
 Determine the cluster type of each ward by comparing observed and LMI values against their respective means - and the significance value:
  
-```{r 07-LMI-cluster-type, warnings=FALSE, message=FALSE, cache=FALSE, tidy=TRUE}
+```{r 07-LMI-cluster-type, warnings=FALSE, message=FALSE, cache=FALSE, tidy=FALSE}
 # compare local value for obesity with mean value
 obesity_ward_sdf <- obesity_ward_sdf %>% mutate(obs_diff = (y6_obesity_2014 - mean(obesity_ward_sdf$y6_obesity_2014)))
 
@@ -620,13 +620,13 @@ obesity_ward_sdf <- obesity_ward_sdf %>% mutate(LMI_diff = (obesity_LMI$LMI_Ii -
 # set a significance threshold 
 signif <- 0.05
 
-# # generate column with cluster type, using values above
-# obesity_ward_sdf <- obesity_ward_sdf %>% mutate(cluster_type= LMI_diff)
-#   mutate(cluster_type = case_when(obs_diff > 0 & LMI_diff > 0 & LMI_sigP < signif ~ "High-High", 
-#                                   obs_diff < 0 & LMI_diff < 0 & LMI_sigP < signif ~ "Low-Low", 
-#                                   obs_diff < 0 & LMI_diff > 0 & LMI_sigP < signif ~ "Low-High", 
-#                                   obs_diff > 0 & LMI_diff < 0 & LMI_sigP < signif ~ "High-Low", 
-#                                   LMI_sigP > signif ~ "No Significance"))
+# generate column with cluster type, using values above
+obesity_ward_sdf <- obesity_ward_sdf %>% 
+  mutate(cluster_type = case_when(obs_diff > 0 & LMI_diff > 0 & LMI_sigP < signif ~ "High-High",
+                                  obs_diff < 0 & LMI_diff < 0 & LMI_sigP < signif ~ "Low-Low",
+                                  obs_diff < 0 & LMI_diff > 0 & LMI_sigP < signif ~ "Low-High",
+                                  obs_diff > 0 & LMI_diff < 0 & LMI_sigP < signif ~ "High-Low",
+                                  LMI_sigP > signif ~ "No Significance"))
 
 ```
 
@@ -640,22 +640,76 @@ Now we have a column detailing our cluster types, we can create a cluster map th
 We can see we actually on have two cluster types present within our data set - alongside the `No Significance` value. We therefore need to ensure our palette only includes two colours for these two cluster types, plus a white colour for `No Significance`:
 
 ```{r 07-plot-LMI-hscs, warnings=FALSE, message=FALSE, cache=TRUE}
-# # create a colour palette
-# # White (No Significance), Light Blue (Low-High) and Dark Red (High-High)
-# pal <- c("#F5F5F5", '#91bfdb', '#67001f')
-# 
-# # plot the clusters
-# tm_shape(obesity_ward_sdf) + 
-#   tm_polygons(col = "cluster_type", palette = rev(pal), title = "Cluster Type") + 
-#   tm_layout(main.title = "Cluster Map of Childhood Obesity in London in 2014", 
-#             main.title.fontface = 2, fontfamily = "Helvetica", legend.outside = TRUE, 
-#             legend.outside.position = "right", 
-#             legend.title.size = 1, 
-#             legend.title.fontface = 2) + 
-#   tm_compass(type = "arrow", position = c("right", "bottom")) + 
-#   tm_scale_bar(breaks = c(0, 5, 10, 15, 20), position = c("left", "bottom"))
+# create a colour palette
+# White (No Significance), Light Blue (Low-High) and Dark Red (High-High)
+pal <- c("#F5F5F5", '#91bfdb', '#67001f')
+
+# plot the clusters
+tm_shape(obesity_ward_sdf) +
+  tm_polygons(col = "cluster_type", palette = rev(pal), title = "Cluster Type") +
+  tm_layout(main.title = "Cluster Map of Childhood Obesity in London, 2014",
+            main.title.fontface = 2, fontfamily = "Helvetica", legend.outside = TRUE,
+            legend.outside.position = "right",
+            legend.title.size = 1,
+            legend.title.fontface = 2) +
+  tm_compass(type = "arrow", position = c("right", "bottom")) +
+  tm_scale_bar(breaks = c(0, 5, 10, 15, 20), position = c("left", "bottom"))
 ``` 
 
 And there we have it - within one map, we can visualise both the relationship of our Wards to their respective neighbourhoods and the significance of this relationship from our local Moran's I test. This type of map is called a LISA map - and is a great way of showing how a variable is actually clustering.
 
+### Getis-Gi*
+The final test we will run today is the local Getis-Ord, which will produce the Gi* statistic. This statistic will identify hot and cold spots by looking at the neighbours within a defined proximity to identify where either high or low values cluster spatially and recognising statistically significant hot-spots as those areas of high values where other areas within a neighbourhood range also share high values too (and vice versa for cold spots).
+
+Run the local Gi* statistic spatial autocorrelation test and print the result:
+
+```{r 07-local-GO, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# run the local Gi* test on our y6_obesity_2014 data, note we again use the fd weights
+obesity_LGO <- obesity_ward_sdf %>% pull(y6_obesity_2014) %>% as.vector() %>% localG(., ward_spatial_weights_fd)
+
+# print the local Gi* statistic
+head(obesity_LGO)
+``` 
+
+By printing the results of our test, we can see that the local Getis-Ord test is a bit different from a local Moran's I test as it only contains a single value - the z-score. The z-score is a  standardised value relating to whether high values or low values are clustering together, which we call the Gi* statistic. We can join this output, a list of our Gi* values, to our `obesity_ward_sdf` spatial dataframe and map the result:
+
+```{r 07-join-local-GO, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# join the local Gi* statistic to `obesity_ward_sdf` spatial dataframe
+obesity_ward_sdf <- obesity_ward_sdf %>% mutate(obesity_LGO_G = as.numeric(obesity_LGO))
+```
+
+```{r 07-map-local-GO, warnings=FALSE, message=FALSE, cache=TRUE, tidy=FALSE}
+# create a colour palette
+GIColours <- rev(brewer.pal(8, "RdBu"))
+
+# plot the clusters
+tm_shape(obesity_ward_sdf) + 
+  tm_polygons("obesity_LGO_G", style = "pretty", palette=GIColours,
+              midpoint=0, title = "Local Gi* statistic") +
+  tm_layout(main.title = 'Hot/Cold Spot Map of Childhood Obesity in London, 2014', 
+            main.title.fontface = 2, fontfamily = "Helvetica",
+            legend.outside = TRUE, 
+            legend.outside.position = "right", 
+            legend.title.size = 1, 
+            legend.title.fontface = 2) + 
+  tm_compass(type = "arrow", position = c("right", "bottom")) +
+  tm_scale_bar(breaks = c(0, 5, 10, 15, 20), position = c("left", "bottom"))
+``` 
+
+Our map shows quite clearly hot and cold spots of obesity across London - how does this compare with our local Moran's I? Do we see the same clusters?
+
+## Assignment 2 {#assignment-2-w07}
+Through conducting our spatial autocorrelation tests, we can visually confirm the presence of clusters in our `y6_obesity_2014` variable - and provide a significance value associated with these tests. This provides us with a way to explain our distributions **quantitatively** during the analysis of our results - it also creates some pretty cool looking maps.
+
+Now you have the code, you will be able to repeat this analysis on any variable in the future - just be aware of substituting your spatial dataframes and respective variables correctly. For this week's assignment, we therefore want you to find out whether our `IDACI_2010` variable contains spatial clustering.
+
+In order to do this, you have to:
+
+1. Create a choropleth map showing the distribution of the variable values.
+2. Calculate all three global spatial autocorrelation statistics and explain what they show.
+3. Create a local Moran's I map showing the four cluster types.
+4. Create a local Getis-Ord hotspot map.
+5. Compare these results to the output of our `y6_obesity_2014` values. Do both variables have clusters? Do we see similar clusters in similar locations? What might this tell us about the relationship between deprivation and obesity in children in London?
+
 ## Before you leave {#byl-w07}
+And that is how you can measure spatial dependence in your data set through different spatial autocorrelation measures. Next week we will focus on the last topic within our set of core spatial analysis methods and techniques, but [this week we have covered enough](https://www.youtube.com/watch?v=fCZVL_8D048)!
