@@ -38,16 +38,16 @@ You should now see a new `csv` within your raw crime data folder (`data/raw/crim
 1. Open a new script within your GEOG0030 project and save this script as `wk5-crime-spatial-processing.r`.
 2. At the top of your script, add the following metadata (substitute accordingly):
 
-```{r 05-scr-title, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 05-scr-title, warnings=FALSE, message=FALSE, cache=TRUE}
 # Analysing crime in 2020 by month and ward
 # Date: January 2021
 # Author: Justin 
 ```
 
 3. Using the R console, install the following new libraries:
-```{r 05-oinstall-libs-all, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
+```{r 05-install-libs-all, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # install libraries
-install.packages(c('sf','tmap','janitor'))
+install.packages(c('sf','tmap'))
 ```
 
 4. Now let us add **all** of the libraries we will be using today to the top of our script:

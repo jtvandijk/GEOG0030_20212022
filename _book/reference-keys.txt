@@ -129,6 +129,8 @@ byl-w06
 analysing-spatial-patterns-ii-spatial-autocorrelation
 recording-w07
 reading-w07
+childhood-obesity
+housekeeping-w07
 assignment-w07
 byl-w07
 analysing-spatial-patterns-iii-point-pattern-analysis
@@ -146,3 +148,5 @@ recording-w10
 reading-w10
 assignment-w10
 byl-w10
+fig:unnamed-chunk-1
+loading-data-w07

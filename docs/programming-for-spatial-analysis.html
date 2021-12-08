@@ -24,7 +24,7 @@
 <meta name="author" content="Justin van Dijk" />
 
 
-<meta name="date" content="2021-12-07" />
+<meta name="date" content="2021-12-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -284,8 +284,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#recording-w07"><i class="fa fa-check"></i><b>7.1</b> Lecture recording</a></li>
 <li class="chapter" data-level="7.2" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#reading-w07"><i class="fa fa-check"></i><b>7.2</b> Reading list</a></li>
-<li class="chapter" data-level="7.3" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#assignment-w07"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
-<li class="chapter" data-level="7.4" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#byl-w07"><i class="fa fa-check"></i><b>7.4</b> Before you leave</a></li>
+<li class="chapter" data-level="7.3" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#childhood-obesity"><i class="fa fa-check"></i><b>7.3</b> Childhood obesity</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#housekeeping-w07"><i class="fa fa-check"></i><b>7.3.1</b> Housekeeping</a></li>
+<li class="chapter" data-level="7.3.2" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#loading-data-w07"><i class="fa fa-check"></i><b>7.3.2</b> Loading data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#assignment-w07"><i class="fa fa-check"></i><b>7.4</b> Assignment</a></li>
+<li class="chapter" data-level="7.5" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#byl-w07"><i class="fa fa-check"></i><b>7.5</b> Before you leave</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html"><i class="fa fa-check"></i><b>8</b> Analysing Spatial Patterns III: Point Pattern Analysis</a>
 <ul>
@@ -373,12 +378,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Open a new script within your GEOG0030 project and save this script as <code>wk5-crime-spatial-processing.r</code>.</li>
 <li>At the top of your script, add the following metadata (substitute accordingly):</li>
 </ol>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="programming-for-spatial-analysis.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysing crime in 2020 by month and ward Date: January 2021 Author: Justin</span></span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="programming-for-spatial-analysis.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysing crime in 2020 by month and ward</span></span>
+<span id="cb88-2"><a href="programming-for-spatial-analysis.html#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Date: January 2021</span></span>
+<span id="cb88-3"><a href="programming-for-spatial-analysis.html#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: Justin </span></span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Using the R console, install the following new libraries:</li>
 </ol>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="programming-for-spatial-analysis.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install libraries</span></span>
-<span id="cb89-2"><a href="programming-for-spatial-analysis.html#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;sf&quot;</span>, <span class="st">&quot;tmap&quot;</span>, <span class="st">&quot;janitor&quot;</span>))</span></code></pre></div>
+<span id="cb89-2"><a href="programming-for-spatial-analysis.html#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;sf&quot;</span>, <span class="st">&quot;tmap&quot;</span>))</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Now let us add <strong>all</strong> of the libraries we will be using today to the top of our script:</li>
 </ol>

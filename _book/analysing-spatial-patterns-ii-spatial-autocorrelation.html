@@ -24,7 +24,7 @@
 <meta name="author" content="Justin van Dijk" />
 
 
-<meta name="date" content="2021-12-07" />
+<meta name="date" content="2021-12-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,17 +53,6 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<link href="libs/vembedr-0.1.4/css/vembedr.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/proj4-2.6.2/proj4.min.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -284,8 +273,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#recording-w07"><i class="fa fa-check"></i><b>7.1</b> Lecture recording</a></li>
 <li class="chapter" data-level="7.2" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#reading-w07"><i class="fa fa-check"></i><b>7.2</b> Reading list</a></li>
-<li class="chapter" data-level="7.3" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#assignment-w07"><i class="fa fa-check"></i><b>7.3</b> Assignment</a></li>
-<li class="chapter" data-level="7.4" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#byl-w07"><i class="fa fa-check"></i><b>7.4</b> Before you leave</a></li>
+<li class="chapter" data-level="7.3" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#childhood-obesity"><i class="fa fa-check"></i><b>7.3</b> Childhood obesity</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#housekeeping-w07"><i class="fa fa-check"></i><b>7.3.1</b> Housekeeping</a></li>
+<li class="chapter" data-level="7.3.2" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#loading-data-w07"><i class="fa fa-check"></i><b>7.3.2</b> Loading data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#assignment-w07"><i class="fa fa-check"></i><b>7.4</b> Assignment</a></li>
+<li class="chapter" data-level="7.5" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#byl-w07"><i class="fa fa-check"></i><b>7.5</b> Before you leave</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html"><i class="fa fa-check"></i><b>8</b> Analysing Spatial Patterns III: Point Pattern Analysis</a>
 <ul>
@@ -328,6 +322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="analysing-spatial-patterns-ii-spatial-autocorrelation" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> Analysing Spatial Patterns II: Spatial Autocorrelation</h1>
+<p>This week, we will be looking at measuring spatial dependence. Spatial dependence is the idea that the observed value of a variable in one location is dependent (to some degree) on the observed value of the same value in a nearby location. For spatial analysis, this dependence can be assessed and measured statistically by considering the level of spatial autocorrelation between values of a specific variable, observed in either different locations or between pairs of variables observed at the same location. Spatial autocorrelation occurs when these values are not independent of one another and instead cluster together across geographic space.</p>
 <div id="recording-w07" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Lecture recording</h2>
 <ul>
@@ -341,11 +336,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Reading #2</li>
 </ul>
 </div>
-<div id="assignment-w07" class="section level2" number="7.3">
-<h2><span class="header-section-number">7.3</span> Assignment</h2>
+<div id="childhood-obesity" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Childhood obesity</h2>
+<p>This week, we are using a completely new data set and investigating a different phenomena: <strong>childhood obesity</strong>. We will be investigating its distribution across London at the ward-level. To complete this analysis, we will be using a single data download from the <a href="https://data.london.gov.uk/">London Datastore</a>, which we will need to clean, wrangle and then join to one of our ward shapefiles in order to spatially investigate the distribution of childhood obesity.</p>
+<div id="housekeeping-w07" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Housekeeping</h3>
+<p>Let’s get ourselves ready to start our lecture and practical content by first downloading the relevant data and loading this within our script.</p>
+<p>Open a new script within your GEOG0030 project and save this script as <code>wk7-obesity-spatial-analysis.r</code>. At the top of your script, add the following metadata (substitute accordingly):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysing childhood obesity and its factors</span></span>
+<span id="cb1-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Date: January 2021</span></span>
+<span id="cb1-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: Justin </span></span></code></pre></div>
+<p>This week we also need to install some additional libraries: <code>spdep</code>. <code>spdep</code> contains the relevant functions to run our various spatial autocorrelation tests. After installation, add the following libraries for loading in your script:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries</span></span>
+<span id="cb2-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb2-4"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb2-5"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb2-6"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spdep)</span>
+<span id="cb2-7"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span></code></pre></div>
 </div>
-<div id="byl-w07" class="section level2" number="7.4">
-<h2><span class="header-section-number">7.4</span> Before you leave</h2>
+<div id="loading-data-w07" class="section level3" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Loading data</h3>
+<p>We are going to only need <strong>two</strong> data sets for this week - our London ward boundaries from 2011 and the Greater London Authority (GLA) Ward Atlas and Profiles. The GLA Ward Atlas and Profiles provide a range of demographic and related data for each ward in Greater London and were specifically designed to provide an overview of the ward’s population by collating and presenting a range of data on the population, diversity, households, life expectancy, housing, crime, benefits, land use, deprivation, and employment.</p>
+<p>Indicators in the Atlas/Profile include:</p>
+<ul>
+<li>Age and sex</li>
+<li>Land area, projections and population density</li>
+<li>Household composition, religion, ethnicity</li>
+<li>Birth rates (general fertility rate), death rates (standardised mortality ratio), life expectancy</li>
+<li>Average house prices, properties sold, housing by council tax band, tenure, property size (bedrooms), dwelling build period and type, mortgage and landlord home repossession</li>
+<li>Employment and economic activity, Incapacity Benefit, Housing Benefit, Household income, Income Support and JobSeekers Allowance claimant rates, dependent children receiving child-tax credits by lone parents and out-of-work families, child poverty</li>
+<li>GCSE results, A-level / Level 3 results (average point scores), pupil absence,</li>
+<li>Child obesity</li>
+<li>Crime rates (by type of crime), fires, ambulance call outs, road casualties</li>
+<li>Happiness and well-being, land use, public transport accessibility (PTALs), access to public greenspace, access to nature, air emissions / quality, car use, bicycle travel</li>
+<li>Indices of Deprivation</li>
+<li>Election turnout</li>
+</ul>
+<p>The main data set utilises the <strong>2011 Ward Boundaries as its spatial representation</strong>, therefore we need to use the 2011 boundaries. We already have our 2011 London Ward boundaries within our <code>raw</code> data folder, so we only need to download our Ward Atlas.</p>
+<ol style="list-style-type: decimal">
+<li>Navigate to the ward Atlas data set in the London Data Store: <a href="https://data.london.gov.uk/dataset/ward-profiles-and-atlas">[Link]</a>.</li>
+<li>Download the <code>ward-atlas-data.csv</code>. You might find that instead of downloading the file, your browser will open up a new window. You have two options:
+<ul>
+<li>Copy and paste all contents of the page into a text editor such as Notepad and save your pasted contents as <code>ward-atlas-data.csv</code> in your <strong>raw</strong> data folder in a new <code>atlas</code> folder - make sure to add the <code>.csv</code> to the end of your file name to save your text file as a <code>csv</code>.</li>
+<li>Click back to the data set page, right-click on the <code>ward-atlas-data.csv</code> name and select <strong>Download Linked File</strong> from your computer’s options. Move this into your <code>raw</code> data folder in a new <code>atlas</code> folder.</li>
+</ul></li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-1"></span>
+<img src="images/w07/download_shot.gif" alt="Download linked file." width="450pt" />
+<p class="caption">
+Figure 7.1: Download linked file.
+</p>
+</div>
+<p>Let’s first load our London ward shapefile from our <code>raw/boundaries/2011</code> folder:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in our London ward boundaries</span></span>
+<span id="cb3-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb3-2" aria-hidden="true" tabindex="-1"></a>london_ward_shp <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;data/raw/boundaries/2011/London_Ward_CityMerged.shp&quot;</span>)</span></code></pre></div>
+<p>We can both <code>View()</code> and <code>plot()</code> the data in our console to check what our data looks like. We are happy with the dataframe (its field names) and what its looking like as a shapefile, so we do not need to do any cleaning on this data set. We can now turn to our <strong>London Ward Atlas</strong> data set and load the <code>csv</code> data set into R:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in our ward atlas data csv from our raw data folder</span></span>
+<span id="cb4-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb4-2" aria-hidden="true" tabindex="-1"></a>all_ward_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/raw/atlas/ward-atlas-data.csv&quot;</span>)</span></code></pre></div>
+<p>If you go ahead and view the data, you will see we have a lot of information about our Wards in the data set - we have a total of <strong>946 variables</strong> four our 629 wards. We cannot exactly analyse all of these variables, so we will need to extract only the variables we need.</p>
+<div class="note">
+<p><strong>Note</strong> <br/>
+If you run into an error along the lines of <code>Error in nchar(x, "width") : invalid multibyte string, element 1</code>, there is an issue with the character encoding of the file. If this is the case, please download a <a href="https://en.wikipedia.org/wiki/UTF-8#:~:text=UTF%2D8%20is%20a%20variable,Transformation%20Format%20%E2%80%93%208%2Dbit.&amp;text=Code%20points%20with%20lower%20numerical,are%20encoded%20using%20fewer%20bytes.">UTF-8 encoded</a> copy of the file here: <a href="https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/ward-atlas-data.zip">[Link]</a></p>
+</div>
+</div>
+</div>
+<div id="assignment-w07" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Assignment</h2>
+</div>
+<div id="byl-w07" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Before you leave</h2>
 
 </div>
 </div>

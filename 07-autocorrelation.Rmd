@@ -1,4 +1,5 @@
 # Analysing Spatial Patterns II: Spatial Autocorrelation 
+This week, we will be looking at measuring spatial dependence. Spatial dependence is the idea that the observed value of a variable in one location is  dependent (to some degree) on the observed value of the same value in a nearby location. For spatial analysis, this dependence can be assessed and measured statistically by considering the level of spatial autocorrelation between values of a specific variable, observed in either different locations or between pairs of variables observed at the same location. Spatial autocorrelation occurs when these values are not independent of one another and instead cluster together across geographic space.
 
 ## Lecture recording {#recording-w07}
 - Lecture W7
@@ -6,6 +7,83 @@
 ## Reading list {#reading-w07}
 - Reading #1
 - Reading #2
+
+## Childhood obesity
+This week, we are using a completely new data set and investigating a different phenomena: **childhood obesity**. We will be investigating its distribution across London at the ward-level. To complete this analysis, we will be using a single data download from the [London Datastore](https://data.london.gov.uk/), which we will need to clean, wrangle and then join to one of our ward shapefiles in order to spatially investigate the distribution of childhood obesity.
+
+### Housekeeping {#housekeeping-w07}
+Let's get ourselves ready to start our lecture and practical content by first downloading the relevant data and loading this within our script.
+
+Open a new script within your GEOG0030 project and save this script as `wk7-obesity-spatial-analysis.r`. At the top of your script, add the following metadata (substitute accordingly):
+
+```{r 07-scr-title, warnings=FALSE, message=FALSE, cache=TRUE}
+# Analysing childhood obesity and its factors
+# Date: January 2021
+# Author: Justin 
+```
+
+This week we also need to install some additional libraries: `spdep`. `spdep` contains the relevant functions to run our various spatial autocorrelation tests. After installation, add the following libraries for loading in your script:
+
+```{r 07-scr-libs-all, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# libraries
+library(tidyverse)
+library(sf)
+library(tmap)
+library(janitor)
+library(spdep)
+library(RColorBrewer)
+```
+
+### Loading data {#loading-data-w07}
+We are going to only need **two** data sets for this week - our London ward boundaries from 2011 and the Greater London Authority (GLA) Ward Atlas and Profiles. The GLA Ward Atlas and Profiles provide a range of demographic and related data for each ward in Greater London and were specifically designed to provide an overview of the ward's population by collating and presenting a range of data on the population, diversity, households, life expectancy, housing, crime, benefits, land use, deprivation, and employment.
+
+Indicators in the Atlas/Profile include:
+
+* Age and sex
+* Land area, projections and population density
+* Household composition, religion, ethnicity
+* Birth rates (general fertility rate), death rates (standardised mortality ratio), life expectancy
+* Average house prices, properties sold, housing by council tax band, tenure, property size (bedrooms), dwelling build period and type, mortgage and landlord home repossession
+* Employment and economic activity, Incapacity Benefit, Housing Benefit, Household income, Income Support and JobSeekers Allowance claimant rates, dependent children receiving child-tax credits by lone parents and out-of-work families, child poverty
+* GCSE results, A-level / Level 3 results (average point scores), pupil absence, 
+* Child obesity 
+* Crime rates (by type of crime), fires, ambulance call outs, road casualties 
+* Happiness and well-being, land use, public transport accessibility (PTALs), access to public greenspace, access to nature, air emissions / quality, car use, bicycle travel
+* Indices of Deprivation
+* Election turnout
+
+The main data set utilises the **2011 Ward Boundaries as its spatial representation**, therefore we need to use the 2011 boundaries. We already have our 2011 London Ward boundaries within our `raw` data folder, so we only need to download our Ward Atlas.
+
+1. Navigate to the ward Atlas data set in the London Data Store: [[Link]](https://data.london.gov.uk/dataset/ward-profiles-and-atlas).
+2. Download the `ward-atlas-data.csv`. You might find that instead of downloading the file, your browser will open up a new window. You have two options:
+    + Copy and paste all contents of the page into a text editor such as Notepad and save your pasted contents as `ward-atlas-data.csv` in your **raw** data folder in a new `atlas` folder - make sure to add the `.csv` to the end of your file name to save your text file as a `csv`. 
+    + Click back to the data set page, right-click on the `ward-atlas-data.csv` name and select **Download Linked File** from your computer's options. Move this into your `raw` data folder in a new `atlas` folder.
+
+```{r echo=FALSE, out.width = "450pt", fig.align='center', cache=TRUE, fig.cap='Download linked file.'}
+knitr::include_graphics('images/w07/download_shot.gif')
+```
+
+Let's first load our London ward shapefile from our `raw/boundaries/2011` folder:
+
+```{r 07-load-shp, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# read in our London ward boundaries
+london_ward_shp <- read_sf("data/raw/boundaries/2011/London_Ward_CityMerged.shp")
+``` 
+
+We can both `View()` and `plot()` the data in our console to check what our data looks like. We are happy with the dataframe (its field names) and what its looking like as a shapefile, so we do not need to do any cleaning on this data set. We can now turn to our **London Ward Atlas** data set and load the `csv` data set into R:
+
+```{r 07-load-csv, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# read in our ward atlas data csv from our raw data folder
+all_ward_data <- read_csv("data/raw/atlas/ward-atlas-data.csv")
+``` 
+
+If you go ahead and view the data, you will see we have a lot of information about our Wards in the data set - we have a total of **946 variables** four our 629 wards. We cannot exactly analyse all of these variables, so we will need to extract only the variables we need.
+
+:::note
+**Note** <br/>
+If you run into an error along the lines of `Error in nchar(x, "width") : invalid multibyte string, element 1`, there is an issue with the character encoding of the file. If this is the case, please download a [UTF-8 encoded](https://en.wikipedia.org/wiki/UTF-8#:~:text=UTF%2D8%20is%20a%20variable,Transformation%20Format%20%E2%80%93%208%2Dbit.&text=Code%20points%20with%20lower%20numerical,are%20encoded%20using%20fewer%20bytes.) copy of the file here: [[Link]](https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/ward-atlas-data.zip)
+:::
+
 
 ## Assignment {#assignment-w07}
 
