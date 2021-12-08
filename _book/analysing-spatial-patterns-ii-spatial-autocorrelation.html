@@ -277,9 +277,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.3.1" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#housekeeping-w07"><i class="fa fa-check"></i><b>7.3.1</b> Housekeeping</a></li>
 <li class="chapter" data-level="7.3.2" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#loading-data-w07"><i class="fa fa-check"></i><b>7.3.2</b> Loading data</a></li>
+<li class="chapter" data-level="7.3.3" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#data-preparation-w07"><i class="fa fa-check"></i><b>7.3.3</b> Data preparation</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#assignment-w07"><i class="fa fa-check"></i><b>7.4</b> Assignment</a></li>
-<li class="chapter" data-level="7.5" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#byl-w07"><i class="fa fa-check"></i><b>7.5</b> Before you leave</a></li>
+<li class="chapter" data-level="7.4" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#spatial-distributions"><i class="fa fa-check"></i><b>7.4</b> Spatial distributions</a></li>
+<li class="chapter" data-level="7.5" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#assignment-w07"><i class="fa fa-check"></i><b>7.5</b> Assignment</a></li>
+<li class="chapter" data-level="7.6" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#byl-w07"><i class="fa fa-check"></i><b>7.6</b> Before you leave</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html"><i class="fa fa-check"></i><b>8</b> Analysing Spatial Patterns III: Point Pattern Analysis</a>
 <ul>
@@ -400,12 +402,137 @@ Figure 7.1: Download linked file.
 If you run into an error along the lines of <code>Error in nchar(x, "width") : invalid multibyte string, element 1</code>, there is an issue with the character encoding of the file. If this is the case, please download a <a href="https://en.wikipedia.org/wiki/UTF-8#:~:text=UTF%2D8%20is%20a%20variable,Transformation%20Format%20%E2%80%93%208%2Dbit.&amp;text=Code%20points%20with%20lower%20numerical,are%20encoded%20using%20fewer%20bytes.">UTF-8 encoded</a> copy of the file here: <a href="https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/ward-atlas-data.zip">[Link]</a></p>
 </div>
 </div>
+<div id="data-preparation-w07" class="section level3" number="7.3.3">
+<h3><span class="header-section-number">7.3.3</span> Data preparation</h3>
+<p>To clean our data and extract the variables for our analysis, we need to identify those most useful to our research. Of course, we need to find a variable that matches our phenomena of investigation: child obesity. We will also keep several additional variables in case one would want to move beyond studying the distribution of child obesity, e.g. by looking at explanatory factors such as:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Individual level factors</strong>: diet and exercise, parents’ weights, mode of travel to school / time taken to walk to school.</li>
+<li><strong>Household/societal level factors</strong>: area deprivation, household income, household employment</li>
+</ol>
+<p>This week, our data wrangling is quite minimal - but it is important you follow all the steps to ensure you have the correct final dataframe for our analysis. Overall, you will:</p>
+<ul>
+<li>Select the required columns for our dataframe and analysis.</li>
+<li>Remove the first row which contains data that are part of the column names.</li>
+<li>Remove the last three rows, which contains data for the whole of London, England, and England and Wales.</li>
+<li>Clean and rename our field columns.</li>
+<li>Coerce our variables into the correct data type for our analysis.</li>
+<li>Join our ‘atlas data’ dataframe to our ward spatial dataframe.</li>
+</ul>
+<p>The fields that we need to extract from our data set include:</p>
+<ul>
+<li><strong>838</strong>: Childhood Obesity Prevalence; Year 6 (School children aged 10-11); 2011/12 to 2013/14: % obese</li>
+<li><strong>900</strong>: Indices of Deprivation; IDACI; 2010</li>
+<li><strong>248</strong>: House Prices; Median House Price; 2014</li>
+<li><strong>353</strong>: Household Income; Mean Modelled Household income (£); 2012/13</li>
+<li><strong>373</strong>: Employment; Adults not in Employment - 2011 Census; % of households with no adults in employment with dependent children</li>
+<li><strong>377</strong>: Qualifications; Qualifications and Students - 2011 Census; % No qualifications</li>
+<li><strong>859</strong>: Access to green space and nature; % homes with deficiency in access to nature; 2012</li>
+<li><strong>865</strong>: Public Transport Accessibility; Average PTAL score; 2014</li>
+</ul>
+<p>and of course:</p>
+<ul>
+<li><strong>2</strong>: …2 - which contains our ward codes.</li>
+<li><strong>4</strong>: …4 - which contains our ward names.</li>
+</ul>
+<p>Select our 10 fields from our <code>all_ward_data</code> dataframe for use in analysis:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select our 10 fields for analysis using their index number</span></span>
+<span id="cb5-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb5-2" aria-hidden="true" tabindex="-1"></a>obesity_ward_data <span class="ot">&lt;-</span> <span class="fu">select</span>(all_ward_data, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">838</span>, <span class="dv">900</span>, <span class="dv">248</span>, <span class="dv">353</span>, <span class="dv">373</span>, <span class="dv">377</span>, <span class="dv">859</span>,</span>
+<span id="cb5-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">865</span>)</span></code></pre></div>
+<p>You should now have a new dataframe with our 10 variables. One issue with our original <code>csv</code> is that is contained two rows worth of field names - hence if you look at the first row of our dataframe, it does not make sense. We therefore want to remove this row as well as the last three rows. In addition, it would be good to clean up our names for use - here we’re going to use the <code>janitor</code> library, which cleans our names by removing white space, special characters, capitals etc.</p>
+<p>Remove the first line of our dataframe and clean our field names:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove our first row, remove last three rows, clean the names of our fields</span></span>
+<span id="cb6-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb6-2" aria-hidden="true" tabindex="-1"></a>obesity_ward_data <span class="ot">&lt;-</span> obesity_ward_data <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="sc">-</span><span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">clean_names</span>()</span>
+<span id="cb6-6"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect</span></span>
+<span id="cb6-8"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(obesity_ward_data)</span></code></pre></div>
+<pre><code>##  [1] &quot;x2&quot;                                                                                                                        
+##  [2] &quot;x4&quot;                                                                                                                        
+##  [3] &quot;childhood_obesity_prevalence_year_6_age_10_11_2011_12_to_2013_14_percent_obese&quot;                                            
+##  [4] &quot;indices_of_deprivation_idaci_2010&quot;                                                                                         
+##  [5] &quot;house_prices_median_house_price_2014&quot;                                                                                      
+##  [6] &quot;household_income_mean_modelled_household_income_2012_13&quot;                                                                   
+##  [7] &quot;employment_adults_not_in_employment_2011_census_percent_of_households_with_no_adults_in_employment_with_dependent_children&quot;
+##  [8] &quot;qualifications_qualifications_and_students_2011_census_percent_no_qualifications&quot;                                          
+##  [9] &quot;access_to_green_space_and_nature_percent_homes_with_deficiency_in_access_to_nature_2012&quot;                                   
+## [10] &quot;public_transport_accessibility_average_ptal_score_2014&quot;</code></pre>
+<p>The final thing we can do with this data set before we need to join it to our London Wards spatial dataframe is just tidy up our column names - <code>x2</code> and <code>x4</code> does not exactly mean much to us and it gives us a chance to shorten the names of the other variables; we could leave them as is now they have been cleaned, but it will be easier for reference later if they’re shorter.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename field names of ward data to something more useful</span></span>
+<span id="cb8-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(obesity_ward_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ward_code&quot;</span>, <span class="st">&quot;ward_name&quot;</span>, <span class="st">&quot;y6_obesity_2014&quot;</span>, <span class="st">&quot;IDACI_2010&quot;</span>,</span>
+<span id="cb8-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;med_house_price_2014&quot;</span>, <span class="st">&quot;mean_hh_income_2013&quot;</span>, <span class="st">&quot;per_no_adult_employ_2011&quot;</span>, <span class="st">&quot;per_no_qual_2011&quot;</span>,</span>
+<span id="cb8-4"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;per_deficiency_greenspace_2012&quot;</span>, <span class="st">&quot;PTAL_2014&quot;</span>)</span></code></pre></div>
+<p>Now we have the data we want to map, we need to do a final spot of checking - one of the main issues faced with loading data directly from a <code>csv</code> in R without cleaning it first in a spreadsheet programme as we have done before, is that we cannot guarantee that the data will be loaded correctly. Unfortunately with our current dataframe we can see that not all columns are correctly loaded - if you inspect the structure of the dataframe, you will see that several of our variables are of the type <code>char</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the structure of the data</span></span>
+<span id="cb9-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(obesity_ward_data)</span></code></pre></div>
+<pre><code>## tibble [625 × 10] (S3: tbl_df/tbl/data.frame)
+##  $ ward_code                     : chr [1:625] &quot;E09000001&quot; &quot;E05000026&quot; &quot;E05000027&quot; &quot;E05000028&quot; ...
+##  $ ward_name                     : chr [1:625] &quot;City of London&quot; &quot;Abbey&quot; &quot;Alibon&quot; &quot;Becontree&quot; ...
+##  $ y6_obesity_2014               : chr [1:625] &quot;23.21428571&quot; &quot;24.71655329&quot; &quot;25.99531616&quot; &quot;29.25851703&quot; ...
+##  $ IDACI_2010                    : num [1:625] 0.12 0.439 0.397 0.38 0.435 ...
+##  $ med_house_price_2014          : num [1:625] 765000 173000 215000 210000 240500 ...
+##  $ mean_hh_income_2013           : chr [1:625] &quot;99390&quot; &quot;38870&quot; &quot;37290&quot; &quot;37860&quot; ...
+##  $ per_no_adult_employ_2011      : chr [1:625] &quot;0.86659065&quot; &quot;8.748906387&quot; &quot;12.44019139&quot; &quot;10.73182137&quot; ...
+##  $ per_no_qual_2011              : chr [1:625] &quot;6.7&quot; &quot;16.4&quot; &quot;31.2&quot; &quot;28&quot; ...
+##  $ per_deficiency_greenspace_2012: chr [1:625] &quot;100&quot; &quot;2.164412071&quot; &quot;71.7273622&quot; &quot;17.1662713&quot; ...
+##  $ PTAL_2014                     : chr [1:625] &quot;7.9&quot; &quot;5.989364918&quot; &quot;3.145890095&quot; &quot;2.8717665&quot; ...</code></pre>
+<p>The results from the <code>str()</code> function suggest that some variables have been interpreted by R to be characters rather than numeric. This might be because there is some missing data or in some cases, the decimal point can interfere with the data being read as a numeric. Luckily it is easy to change our data type - a bit like right-clicking on our columns in Excel and setting the format of the column to <code>number</code>, we’ll do this using code. If we wanted to apply this to a single column than we would use the code: <code>as.numeric(dataframe$column)</code> but as we want to apply this across a few columns, we’ll be using the <code>mutate_at()</code> function from the <code>dplyr</code> library.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change data types</span></span>
+<span id="cb11-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb11-2" aria-hidden="true" tabindex="-1"></a>obesity_ward_data <span class="ot">&lt;-</span> <span class="fu">mutate_at</span>(obesity_ward_data, <span class="fu">vars</span>(y6_obesity_2014, mean_hh_income_2013,</span>
+<span id="cb11-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb11-3" aria-hidden="true" tabindex="-1"></a>    per_no_adult_employ_2011, per_no_qual_2011, per_deficiency_greenspace_2012, PTAL_2014),</span>
+<span id="cb11-4"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(x) <span class="fu">as.numeric</span>(x))</span></code></pre></div>
+<pre><code>## Warning in (function (x) : NAs introduced by coercion</code></pre>
+<p>You will see warnings that <code>NAs</code> have been introduced by this coercion in some of our variables - this is something we will need to be aware of later in our analysis, but will not look at right now. Now our final step is to join our final <code>obesity_ward_data</code> dataframe to our <code>london_wards_shp</code> spatial dataframe so we can complete both statistical and spatial analysis:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># join obesity df to ward sdf for analysis</span></span>
+<span id="cb13-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb13-2" aria-hidden="true" tabindex="-1"></a>obesity_ward_sdf <span class="ot">&lt;-</span> <span class="fu">left_join</span>(london_ward_shp, obesity_ward_data,  </span>
+<span id="cb13-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb13-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;GSS_CODE&quot;</span><span class="ot">=</span><span class="st">&quot;ward_code&quot;</span>))</span></code></pre></div>
+<p>Have a look at your newly created spatial dataframe - for a quick look at the data, you can run the <code>plot()</code> command in <strong>your console</strong>. If you like, you can also write out the final <code>csv</code> using the <code>write_csv()</code> function to save a raw copy in your data folder.</p>
 </div>
-<div id="assignment-w07" class="section level2" number="7.4">
-<h2><span class="header-section-number">7.4</span> Assignment</h2>
 </div>
-<div id="byl-w07" class="section level2" number="7.5">
-<h2><span class="header-section-number">7.5</span> Before you leave</h2>
+<div id="spatial-distributions" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Spatial distributions</h2>
+<p>Today, we are interested in looking at spatial Autocorrelation: the effect of spatial processes on distributions. We will be using our newly created <code>obesity_ward_sdf</code> to look at this in action, whilst also answering questions on the overall distribution and factors of childhood obesity.</p>
+<p>Within general data analysis, when it comes to analysing the distribution of your data, you are looking to conduct what is known as <strong>Exploratory Data Analysis</strong> (EDA) which is where we look to summarise the main characteristics of our data. EDA was promoted by prominent statistician <a href="https://en.wikipedia.org/wiki/John_Tukey">John Tukey</a> to encourage data analysts to explore their data outside of traditional formal modelling - and come up with new areas of investigation and hypotheses. Tukey promoted the use of five summary statistics: <strong>the max-min, the median, and the quartiles</strong>, which, in comparison to the mean and standard deviation, provide a more robust understanding of a data’s distribution, particularly if the data is skewed.</p>
+<p>We looked at how we can use R to extract some of these summary statistics briefly in Week 4, but let’s have a look at how we can add further to this EDA, including creating some statistical charts of our data’s distribution.</p>
+<p>In your script, below your joining of our dataframes, summarise our <code>y6_obesity_2014</code> distribution</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summarise our y6_obesity_2014 data</span></span>
+<span id="cb14-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(obesity_ward_sdf<span class="sc">$</span>y6_obesity_2014)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##   5.929  18.569  22.670  21.752  25.325  35.000      12</code></pre>
+<p>This <code>summary()</code> function can also be called on the data set as a whole and will generate summary statistics for each individual numeric variable. You can execute this in your console if you like to get an understanding of all of variables - although we will focus on obesity for much of this practical. We can see that our <strong>Median</strong> and <strong>Mean</strong> are quite close to one another - and the quartiles are nearly the same amount apart from the mean, so we can start to think that our data is normally distribution. To confirm this, we can do the next best thing, which is plot our distribution using a <strong>histogram</strong>, using the base R <code>hist()</code> command:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the histogram of our y6_obesity_2014 data</span></span>
+<span id="cb16-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(obesity_ward_sdf<span class="sc">$</span>y6_obesity_2014)</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/07-hist-1.png" width="672" /></p>
+<p>We can actually see our data has a slight negative skew - which would make sense given that our median is higher than our mean.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="images/w07/distributions.png" alt="Cheatsheet on data distributions: negative skew, normal, positive skew." width="648" />
+<p class="caption">
+Figure 7.2: Cheatsheet on data distributions: negative skew, normal, positive skew.
+</p>
+</div>
+<p>We can further customise our histograms if we want to make them more aesthetically pleasing and update the title and axis labeling:0</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pretty histogram</span></span>
+<span id="cb17-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(obesity_ward_sdf<span class="sc">$</span>y6_obesity_2014, <span class="at">breaks =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Distribution of Obesity in Year 6 children, London Wards in 2014&quot;</span>,</span>
+<span id="cb17-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">&quot;Percentage of obese Year 6 children in the ward&quot;</span>)</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/07-hist-2-1.png" width="672" /></p>
+<p>We can also export this histogram and save it as a <code>png</code> by a) storing the histogram code to a variable and b) saving this variable to a file. The code to do so is a little different - we essentially “open up” a file, called what we want to name our plot. We then run the code to plot our data, which will place the output “within” the file and then “close’ the file down.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># open an empty png</span></span>
+<span id="cb18-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">png</span>(<span class="st">&quot;data/graphs/Y6_obesity_distribution.png&quot;</span>)</span>
+<span id="cb18-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pretty histogram</span></span>
+<span id="cb18-5"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(obesity_ward_sdf<span class="sc">$</span>y6_obesity_2014, <span class="at">breaks =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Distribution of Obesity in Year 6 children, London Wards in 2014&quot;</span>,</span>
+<span id="cb18-6"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">&quot;Percentage of obese Year 6 children in the ward&quot;</span>)</span>
+<span id="cb18-7"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># close the png</span></span>
+<span id="cb18-9"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p>You should now see the image appear in the folder that you specified (e.g. <code>data/graphs</code>).</p>
+</div>
+<div id="assignment-w07" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Assignment</h2>
+</div>
+<div id="byl-w07" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> Before you leave</h2>
 
 </div>
 </div>

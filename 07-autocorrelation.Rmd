@@ -84,7 +84,157 @@ If you go ahead and view the data, you will see we have a lot of information abo
 If you run into an error along the lines of `Error in nchar(x, "width") : invalid multibyte string, element 1`, there is an issue with the character encoding of the file. If this is the case, please download a [UTF-8 encoded](https://en.wikipedia.org/wiki/UTF-8#:~:text=UTF%2D8%20is%20a%20variable,Transformation%20Format%20%E2%80%93%208%2Dbit.&text=Code%20points%20with%20lower%20numerical,are%20encoded%20using%20fewer%20bytes.) copy of the file here: [[Link]](https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/ward-atlas-data.zip)
 :::
 
+### Data preparation {#data-preparation-w07}
+To clean our data and extract the variables for our analysis, we need to identify those most useful to our research. Of course, we need to find a variable that matches our phenomena of investigation: child obesity. We will also keep several additional variables in case one would want to move beyond studying the distribution of child obesity, e.g. by looking at explanatory factors such as: 
 
-## Assignment {#assignment-w07}
+1. **Individual level factors**: diet and exercise, parents' weights, mode of travel to school / time taken to walk to school.
+2. **Household/societal level factors**: area deprivation, household income, household employment
+
+This week, our data wrangling is quite minimal - but it is important you follow all the steps to ensure you have the correct final dataframe for our analysis. Overall, you will:
+
+* Select the required columns for our dataframe and analysis.
+* Remove the first row which contains data that are part of the column names.
+* Remove the last three rows, which contains data for the whole of London, England, and England and Wales.
+* Clean and rename our field columns.
+* Coerce our variables into the correct data type for our analysis.
+* Join our 'atlas data' dataframe to our ward spatial dataframe.
+
+The fields that we need to extract from our data set include:
+
+* **838**: Childhood Obesity Prevalence; Year 6 (School children aged 10-11); 2011/12 to 2013/14: % obese
+* **900**: Indices of Deprivation; IDACI; 2010
+* **248**: House Prices; Median House Price; 2014
+* **353**: Household Income; Mean Modelled Household income (£); 2012/13
+* **373**: Employment; Adults not in Employment - 2011 Census; % of households with no adults in employment with dependent children
+* **377**: Qualifications; Qualifications and Students - 2011 Census; % No qualifications
+* **859**: Access to green space and nature; % homes with deficiency in access to nature; 2012
+* **865**: Public Transport Accessibility; Average PTAL score; 2014
+
+and of course:
+
+* **2**: ...2 - which contains our ward codes.
+* **4**: ...4 - which contains our ward names.
+
+Select our 10 fields from our `all_ward_data` dataframe for use in analysis:
+
+```{r 07-clean-csv, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# select our 10 fields for analysis using their index number
+obesity_ward_data <- select(all_ward_data, 2, 4, 838, 900, 248, 353, 373, 377, 859, 865)
+``` 
+
+You should now have a new dataframe with our 10 variables. One issue with our original `csv` is that is contained two rows worth of field names - hence if you look at the first row of our dataframe, it does not make sense. We therefore want to remove this row as well as the last three rows. In addition, it would be good to clean up our names for use - here we're going to use the `janitor` library, which cleans our names by removing white space, special characters, capitals etc.
+
+Remove the first line of our dataframe and clean our field names:
+
+```{r 07-clean-csv-2, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# remove our first row, remove last three rows, clean the names of our fields
+obesity_ward_data <- obesity_ward_data %>% slice(-1) %>% head(-3) %>% clean_names()
+
+# inspect
+names(obesity_ward_data)
+``` 
+The final thing we can do with this data set before we need to join it to our London Wards spatial dataframe is just tidy up our column names - `x2` and `x4` does not exactly mean much to us and it gives us a chance to shorten the names of the other variables; we could leave them as is now they have been cleaned, but it will be easier for reference later if they're shorter.
+
+```{r 07-rename-df, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# rename field names of ward data to something more useful
+names(obesity_ward_data) <- c("ward_code", "ward_name", "y6_obesity_2014", "IDACI_2010", "med_house_price_2014", "mean_hh_income_2013", "per_no_adult_employ_2011", "per_no_qual_2011", "per_deficiency_greenspace_2012", "PTAL_2014")
+``` 
+
+Now we have the data we want to map, we need to do a final spot of checking - one of the main issues faced with loading data directly from a `csv` in R without cleaning it first in a spreadsheet programme as we have done before, is that we cannot guarantee that the data will be loaded correctly. Unfortunately with our current dataframe we can see that not all columns are correctly loaded - if you inspect the structure of the dataframe, you will see that several of our variables are of the type `char`.
+
+```{r 07-character-type, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# inspect the structure of the data
+str(obesity_ward_data)
+``` 
+
+The results from the `str()` function suggest that some variables have been interpreted by R to be characters rather than numeric. This might be because there is some missing data or in some cases, the decimal point can interfere with the data being read as a numeric. Luckily it is easy to change our data type - a bit like right-clicking on our columns in Excel and setting the format of the column to `number`, we'll do this using code. If we wanted to apply this to a single column than we would use the code: `as.numeric(dataframe$column)` but as we want to apply this across a few columns, we'll be using the `mutate_at()` function from the `dplyr` library. 
+
+```{r 07-rechar-df, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# change data types 
+obesity_ward_data <- mutate_at(obesity_ward_data, vars(y6_obesity_2014, mean_hh_income_2013, per_no_adult_employ_2011, per_no_qual_2011, per_deficiency_greenspace_2012, PTAL_2014), function(x) as.numeric(x))
+``` 
+
+You will see warnings that `NAs` have been introduced by this coercion in some of our variables - this is something we will need to be aware of later in our analysis, but will not look at right now. Now our final step is to join our final `obesity_ward_data` dataframe to our `london_wards_shp` spatial dataframe so we can complete both statistical and spatial analysis:
+
+```{r 07-join-dfs, warnings=FALSE, message=FALSE, cache=TRUE, tidy=FALSE}
+# join obesity df to ward sdf for analysis
+obesity_ward_sdf <- left_join(london_ward_shp, obesity_ward_data,  
+                              by = c("GSS_CODE"="ward_code"))
+```
+
+Have a look at your newly created spatial dataframe - for a quick look at the data, you can run the `plot()` command in **your console**. If you like, you can also write out the final `csv` using the `write_csv()` function to save a raw copy in your data folder. 
+
+## Statistical distributions
+Today, we are interested in looking at spatial Autocorrelation: the effect of spatial processes on distributions. We will be using our newly created `obesity_ward_sdf` to look at this in action, whilst also answering questions on the overall distribution and factors of childhood obesity.
+
+Within general data analysis, when it comes to analysing the distribution of your data, you are looking to conduct what is known as **Exploratory Data Analysis** (EDA) which is where we look to summarise the main characteristics of our data. EDA was promoted by prominent statistician [John Tukey](https://en.wikipedia.org/wiki/John_Tukey) to encourage data analysts to explore their data outside of traditional formal modelling - and come up with new areas of investigation and hypotheses. Tukey promoted the use of five summary statistics: **the max-min, the median, and the quartiles**, which, in comparison to the mean and standard deviation, provide a more robust understanding of a data's distribution, particularly if the data is skewed.
+
+We looked at how we can use R to extract some of these summary statistics briefly in Week 4, but let's have a look at how we can add further to this EDA, including creating some statistical charts of our data's distribution. 
+
+In your script, below your joining of our dataframes, summarise our `y6_obesity_2014` distribution 
+
+```{r 07-summ-distr, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# summarise our y6_obesity_2014 data
+summary(obesity_ward_sdf$y6_obesity_2014)
+``` 
+
+This `summary()` function can also be called on the data set as a whole and will generate summary statistics for each individual numeric variable. You can execute this in your console if you like to get an understanding of all of variables - although we will focus on obesity for much of this practical. We can see that our **Median** and **Mean** are quite close to one another - and the quartiles are nearly the same amount apart from the mean, so we can start to think that our data is normally distribution. To confirm this, we can do the next best thing, which is plot our distribution using a **histogram**, using the base R `hist()` command:
+
+```{r 07-hist, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# plot the histogram of our y6_obesity_2014 data
+hist(obesity_ward_sdf$y6_obesity_2014)
+``` 
+
+We can actually see our data has a slight negative skew - which would make sense given that our median is higher than our mean.
+
+```{r echo=FALSE, fig.align='center', cache=TRUE, fig.cap='Cheatsheet on data distributions: negative skew, normal, positive skew.'}
+knitr::include_graphics('images/w07/distributions.png')
+```
+
+We can further customise our histograms if we want to make them more aesthetically pleasing and update the title and axis labeling:0
+
+```{r 07-hist-2, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# pretty histogram
+hist(obesity_ward_sdf$y6_obesity_2014, breaks=20, col="grey", main="Distribution of Obesity in Year 6 children, London Wards in 2014", xlab="Percentage of obese Year 6 children in the ward")
+``` 
+
+We can also export this histogram and save it as a `png` by a) storing the histogram code to a variable and b) saving this variable to a file. The code to do so is a little different - we essentially "open up" a file, called what we want to name our plot. We then run the code to plot our data, which will place the output "within" the file and then "close' the file down.
+
+```{r 07-hist-3, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE, eval=FALSE}
+# open an empty png
+png("data/graphs/Y6_obesity_distribution.png")
+
+# pretty histogram
+hist(obesity_ward_sdf$y6_obesity_2014, breaks=20, col="grey", main="Distribution of Obesity in Year 6 children, London Wards in 2014", xlab="Percentage of obese Year 6 children in the ward")
+
+# close the png
+dev.off()
+``` 
+
+You should now see the image appear in the folder that you specified (e.g. `data/graphs`).
+
+Another type of chart we can create just using the base R library is a **boxplot**.
+
+```{r echo=FALSE, out.width = "650pt", fig.align='center', cache=TRUE, fig.cap='Simple boxplot.'}
+knitr::include_graphics('images/w07/boxplot.png')
+```
+
+A boxplot shows the core characteristics of the distributions within a data set, including the interquartile range. Plot the boxplot of our `y6_obesity_2014` variable:
+
+```{r 07-boxplot, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# plot the boxplot of our y6_obesity_2014 data
+boxplot(obesity_ward_sdf$y6_obesity_2014)
+``` 
+
+:::note
+**Note** <br/>
+There is actually a lot more we can do in terms of visualising our data's distribution - and the best way forward would be to become more familiar with the `ggplot2` library, which is the main visualisation for both statistical and, increasingly, spatial graphs, charts and maps.
+:::
+
+## Assignment 1 {#assignment-1-w07}
+Your first assignment this week is to go ahead and test each of our variables to determine their distribution. Make a note of which ones are normally distributed and which aren't (and their skew). Understanding your data's distribution is important if you want to test the relationships between different variables. For example, if you want to conduct a linear regression analysis you have to ensure that your variables are **normally distributed**.
+
+## Spatial distributions
+
 
 ## Before you leave {#byl-w07}

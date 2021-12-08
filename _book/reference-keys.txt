@@ -17,6 +17,8 @@ fig:04-organised-crime
 fig:unnamed-chunk-13
 fig:unnamed-chunk-14
 fig:unnamed-chunk-15
+fig:unnamed-chunk-16
+fig:unnamed-chunk-17
 geocomputation-an-introduction
 recording-w01
 reading-w01
@@ -131,6 +133,9 @@ recording-w07
 reading-w07
 childhood-obesity
 housekeeping-w07
+loading-data-w07
+data-preparation-w07
+spatial-distributions
 assignment-w07
 byl-w07
 analysing-spatial-patterns-iii-point-pattern-analysis
@@ -149,4 +154,3 @@ reading-w10
 assignment-w10
 byl-w10
 fig:unnamed-chunk-1
-loading-data-w07
