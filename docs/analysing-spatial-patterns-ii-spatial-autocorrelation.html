@@ -298,6 +298,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.6.2" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#defining-neighbours"><i class="fa fa-check"></i><b>7.6.2</b> Defining neighbours</a></li>
 <li class="chapter" data-level="7.6.3" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#spatial-weights-matrix"><i class="fa fa-check"></i><b>7.6.3</b> Spatial weights matrix</a></li>
 <li class="chapter" data-level="7.6.4" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#global-morans-i"><i class="fa fa-check"></i><b>7.6.4</b> Global Moran’s I</a></li>
+<li class="chapter" data-level="7.6.5" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#geary-cs"><i class="fa fa-check"></i><b>7.6.5</b> Geary C’s</a></li>
+<li class="chapter" data-level="7.6.6" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#getis-ord-general-g"><i class="fa fa-check"></i><b>7.6.6</b> Getis-Ord General G</a></li>
+<li class="chapter" data-level="7.6.7" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#local-morans-i"><i class="fa fa-check"></i><b>7.6.7</b> Local Moran’s I</a></li>
 </ul></li>
 <li class="chapter" data-level="7.7" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#byl-w07"><i class="fa fa-check"></i><b>7.7</b> Before you leave</a></li>
 </ul></li>
@@ -779,6 +782,249 @@ If you did not remove the <code>NAs</code> in our obesity column than the follow
 </div>
 <div id="global-morans-i" class="section level3" number="7.6.4">
 <h3><span class="header-section-number">7.6.4</span> Global Moran’s I</h3>
+<p>With a global Moran’s I we test how “random” the spatial distribution of these values is, producing a global Moran’s statistic from the lag approach explained earlier.</p>
+<p>The global Moran’s I statistic is a metric between -1 and 1:
+* -1 is a completely even spatial distribution of values
+* 0 is a “random” distribution
+* 1 is a “non-random” distribution of clearly defined clusters</p>
+<p>Before we run our global Moran’s I test, we will first create a spatial lag model plot which looks at each of the values plotted against their spatially lagged values. The graph will show quickly whether we are likely to expect our test to return a positive, zero or negative statistic:</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb229-1" aria-hidden="true" tabindex="-1"></a>obesity_MI_sp <span class="ot">&lt;-</span> <span class="fu">moran.plot</span>(obesity_ward_sdf<span class="sc">$</span>y6_obesity_2014, <span class="at">listw =</span> ward_spatial_weights_queen)</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/07-scatter-plot-MI-1.png" width="672" /></p>
+<p>We can see that there is a positive relationship between our <code>y6_obesity_2014</code> variable and the spatially lagged <code>y6_obesity_2014</code> variable, therefore we are expecting our global Moran’s I test to produce a statistic reflective of the slope visible in our scatter plot. Now we can run the global Moran’s I spatial autocorrelation test and print the result:</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run the global Moran&#39;s I test on our y6_obesity_2014 data</span></span>
+<span id="cb230-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb230-2" aria-hidden="true" tabindex="-1"></a>obesity_GMI <span class="ot">&lt;-</span> obesity_ward_sdf <span class="sc">%&gt;%</span></span>
+<span id="cb230-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb230-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(y6_obesity_2014) <span class="sc">%&gt;%</span></span>
+<span id="cb230-4"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb230-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.vector</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb230-5"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb230-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">moran.test</span>(., ward_spatial_weights_queen)</span>
+<span id="cb230-6"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb230-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb230-7"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb230-7" aria-hidden="true" tabindex="-1"></a><span class="co"># print global Moran&#39;s I result</span></span>
+<span id="cb230-8"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb230-8" aria-hidden="true" tabindex="-1"></a>obesity_GMI</span></code></pre></div>
+<pre><code>## 
+##  Moran I test under randomisation
+## 
+## data:  .  
+## weights: ward_spatial_weights_queen    
+## 
+## Moran I statistic standard deviate = 22.69, p-value &lt; 2.2e-16
+## alternative hypothesis: greater
+## sample estimates:
+## Moran I statistic       Expectation          Variance 
+##      0.5333351039     -0.0016339869      0.0005558933</code></pre>
+<p>The Moran’s I statistic calculated should be 0.53. With 1 = clustered, 0 = no pattern, -1 = dispersed, this means we can confirm that childhood obesity in London is positively autocorrelated. In other words, childhood obesity does spatially cluster. We can also consider the pseudo <span class="math inline">\(p\)</span>-value as a measure of the statistical significance of the model - at &lt; 2.2e-16, which confirm our result is (psuedo) significant.</p>
+</div>
+<div id="geary-cs" class="section level3" number="7.6.5">
+<h3><span class="header-section-number">7.6.5</span> Geary C’s</h3>
+<p>The Gearcy C test will tell us whether similar values or dissimilar values are clustering. We can run the Geary C test using the exact same notation - we just change the test we want to run:</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run the Geary C&#39;s test on our y6_obesity_2014 data</span></span>
+<span id="cb232-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb232-2" aria-hidden="true" tabindex="-1"></a>obesity_GC <span class="ot">&lt;-</span> obesity_ward_sdf <span class="sc">%&gt;%</span></span>
+<span id="cb232-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb232-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(y6_obesity_2014) <span class="sc">%&gt;%</span></span>
+<span id="cb232-4"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb232-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.vector</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb232-5"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb232-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geary.test</span>(., ward_spatial_weights_queen)</span>
+<span id="cb232-6"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb232-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-7"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb232-7" aria-hidden="true" tabindex="-1"></a><span class="co"># print Geary C&#39;s statistic</span></span>
+<span id="cb232-8"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb232-8" aria-hidden="true" tabindex="-1"></a>obesity_GC</span></code></pre></div>
+<pre><code>## 
+##  Geary C test under randomisation
+## 
+## data:  . 
+## weights: ward_spatial_weights_queen 
+## 
+## Geary C statistic standard deviate = 19.668, p-value &lt; 2.2e-16
+## alternative hypothesis: Expectation greater than statistic
+## sample estimates:
+## Geary C statistic       Expectation          Variance 
+##      0.4622507740      1.0000000000      0.0007475703</code></pre>
+<p>The Geary’s C statistic calculated should be 0.46. With Geary’s C falling between 0 and 2 and 1 means no spatial autocorrelation, &lt;1 = positive spatial autocorrelation or similar values clustering and &gt;1 = negative spatial autocorrelation or dissimilar values clustering, we can confirm that our data shows that similar values are clustering. We can also consider the <em>pseudo</em> <span class="math inline">\(p\)</span>-value as a measure of the statistical significance of the model again, which also here confirms our result is (pseudo) significant.</p>
+</div>
+<div id="getis-ord-general-g" class="section level3" number="7.6.6">
+<h3><span class="header-section-number">7.6.6</span> Getis-Ord General G</h3>
+<p>The Getis-Ord General G test tells us whether high or low values are clustering. For Getis-Ord, as it is <strong>recommended</strong> to use a proximity-based neighbour matrix, so we will use our Fixed Distance definition:</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run the Getis-Ord General G test on our y6_obesity_2014 data, change spatial</span></span>
+<span id="cb234-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb234-2" aria-hidden="true" tabindex="-1"></a><span class="co"># weights to fd</span></span>
+<span id="cb234-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb234-3" aria-hidden="true" tabindex="-1"></a>obesity_GO <span class="ot">&lt;-</span> obesity_ward_sdf <span class="sc">%&gt;%</span></span>
+<span id="cb234-4"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb234-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(y6_obesity_2014) <span class="sc">%&gt;%</span></span>
+<span id="cb234-5"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb234-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.vector</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb234-6"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb234-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">globalG.test</span>(., ward_spatial_weights_fd)</span>
+<span id="cb234-7"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb234-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb234-8"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb234-8" aria-hidden="true" tabindex="-1"></a><span class="co"># print results</span></span>
+<span id="cb234-9"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb234-9" aria-hidden="true" tabindex="-1"></a>obesity_GO</span></code></pre></div>
+<pre><code>## 
+##  Getis-Ord global G statistic
+## 
+## data:  . 
+## weights: ward_spatial_weights_fd 
+## 
+## standard deviate = 10.329, p-value &lt; 2.2e-16
+## alternative hypothesis: greater
+## sample estimates:
+## Global G statistic        Expectation           Variance 
+##       2.415636e-02       2.195887e-02       4.526244e-08</code></pre>
+<p>The Getis-Ord General G statistic calculated should be 0.024 (2.415636e-02). The expectation is 0.021 ( 2.195887e-02). With G &gt; expected = high values clustering and G &lt; expected = low values clustering, we can confirm that high values within our variable are tending to cluster. The pseudo <span class="math inline">\(p\)</span>-value suggest again that the model is significant.</p>
+<div class="note">
+<p><strong>Note</strong> <br/>
+Before we run our local spatial autocorrelation tests, let’s just take a second to think through what our results have shown. From our three statistical tests, we can confirm that:</p>
+<ul>
+<li>There is clustering in our data set.</li>
+<li>Similar values are clustering.</li>
+<li>High values are clustering.</li>
+</ul>
+<p>Each of these tests do tell us something different about how our data is clustered and can refine our conclusions about our data without the need for our local tests - we can conclude already that areas of high levels of childhood obesity tend to cluster in the same area. What we do not know yet is <strong>where</strong> these clusters are occurring. To help with this, we need to run our <strong>local</strong> models to identify where these clusters are located.</p>
+</div>
+</div>
+<div id="local-morans-i" class="section level3" number="7.6.7">
+<h3><span class="header-section-number">7.6.7</span> Local Moran’s I</h3>
+<p>A local Moran’s I test deconstructs the global Moran’s I down to its components and then constructs a localized measure of autocorrelation, which can show different cluster types - depending on our mapping approach. To run a local Moran’s I test, the code again is similar to above - however, our output is different:</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run the local Moran&#39;s I test on our y6_obesity_2014 data</span></span>
+<span id="cb236-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb236-2" aria-hidden="true" tabindex="-1"></a>obesity_LMI <span class="ot">&lt;-</span> obesity_ward_sdf <span class="sc">%&gt;%</span></span>
+<span id="cb236-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb236-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(y6_obesity_2014) <span class="sc">%&gt;%</span></span>
+<span id="cb236-4"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb236-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.vector</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb236-5"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb236-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">localmoran</span>(., ward_spatial_weights_queen)</span>
+<span id="cb236-6"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb236-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb236-7"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb236-7" aria-hidden="true" tabindex="-1"></a><span class="co"># print the first 5 lines of the local Moran&#39;s I statistic output</span></span>
+<span id="cb236-8"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb236-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(obesity_LMI)</span></code></pre></div>
+<pre><code>##           Ii          E.Ii      Var.Ii      Z.Ii Pr(z != E(Ii))
+## 1 0.03833697 -8.703017e-05 0.009181660 0.4009978   6.884218e-01
+## 2 0.47282190 -1.379282e-03 0.144723426 1.2465027   2.125799e-01
+## 3 3.82565784 -1.107669e-02 1.147178083 3.5821711   3.407504e-04
+## 4 0.40863261 -9.066869e-05 0.009491210 4.1953536   2.724462e-05
+## 5 2.79741620 -7.224878e-03 0.749114397 3.2404343   1.193478e-03
+## 6 0.16952553 -1.234628e-05 0.001286115 4.7274492   2.273579e-06</code></pre>
+<p>As you should see, we do not get given a single statistic as per with our global tests, but rather a table of five different statistics - that are all related back to each of the wards in our data set.</p>
+<p>If we look at the help page for the <code>localmoran</code> function (run <code>?localmoran</code> in your console) we can find out what each of these statistics mean:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ii</td>
+<td align="left">Local Moran’s I statistic</td>
+</tr>
+<tr class="even">
+<td align="left">E.Ii</td>
+<td align="left">Expectation of local Moran’s I statistic</td>
+</tr>
+<tr class="odd">
+<td align="left">Var.Ii</td>
+<td align="left">Variance of local Moran’s I statistic</td>
+</tr>
+<tr class="even">
+<td align="left">Z.Ii</td>
+<td align="left">Standard deviation of local Moran’s I statistic</td>
+</tr>
+<tr class="odd">
+<td align="left">Pr()</td>
+<td align="left"><span class="math inline">\(p\)</span>-value of local Moran’s I statistic</td>
+</tr>
+</tbody>
+</table>
+<p>We therefore have a local Moran’s I statistic for each of our wards, as well as a significance value plus a few other pieces of information that can help us create some maps showing our clusters. To be able to do this, we need to join our local Moran’s I output back into our <code>obesity_ward_sdf</code> spatial dataframe, which will then allow us to map these results.</p>
+<p>To create this join, we first <strong>coerce</strong> our local Moran’s I output into a dataframe that we then join to our <code>obesity_ward_sdf</code> spatial dataframe using the <code>mutate()</code> function from the <code>dplyr</code> library. In our case, we do not need to provide an <strong>attribute</strong> to join these two dataframes together as we use the computer’s logic to join the data in the order in which it was created:</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="co"># coerce obesity_LMI into dataframe</span></span>
+<span id="cb238-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb238-2" aria-hidden="true" tabindex="-1"></a>obesity_LMI <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(obesity_LMI)</span>
+<span id="cb238-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb238-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb238-4"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb238-4" aria-hidden="true" tabindex="-1"></a><span class="co"># update the names for easier reference</span></span>
+<span id="cb238-5"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb238-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(obesity_LMI) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;LMI_Ii&quot;</span>, <span class="st">&quot;LMI_eIi&quot;</span>, <span class="st">&quot;LMI_varIi&quot;</span>, <span class="st">&quot;LMI_zIi&quot;</span>, <span class="st">&quot;LMI_sigP&quot;</span>)</span>
+<span id="cb238-6"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb238-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb238-7"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb238-7" aria-hidden="true" tabindex="-1"></a><span class="co"># join to obesity_ward_sdf</span></span>
+<span id="cb238-8"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb238-8" aria-hidden="true" tabindex="-1"></a>obesity_ward_sdf <span class="ot">&lt;-</span> obesity_ward_sdf <span class="sc">%&gt;%</span></span>
+<span id="cb238-9"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb238-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(obesity_LMI)</span></code></pre></div>
+<p>We now have the data we need to plot our local spatial autocorrelation maps. We will first plot the most simple maps to do with our local Moran’s I test: the local Moran’s I statistic as well as the <span class="math inline">\(p\)</span>-values of the local Moran’s I statistic.</p>
+<p>Map the local Moran’s I statistic:</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="co"># map our local Moran&#39;s I statistic </span></span>
+<span id="cb239-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(obesity_ward_sdf) <span class="sc">+</span> </span>
+<span id="cb239-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb239-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">&quot;LMI_Ii&quot;</span>, <span class="at">style =</span> <span class="st">&quot;pretty&quot;</span>, <span class="at">midpoint =</span> <span class="dv">0</span>, <span class="at">title =</span> <span class="st">&quot;Local Moran&#39;s I statistic&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb239-4"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb239-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title=</span> <span class="st">&quot;Spatial Autocorrelation of Childhood Obesity in London&quot;</span>, </span>
+<span id="cb239-5"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb239-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.fontface =</span> <span class="dv">2</span>, <span class="at">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, </span>
+<span id="cb239-6"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb239-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.outside =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb239-7"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb239-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>, </span>
+<span id="cb239-8"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb239-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.title.size =</span> <span class="dv">1</span>, </span>
+<span id="cb239-9"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb239-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.title.fontface =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb239-10"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb239-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>(<span class="at">type =</span> <span class="st">&quot;arrow&quot;</span>, <span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb239-11"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb239-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_scale_bar</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>), <span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/07-map-LMI-1.png" width="672" /></p>
+<p>From the map, it is possible to observe the variations in autocorrelation across space. We can interpret that there seems to be a geographic pattern to the autocorrelation. However, it is not possible to understand if these are clusters of high or low values. To be able to interpret this confidently, we also need to know the significance of the patterns we see in our map - we therefore need to map the <span class="math inline">\(p\)</span>-value of local Moran’s I statistic.</p>
+<ol start="8" style="list-style-type: decimal">
+<li>Map the <span class="math inline">\(p\)</span>-value of local Moran’s I statistic:</li>
+</ol>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significance breaks</span></span>
+<span id="cb240-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb240-2" aria-hidden="true" tabindex="-1"></a>breaks <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="dv">1</span>)</span>
+<span id="cb240-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb240-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-4"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb240-4" aria-hidden="true" tabindex="-1"></a><span class="co"># colours for our local Moran&#39;s I statistic</span></span>
+<span id="cb240-5"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb240-5" aria-hidden="true" tabindex="-1"></a>colours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;white&quot;</span>, <span class="st">&quot;#a6bddb&quot;</span>, <span class="st">&quot;#2b8cbe&quot;</span>)</span>
+<span id="cb240-6"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb240-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb240-7"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb240-7" aria-hidden="true" tabindex="-1"></a><span class="co"># map our local Moran&#39;s I statistic</span></span>
+<span id="cb240-8"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb240-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(obesity_ward_sdf) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="st">&quot;LMI_sigP&quot;</span>, <span class="at">style =</span> <span class="st">&quot;fixed&quot;</span>, <span class="at">breaks =</span> breaks,</span>
+<span id="cb240-9"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb240-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="fu">rev</span>(colours), <span class="at">title =</span> <span class="st">&quot;p-value of Local Moran&#39;s I stat&quot;</span>) <span class="sc">+</span> <span class="fu">tm_layout</span>(<span class="at">main.title =</span> <span class="st">&quot;Spatial Autocorrelation of Childhood Obesity in London&quot;</span>,</span>
+<span id="cb240-10"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb240-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">main.title.fontface =</span> <span class="dv">2</span>, <span class="at">fontfamily =</span> <span class="st">&quot;Helvetica&quot;</span>, <span class="at">legend.outside =</span> <span class="cn">TRUE</span>, <span class="at">legend.outside.position =</span> <span class="st">&quot;right&quot;</span>,</span>
+<span id="cb240-11"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb240-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title.size =</span> <span class="dv">1</span>, <span class="at">legend.title.fontface =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">tm_compass</span>(<span class="at">type =</span> <span class="st">&quot;arrow&quot;</span>,</span>
+<span id="cb240-12"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb240-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;right&quot;</span>, <span class="st">&quot;bottom&quot;</span>)) <span class="sc">+</span> <span class="fu">tm_scale_bar</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>),</span>
+<span id="cb240-13"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb240-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">c</span>(<span class="st">&quot;left&quot;</span>, <span class="st">&quot;bottom&quot;</span>))</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/07-map-LMI-p-1.png" width="672" /></p>
+<p>Using our significance map, we can interpret the above clusters present in our local Moran’s I statistic more confidently. As evident, we do have several clusters that are statistically significant to the <span class="math inline">\(p\)</span>-value &lt; 0.05.</p>
+<p>Ideally we would combine these two outputs to see what values cluster together and which clusters are significant. We can do this with a cluster map of our <strong>local Moran’s I statistic (Ii)</strong>- which will show areas of different types of clusters, including:</p>
+<ul>
+<li><strong>HIGH-HIGH</strong>: A ward of high obesity that is also surrounded by other wards of high obesity.</li>
+<li><strong>HIGH-LOW</strong>: A ward of high obesity that is surrounded by wards of low obesity.</li>
+<li><strong>LOW-HIGH</strong>: A ward of low obesity that is surrounded by wards of high obesity.</li>
+<li><strong>LOW-LOW</strong>: A ward of low obesity that is also surrounded by other wards of low obesity.</li>
+<li>Those areas that have no significant cluster or relationship to the wards around them.</li>
+</ul>
+<p>Our HIGH-HIGH and LOW-LOW will show our clusters, whereas the other two cluster types reveal anomalies in our variable. To create a map that shows this, we need to quantify the relationship each of our wards have with the wards around them to determine their cluster type. We do this using their observed value and their local Moran’s I statistic and their deviation around their respective means:</p>
+<ul>
+<li><em>If a ward’s observed value is higher than the observed mean and it’s local Moran’s I statistic is higher than the LMI mean</em>, it is designated as <strong>HIGH-HIGH</strong>.</li>
+<li><em>If a ward’s observed value is lower than the observed mean and it’s local Moran’s I statistic is lower than the LMI mean</em>, it is designated as <strong>LOW-LOW</strong>.</li>
+<li><em>If a ward’s observed value is lower than the observed mean but it’s local Moran’s I statistic is higher than the LMI mean</em>, it is designated as <strong>LOW-HIGH</strong>.</li>
+<li><em>If a ward’s observed value is higher than the observed mean but it’s local Moran’s I statistic is lower than the LMI mean</em>, it is designated as <strong>HIGH-LOW</strong>.</li>
+<li><em>If a ward’s LMI was found not to be significant</em>, the ward will be mapped as <strong>not significant</strong>.</li>
+</ul>
+<p>For example, this means that f we know our ward’s observed value is less than the mean value of our overall <code>y6_obesity_2014 variable</code>, then it means it is of course a low value for obesity in comparison to the entirety of London. If it’s local Moran’s I statistic is also lower than the mean value of the rest of the LMI_Ii statistics, it also means it is located in a neighbourhood of low values. As a result, if this relationship is significant (determined by the pseudo <span class="math inline">\(p\)</span>-value from our local Moran’s I calculation), we can call this a “LOW-LOW” cluster.</p>
+<p>To achieve this cluster map, we need to take several additional steps:</p>
+<ul>
+<li>The first will tell us, for each Ward, whether its observed value is higher or lower than the mean observed.</li>
+<li>The second will tell us, for each Ward, whether its LMI value is higher or lower than the mean LMI.</li>
+<li>The third will use the values of these two columns - against thes expressions outlined above - to assign each Ward with a cluster type.</li>
+</ul>
+<p>Determine the cluster type of each ward by comparing observed and LMI values against their respective means - and the significance value:</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compare local value for obesity with mean value</span></span>
+<span id="cb241-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-2" aria-hidden="true" tabindex="-1"></a>obesity_ward_sdf <span class="ot">&lt;-</span> obesity_ward_sdf <span class="sc">%&gt;%</span></span>
+<span id="cb241-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">obs_diff =</span> (y6_obesity_2014 <span class="sc">-</span> <span class="fu">mean</span>(obesity_ward_sdf<span class="sc">$</span>y6_obesity_2014)))</span>
+<span id="cb241-4"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb241-5"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compare local LMI value with mean LMI value</span></span>
+<span id="cb241-6"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-6" aria-hidden="true" tabindex="-1"></a>obesity_ward_sdf <span class="ot">&lt;-</span> obesity_ward_sdf <span class="sc">%&gt;%</span></span>
+<span id="cb241-7"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">LMI_diff =</span> (obesity_LMI<span class="sc">$</span>LMI_Ii <span class="sc">-</span> <span class="fu">mean</span>(obesity_LMI<span class="sc">$</span>LMI_Ii)))</span>
+<span id="cb241-8"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb241-9"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-9" aria-hidden="true" tabindex="-1"></a><span class="co"># set a significance threshold</span></span>
+<span id="cb241-10"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-10" aria-hidden="true" tabindex="-1"></a>signif <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb241-11"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb241-12"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-12" aria-hidden="true" tabindex="-1"></a><span class="co"># # generate column with cluster type, using values above obesity_ward_sdf &lt;-</span></span>
+<span id="cb241-13"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-13" aria-hidden="true" tabindex="-1"></a><span class="co"># obesity_ward_sdf %&gt;% mutate(cluster_type= LMI_diff) mutate(cluster_type =</span></span>
+<span id="cb241-14"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-14" aria-hidden="true" tabindex="-1"></a><span class="co"># case_when(obs_diff &gt; 0 &amp; LMI_diff &gt; 0 &amp; LMI_sigP &lt; signif ~ &#39;High-High&#39;,</span></span>
+<span id="cb241-15"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-15" aria-hidden="true" tabindex="-1"></a><span class="co"># obs_diff &lt; 0 &amp; LMI_diff &lt; 0 &amp; LMI_sigP &lt; signif ~ &#39;Low-Low&#39;, obs_diff &lt; 0 &amp;</span></span>
+<span id="cb241-16"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-16" aria-hidden="true" tabindex="-1"></a><span class="co"># LMI_diff &gt; 0 &amp; LMI_sigP &lt; signif ~ &#39;Low-High&#39;, obs_diff &gt; 0 &amp; LMI_diff &lt; 0 &amp;</span></span>
+<span id="cb241-17"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb241-17" aria-hidden="true" tabindex="-1"></a><span class="co"># LMI_sigP &lt; signif ~ &#39;High-Low&#39;, LMI_sigP &gt; signif ~ &#39;No Significance&#39;))</span></span></code></pre></div>
+<p>Now we have a column detailing our cluster types, we can create a cluster map that details our four cluster types as well as those that are not significant. Creating a categorical map in R and using <code>tmap</code> is a little tricky - and we’ll need to do some preparing of our colour palettes to ensure our data is mapped correctly. To do this, we first need to figure out how many cluster types we have in our <code>cluster_type</code> field:</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # count the different values within our `cluster_type` variable</span></span>
+<span id="cb242-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb242-2" aria-hidden="true" tabindex="-1"></a><span class="co"># count(obesity_ward_sdf, cluster_type)</span></span></code></pre></div>
+<p>We can see we actually on have two cluster types present within our data set - alongside the <code>No Significance</code> value. We therefore need to ensure our palette only includes two colours for these two cluster types, plus a white colour for <code>No Significance</code>:</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # create a colour palette</span></span>
+<span id="cb243-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb243-2" aria-hidden="true" tabindex="-1"></a><span class="co"># # White (No Significance), Light Blue (Low-High) and Dark Red (High-High)</span></span>
+<span id="cb243-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb243-3" aria-hidden="true" tabindex="-1"></a><span class="co"># pal &lt;- c(&quot;#F5F5F5&quot;, &#39;#91bfdb&#39;, &#39;#67001f&#39;)</span></span>
+<span id="cb243-4"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb243-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb243-5"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb243-5" aria-hidden="true" tabindex="-1"></a><span class="co"># # plot the clusters</span></span>
+<span id="cb243-6"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb243-6" aria-hidden="true" tabindex="-1"></a><span class="co"># tm_shape(obesity_ward_sdf) + </span></span>
+<span id="cb243-7"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb243-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   tm_polygons(col = &quot;cluster_type&quot;, palette = rev(pal), title = &quot;Cluster Type&quot;) + </span></span>
+<span id="cb243-8"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb243-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   tm_layout(main.title = &quot;Cluster Map of Childhood Obesity in London in 2014&quot;, </span></span>
+<span id="cb243-9"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb243-9" aria-hidden="true" tabindex="-1"></a><span class="co">#             main.title.fontface = 2, fontfamily = &quot;Helvetica&quot;, legend.outside = TRUE, </span></span>
+<span id="cb243-10"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb243-10" aria-hidden="true" tabindex="-1"></a><span class="co">#             legend.outside.position = &quot;right&quot;, </span></span>
+<span id="cb243-11"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb243-11" aria-hidden="true" tabindex="-1"></a><span class="co">#             legend.title.size = 1, </span></span>
+<span id="cb243-12"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb243-12" aria-hidden="true" tabindex="-1"></a><span class="co">#             legend.title.fontface = 2) + </span></span>
+<span id="cb243-13"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb243-13" aria-hidden="true" tabindex="-1"></a><span class="co">#   tm_compass(type = &quot;arrow&quot;, position = c(&quot;right&quot;, &quot;bottom&quot;)) + </span></span>
+<span id="cb243-14"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb243-14" aria-hidden="true" tabindex="-1"></a><span class="co">#   tm_scale_bar(breaks = c(0, 5, 10, 15, 20), position = c(&quot;left&quot;, &quot;bottom&quot;))</span></span></code></pre></div>
+<p>And there we have it - within one map, we can visualise both the relationship of our Wards to their respective neighbourhoods and the significance of this relationship from our local Moran’s I test. This type of map is called a LISA map - and is a great way of showing how a variable is actually clustering.</p>
 </div>
 </div>
 <div id="byl-w07" class="section level2" number="7.7">

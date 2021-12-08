@@ -20,9 +20,9 @@ fig:unnamed-chunk-15
 fig:unnamed-chunk-16
 fig:unnamed-chunk-17
 fig:unnamed-chunk-18
-fig:unnamed-chunk-20
 fig:unnamed-chunk-21
 fig:unnamed-chunk-22
+fig:unnamed-chunk-23
 geocomputation-an-introduction
 recording-w01
 reading-w01
@@ -144,7 +144,11 @@ assignment-1-w07
 spatial-distributions
 spatial-lag
 defining-neighbours
-measuring-spatial-autocorrelation
+spatial-weights-matrix
+global-morans-i
+geary-cs
+getis-ord-general-g
+local-morans-i
 byl-w07
 analysing-spatial-patterns-iii-point-pattern-analysis
 recording-w08
@@ -161,7 +165,3 @@ recording-w10
 reading-w10
 assignment-w10
 byl-w10
-fig:unnamed-chunk-1
-fig:unnamed-chunk-6
-spatial-weights-matrix
-global-morans-i

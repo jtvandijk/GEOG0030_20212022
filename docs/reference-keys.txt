@@ -146,6 +146,9 @@ spatial-lag
 defining-neighbours
 spatial-weights-matrix
 global-morans-i
+geary-cs
+getis-ord-general-g
+local-morans-i
 byl-w07
 analysing-spatial-patterns-iii-point-pattern-analysis
 recording-w08

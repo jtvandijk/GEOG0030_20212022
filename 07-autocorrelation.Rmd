@@ -24,7 +24,7 @@ Open a new script within your GEOG0030 project and save this script as `wk7-obes
 
 This week we also need to install some additional libraries: `spdep`. `spdep` contains the relevant functions to run our various spatial autocorrelation tests. After installation, add the following libraries for loading in your script:
 
-```{r 07-scr-libs-all, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 07-scr-libs-all, warnings=FALSE, message=FALSE, cache=FALSE, tidy=TRUE}
 # libraries
 library(tidyverse)
 library(sf)
@@ -375,7 +375,7 @@ Here, we will look at three approaches:
 
 For either approach, we use a single line of code to create the relevant \(W_{ij}\) spatial weights matrix:
 
-```{r 07-defining-neighbours, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 07-defining-neighbours, warnings=FALSE, message=FALSE, cache=FALSE, tidy=TRUE}
 # create a neighbours list based on the Queen neighbour definition
 ward_neighbours_queen <- obesity_ward_sdf %>% poly2nb(., queen=T)
 
@@ -395,7 +395,7 @@ A centroid, in it's most simplest is the central point of an areal unit. How thi
 
 We can calculate the centroids of our wards using one of the **geometric** tools from the `sf` library: `sf_centroid()`:
 
-```{r 07-calc-centroids, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 07-calc-centroids, warnings=FALSE, message=FALSE, cache=FALSE, tidy=TRUE}
 # calculate the centroids of all of the Wards in London
 ward_centroid <- obesity_ward_sdf %>% st_centroid()
 ``` 
@@ -423,7 +423,7 @@ We can also type the different neighbours objects into the console to find out t
 
 With our neighbours now defined, we will go ahead and create our final (two) spatial weights objects that will be needed for our spatial autocorrelation code. At the moment, we currently have our neighbours defined as a "list" - but we need to convert it to a "neighbours" object using the `nb2listw()` function:
 
-```{r 07-creating-neighbours, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 07-creating-neighbours, warnings=FALSE, message=FALSE, cache=FALSE, tidy=TRUE}
 # create a neighbours list
 ward_spatial_weights_queen <- ward_neighbours_queen %>% nb2listw(., style="C")
 
@@ -454,7 +454,7 @@ obesity_MI_sp <- moran.plot(obesity_ward_sdf$y6_obesity_2014, listw = ward_spati
 
 We can see that there is a positive relationship between our `y6_obesity_2014` variable and the spatially lagged `y6_obesity_2014` variable, therefore we are expecting our global Moran's I test to produce a statistic reflective of the slope visible in our scatter plot. Now we can run the global Moran's I spatial autocorrelation test and print the result:
 
-```{r 07-run-GMI, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 07-run-GMI, warnings=FALSE, message=FALSE, cache=FALSE, tidy=TRUE}
 # run the global Moran's I test on our y6_obesity_2014 data
 obesity_GMI <- obesity_ward_sdf %>% pull(y6_obesity_2014) %>% as.vector() %>% moran.test(., ward_spatial_weights_queen)
 
@@ -467,7 +467,7 @@ The Moran’s I statistic calculated should be 0.53. With 1 = clustered, 0 = no 
 ### Geary C's
 The Gearcy C test will tell us whether similar values or dissimilar values are clustering. We can run the Geary C test using the exact same notation - we just change the test we want to run:
 
-```{r 07-run-GC, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 07-run-GC, warnings=FALSE, message=FALSE, cache=FALSE, tidy=TRUE}
 # run the Geary C's test on our y6_obesity_2014 data
 obesity_GC <- obesity_ward_sdf %>% pull(y6_obesity_2014) %>% as.vector() %>% geary.test(., ward_spatial_weights_queen)
 
@@ -480,7 +480,7 @@ The Geary’s C statistic calculated should be 0.46. With Geary’s C falling be
 ### Getis-Ord General G
 The Getis-Ord General G test tells us whether high or low values are clustering. For Getis-Ord, as it is **recommended** to use a proximity-based neighbour matrix, so we will use our Fixed Distance definition:
 
-```{r 07-run-GO, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 07-run-GO, warnings=FALSE, message=FALSE, cache=FALSE, tidy=TRUE}
 # run the Getis-Ord General G test on our y6_obesity_2014 data, change spatial weights to fd
 obesity_GO <- obesity_ward_sdf %>% pull(y6_obesity_2014) %>% as.vector() %>% globalG.test(., ward_spatial_weights_fd)
 
@@ -489,5 +489,173 @@ obesity_GO
 ``` 
 
 The Getis-Ord General G statistic calculated should be 0.024 (2.415636e-02). The expectation is 0.021 ( 2.195887e-02). With G > expected = high values clustering and G < expected = low values clustering, we can confirm that high values within our variable are tending to cluster. The pseudo $p$-value suggest again that the model is significant.
+
+:::note
+**Note** <br/>
+Before we run our local spatial autocorrelation tests, let's just take a second to think through what our results have shown. From our three statistical tests, we can confirm that:
+
+* There is clustering in our data set.
+* Similar values are clustering.
+* High values are clustering.
+
+Each of these tests do tell us something different about how our data is clustered and can refine our conclusions about our data without the need for our local tests - we can conclude already that areas of high levels of childhood obesity tend to cluster in the same area. What we do not know yet is **where** these clusters are occurring. To help with this, we need to run our **local** models to identify where these clusters are located.
+:::
+
+### Local Moran's I
+A local Moran's I test deconstructs the global Moran’s I down to its components and then constructs a localized measure of autocorrelation, which can show different cluster types - depending on our mapping approach. To run a local Moran's I test, the code again is similar to above - however, our output is different:
+
+```{r 07-local-MI-1, warnings=FALSE, message=FALSE, cache=FALSE, tidy=TRUE}
+# run the local Moran's I test on our y6_obesity_2014 data
+obesity_LMI <- obesity_ward_sdf %>% pull(y6_obesity_2014) %>% as.vector() %>% localmoran(., ward_spatial_weights_queen)
+
+# print the first 5 lines of the local Moran's I statistic output
+head(obesity_LMI)
+``` 
+
+As you should see, we do not get given a single statistic as per with our global tests, but rather a table of five different statistics - that are all related back to each of the wards in our data set.
+
+If we look at the help page for the `localmoran` function (run `?localmoran` in your console) we can find out what each of these statistics mean:
+
+| Name | Description |
+| :----- | :---------------|
+| Ii | Local Moran's I statistic |
+| E.Ii | Expectation of local Moran's I statistic |
+| Var.Ii | Variance of local Moran's I statistic |
+| Z.Ii | Standard deviation of local Moran's I statistic |
+| Pr() | $p$-value of local Moran's I statistic |
+
+We therefore have a local Moran's I statistic for each of our wards, as well as a significance value plus a few other pieces of information that can help us create some maps showing our clusters. To be able to do this, we need to join our local Moran's I output back into our `obesity_ward_sdf` spatial dataframe, which will then allow us to map these results. 
+
+To create this join, we first **coerce** our local Moran's I output into a dataframe that we then join to our `obesity_ward_sdf` spatial dataframe using the `mutate()` function from the `dplyr` library. In our case, we do not need to provide an **attribute** to join these two dataframes together as we use the computer's logic to join the data in the order in which it was created:
+
+```{r 07-local-MI-join, warnings=FALSE, message=FALSE, cache=FALSE, tidy=TRUE}
+# coerce obesity_LMI into dataframe
+obesity_LMI <- as.data.frame(obesity_LMI)
+
+# update the names for easier reference
+names(obesity_LMI) <- c("LMI_Ii", "LMI_eIi", "LMI_varIi", "LMI_zIi", "LMI_sigP")
+
+# join to obesity_ward_sdf
+obesity_ward_sdf <- obesity_ward_sdf %>% mutate(obesity_LMI)
+``` 
+
+We now have the data we need to plot our local spatial autocorrelation maps. We will first plot the most simple maps to do with our local Moran's I test: the local Moran's I statistic as well as the $p$-values of the local Moran's I statistic.
+
+Map the local Moran's I statistic: 
+
+```{r 07-map-LMI, warnings=FALSE, message=FALSE, cache=TRUE}
+# map our local Moran's I statistic 
+tm_shape(obesity_ward_sdf) + 
+  tm_polygons("LMI_Ii", style = "pretty", midpoint = 0, title = "Local Moran's I statistic") + 
+  tm_layout(main.title= "Spatial Autocorrelation of Childhood Obesity in London", 
+            main.title.fontface = 2, fontfamily = "Helvetica", 
+            legend.outside = TRUE, 
+            legend.outside.position = "right", 
+            legend.title.size = 1, 
+            legend.title.fontface = 2) + 
+  tm_compass(type = "arrow", position = c("right", "bottom")) + 
+  tm_scale_bar(breaks = c(0, 5, 10, 15, 20), position = c("left", "bottom"))
+``` 
+
+From the map, it is possible to observe the variations in autocorrelation across space. We can interpret that there seems to be a geographic pattern to the autocorrelation. However, it is not possible to understand if these are clusters of high or low values. To be able to interpret this confidently, we also need to know the significance of the patterns we see in our map - we therefore need to map the $p$-value of local Moran's I statistic.
+
+8. Map the $p$-value of local Moran's I statistic:
+
+```{r 07-map-LMI-p, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# significance breaks
+breaks <- c(0, 0.05, 0.1, 1)
+
+# colours for our local Moran's I statistic
+colours <- c('white', "#a6bddb", "#2b8cbe" )
+
+# map our local Moran's I statistic 
+tm_shape(obesity_ward_sdf) + 
+  tm_polygons("LMI_sigP", style = "fixed", breaks = breaks, 
+              palette = rev(colours), title = "p-value of Local Moran's I stat") + 
+  tm_layout(main.title = "Spatial Autocorrelation of Childhood Obesity in London", 
+            main.title.fontface = 2, fontfamily = "Helvetica", 
+            legend.outside = TRUE, 
+            legend.outside.position = "right", 
+            legend.title.size = 1, 
+            legend.title.fontface = 2) + 
+  tm_compass(type = "arrow", position = c("right", "bottom")) + 
+  tm_scale_bar(breaks = c(0, 5, 10, 15, 20), position = c("left", "bottom"))
+``` 
+
+Using our significance map, we can interpret the above clusters present in our local Moran's I statistic more confidently. As evident, we do have several clusters that are statistically significant to the $p$-value < 0.05. 
+
+Ideally we would combine these two outputs to see what values cluster together and which clusters are significant. We can do this with a cluster map of our **local Moran's I statistic (Ii)**- which will show areas of different types of clusters, including:
+
+* **HIGH-HIGH**: A ward of high obesity that is also surrounded by other wards of high obesity.
+* **HIGH-LOW**: A ward of high obesity that is surrounded by wards of low obesity.
+* **LOW-HIGH**: A ward of low obesity that is surrounded by wards of high obesity.
+* **LOW-LOW**: A ward of low obesity that is also surrounded by other wards of low obesity.
+* Those areas that have no significant cluster or relationship to the wards around them.
+
+Our HIGH-HIGH and LOW-LOW will show our clusters, whereas the other two cluster types reveal anomalies in our variable. To create a map that shows this, we need to quantify the relationship each of our wards have with the wards around them to determine their cluster type. We do this using their observed value and their local Moran's I statistic and their deviation around their respective means:
+  
+* *If a ward's observed value is higher than the observed mean and it's local Moran's I statistic is higher than the LMI mean*, it is designated as **HIGH-HIGH**.
+* *If a ward's observed value is lower than the observed mean and it's local Moran's I statistic is lower than the LMI mean*, it is designated as **LOW-LOW**.
+* *If a ward's observed value is lower than the observed mean but it's local Moran's I statistic is higher than the LMI mean*, it is designated as **LOW-HIGH**.
+* *If a ward's observed value is higher than the observed mean but it's local Moran's I statistic is lower than the LMI mean*, it is designated as **HIGH-LOW**.
+* *If a ward's LMI was found not to be significant*, the ward will be mapped as **not significant**.
+
+For example, this means that f we know our ward’s observed value is less than the mean value of our overall `y6_obesity_2014 variable`, then it means it is of course a low value for obesity in comparison to the entirety of London. If it’s local Moran’s I statistic is also lower than the mean value of the rest of the LMI_Ii statistics, it also means it is located in a neighbourhood of low values. As a result, if this relationship is significant (determined by the pseudo $p$-value from our local Moran’s I calculation), we can call this a “LOW-LOW” cluster.
+
+To achieve this cluster map, we need to take several additional steps:
+
+* The first will tell us, for each Ward, whether its observed value is higher or lower than the mean observed.
+* The second will tell us, for each Ward, whether its LMI value is higher or lower than the mean LMI.
+* The third will use the values of these two columns - against thes expressions outlined above - to assign each Ward with a cluster type.
+
+Determine the cluster type of each ward by comparing observed and LMI values against their respective means - and the significance value:
+ 
+```{r 07-LMI-cluster-type, warnings=FALSE, message=FALSE, cache=FALSE, tidy=TRUE}
+# compare local value for obesity with mean value
+obesity_ward_sdf <- obesity_ward_sdf %>% mutate(obs_diff = (y6_obesity_2014 - mean(obesity_ward_sdf$y6_obesity_2014)))
+
+# compare local LMI value with mean LMI value
+obesity_ward_sdf <- obesity_ward_sdf %>% mutate(LMI_diff = (obesity_LMI$LMI_Ii - mean(obesity_LMI$LMI_Ii)))
+
+# set a significance threshold 
+signif <- 0.05
+
+# # generate column with cluster type, using values above
+# obesity_ward_sdf <- obesity_ward_sdf %>% mutate(cluster_type= LMI_diff)
+#   mutate(cluster_type = case_when(obs_diff > 0 & LMI_diff > 0 & LMI_sigP < signif ~ "High-High", 
+#                                   obs_diff < 0 & LMI_diff < 0 & LMI_sigP < signif ~ "Low-Low", 
+#                                   obs_diff < 0 & LMI_diff > 0 & LMI_sigP < signif ~ "Low-High", 
+#                                   obs_diff > 0 & LMI_diff < 0 & LMI_sigP < signif ~ "High-Low", 
+#                                   LMI_sigP > signif ~ "No Significance"))
+
+```
+
+Now we have a column detailing our cluster types, we can create a cluster map that details our four cluster types as well as those that are not significant. Creating a categorical map in R and using `tmap` is a little tricky - and we'll need to do some preparing of our colour palettes to ensure our data is mapped correctly. To do this, we first need to figure out how many cluster types we have in our `cluster_type` field:
+
+```{r 07-LMI-cs, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# # count the different values within our `cluster_type` variable 
+# count(obesity_ward_sdf, cluster_type)
+```
+
+We can see we actually on have two cluster types present within our data set - alongside the `No Significance` value. We therefore need to ensure our palette only includes two colours for these two cluster types, plus a white colour for `No Significance`:
+
+```{r 07-plot-LMI-hscs, warnings=FALSE, message=FALSE, cache=TRUE}
+# # create a colour palette
+# # White (No Significance), Light Blue (Low-High) and Dark Red (High-High)
+# pal <- c("#F5F5F5", '#91bfdb', '#67001f')
+# 
+# # plot the clusters
+# tm_shape(obesity_ward_sdf) + 
+#   tm_polygons(col = "cluster_type", palette = rev(pal), title = "Cluster Type") + 
+#   tm_layout(main.title = "Cluster Map of Childhood Obesity in London in 2014", 
+#             main.title.fontface = 2, fontfamily = "Helvetica", legend.outside = TRUE, 
+#             legend.outside.position = "right", 
+#             legend.title.size = 1, 
+#             legend.title.fontface = 2) + 
+#   tm_compass(type = "arrow", position = c("right", "bottom")) + 
+#   tm_scale_bar(breaks = c(0, 5, 10, 15, 20), position = c("left", "bottom"))
+``` 
+
+And there we have it - within one map, we can visualise both the relationship of our Wards to their respective neighbourhoods and the significance of this relationship from our local Moran's I test. This type of map is called a LISA map - and is a great way of showing how a variable is actually clustering.
 
 ## Before you leave {#byl-w07}
