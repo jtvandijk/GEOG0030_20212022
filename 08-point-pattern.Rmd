@@ -1,4 +1,5 @@
 # Analysing Spatial Patterns III: Point Pattern Analysis
+This week, we will be looking at how we can use Point Pattern Analysis (PPA) to detect and delineate clusters within point data. Within point pattern analysis, we look to detect clusters or patterns across a set of points, including measuring density, dispersion and homogeneity in our point structures. There are several approaches to calculating and detecting these clusters, which are explained in our main lecture. We then deploy several PPA techniques, including Kernel Density Estimation, on our bike theft data to continue our investigation from the week before last.
 
 ## Lecture recording {#recording-w08}
 - Lecture W8
@@ -6,6 +7,104 @@
 ## Reading list {#reading-w08}
 - Reading #1
 - Reading #2
+
+## Bike theft in London {#bike-theft-w08}
+This week, we continue to investigate bike theft in London in 2019 - as we look to confirm our very simple hypothesis: that bike theft primarily occurs near tube and train stations. This week, instead of looking at the distance of individual bike thefts from train stations, we will look to analyse the distribution of clusters in relation to the stations. We will first look at this visually and then look to compare these clusters to the location of train and tube stations quantitatively using geometric operations.
+
+To complete this analysis, we will again use the following data sets:
+- Bike theft in London for 2019 from [data.police.uk](https://tfl.gov.uk/)
+- Train and Tube Stations from [Transport for London](https://data.police.uk/)
+
+### Housekeeping {#housekeeping-w08}
+Let's get ourselves ready to start our lecture and practical content by first downloading the relevant data and loading this within our script.
+
+Open a new script within your GEOG0030 project and save this script as `wk8-bike-theft-PPA.r`. At the top of your script, add the following metadata (substitute accordingly):
+
+```{r 08-scr-title, warnings=FALSE, message=FALSE, cache=TRUE, tidy=FALSE}
+# Analysing bike theft and its relation to stations using point pattern analysis
+# Data: January 2021
+# Author: Justin
+```
+
+All of the geometric operations and spatial queries we will use are contained within the `sf` library. For our Point Pattern Analysis, we will be using the `spatstat` library ("spatial statistics"). The `spatstat` library contains the different Point Pattern Analysis techniques we will want to use in this practical. We will also need the `raster` library, which provides classes and functions to manipulate geographic (spatial) data in 'raster' format. We will use this package briefly today, but look into it in more detail next week. We'll also using the `rosm` library ("R OSM"), which provides access to and plots OpenStreetMap and Bing Maps tiles to create high-resolution basemaps. Lastly, you will also need to install `dbscan` and `leaflet`.
+
+```{r 08-scr-libs-all, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# libraries
+library(tidyverse)
+library(sf)
+library(tmap)
+library(janitor)
+library(spdep)
+library(RColorBrewer)
+library(raster)
+library(spatstat)
+library(rosm)
+library(dbscan)
+library(leaflet)
+```
+
+### Loading data {#loading-data-w08}
+This week, we will continue to use our data from Week 06. This includes:
+
+- London Ward boundaries for 2018
+- Crime in London for 2019 from [data.police.uk](https://data.police.uk/)
+- Train and Tube Stations from [Transport for London](https://tfl.gov.uk/)
+
+You should load these data sets as new variables in this week's script. You should have the original data files for both the London Wards and 2019 crime already in your **raw** data folder.
+
+:::note
+**Note** <br />
+If you did not export your OpenStreetMap train and tube stations from our practical in week W06, you will need to re-run parts of your code to download and then export the OpenStreetMap data. If this is the case, open your `wk6-bike-theft-analysis.r` and make sure you create a shapefile of the train and tube stations.
+:::
+
+Let's go ahead and load all of our data at once - we did our due diligence in Week 06 and know what our data looks like and what CRS they are in, so we can go ahead and use pipes to make loading our data more efficient:
+
+```{r 08-load-all-data, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# read in our 2018 London Ward boundaries
+london_ward_shp <- read_sf("data/raw/boundaries/2018/London_Ward.shp")
+
+# read in our OSM tube and train stations data
+london_stations_osm <- read_sf("data/raw/transport/osm_stations.shp")
+
+# read in our crime data csv from our raw data folder
+bike_theft_2019 <- read_csv("data/raw/crime/crime_all_2019_london.csv") %>% 
+  # clean names with janitor
+  clean_names() %>%
+  # filter according to crime type and ensure we have no NAs in our data set
+  filter(crime_type == "Bicycle theft" & !is.na(longitude) & !is.na(latitude)) %>% 
+  # select just the longitude and latitude columns
+  dplyr::select(longitude, latitude) %>%
+  # transform into a point spatial dataframe
+  # note providing the columns as the coordinates to use
+  # plus the CRS, which as our columns are long/lat is WGS84/4236
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4236) %>% 
+  # convert into BNG
+  st_transform(27700) %>% 
+  # clip to London
+  st_intersection(london_ward_shp)
+``` 
+
+Let's create a quick map of our data to check it loaded correctly:
+
+```{r 08-tmap-check, warnings=FALSE, message=FALSE, cache=FALSE, echo=FALSE}
+# ensure tmap mode is set to plot 
+tmap_mode("plot")
+```
+
+```{r 08-map-all-data, warnings=FALSE, message=FALSE, cache=TRUE, tidy=FALSE}
+# plot our London Wards first
+tm_shape(london_ward_shp) + tm_fill() + 
+  # then add bike crime as blue
+  tm_shape(bike_theft_2019) + tm_dots(col = "blue") + 
+  # then add our stations as red
+  tm_shape(london_stations) + tm_dots(col = "red") + 
+  # then add a north arrow
+  tm_compass(type = "arrow", position = c("right", "bottom")) + 
+  # then add a scale bar
+  tm_scale_bar(breaks = c(0, 5, 10, 15, 20), position = c("left", "bottom"))
+```
+
+Great - that looks familiar! This means we can move forward with our data analysis and theoretical content for this week.
 
 ## Assignment {#assignment-w08}
 

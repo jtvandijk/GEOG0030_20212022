@@ -478,7 +478,7 @@ obesity_GC
 The Geary’s C statistic calculated should be 0.46. With Geary’s C falling between 0 and 2 and 1 means no spatial autocorrelation, <1 = positive spatial autocorrelation or similar values clustering and >1 = negative spatial autocorrelation or dissimilar values clustering, we can confirm that our data shows that similar values are clustering. We can also consider the *pseudo* $p$-value as a measure of the statistical significance of the model again, which also here confirms our result is (pseudo) significant.
 
 ### Getis-Ord General G
-The Getis-Ord General G test tells us whether high or low values are clustering. For Getis-Ord, as it is **recommended** to use a proximity-based neighbour matrix, we will use our Fixed Distance definition:
+The Getis-Ord General G test tells us whether high or low values are clustering. For Getis-Ord, as it is **recommended** to use a proximity-based neighbour matrix, we will use our Fixed Distance definition of neighbours:
 
 ```{r 07-run-GO, message=FALSE, cache=FALSE, tidy=TRUE, warnings=FALSE}
 # run the Getis-Ord General G test on our y6_obesity_2014 data, change spatial weights to fd
