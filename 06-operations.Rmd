@@ -217,7 +217,7 @@ Back to our train and tube stations. We have seen that our current `london_stati
 
 ::: note
 **Note** <br/>
-OpenStreetMap's spatial coverage is still unequal across the world - plus, as you will find if you use the data, the accuracy and quality of the data can often be quite questionable or simply missing attribute details that we'd like to have, e.g. types of roads and their speed limits, to complete specific types of spatial analysis. As a result, do not expect OSM to contain every piece of spatial data that you would want.
+OpenStreetMap's spatial coverage is still unequal across the world - plus, as you will find if you use the data, the accuracy and quality of the data can often be quite questionable or simply missing attribute details that we would like to have, e.g. types of roads and their speed limits, to complete specific types of spatial analysis. As a result, do not expect OSM to contain every piece of spatial data that you would want.
 :::
 
 Whilst there are [various approaches](https://wiki.openstreetmap.org/wiki/Downloading_data) to downloading data from OpenStreetMap, we will use the `osmdata` library to directly extract our required OpenStreetMap (OSM) data into a variable. The `osmdata` library grants access within R to the [Overpass API](https://overpass-turbo.eu) that allows us to run queries on OSM data and then import the data as either `sf` or `sp` objects. These queries are at the **heart** of these data downloads. 
@@ -269,7 +269,7 @@ plot(london_stations_osm)
 
 With the accuracy of OSM a little questionable, we want to complete some data validation tasks to check its quality and to confirm that it at least contains the data we see in our authoritative `london_stations` spatial dataframe. The total number of data points also seems rather high. In fact, a quick search online can tell us that there are [**272** tube stations](https://tfl.gov.uk/corporate/about-tfl/what-we-do) in the London network as well as [**335** train stations](https://en.wikipedia.org/wiki/List_of_London_railway_stations) in Greater London.
 
-As we can see in our plot above, not all of our stations appear to be of the same value in our `railway` field. If we check the field using our `count()` function, you'll see that there are some different values and `NAs` in our data set:
+As we can see in our plot above, not all of our stations appear to be of the same value in our `railway` field. If we check the field using our `count()` function, you will see that there are some different values and `NAs` in our data set:
 
 ```{r 06-count-stations, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # inspect values
@@ -339,8 +339,8 @@ This looks pretty good - but still the question is: can we be sure? Using geomet
 
 We will approach this question in two different ways to highlight the differences between geometric operations and spatial queries:
 
-1. We'll use **geometric operations** to generate geometries that highlight missing stations from our `london_stations` spatial dataframe (i.e. ones that are not present in the`london_stations_osm` spatial dataframe.)
-2. We'll use **spatial queries** to provide us with a list of features in our `london_stations` spatial dataframe that do not meet our spatial requirements (i.e. are not present in the`london_stations_osm` spatial dataframe.)
+1. We will use **geometric operations** to generate geometries that highlight missing stations from our `london_stations` spatial dataframe (i.e. ones that are not present in the`london_stations_osm` spatial dataframe.)
+2. We will use **spatial queries** to provide us with a list of features in our `london_stations` spatial dataframe that do not meet our spatial requirements (i.e. are not present in the`london_stations_osm` spatial dataframe.)
 
 #### Geometric operations
 As highlighted above, the offset between our spatial dataframes adds a little complexity to our geometric operations code. To be able to make our direct spatial comparisons across our spatial dataframes, what we first need to do is try to **snap*'** the geometry of our `london_stations` spatial dataframe to our `london_stations_osm` spatial dataframe for points within a given distance threshold. This will mean that any points in the `london_stations` spatial dataframe that are within a specific distance of the `london_stations_osm` spatial dataframe will have their geometry changed to that of the `london_stations_osm` spatial dataframe.

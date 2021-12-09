@@ -172,3 +172,15 @@ recording-w10
 reading-w10
 assignment-w10
 byl-w10
+section
+density-based-techniques
+fig:unnamed-chunk-1
+fig:unnamed-chunk-6
+kernel-density-estimation
+mapping-our-kde-raster-using-tmap
+mapping-our-kde-raster-with-a-basemap
+assignment-w08-1
+distance-based-methods
+average-nearest-neighbour
+ripleys-k-function
+dbscan

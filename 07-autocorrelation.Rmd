@@ -147,7 +147,7 @@ Now we have the data we want to map, we need to do a final spot of checking - on
 str(obesity_ward_data)
 ``` 
 
-The results from the `str()` function suggest that some variables have been interpreted by R to be characters rather than numeric. This might be because there is some missing data or in some cases, the decimal point can interfere with the data being read as a numeric. Luckily it is easy to change our data type - a bit like right-clicking on our columns in Excel and setting the format of the column to `number`, we'll do this using code. If we wanted to apply this to a single column than we would use the code: `as.numeric(dataframe$column)` but as we want to apply this across a few columns, we'll be using the `mutate_at()` function from the `dplyr` library. 
+The results from the `str()` function suggest that some variables have been interpreted by R to be characters rather than numeric. This might be because there is some missing data or in some cases, the decimal point can interfere with the data being read as a numeric. Luckily it is easy to change our data type - a bit like right-clicking on our columns in Excel and setting the format of the column to `number`, we will do this using code. If we wanted to apply this to a single column than we would use the code: `as.numeric(dataframe$column)` but as we want to apply this across a few columns, we will be using the `mutate_at()` function from the `dplyr` library. 
 
 ```{r 07-rechar-df, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # change data types 
@@ -339,6 +339,7 @@ knitr::include_graphics('images/w07/MC_sim_1.png')
 If our slope is an outlier, i.e. not a value we would expect to compute if the data were randomly distributed, we are more confidently able to confirm our slope is reflective of our data's clustering and is significant. Our *pseudo-*$p$-values are then computed from our simulation results:
 
 <center>\(\frac{N_{extreme} + 1}{N + 1}\)</center>
+<br>
 
 Where \({N_{extreme}}\) is the number of simulated Moran's I values that were more extreme that our observed statistic and \({N}\) is the total number of simulations. In the example above, from [Manuel Gimond](https://mgimond.github.io/Spatial/spatial-autocorrelation.html), only 1 out the 199 simulations was more extreme than the observed local Moran's I statistic. Therefore \({N_{extreme}}\) = 1 , so $p$ is equal to (1+1) / (199 + 1) = 0.01. This means that "there is a 1% probability that we would be wrong in rejecting the null hypothesis". This approach is known as a **Monte Carlo simulation** (or permutation bootstrap test).
 
@@ -630,7 +631,7 @@ obesity_ward_sdf <- obesity_ward_sdf %>%
 
 ```
 
-Now we have a column detailing our cluster types, we can create a cluster map that details our four cluster types as well as those that are not significant. Creating a categorical map in R and using `tmap` is a little tricky - and we'll need to do some preparing of our colour palettes to ensure our data is mapped correctly. To do this, we first need to figure out how many cluster types we have in our `cluster_type` field:
+Now we have a column detailing our cluster types, we can create a cluster map that details our four cluster types as well as those that are not significant. Creating a categorical map in R and using `tmap` is a little tricky - and we will need to do some preparing of our colour palettes to ensure our data is mapped correctly. To do this, we first need to figure out how many cluster types we have in our `cluster_type` field:
 
 ```{r 07-LMI-cs, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # count the different values within our `cluster_type` variable 

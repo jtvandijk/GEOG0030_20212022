@@ -23,6 +23,8 @@ fig:unnamed-chunk-18
 fig:unnamed-chunk-21
 fig:unnamed-chunk-22
 fig:unnamed-chunk-23
+fig:unnamed-chunk-24
+fig:unnamed-chunk-25
 geocomputation-an-introduction
 recording-w01
 reading-w01
@@ -160,7 +162,13 @@ bike-theft-w08
 housekeeping-w08
 loading-data-w08
 point-pattern-analysis
-assignment-w08
+density-based-techniques
+kernel-density-estimation
+assignment-w08-1
+distance-based-methods
+average-nearest-neighbour
+ripleys-k-function
+dbscan
 byl-w08
 rasters-zonal-statistics-and-interpolation
 recording-w09
