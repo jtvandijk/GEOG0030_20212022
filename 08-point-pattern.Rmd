@@ -106,6 +106,15 @@ tm_shape(london_ward_shp) + tm_fill() +
 
 Great - that looks familiar! This means we can move forward with our data analysis and theoretical content for this week.
 
+## Point pattern analysis
+Point pattern analysis (PPA) studies the spatial distribution of points. PPA uses the **density**, **dispersion** and **homogeneity** in our point data sets to assess, quantify and characterise its distribution. Over the last fifty years, various methods and measurements have been developed to analyze, model, visualise, and interpret these properties of point patterns ([Qiang et al, 2020](https://gistbok.ucgis.org/bok-topics/point-pattern-analysis)).
+
+There are three main categories of PPA techniques:
+
+* **Descriptive statistics**: The use of descriptive statistics will provide a summary of the basic characteristics of a point pattern, such as its central tendency and dispersion. Descriptive statistics provide a simple way of visualising a data set as a whole, from plotting the median or mean centre, or, often preferably, a standard deviational eclispse for those data sets that display a directional pattern.
+* **Density-based methods**: Density-based methods focus on the *first-order* properties of a data set, i.e. the variation in the individual locations of the points in the data set across the area of interest, and will characterise our data set's distribution accordingly in terms of density.
+* **Distanced-based methods**: Distanced-based methods focus on the *second-order* properties of a data set, i.e. the interactions between points within our data and whether they appear to have influence on one another and form clusters, and will characterise our data set's distribution accordingly in terms of dispersion. 
+
 ## Assignment {#assignment-w08}
 
 ## Before you leave {#byl-w08}

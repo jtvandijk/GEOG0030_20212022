@@ -126,6 +126,7 @@ data-preparation-w06
 spatial-operations-i
 geometric-operations
 spatial-queries
+file-export
 spatial-operations-ii
 geometric-operations-1
 spatial-queries-1
@@ -157,6 +158,8 @@ recording-w08
 reading-w08
 bike-theft-w08
 housekeeping-w08
+loading-data-w08
+point-pattern-analysis
 assignment-w08
 byl-w08
 rasters-zonal-statistics-and-interpolation
@@ -169,6 +172,3 @@ recording-w10
 reading-w10
 assignment-w10
 byl-w10
-fig:unnamed-chunk-1
-loading-data-w08
-file-export
