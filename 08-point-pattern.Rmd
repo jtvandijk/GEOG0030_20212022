@@ -555,6 +555,9 @@ What do you think of the clusters? What do they tell you about the distribution 
 Let's go ahead and add our `london_stations_osm` dataset to our map - this will help highlight the location of the stations relative to our bike thefts:
 
 ```{r 08-map-outlines-2, warnings=FALSE, cache=TRUE, tidy=FALSE}
+# set tmap to view mode
+tmap_mode("view")
+
 # map our bike theft clusters and their borders
 tm_shape(bike_theft_clusters) + 
   tm_borders() +
