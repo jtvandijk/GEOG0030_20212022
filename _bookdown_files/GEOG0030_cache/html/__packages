@@ -26,5 +26,4 @@ rpart
 spatstat.core
 spatstat.linnet
 spatstat
-rosm
 dbscan

@@ -164,11 +164,14 @@ loading-data-w08
 point-pattern-analysis
 density-based-techniques
 kernel-density-estimation
-assignment-w08-1
+assignment-w08
 distance-based-methods
 average-nearest-neighbour
 ripleys-k-function
 dbscan
+conducting-a-dbscan-analysis
+working-with-the-dbscan-output
+mapping-dbscan-clusters
 byl-w08
 rasters-zonal-statistics-and-interpolation
 recording-w09
