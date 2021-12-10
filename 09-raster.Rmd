@@ -282,7 +282,49 @@ pollution <- read_csv("data/raw/pollution/no2_london_2019.zip")
 dim(pollution)
 ```
 
+Reading in the csv might take a little time - we have 1,596,509 observations with 7 variables - that's quite a substantial data set.
+
+### Analysing air pollution
+Let's take a look at why it's so large and inspect the first five rows of our dataframe:
+
+```{r 09-inspect-inspect, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# Rreturn first five rows of our pollution dataframe
+head(pollution)
+```
+
+We can see that in our first five rows we have data for the **same site** - and if we look at the **date** field, we can see we have a reading observation for every hour!=. With 24 hours in the day, 365 days in a year and potentially hundreds of sites, it should therefore be of no surprise that we have such a big `csv`. In the end, for this practical, we only want to create one raster - so to make our data more useable, we will go ahead and aggregate the data and get the average NO~2~ value for each monitoring site over 2019. 
+
+Use the `dplyr` library functions to return the mean NO~2~ value for each monitoring site over 2019. Let's also make sure that we retain the latitude and longitude of our monitoring sites:
+
+```{r 09-that-is-mean, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# aggregate data to unique latitude and longitude combinations, remove monitoring sites without coordinates, summarise the no2 by the mean
+avg_pollution <- pollution %>% group_by(latitude,longitude) %>% 
+                         summarise(no2=mean(no2)) %>% 
+                         filter(!is.na(latitude | longitude))
+
+# return the first five rows of our new dataframe
+head(avg_pollution)
+
+# return the histogram of our no2 values
+hist(avg_pollution$no2)
+```
+
+We should now see that we only have our latitude and longitude coordinates and the average NO~2~ value associated with each. Our histogram also shows us the general distribution of our values - we can see that we have a slight positive skew to our data set. To use this data within our different interpolation methods, we will need to transform our data into a point spatial dataframe using the `st_as_sf()` function that we have come across before. One thing you should notice is that the latitude and longitude are, of course, in WGS84 - therefore, we need to reproject our resulting spatial dataframe into British National Grid. We will also make sure that all of our points are within our London Ward extent, using the `st_intersection()` function.
+
+Create a spatial dataframe containing our London monitoring sites and their average NO~2~ reading:
+
+``` {r 09-prepare-air-pol-data-further, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# load London Wards for reference map
+london_ward <- read_sf("data/raw/boundaries/2018/London_Ward.shp")
+
+# create a point spatial dataframe, project
+pollution_points <- st_as_sf(avg_pollution,coords=c('longitude','latitude'), crs=4326)[,1] %>% st_transform(27700)
+
+# ensure all points are within the boundaries of Greater London
+lonpollution_points <- pollution_points %>% st_intersection(london_ward)
+```
 
 ## Assignment 2 {#assignment-w09-02}
+We could, of course, look to return the **max** or **min**, or, for example, create monthly averages instead (and create 12 rasters!) - there's a lot we could do with just this single dataset beyond what we'll look at today!
 
 ## Before you leave {#byl-w09}

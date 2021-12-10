@@ -193,6 +193,7 @@ analysing-population-change
 assignment-w09-01
 air-pollution-in-london
 loading-data-w09-2
+analysing-air-pollution
 assignment-w09-02
 byl-w09
 network-analysis

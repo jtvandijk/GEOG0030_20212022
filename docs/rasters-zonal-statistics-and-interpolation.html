@@ -352,6 +352,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#air-pollution-in-london"><i class="fa fa-check"></i><b>9.6</b> Air pollution in London</a>
 <ul>
 <li class="chapter" data-level="9.6.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#loading-data-w09-2"><i class="fa fa-check"></i><b>9.6.1</b> Loading data</a></li>
+<li class="chapter" data-level="9.6.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#analysing-air-pollution"><i class="fa fa-check"></i><b>9.6.2</b> Analysing air pollution</a></li>
 </ul></li>
 <li class="chapter" data-level="9.7" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09-02"><i class="fa fa-check"></i><b>9.7</b> Assignment 2</a></li>
 <li class="chapter" data-level="9.8" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#byl-w09"><i class="fa fa-check"></i><b>9.8</b> Before you leave</a></li>
@@ -658,10 +659,66 @@ Figure 9.4: Locations of the London Air monitoring sites in London. Source: <a h
 <span id="cb304-5"><a href="rasters-zonal-statistics-and-interpolation.html#cb304-5" aria-hidden="true" tabindex="-1"></a><span class="co"># pollution dataframe dimensions</span></span>
 <span id="cb304-6"><a href="rasters-zonal-statistics-and-interpolation.html#cb304-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pollution)</span></code></pre></div>
 <pre><code>## [1] 1596509       7</code></pre>
+<p>Reading in the csv might take a little time - we have 1,596,509 observations with 7 variables - that’s quite a substantial data set.</p>
+</div>
+<div id="analysing-air-pollution" class="section level3" number="9.6.2">
+<h3><span class="header-section-number">9.6.2</span> Analysing air pollution</h3>
+<p>Let’s take a look at why it’s so large and inspect the first five rows of our dataframe:</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rreturn first five rows of our pollution dataframe</span></span>
+<span id="cb306-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb306-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pollution)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 7
+##   date                  no2 site              code  latitude longitude site_type
+##   &lt;dttm&gt;              &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;    
+## 1 2019-07-01 12:00:00  14.5 Southwark - Towe… SK8       51.5   -0.0782 Roadside 
+## 2 2019-07-01 13:00:00  16.1 Southwark - Towe… SK8       51.5   -0.0782 Roadside 
+## 3 2019-07-01 14:00:00  16.2 Southwark - Towe… SK8       51.5   -0.0782 Roadside 
+## 4 2019-07-01 15:00:00  21.8 Southwark - Towe… SK8       51.5   -0.0782 Roadside 
+## 5 2019-07-01 16:00:00  19.7 Southwark - Towe… SK8       51.5   -0.0782 Roadside 
+## 6 2019-07-01 17:00:00  17.5 Southwark - Towe… SK8       51.5   -0.0782 Roadside</code></pre>
+<p>We can see that in our first five rows we have data for the <strong>same site</strong> - and if we look at the <strong>date</strong> field, we can see we have a reading observation for every hour!=. With 24 hours in the day, 365 days in a year and potentially hundreds of sites, it should therefore be of no surprise that we have such a big <code>csv</code>. In the end, for this practical, we only want to create one raster - so to make our data more useable, we will go ahead and aggregate the data and get the average NO<sub>2</sub> value for each monitoring site over 2019.</p>
+<p>Use the <code>dplyr</code> library functions to return the mean NO<sub>2</sub> value for each monitoring site over 2019. Let’s also make sure that we retain the latitude and longitude of our monitoring sites:</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="co"># aggregate data to unique latitude and longitude combinations, remove</span></span>
+<span id="cb308-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb308-2" aria-hidden="true" tabindex="-1"></a><span class="co"># monitoring sites without coordinates, summarise the no2 by the mean</span></span>
+<span id="cb308-3"><a href="rasters-zonal-statistics-and-interpolation.html#cb308-3" aria-hidden="true" tabindex="-1"></a>avg_pollution <span class="ot">&lt;-</span> pollution <span class="sc">%&gt;%</span></span>
+<span id="cb308-4"><a href="rasters-zonal-statistics-and-interpolation.html#cb308-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(latitude, longitude) <span class="sc">%&gt;%</span></span>
+<span id="cb308-5"><a href="rasters-zonal-statistics-and-interpolation.html#cb308-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">no2 =</span> <span class="fu">mean</span>(no2)) <span class="sc">%&gt;%</span></span>
+<span id="cb308-6"><a href="rasters-zonal-statistics-and-interpolation.html#cb308-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(latitude <span class="sc">|</span> longitude))</span>
+<span id="cb308-7"><a href="rasters-zonal-statistics-and-interpolation.html#cb308-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb308-8"><a href="rasters-zonal-statistics-and-interpolation.html#cb308-8" aria-hidden="true" tabindex="-1"></a><span class="co"># return the first five rows of our new dataframe</span></span>
+<span id="cb308-9"><a href="rasters-zonal-statistics-and-interpolation.html#cb308-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(avg_pollution)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+## # Groups:   latitude [6]
+##   latitude longitude   no2
+##      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1     49.8    -7.56  35.6 
+## 2     50.4    -4.14  17.5 
+## 3     50.7    -1.83  11.5 
+## 4     50.8     0.284 15.7 
+## 5     50.8     0.181  7.23
+## 6     50.8     0.272 11.4</code></pre>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="co"># return the histogram of our no2 values</span></span>
+<span id="cb310-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb310-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(avg_pollution<span class="sc">$</span>no2)</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-that-is-mean-1.png" width="672" /></p>
+<p>We should now see that we only have our latitude and longitude coordinates and the average NO<sub>2</sub> value associated with each. Our histogram also shows us the general distribution of our values - we can see that we have a slight positive skew to our data set. To use this data within our different interpolation methods, we will need to transform our data into a point spatial dataframe using the <code>st_as_sf()</code> function that we have come across before. One thing you should notice is that the latitude and longitude are, of course, in WGS84 - therefore, we need to reproject our resulting spatial dataframe into British National Grid. We will also make sure that all of our points are within our London Ward extent, using the <code>st_intersection()</code> function.</p>
+<p>Create a spatial dataframe containing our London monitoring sites and their average NO<sub>2</sub> reading:</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load London Wards for reference map</span></span>
+<span id="cb311-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb311-2" aria-hidden="true" tabindex="-1"></a>london_ward <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;data/raw/boundaries/2018/London_Ward.shp&quot;</span>)</span>
+<span id="cb311-3"><a href="rasters-zonal-statistics-and-interpolation.html#cb311-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb311-4"><a href="rasters-zonal-statistics-and-interpolation.html#cb311-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a point spatial dataframe, project</span></span>
+<span id="cb311-5"><a href="rasters-zonal-statistics-and-interpolation.html#cb311-5" aria-hidden="true" tabindex="-1"></a>pollution_points <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(avg_pollution, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">&quot;longitude&quot;</span>, <span class="st">&quot;latitude&quot;</span>),</span>
+<span id="cb311-6"><a href="rasters-zonal-statistics-and-interpolation.html#cb311-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">crs =</span> <span class="dv">4326</span>)[, <span class="dv">1</span>] <span class="sc">%&gt;%</span></span>
+<span id="cb311-7"><a href="rasters-zonal-statistics-and-interpolation.html#cb311-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_transform</span>(<span class="dv">27700</span>)</span>
+<span id="cb311-8"><a href="rasters-zonal-statistics-and-interpolation.html#cb311-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb311-9"><a href="rasters-zonal-statistics-and-interpolation.html#cb311-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ensure all points are within the boundaries of Greater London</span></span>
+<span id="cb311-10"><a href="rasters-zonal-statistics-and-interpolation.html#cb311-10" aria-hidden="true" tabindex="-1"></a>lonpollution_points <span class="ot">&lt;-</span> pollution_points <span class="sc">%&gt;%</span></span>
+<span id="cb311-11"><a href="rasters-zonal-statistics-and-interpolation.html#cb311-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_intersection</span>(london_ward)</span></code></pre></div>
+<pre><code>## Warning: attribute variables are assumed to be spatially constant throughout all
+## geometries</code></pre>
 </div>
 </div>
 <div id="assignment-w09-02" class="section level2" number="9.7">
 <h2><span class="header-section-number">9.7</span> Assignment 2</h2>
+<p>We could, of course, look to return the <strong>max</strong> or <strong>min</strong>, or, for example, create monthly averages instead (and create 12 rasters!) - there’s a lot we could do with just this single dataset beyond what we’ll look at today!</p>
 </div>
 <div id="byl-w09" class="section level2" number="9.8">
 <h2><span class="header-section-number">9.8</span> Before you leave</h2>
