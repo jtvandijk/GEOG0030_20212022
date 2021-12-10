@@ -27,3 +27,7 @@ spatstat.core
 spatstat.linnet
 spatstat
 dbscan
+rgdal
+rgeos
+gstat
+openair

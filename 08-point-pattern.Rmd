@@ -22,7 +22,7 @@ Open a new script within your GEOG0030 project and save this script as `wk8-bike
 
 ```{r 08-scr-title, warnings=FALSE, message=FALSE, cache=TRUE, tidy=FALSE}
 # Analysing bike theft and its relation to stations using point pattern analysis
-# Data: January 2021
+# Data: January 2022
 # Author: Justin
 ```
 
@@ -394,7 +394,7 @@ We can conduct a Ripley’s K test on our data very simply with the `spatstat` p
 
 :::note
 **Note** <br />
-Be careful with running Ripley's K on large datasets as the function is essentially a series of nested loops, meaning that calculation time will increase exponentially with an increasing number of points.
+Be careful with running Ripley's K on large data sets as the function is essentially a series of nested loops, meaning that calculation time will increase exponentially with an increasing number of points.
 :::
 
 Run a Ripley's K function on our bike theft data using the `Kest()` function:
@@ -505,7 +505,7 @@ Below, we use a `for` loop to:
 * We then have final list containing all the geometries of our cluster polygons.
 * We convert this list of geometries into a spatial dataframe, referenced to British National Grid.
 
-Run a `for` loop to generate a polygon dataset that represents our bike theft clusters:
+Run a `for` loop to generate a polygon data set that represents our bike theft clusters:
 
 ```{r 08-generate-cluster-hulls, warnings=FALSE, cache=TRUE, tidy=TRUE}
 # create an empty list to store the resulting convex hull geometries
@@ -552,7 +552,7 @@ tm_shape(bike_theft_clusters) +
 
 What do you think of the clusters? What do they tell you about the distribution of bike theft in London?
 
-Let's go ahead and add our `london_stations_osm` dataset to our map - this will help highlight the location of the stations relative to our bike thefts:
+Let's go ahead and add our `london_stations_osm` data set to our map - this will help highlight the location of the stations relative to our bike thefts:
 
 ```{r 08-map-outlines-2, warnings=FALSE, cache=TRUE, tidy=FALSE}
 # set tmap to view mode

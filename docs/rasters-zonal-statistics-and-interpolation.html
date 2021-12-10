@@ -24,7 +24,7 @@
 <meta name="author" content="Justin van Dijk" />
 
 
-<meta name="date" content="2021-12-09" />
+<meta name="date" content="2021-12-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -336,8 +336,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="9.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#recording-w09"><i class="fa fa-check"></i><b>9.1</b> Lecture recording</a></li>
 <li class="chapter" data-level="9.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#reading-w09"><i class="fa fa-check"></i><b>9.2</b> Reading list</a></li>
-<li class="chapter" data-level="9.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09"><i class="fa fa-check"></i><b>9.3</b> Assignment</a></li>
-<li class="chapter" data-level="9.4" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#byl-w09"><i class="fa fa-check"></i><b>9.4</b> Before you leave</a></li>
+<li class="chapter" data-level="9.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#raster-analysis"><i class="fa fa-check"></i><b>9.3</b> Raster analysis</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#housekeeping-w09"><i class="fa fa-check"></i><b>9.3.1</b> Housekeeping</a></li>
+<li class="chapter" data-level="9.3.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#loading-data-w09"><i class="fa fa-check"></i><b>9.3.2</b> Loading data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09"><i class="fa fa-check"></i><b>9.4</b> Assignment</a></li>
+<li class="chapter" data-level="9.5" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#byl-w09"><i class="fa fa-check"></i><b>9.5</b> Before you leave</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>10</b> Network Analysis</a>
 <ul>
@@ -365,6 +370,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="rasters-zonal-statistics-and-interpolation" class="section level1" number="9">
 <h1><span class="header-section-number">9</span> Rasters, Zonal Statistics and Interpolation</h1>
+<p>So far, the majority of our module has focused on the use of vector data and table data (that we have then joined to vector data). This week, we switch it up by focusing primarily on raster data and its analysis using map algebra and zonal statistics.</p>
 <div id="recording-w09" class="section level2" number="9.1">
 <h2><span class="header-section-number">9.1</span> Lecture recording</h2>
 <ul>
@@ -378,11 +384,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Reading #2</li>
 </ul>
 </div>
-<div id="assignment-w09" class="section level2" number="9.3">
-<h2><span class="header-section-number">9.3</span> Assignment</h2>
+<div id="raster-analysis" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Raster analysis</h2>
+<p>This week’s content introduces you to raster data, map algebra and interpolation. After first looking at population change in London using raster data, we will then look at generating pollution maps in London from individual point readings taken from air quality monitoring sites across London. To complete this analysis, we will be using several new data sets:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Population rasters for Great Britain</strong>: Raster data sets containing estimated population counts for Great Britain in 2001 and 2011 at a spatial resolution of 1km.</li>
+<li><strong>NO<sub>2</sub> readings across London</strong>: A data set contain readings of NO<sub>2</sub> for individual air quality monitoring sites in London.</li>
+</ol>
+<p>We will also use our London Wards (2018) administrative boundaries data set at various points within both practicals.</p>
+<div id="housekeeping-w09" class="section level3" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Housekeeping</h3>
+<p>Let’s get ourselves ready to start our lecture and practical content by first downloading the relevant data and loading this within our script. Open a new script within your GEOG0030 project and save this script as <code>wk9-pollution-raster-analysis.r</code>.At the top of your script, add the following metadata (substitute accordingly):</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysing population change and pollution in London</span></span>
+<span id="cb293-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Data: January 2022</span></span>
+<span id="cb293-3"><a href="rasters-zonal-statistics-and-interpolation.html#cb293-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: Justin</span></span></code></pre></div>
+<p>In addition to those libraries you should now be familiar with, we will need to install and use:</p>
+<ul>
+<li><code>rgdal</code>, for under-the-hood spatial data management</li>
+<li><code>rgeos</code>, for more under-the-hood spatial data management</li>
+<li><code>gstat</code>: to complete our various interpolation techniques</li>
+<li><code>openair</code>: to download our pollution data directly from the <a href="https://www.londonair.org.uk/LondonAir/Default.aspx">London Air data portal</a></li>
+</ul>
+<p>Within your script, add the following libraries for loading:</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries</span></span>
+<span id="cb294-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb294-3"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb294-4"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb294-5"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb294-6"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb294-7"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sp)</span>
+<span id="cb294-8"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgdal)</span>
+<span id="cb294-9"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgeos)</span>
+<span id="cb294-10"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gstat)</span>
+<span id="cb294-11"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatstat)</span>
+<span id="cb294-12"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openair)</span></code></pre></div>
 </div>
-<div id="byl-w09" class="section level2" number="9.4">
-<h2><span class="header-section-number">9.4</span> Before you leave</h2>
+<div id="loading-data-w09" class="section level3" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> Loading data</h3>
+<div id="population-data-2" class="section level5" number="9.3.2.0.1">
+<h5><span class="header-section-number">9.3.2.0.1</span> Population Data</h5>
+<p>For the first part of this week’s practical material we will be using raster datasets from the <a href="https://www.liverpool.ac.uk/geography-and-planning/research/popchange/introduction/">Population Change and Geographic Inequalities in the UK, 1971-2011 (PopChange)</a> project. In this <a href="https://esrc.ukri.org/research/our-research/secondary-data-analysis-initiative/">ESRC-funded project</a>, researchers from the University of Liverpool created raster population surfaces from publicly available Census data (1971, 1981, 1991, 2001, 2011). These population surfaces are estimates of counts of people, displayed within a regular grid raster of a spatial resolution of 1km. These surfaces can be used <em>“to explore, for example, changes in the demographic profiles of small areas, area deprivation, or country of birth”</em>.</p>
+<p>To enable this, the researchers have created several categories of rasters, including: Total Population, Population by Age, Population by Country of Birth, Population by Ethnicity etc. This week we will use the <strong>Total Population</strong> data sets. To access data directly from the PopChange website requires a simple registration for log-in, you can then navigate through the data sets and choose those you would like to download.</p>
+<p>For this week, we have gone ahead and downloaded the data for you, which you can access directly from the links below:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">PopChange Raster</th>
+<th align="left">File Type</th>
+<th align="left">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Population surface GB 2001 - Total Population</td>
+<td align="left"><code>asc</code></td>
+<td align="left"><a href="https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/5a_ascii_grid2001_Total_Population_UsRsPopA.zip">Download</a></td>
+</tr>
+<tr class="even">
+<td align="left">Population surface GB 2011 - Total Population</td>
+<td align="left"><code>asc</code></td>
+<td align="left"><a href="https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/5a_ascii_grid2011_Total_Population_URPopAll">Download</a></td>
+</tr>
+</tbody>
+</table>
+<p>Once downloaded, copy over these files into your <code>data/raw/population</code> folder.</p>
+</div>
+</div>
+</div>
+<div id="assignment-w09" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> Assignment</h2>
+</div>
+<div id="byl-w09" class="section level2" number="9.5">
+<h2><span class="header-section-number">9.5</span> Before you leave</h2>
 
 </div>
 </div>

@@ -18,7 +18,7 @@ Open a new script within your GEOG0030 project and save this script as `wk7-obes
 
 ```{r 07-scr-title, warnings=FALSE, message=FALSE, cache=TRUE}
 # Analysing childhood obesity and its factors
-# Date: January 2021
+# Date: January 2022
 # Author: Justin 
 ```
 

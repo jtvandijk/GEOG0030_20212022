@@ -40,7 +40,7 @@ You should now see a new `csv` within your raw crime data folder (`data/raw/crim
 
 ```{r 05-scr-title, warnings=FALSE, message=FALSE, cache=TRUE}
 # Analysing crime in 2020 by month and ward
-# Date: January 2021
+# Date: January 2022
 # Author: Justin 
 ```
 

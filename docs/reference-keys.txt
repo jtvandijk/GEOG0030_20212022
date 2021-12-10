@@ -176,6 +176,10 @@ byl-w08
 rasters-zonal-statistics-and-interpolation
 recording-w09
 reading-w09
+raster-analysis
+housekeeping-w09
+loading-data-w09
+population-data-2
 assignment-w09
 byl-w09
 network-analysis

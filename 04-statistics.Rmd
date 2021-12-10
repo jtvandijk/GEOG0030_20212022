@@ -589,7 +589,7 @@ Let us go ahead and give our script a title - and maybe some additional informat
 ```{r 04-scr-title, warnings=FALSE, message=FALSE, cache=TRUE}
 # Combining Police Data csv's from 2020 into a single csv
 # Followed by analysis of data on monthly basis
-# Date: January 2021
+# Date: January 2022
 # Author: Justin 
 ```
 

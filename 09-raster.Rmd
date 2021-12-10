@@ -1,6 +1,7 @@
 # (PART\*) Advanced Spatial Analysis {-}
 
 # Rasters, Zonal Statistics and Interpolation
+So far, the majority of our module has focused on the use of vector data and table data (that we have then joined to vector data). This week, we switch it up by focusing primarily on raster data and its analysis using map algebra and zonal statistics.
 
 ## Lecture recording {#recording-w09}
 - Lecture W9
@@ -8,6 +9,62 @@
 ## Reading list {#reading-w09}
 - Reading #1
 - Reading #2
+
+## Raster analysis
+This week's content introduces you to raster data, map algebra and interpolation. After first looking at population change in London using raster data, we will then look at generating pollution maps in London from individual point readings taken from air quality monitoring sites across London. To complete this analysis, we will be using several new data sets:
+
+1. **Population rasters for Great Britain**: Raster data sets containing estimated population counts for Great Britain in 2001 and 2011 at a spatial resolution of 1km.
+2. **NO~2~ readings across London**: A data set contain readings of NO~2~ for individual air quality monitoring sites in London.
+
+We will also use our London Wards (2018) administrative boundaries data set at various points within both practicals.
+
+### Housekeeping {#housekeeping-w09}
+Let's get ourselves ready to start our lecture and practical content by first downloading the relevant data and loading this within our script. Open a new script within your GEOG0030 project and save this script as `wk9-pollution-raster-analysis.r`.At the top of your script, add the following metadata (substitute accordingly):
+
+```{r 09-scr-title, warnings=FALSE, message=FALSE, cache=TRUE, tidy=FALSE}
+# Analysing population change and pollution in London
+# Data: January 2022
+# Author: Justin
+```
+
+In addition to those libraries you should now be familiar with, we will need to install and use:
+
+* `rgdal`, for under-the-hood spatial data management
+* `rgeos`, for more under-the-hood spatial data management
+* `gstat`: to complete our various interpolation techniques
+* `openair`: to download our pollution data directly from the [London Air data portal](https://www.londonair.org.uk/LondonAir/Default.aspx)
+
+Within your script, add the following libraries for loading:
+
+```{r 09-scr-libs-all, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# libraries
+library(tidyverse)
+library(sf)
+library(tmap)
+library(RColorBrewer)
+library(raster)
+library(sp)
+library(rgdal)
+library(rgeos)
+library(gstat)
+library(spatstat)
+library(openair)
+```
+
+### Loading data {#loading-data-w09}
+##### Population Data 
+For the first part of this week's practical material we will be using raster datasets from the [Population Change and Geographic Inequalities in the UK, 1971-2011 (PopChange)](https://www.liverpool.ac.uk/geography-and-planning/research/popchange/introduction/) project. In this [ESRC-funded project](https://esrc.ukri.org/research/our-research/secondary-data-analysis-initiative/), researchers from the University of Liverpool created raster population surfaces from publicly available Census data (1971, 1981, 1991, 2001, 2011). These population surfaces are estimates of counts of people, displayed within a regular grid raster of a spatial resolution of 1km. These surfaces can be used *"to explore, for example, changes in the demographic profiles of small areas, area deprivation, or country of birth"*. 
+
+To enable this, the researchers have created several categories of rasters, including: Total Population, Population by Age, Population by Country of Birth, Population by Ethnicity etc. This week we will use the **Total Population** data sets. To access data directly from the PopChange website requires a simple registration for log-in, you can then navigate through the data sets and choose those you would like to download.
+
+For this week, we have gone ahead and downloaded the data for you, which you can access directly from the links below:
+
+| PopChange Raster                            | File Type         | Link |
+| :------                                     | :------      | :------ |
+| Population surface GB 2001 - Total Population    | `asc`        | [Download](https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/5a_ascii_grid2001_Total_Population_UsRsPopA.zip) |
+| Population surface GB 2011 - Total Population    | `asc`        | [Download](https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/5a_ascii_grid2011_Total_Population_URPopAll) |
+
+Once downloaded, copy over these files into your `data/raw/population` folder.
 
 ## Assignment {#assignment-w09}
 

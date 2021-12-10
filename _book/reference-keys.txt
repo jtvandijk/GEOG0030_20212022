@@ -169,10 +169,15 @@ distance-based-methods
 average-nearest-neighbour
 ripleys-k-function
 dbscan
+conducting-a-dbscan-analysis
+working-with-the-dbscan-output
+mapping-dbscan-clusters
 byl-w08
 rasters-zonal-statistics-and-interpolation
 recording-w09
 reading-w09
+raster-analysis
+housekeeping-w09
 assignment-w09
 byl-w09
 network-analysis
@@ -180,7 +185,3 @@ recording-w10
 reading-w10
 assignment-w10
 byl-w10
-fig:unnamed-chunk-1
-conducting-a-dbscan-analysis
-working-with-the-dbscan-output
-mapping-dbscan-clusters

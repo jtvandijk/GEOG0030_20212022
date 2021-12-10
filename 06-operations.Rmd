@@ -22,7 +22,7 @@ Open a new script within your GEOG0030 project and save this script as `wk6-bike
 
 ```{r 06-scr-title, warnings=FALSE, message=FALSE, cache=TRUE}
 # Analysing bike theft and its relation to stations using geometric analysis
-# Date: January 2021
+# Date: January 2022
 # Author: Justin 
 ```
 
