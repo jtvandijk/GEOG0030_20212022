@@ -322,9 +322,181 @@ pollution_points <- st_as_sf(avg_pollution,coords=c('longitude','latitude'), crs
 
 # ensure all points are within the boundaries of Greater London
 lonpollution_points <- pollution_points %>% st_intersection(london_ward)
+```   
+
+Let's create a **proportional symbol** map to visualise these points:
+
+``` {r 09-those-symbols-are-in-proportion, warnings=FALSE, message=FALSE, cache=TRUE, tidy=FALSE}
+# ensure tmap mode is set to plot 
+tmap_mode("plot")
+
+# plot our London wards in grey
+tm_shape(london_ward) + 
+  tm_polygons(palette = "grey", border.col = "white") +
+# plot our pollution_points as bubbles, using the NO2 field to determine size
+tm_shape(lonpollution_points) + 
+  tm_bubbles(size = "no2", col = "mediumorchid", style = "pretty", 
+             scale =1, border.col = "white", 
+             title.size="Average NO2 ug/m3 reading in 2019") +
+  # set legend
+  tm_layout(legend.position = c("left", "top")) +
+  # add a north arrow
+  tm_compass(type = "arrow", position = c("right", "top")) + 
+  # add a scale bar
+  tm_scale_bar(breaks = c(0, 5, 10, 15, 20), position = c("left", "bottom")) +
+  # add a data statement
+  tm_credits("Air quality data from London Air.") 
 ```
 
+Our proportional symbols map already tells us a little about our data set - we can see that NO~2~ levels are much higher towards the centre of London, although we can see some anomalies in the south-west, for example. But we can also see how and why a smoothed surface of our data **could** be really useful for further interpretation - and this is where interpolating our data comes in.
+
+#### Thiessen polygons
+The first step we can take to interpolate the data across space is to create Thiessen polygons. Thiessen polygons are formed to assign boundaries of the areas closest to each unique point. Therefore, for every point in a dataset, it has a corresponding Thiessen polygon. 
+
+```{r 09-thiessen, echo=FALSE, fig.align='center', out.width = "550pt", fig.cap='Creating a set of Thiessen polygons. Source: Esri 2020.'}
+knitr::include_graphics('images/w09/thiessen.jpg')
+```
+
+:::note
+**Note** <br />
+You may come across something called Voronoi polygons - which is the same thing as Thiessen polygons. Both terms are used interchangeably to describe this type of geometry created from point data. In the field of GIS we tend to refer to them as Thiessen polygons, after the American meteorologist who frequented their use. In other fields, particularly mathematics and computer science, they are generally referred to as Voronoi diagrams, in honour of the mathematician Georgy Voronoy.
+:::
+
+Whilst the `spatstat` library from last week offers a simple function to create our Thiessen polygons (through the `dirichlet()` tessellation function), to use the `spatstat` library, we will first need to convert our `lonpollution_points` into a `ppp` spatial object. Whilst this is a completely feasible and valid approach to generating these polygons, we can actually go ahead and create Thiessen polygons within the `sf` library with a bit of code: we will createa a simple function called `st_thiessen_point()` that we can use to generate Thiessen polygons directly from a point data set. You do not need to understand the code behind the function (all the code contained in the `{}` brackets), but simply understand what input (a point spatial dataframe) and output (a Thiessen polygon spatial dataframe) it will provide.
+
+You need to copy over both the function and the code underneath. Copying the function stores this function in your computer's memory for this R session and means the function itself can be used time and time again within the same session or script.
+
+The first of the two lines of code below the function then "call" this function on our `lonpollutions_points` spatial dataframe. The second essentially joins the attribute fields of our `lonpollutions_points` spatial dataframe to our new Thiessen polygon spatial dataframe and stores this as a new variable. 
+
+```{r 09-thiessen-pols, warnings=FALSE, message=FALSE, cache=TRUE, tidy=FALSE}
+# function to create Thiessen polygons from point input
+st_thiessen_point <- function(points){
+    # input check
+    if(!all(st_geometry_type(points) == "POINT")){
+        stop("Input not POINT geometries")
+    }
+    
+    # make multipoint
+    g = st_combine(st_geometry(points)) 
+    
+    # create thiessen polygons
+    v = st_voronoi(g)
+    v = st_collection_extract(v)
+    
+    # return
+    return(v[unlist(st_intersects(points, v))])
+}
+
+# call function
+lon_points_voronoi = st_thiessen_point(lonpollution_points)
+
+# add attribute data =
+lonpollution_tv = st_set_geometry(lonpollution_points, lon_points_voronoi)
+
+# inspect
+lonpollution_tv
+```
+
+We can now visualise these Thiessen polygons with their associated NO~2~ value:
+
+```{r 09-visualise-those-thiessen-pols, warnings=FALSE, message=FALSE, cache=TRUE, tidy=FALSE}
+# visualise thiessen polygons
+tm_shape(lonpollution_tv) + 
+  tm_fill(col = 'no2', palette = "Purples")
+```
+
+We can go ahead tidy this up further by clipping our thiessen polygons to the extent of London:
+
+```{r 09-thiessen-pols-map-after-crop, warnings=FALSE, message=FALSE, cache=TRUE, tidy=FALSE}
+# generate London outline through st_union
+london_outline <- london_ward %>% 
+  st_union()
+
+# clip our thiessen polygons to our london outline
+lonpollution_tv <- st_intersection(lonpollution_tv, london_outline)
+
+# visualise thiessen polygons
+tm_shape(lonpollution_tv) + 
+  tm_fill(col = 'no2', palette = "Purples")
+```
+
+And that's it! We now have our values "interpolated" using our Thiessen polygon approach. However, as you can see, our approach is quite coarse. Whilst we, of course, can see areas of high and low pollution, it really does not offer us as much spatial detail as we would like, particularly when we know there are better methods out there to use.
+
+#### Inverse Distance Weighting
+A second method to interpolate point data is **Inverse Distance Weighting** (IDW). An IDW is a means of converting point data of numerical values into a continuous surface to visualise how the data may be distributed across space. The technique interpolates point data by using a weighted average of a variable from nearby points to predict the value of that variable for each location. The weighting of the points is determined by their inverse distances drawing on [Tobler’s first law of geography](https://en.wikipedia.org/wiki/Tobler%27s_first_law_of_geography#:~:text=The%20First%20Law%20of%20Geography,specifically%20for%20the%20inverse%20distance) that "everything is related to everything else, but near things are more related than distant thing". 
+
+The distance weighting is done by a power function: the larger the power coefficient, the stronger the weight of nearby point. The output is most commonly represented as a raster surface. We will use the `idw()` function within the `gstat` library to conduct an IDW on our `lonpollution_points` spatial dataframe.
+
+Before we can run IDW, we must first generate an empty grid within which to store our data. To do so, we can use the `spsample()` function from the `sp` library. We will go ahead and create a grid that covers the entirety of our `london_outline`, which we will transform into the `sp` format using the `as()` function. We then run the `gstat` `idw()` function on an `sp` version of our `lonpollution_points` data set, specifying the cell size. We then specify that our IDW result is a gridded format that we then coerce into a raster. Once we have our raster, we can reset its CRS and of course utilise other functions from the `raster` library to process (e.g. the `mask` function) and then visualise our dat aset within `tmap`.
+
+
+:::note
+**Note** <br />
+Some of the following code will unfortunately not work with some recent versions of the `rgdal` package. This is because the `gstat` package that both our IDW function is from has not managed to yet accommodate the changes `rgdal` has made to using `GDAL 3` and `PROJ 6`. if the `gsat` below does not work for you, there is an additional section of code that uses the `spatst` library to conduct the IDW analysis. 
+:::
+
+```{r 09-inverse-distance-weights, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+# convert our lonpollution_points into the sp format
+lonpollution_pointsSP <- lonpollution_points %>% as(., 'Spatial')
+
+# convert our london_outline into the sp format
+london_outlineSP <- london_outline %>% as(., 'Spatial')
+
+# create an empty raster grid the size for our london_outline over which to interpolate the pollution values  
+grid <-spsample(lonpollution_pointsSP, type ='regular', cellsize=450, bb=bbox(london_outlineSP))
+
+# run an IDW for the NO2 value with a power value of 2
+idw <- gstat::idw(lonpollution_pointsSP$no2 ~ 1, lonpollution_pointsSP, newdata = grid, idp = 2)
+
+# specify idw spatial data as being gridded
+gridded(idw) <- TRUE
+ 
+# coerce to our gridded idw to the raster format
+lon_poll_raster_idw <- raster(idw)
+ 
+# set our raster CRS to BNG
+crs(lon_poll_raster_idw) <- CRS("+init=epsg:27700")
+
+# mask our raster to only the london outline
+lon_idw <- rasterize(london_ward, lon_poll_raster_idw, mask=TRUE) 
+  
+# plot the resulting raster
+plot(lon_idw)
+```
+
+Great - if this code has worked for you and you have generated an IDW raster, you can move onto the next task which is to create a proper map of our resulting IDW.
+
+#### Alternative: IDW with spatstat {-}
+For those of you that cannot run the code above, we can look to `spatstat` as an alternative option - however, it just brings with it its few complications in terms of converting our datas ets into our `ppp` object (and hence our focus on using `gstat` instead, with only a simple conversion to `sp`). As a result, in this chunk of code, we will first convert our data to the `ppp` object type and then use this within the `idw()` function `spatstat` offers.
+
+```{r 09-inverse-distance-weights-spatstat, warnings=FALSE, message=FALSE, cache=TRUE, eval=TRUE, tidy=TRUE}
+# set our window of observation to London
+window <- as.owin(london_outline)
+
+# extract the coordinates of our pollution points sdf
+points_xy <- lonpollution_points %>% st_coordinates()
+
+# create a ppp object, setting x and y equal to the respective columns in our matrix
+# set the window equal to our window variable
+# set our 'marks' equal to the NO2 column in our points
+pollution_ppp <- ppp(x=points_xy[,1], y= points_xy[,2], marks=lonpollution_points$no2, window=window)
+
+# run the IDW 
+ss_idw <- spatstat.core::idw(pollution_ppp, power = 2, at="pixels")
+
+# coerce our im output to raster
+lon_idw <- raster(ss_idw)
+ 
+# set our raster CRS to BNG
+crs(lon_poll_raster_idw) <- CRS("+init=epsg:27700")
+
+# plot the resulting raster
+plot(lon_idw)
+```
+
+You should see we actually get a similar result to the IDW of the `gstat` library - that is because our cell sizes resolutions are the same in both cases. We set our cell resolution as 450 x 450m above - and we can check the cell size of our `spatstat` IDW raster using a very simple command: `res(lon_idw)`. You will see that the IDW `spatstat` auto-generated a 450m cell size.
+
 ## Assignment 2 {#assignment-w09-02}
-We could, of course, look to return the **max** or **min**, or, for example, create monthly averages instead (and create 12 rasters!) - there's a lot we could do with just this single dataset beyond what we'll look at today!
+We could, of course, look to return the **max** or **min**, or, for example, create monthly averages instead (and create 12 rasters!) - there's a lot we could do with just this single data set beyond what we'll look at today!
 
 ## Before you leave {#byl-w09}
