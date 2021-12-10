@@ -336,13 +336,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="9.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#recording-w09"><i class="fa fa-check"></i><b>9.1</b> Lecture recording</a></li>
 <li class="chapter" data-level="9.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#reading-w09"><i class="fa fa-check"></i><b>9.2</b> Reading list</a></li>
-<li class="chapter" data-level="9.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#raster-analysis"><i class="fa fa-check"></i><b>9.3</b> Raster analysis</a>
+<li class="chapter" data-level="9.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#raster-data"><i class="fa fa-check"></i><b>9.3</b> Raster data</a>
 <ul>
 <li class="chapter" data-level="9.3.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#housekeeping-w09"><i class="fa fa-check"></i><b>9.3.1</b> Housekeeping</a></li>
 <li class="chapter" data-level="9.3.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#loading-data-w09"><i class="fa fa-check"></i><b>9.3.2</b> Loading data</a></li>
+<li class="chapter" data-level="9.3.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#raster-data-1"><i class="fa fa-check"></i><b>9.3.3</b> Raster data</a></li>
+<li class="chapter" data-level="9.3.4" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#map-algebra"><i class="fa fa-check"></i><b>9.3.4</b> Map algebra</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09"><i class="fa fa-check"></i><b>9.4</b> Assignment</a></li>
-<li class="chapter" data-level="9.5" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#byl-w09"><i class="fa fa-check"></i><b>9.5</b> Before you leave</a></li>
+<li class="chapter" data-level="9.4" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#population-change-in-london-1"><i class="fa fa-check"></i><b>9.4</b> Population change in London</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#loading-data-w09-1"><i class="fa fa-check"></i><b>9.4.1</b> Loading data</a></li>
+<li class="chapter" data-level="9.4.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#analysing-population-change"><i class="fa fa-check"></i><b>9.4.2</b> Analysing population change</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09-01"><i class="fa fa-check"></i><b>9.5</b> Assignment 1</a></li>
+<li class="chapter" data-level="9.6" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#air-pollution-in-london"><i class="fa fa-check"></i><b>9.6</b> Air pollution in London</a></li>
+<li class="chapter" data-level="9.7" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09-02"><i class="fa fa-check"></i><b>9.7</b> Assignment 2</a></li>
+<li class="chapter" data-level="9.8" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#byl-w09"><i class="fa fa-check"></i><b>9.8</b> Before you leave</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>10</b> Network Analysis</a>
 <ul>
@@ -384,14 +393,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Reading #2</li>
 </ul>
 </div>
-<div id="raster-analysis" class="section level2" number="9.3">
-<h2><span class="header-section-number">9.3</span> Raster analysis</h2>
+<div id="raster-data" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Raster data</h2>
 <p>This week’s content introduces you to raster data, map algebra and interpolation. After first looking at population change in London using raster data, we will then look at generating pollution maps in London from individual point readings taken from air quality monitoring sites across London. To complete this analysis, we will be using several new data sets:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Population rasters for Great Britain</strong>: Raster data sets containing estimated population counts for Great Britain in 2001 and 2011 at a spatial resolution of 1km.</li>
 <li><strong>NO<sub>2</sub> readings across London</strong>: A data set contain readings of NO<sub>2</sub> for individual air quality monitoring sites in London.</li>
 </ol>
-<p>We will also use our London Wards (2018) administrative boundaries data set at various points within both practicals.</p>
+<p>We will also use our London Wards (2018) administrative boundaries data set at various points within both practicals. This file should already be in your <code>raw/boundaries</code> folder.</p>
 <div id="housekeeping-w09" class="section level3" number="9.3.1">
 <h3><span class="header-section-number">9.3.1</span> Housekeeping</h3>
 <p>Let’s get ourselves ready to start our lecture and practical content by first downloading the relevant data and loading this within our script. Open a new script within your GEOG0030 project and save this script as <code>wk9-pollution-raster-analysis.r</code>.At the top of your script, add the following metadata (substitute accordingly):</p>
@@ -400,10 +409,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb293-3"><a href="rasters-zonal-statistics-and-interpolation.html#cb293-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: Justin</span></span></code></pre></div>
 <p>In addition to those libraries you should now be familiar with, we will need to install and use:</p>
 <ul>
-<li><code>rgdal</code>, for under-the-hood spatial data management</li>
-<li><code>rgeos</code>, for more under-the-hood spatial data management</li>
+<li><code>rgdal</code>: for under-the-hood spatial data management</li>
+<li><code>rgeos</code>: for more under-the-hood spatial data management</li>
 <li><code>gstat</code>: to complete our various interpolation techniques</li>
 <li><code>openair</code>: to download our pollution data directly from the <a href="https://www.londonair.org.uk/LondonAir/Default.aspx">London Air data portal</a></li>
+<li><code>sp</code>: for spatial analysis (“predecessor” of <code>sf</code>)</li>
 </ul>
 <p>Within your script, add the following libraries for loading:</p>
 <div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries</span></span>
@@ -421,8 +431,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="loading-data-w09" class="section level3" number="9.3.2">
 <h3><span class="header-section-number">9.3.2</span> Loading data</h3>
-<div id="population-data-2" class="section level5" number="9.3.2.0.1">
-<h5><span class="header-section-number">9.3.2.0.1</span> Population Data</h5>
+<div id="population-data-2" class="section level4" number="9.3.2.1">
+<h4><span class="header-section-number">9.3.2.1</span> Population data</h4>
 <p>For the first part of this week’s practical material we will be using raster datasets from the <a href="https://www.liverpool.ac.uk/geography-and-planning/research/popchange/introduction/">Population Change and Geographic Inequalities in the UK, 1971-2011 (PopChange)</a> project. In this <a href="https://esrc.ukri.org/research/our-research/secondary-data-analysis-initiative/">ESRC-funded project</a>, researchers from the University of Liverpool created raster population surfaces from publicly available Census data (1971, 1981, 1991, 2001, 2011). These population surfaces are estimates of counts of people, displayed within a regular grid raster of a spatial resolution of 1km. These surfaces can be used <em>“to explore, for example, changes in the demographic profiles of small areas, area deprivation, or country of birth”</em>.</p>
 <p>To enable this, the researchers have created several categories of rasters, including: Total Population, Population by Age, Population by Country of Birth, Population by Ethnicity etc. This week we will use the <strong>Total Population</strong> data sets. To access data directly from the PopChange website requires a simple registration for log-in, you can then navigate through the data sets and choose those you would like to download.</p>
 <p>For this week, we have gone ahead and downloaded the data for you, which you can access directly from the links below:</p>
@@ -449,13 +459,188 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>Once downloaded, copy over these files into your <code>data/raw/population</code> folder.</p>
 </div>
+<div id="pollution-data" class="section level4" number="9.3.2.2">
+<h4><span class="header-section-number">9.3.2.2</span> Pollution data</h4>
+<p>For the second part of this week’s practical material, we will explore several methods of interpolation by looking at air pollution in London by getting data from the <a href="https://www.londonair.org.uk/LondonAir/General/about.aspx">Londonair</a> website. <strong>Londonair</strong> is the website of the London Air Quality Network (LAQN), and shows air pollution in London and south east England that is provided by the <a href="https://www.imperial.ac.uk/school-public-health/environmental-research-group/">Environmental Research Group</a> of Imperial College London. The data are captured by hundreds of sensors at various continuous monitoring sites in London and the south east of England. The data are publicly available for download - and we can use an R package to directly interact with the data without needing to download it.</p>
+<p>The <code>openair</code> <a href="https://davidcarslaw.github.io/openair/">R package</a> enables us to import our data directly using the <code>importMeta()</code> and <code>importKCL()</code> functions. To understand these functions, you can look at the <a href="https://cloud.r-project.org/web/packages/openair/openair.pdf">documentation of the openair package</a> so that you get an idea why we use them in our code below. However, there is one issue with this package. Because <code>openair</code> contains <strong>C++</strong> code, a compiler is needed. For Windows, for example, <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> is needed. Depending on your system and configuration this can sometimes be a hassle: in case you cannot get <code>openair</code> to work on your computer, you can download a copy of the data set below:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Pollution Data</th>
+<th align="left">Type</th>
+<th align="left">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Air pollution in London for 2019 (NO<sub>2</sub>)</td>
+<td align="left"><code>csv</code></td>
+<td align="left"><a href="https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/no2_london_2019.zip">Download</a></td>
+</tr>
+</tbody>
+</table>
+<p>Once downloaded, copy over these files into a <code>data/raw/pollution</code> folder. Please note that the file is rather larger (~170 MB).</p>
 </div>
 </div>
-<div id="assignment-w09" class="section level2" number="9.4">
-<h2><span class="header-section-number">9.4</span> Assignment</h2>
+<div id="raster-data-1" class="section level3" number="9.3.3">
+<h3><span class="header-section-number">9.3.3</span> Raster data</h3>
+<p>In the previous weeks, we have predominantly worked with <strong>vector data</strong> and/or <strong>table data</strong> that we then join to vector data for analysis. However, depending on the nature of your research problem, you may also encounter <strong>raster data</strong>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:09-raster-but-vector"></span>
+<img src="images/W09/raster_and_vector.png" alt="A hypothetical raster and a vector model of landse." width="464" />
+<p class="caption">
+Figure 9.1: A hypothetical raster and a vector model of landse.
+</p>
 </div>
-<div id="byl-w09" class="section level2" number="9.5">
-<h2><span class="header-section-number">9.5</span> Before you leave</h2>
+<p>If you remember, the main difference between vector and raster models is how they are structured. Our vectors are represented by three different types of geometries: points, lines and polygons. We have used point data in the form of our stations and bike theft, and polygons in the form of our ward and borough boundaries. In comparison, our raster data sets are composed of pixels (or grid cells) - a bit like an image This means that a raster data set represents a geographic phenomenon by dividing the world into a set of rectangular cells that are laid out in a grid. Each cell holds one value that represents the value of that phenomena at the location, e.g. a population density at that grid cell location. In comparison to vector data, we do not have an <em>attribute table</em> containing fields to analyse.</p>
+<p>All analysis conducted on a raster data set therefore is primarily conducted on the cell values of a raster, rather than on the attribute values of the observations contained within our data set or the precise geometries of our data set. Probably one of the most common or well-known types of raster data are those that we can derive from remote sensing, including satellite and RADAR/LIDAR imagery that we see used in many environmental modelling applications, such as land use and pollution monitoring. However, over the last few years, raster data has increasingly being used within spatial data science applications. For example, <a href="www.worldpop.org">Worldpop</a> and <a href="https://dataforgood.fb.com/tools/population-density-maps/">Facebook</a> have created raster-based estimates of population density (and other variables), that you can access openly via their respective links.</p>
+<p>Beyond their benefits in computational requirements and even, for some geographical phenomena, visualisation capacity and capabilities, a key advantage of raster data is that is relatively straight-forward to standardise data across space (i.e. different countries) and across variables (i.e. different data sets) to enable greater compatibility and easier comparison of data sets than its vector counterparts. We have, for example, seen that we can run into issues quickly even with data on London, as our ward boundaries have changed so frequently even over just the last ten years.</p>
+<p>This standardisation can occur as raster data has:</p>
+<ul>
+<li>An <strong>origin</strong> point from which the grid extends and then a precise number of columns and rows within said data set;</li>
+<li>A specific <strong>spatial resolution</strong> which refers to the <strong>cell size</strong> of the raster data set, e.g. are the grid square 100m x 100m, 1000m x 1000m etc?</li>
+</ul>
+<p>From these two values, it is possible to calculate the size of our raster (number of columns X spatial resolution by the number of rows X spatial resolution) as well as * <strong>snap</strong> future rasters (or <em>resample</em> current rasters) to both the <strong>spatial extent</strong> and the <strong>spatial delineation</strong> of one raster data set (i.e. ensure the cells between the rasters will align with one another). This enables us to create rasters that essentially “line up with one another” - and by doing so, we areable to complete specific calculations between our raster data sets known as <strong>map algebra</strong>.</p>
+<p>Map algebra is exactly what it sounds like - it basically involves doing maths with maps!</p>
+<p>The key difference is that, within spatial analysis, it only applies to raster data, hence it’s name as either <strong>map algebra</strong> or <strong>raster math</strong>.</p>
+</div>
+<div id="map-algebra" class="section level3" number="9.3.4">
+<h3><span class="header-section-number">9.3.4</span> Map algebra</h3>
+<p><strong>Map algebra</strong> is a set-based algebra for manipulating geographic data, coined by <a href="https://en.wikipedia.org/wiki/Dana_Tomlin">Dana Tomlin</a> in the early 1980s. Map algebra uses maths-like operations, including addition, subtraction and multiplication to update raster cell values - depending on the output you’re looking to achieve. The most common type of map algebra is to apply these operations using <em>a cell-by-cell function</em>. Conceptually, this approach will directly stack rasters on top of one another and complete the mathematical operations that you’ve supplied to the cells that are aligned with each other.</p>
+<p>These operations might include:</p>
+<ul>
+<li><strong>Arithmetic operations</strong> that use basic mathematical functions like addition, subtraction, multiplication and division.</li>
+<li><strong>Statistical operations</strong> that use statistical operations such as minimum, maximum, average and median.</li>
+<li><strong>Relational operations</strong>, which compare cells using functions such as greater than, smaller than or equal to.</li>
+<li><strong>Trigonometric operations</strong>, which use sine, cosine, tangent, arcsine between two or more raster layers.</li>
+<li><strong>Exponential and logarithmic operations</strong> that use exponent and logarithm functions.</li>
+</ul>
+<p>But it is also possible to run (some of) these operations at a different scale. Map algebra functions can be applied using for <strong>four</strong> different approaches:</p>
+<ul>
+<li><strong>Local</strong>: The simplest approach - completing functions on a cell-by-cell basis.</li>
+<li><strong>Global</strong>: Used to apply a bulk change to all cells in a raster using a function, e.g. add 1 to all values in a raster, or calculate the euclidean distance each cell is away from a specific cell.</li>
+<li><strong>Focal</strong>: Apply a function to a set of neighborhood values to calculate the output for a single cell, e.g. using a moving window, such as kernel.</li>
+<li><strong>Zonal</strong>: Apply a function to a group of cells within a specified zone (zone can be provided as a raster or vector format).</li>
+</ul>
+<p>The utilisation of these functions can enable many different types of specialised raster analysis, such as recoding or reclassifying indivdual rasters to reduce complexity in their data values, generating the <em>Normalised Difference Vegetation Index</em> for a satellite imagery data set, or calculating <em>Least Cost Estimate Surfaces</em> to find the most “efficient” path from one cell in a raster to another. Furthermore, using multiple raster data sets, it is possible to combine these data through our “mathematical overlays”, from the basic mathematical operations mentioned above to more complex modelling, such as prediction using Bayes theorem.</p>
+<p>The results of these overlays have many applications, including identifying suitable locations for placing a new school or modelling risk to viruses, such as the Zika virus (e.g. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6863140/">Cunze et al, 2019</a> and <a href="https://www.sciencedirect.com/science/article/pii/S0001706X16303886?casa_token=vJFKzU7IYf4AAAAA:LkKoIPdcLztD9qmWaDEUq56H3so9PPRXvgN8hy6IidqblVRJ1FWawqlGBKybvHhYYdfRY-DLadVi">Santos &amp; Meneses, 2017</a> for those of you interested in this application), and, of course, as highlighted above, population density.</p>
+</div>
+</div>
+<div id="population-change-in-london-1" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> Population change in London</h2>
+<p>The first part of our practical this week will look at map algebra in action - and some simple raster data process - by looking to analyse population change in London between 2001 and 2011. To do so, we are going to complete a very simple bit of map algebra - we will subtract the values of the 2011 raster data set from the 2011 raster data set and then map the resulting values, i.e. population change. One question to think about - and reflect on as we move forward with this practical - is that we already know that small-area counts of people in a variety of population subgroups are publicly released for each Census and via the Mid-Year estimates, so why was it necessary to create these raster population surfaces?</p>
+<p>Before we open up the data in R, try to have a ‘non-spatial sneak peak’ at the <code>.asc</code> file by opening it in a normal text editor, for instance, <em>TextEdit</em> on Mac OS or <em>NotePad</em> on Windows. What you will notice is that the <code>asc</code> file, which is an exchange format, is in very fact a flat plain text file:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:09-raster-vector"></span>
+<img src="images/W09/raster_as_text.png" alt="Raster or plain text?" width="754" />
+<p class="caption">
+Figure 9.2: Raster or plain text?
+</p>
+</div>
+<p>Reflecting on what we have just read about rasters and their format, what do you think the first few lines of the <code>asc</code> file, when opened with a text editor, mean?</p>
+<div id="loading-data-w09-1" class="section level3" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> Loading data</h3>
+<p>Let’s get started and take a look at our data - first we need to load it into R (using the <code>raster</code> library) and then we can quickly plot it using the <code>base</code> plot function:</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load our two raster datasets</span></span>
+<span id="cb295-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb295-2" aria-hidden="true" tabindex="-1"></a>pop_2001 <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="st">&quot;data/raw/population/5a_ascii_grid2001_Total_Population_UsRsPopA.asc&quot;</span>)</span>
+<span id="cb295-3"><a href="rasters-zonal-statistics-and-interpolation.html#cb295-3" aria-hidden="true" tabindex="-1"></a>pop_2011 <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="st">&quot;data/raw/population/5a_ascii_grid2011_Total_Population_URPopAll.asc&quot;</span>)</span>
+<span id="cb295-4"><a href="rasters-zonal-statistics-and-interpolation.html#cb295-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb295-5"><a href="rasters-zonal-statistics-and-interpolation.html#cb295-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot 2001 - this can be a little slow, especially for large raster</span></span>
+<span id="cb295-6"><a href="rasters-zonal-statistics-and-interpolation.html#cb295-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pop_2001)</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-load-raster%20data-1.png" width="672" /></p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot 2011 - this can be a little slow, especially for large rasters</span></span>
+<span id="cb296-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pop_2011)</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-load-raster%20data-2.png" width="672" /></p>
+<p>You should see that whilst your maps look very similar, the legend certainly shows that the values associated with each cell has grown over the 10 years between 2001 and 2011 - we see our maximum increase from 15,000 people per cell to 20,000 people per cell.</p>
+<p>Now we have our raster data loaded, we want to reduce it to show only London using our London Ward shapefile. To do so, we will use a combination of two techniques - the <code>crop()</code> function and then using a <code>mask</code> to refine our raster further. The <code>crop()</code> function crop any raster by the overall spatial extent or rather <em>bounding box</em> of the <code>y</code> data set. As a result, the raster returned will be rectangular (or square) in shape - and <em>not cropped</em> to the precise geometry of the <code>y</code> data set that we see in the use of the <code>st_intersections()</code> function that we use with vector data. To reduce a raster to the (almost) precise geometry of the <code>y</code> data set, we need to instead use a <code>mask</code> approach.</p>
+<div class="note">
+<p><strong>Note</strong> <br />
+A <code>mask</code> will only work when using <strong>two</strong> raster data sets. As a result, we need to turn our <code>y</code> data set (in our case, the London Ward shapefile) into a raster - a process simply known as “rasterize” or “rasterizing”. This process of rasterizing will turn our polygon data set into a raster and thus simplify/alter the geometry of our data set to coerce it into a grid-based data set:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:09-raster-as-grid"></span>
+<img src="images/W09/rtovector.png" alt="Rasterising a line vector - forcing geometries into a grid. Source: [Lovelace *et al*. 2020](https://geocompr.robinlovelace.net/geometric-operations.html#raster-vector)." width="672" />
+<p class="caption">
+Figure 9.3: Rasterising a line vector - forcing geometries into a grid. Source: <a href="https://geocompr.robinlovelace.net/geometric-operations.html#raster-vector">Lovelace <em>et al</em>. 2020</a>.
+</p>
+</div>
+</div>
+<p>To ensure our resulting raster of our London Ward shapefile matches the spatial delineation (aligns our cells) and resolution (make cells the same size) of our population rasters, instead of separately rasterising (using the <code>rasterise()</code> function) our London Ward shapefile and then masking (using the <code>mask()</code> function) our rasters by the resulting raster, we can combine this into one, still using the <code>rasterise()</code> function but adding the London population rasters into the function and the <code>mask</code> parameter set to <code>True</code>.</p>
+<p>Load our London Ward shapefile and use this to first crop, then mask our population rasters (through rasterising):</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load london ward data</span></span>
+<span id="cb297-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb297-2" aria-hidden="true" tabindex="-1"></a>london_ward <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;data/raw/boundaries/2018/London_Ward.shp&quot;</span>)</span>
+<span id="cb297-3"><a href="rasters-zonal-statistics-and-interpolation.html#cb297-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb297-4"><a href="rasters-zonal-statistics-and-interpolation.html#cb297-4" aria-hidden="true" tabindex="-1"></a><span class="co"># crop raster to extent greater london</span></span>
+<span id="cb297-5"><a href="rasters-zonal-statistics-and-interpolation.html#cb297-5" aria-hidden="true" tabindex="-1"></a>lonpop_2001 <span class="ot">&lt;-</span> <span class="fu">crop</span>(pop_2001, london_ward)</span>
+<span id="cb297-6"><a href="rasters-zonal-statistics-and-interpolation.html#cb297-6" aria-hidden="true" tabindex="-1"></a>lonpop_2011 <span class="ot">&lt;-</span> <span class="fu">crop</span>(pop_2011, london_ward)</span>
+<span id="cb297-7"><a href="rasters-zonal-statistics-and-interpolation.html#cb297-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb297-8"><a href="rasters-zonal-statistics-and-interpolation.html#cb297-8" aria-hidden="true" tabindex="-1"></a><span class="co"># rasterise London Ward, and mask each population raster</span></span>
+<span id="cb297-9"><a href="rasters-zonal-statistics-and-interpolation.html#cb297-9" aria-hidden="true" tabindex="-1"></a>lonpop_2001 <span class="ot">&lt;-</span> <span class="fu">rasterize</span>(london_ward, lonpop_2001, <span class="at">mask =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb297-10"><a href="rasters-zonal-statistics-and-interpolation.html#cb297-10" aria-hidden="true" tabindex="-1"></a>lonpop_2011 <span class="ot">&lt;-</span> <span class="fu">rasterize</span>(london_ward, lonpop_2011, <span class="at">mask =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb297-11"><a href="rasters-zonal-statistics-and-interpolation.html#cb297-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb297-12"><a href="rasters-zonal-statistics-and-interpolation.html#cb297-12" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the 2001 London population raster</span></span>
+<span id="cb297-13"><a href="rasters-zonal-statistics-and-interpolation.html#cb297-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lonpop_2001)</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-confine-that-area-yall-1.png" width="672" /></p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the 2011 London population raster</span></span>
+<span id="cb298-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb298-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lonpop_2011)</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-confine-that-area-yall-2.png" width="672" /></p>
+<p>You should now have generated two plots for each year - you can quickly flick between the two and see there is evidence of population change between our two data sets.</p>
+</div>
+<div id="analysing-population-change" class="section level3" number="9.4.2">
+<h3><span class="header-section-number">9.4.2</span> Analysing population change</h3>
+<p>Now we have our two London population rasters, we are now ready to go ahead and calculate population change between our two data sets by subtracting our 2001 population raster from our 2011 population raster:</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subtract 2001 population from 2011 population</span></span>
+<span id="cb299-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb299-2" aria-hidden="true" tabindex="-1"></a>lonpop_change <span class="ot">&lt;-</span> lonpop_2011 <span class="sc">-</span> lonpop_2001</span>
+<span id="cb299-3"><a href="rasters-zonal-statistics-and-interpolation.html#cb299-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-4"><a href="rasters-zonal-statistics-and-interpolation.html#cb299-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the results</span></span>
+<span id="cb299-5"><a href="rasters-zonal-statistics-and-interpolation.html#cb299-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lonpop_change)</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-local-is-lekker-1.png" width="672" /></p>
+<p>We now have a raster that shows us population change in London - and to our surprise, there are areas in which population has actually declined. We can utilise some of the focal and zonal functions from our map algebra catalogue to further enhance our understanding of population change in London.</p>
+<p>To further analyse our population change raster, we can create a ‘pseduo’ hotspot map of our <code>lonpop_change</code> raster by calculating a smoothed version of our raster using the <code>focal()</code> function. This will enable us to see more clearly where there are areas of high counts (surrounded by areas of high counts) and vice versa - just like our KDE analysis of bike theft. Using the <code>focal()</code> function, we generate a raster that summarises the average (mean) value, using the <code>fun=</code> parameter set to <code>mean</code>, of the <strong>9</strong> nearest neighbours for each cell, using a weight matrix defined in our <code>w</code> parameter and set to a <code>matrix</code> (consisting of our cell with 3 rows and 3 columns as neighbours):</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="co"># focal statistics (of 9 neighbours) to calculate smoothed raster</span></span>
+<span id="cb300-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb300-2" aria-hidden="true" tabindex="-1"></a>lonpop_smooth <span class="ot">&lt;-</span> <span class="fu">focal</span>(lonpop_change, <span class="at">w =</span> <span class="fu">matrix</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>), <span class="at">fun =</span> mean)</span>
+<span id="cb300-3"><a href="rasters-zonal-statistics-and-interpolation.html#cb300-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb300-4"><a href="rasters-zonal-statistics-and-interpolation.html#cb300-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot results</span></span>
+<span id="cb300-5"><a href="rasters-zonal-statistics-and-interpolation.html#cb300-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lonpop_smooth)</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-focus-on-the-hood-1.png" width="672" /></p>
+<p>Our areas of high population growth are now more visible in our data set. Our areas of population decline are potentially not as stark, but are certainly still visible within our raster. We can also look to use zonal functions to better represent our population change by aggregating our data to coarser resolutions. For example, we can resize our raster’s spatial resolution to contain larger grid cells which will, of course, simplify our data, making larger trends more visible in our data - but of course, may end up obfuscating smaller trends.</p>
+<p>We can resize our <code>lonpop_change</code> raster by using the <code>aggregate()</code> function and setting the <code>fact=</code> (factor) parameter to the “order” of rescaling we would like (in our case, 2 times larger both width and height). We then provide the <code>fun=</code> (function) by which to aggregate our data, in this case, we will continue to use the <code>mean</code> but we could in fact provide <code>min</code> or <code>max</code> depending on our future applications/analysis of our data set:</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rescale raster and aggregate based on mean</span></span>
+<span id="cb301-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb301-2" aria-hidden="true" tabindex="-1"></a>lonpop_change_agg <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(lonpop_change, <span class="at">fact =</span> <span class="dv">2</span>, <span class="at">fun =</span> mean)</span>
+<span id="cb301-3"><a href="rasters-zonal-statistics-and-interpolation.html#cb301-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb301-4"><a href="rasters-zonal-statistics-and-interpolation.html#cb301-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot resulting raster</span></span>
+<span id="cb301-5"><a href="rasters-zonal-statistics-and-interpolation.html#cb301-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lonpop_change_agg)</span></code></pre></div>
+<p><img src="GEOG0030_files/figure-html/09-zone-zone-zone-1.png" width="672" /></p>
+<p>Another very common technique used in raster analysis via map algebra is the use of <strong>zonal statistics</strong>. As outlined earlier, a zonal statistics operation is one that calculates statistics on cell values of a raster (a value raster) within specific zones that are defined by another data set. The zones can be provided by both <strong>raster</strong> and <strong>vector</strong> data - as a result, <strong>zonal statistics</strong> are a really useful tool if we need to aggregate data from a raster dataset for use within further analysis that primarily uses vector data, such as when we’re analysing data within administrative boundaries.</p>
+<p>For example, in our case, we can aggregate the <code>lonpop_change</code> raster to our actual London Ward boundaries, i.e. calculate for each ward in our data set, the average (or other function) population change, as determined by our raster. We can, of course, use other functions other than the <code>mean</code> - what function you use will simply depend on your application. Esri has <a href="https://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/h-how-zonal-statistics-works.htm">a great resource</a> on how Zonal statistics works with other functions and raster</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="co"># aggregate to administrative geography note: the output is a vector that is</span></span>
+<span id="cb302-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb302-2" aria-hidden="true" tabindex="-1"></a><span class="co"># forced to a SpatialPolygons object (not sf)</span></span>
+<span id="cb302-3"><a href="rasters-zonal-statistics-and-interpolation.html#cb302-3" aria-hidden="true" tabindex="-1"></a>london_ward_pop <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">extract</span>(lonpop_change, london_ward, <span class="at">fun =</span> mean, <span class="at">sp =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb302-4"><a href="rasters-zonal-statistics-and-interpolation.html#cb302-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb302-5"><a href="rasters-zonal-statistics-and-interpolation.html#cb302-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot via tmap</span></span>
+<span id="cb302-6"><a href="rasters-zonal-statistics-and-interpolation.html#cb302-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(london_ward_pop) <span class="sc">+</span> <span class="fu">tm_polygons</span>(<span class="at">col =</span> <span class="st">&quot;layer&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in sp::proj4string(obj): CRS object has comment, which is lost in output</code></pre>
+<p><img src="GEOG0030_files/figure-html/09-I-am-in-the-zone-1.png" width="672" /></p>
+<p>We now have a vector data set that we could go ahead and run many of the analyses that we have completed in previous weeks. Furthermore, we can use this data within other analyses we might want to complete - for example, if we are using population change as a specific variable to analyse another dataset that is only available as a vector data set / at the ward level.</p>
+<div class="note">
+<p><strong>Note</strong> <br />
+Trying to calculate population change, particularly across decades as we have done here, is quite difficult with our Census and Mid-Year Estimates given the differences in our Ward boundaries and the impact this has when we try to join data sets from different years that then have different codes that we need to join by attribute. Using raster data, such as these data sets, are a good workaround to these issues, but, of course, with any data processing, will add some level of uncertainty into our data sets.</p>
+</div>
+</div>
+</div>
+<div id="assignment-w09-01" class="section level2" number="9.5">
+<h2><span class="header-section-number">9.5</span> Assignment 1</h2>
+<p>The first assignment this week is a purely theoretical question: How can we use a combination of the techniques we have used over the last few weeks to calculate the number of people in London underserved by public transport?</p>
+<p>To answer the question, we want you to think of a method using what you have learnt above in regards to map algebra and your use of point data in the previous week, to think about how we can calculate the number of people who are <strong>not within 400m euclidean distance walk</strong> of a <strong>bus, tube or train station</strong> in London.</p>
+<div class="note">
+<p><strong>Note</strong> <br />
+Many libraries in r share the same function names. This can be a problem when these packages are loaded in a same R session. For instance <code>extract</code> is not only the name of a function in the <code>raster</code> package, but also the name of functions in the <code>magrittr</code> and <code>tidyr</code> packages. To ensure you are using the function that you think you are using, you can specify the package using the <code>::</code> approach, as follows: <code>library::function</code>, e.g. <code>tidyr::extract</code> or <code>raster::extract</code>.</p>
+</div>
+</div>
+<div id="air-pollution-in-london" class="section level2" number="9.6">
+<h2><span class="header-section-number">9.6</span> Air pollution in London</h2>
+</div>
+<div id="assignment-w09-02" class="section level2" number="9.7">
+<h2><span class="header-section-number">9.7</span> Assignment 2</h2>
+</div>
+<div id="byl-w09" class="section level2" number="9.8">
+<h2><span class="header-section-number">9.8</span> Before you leave</h2>
 
 </div>
 </div>

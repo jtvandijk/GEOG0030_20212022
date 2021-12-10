@@ -339,6 +339,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#raster-analysis"><i class="fa fa-check"></i><b>9.3</b> Raster analysis</a>
 <ul>
 <li class="chapter" data-level="9.3.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#housekeeping-w09"><i class="fa fa-check"></i><b>9.3.1</b> Housekeeping</a></li>
+<li class="chapter" data-level="9.3.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#loading-data-w09"><i class="fa fa-check"></i><b>9.3.2</b> Loading data</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09"><i class="fa fa-check"></i><b>9.4</b> Assignment</a></li>
 <li class="chapter" data-level="9.5" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#byl-w09"><i class="fa fa-check"></i><b>9.5</b> Before you leave</a></li>
@@ -391,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s get ourselves ready to start our lecture and practical content by first downloading the relevant data and loading this within our script.</p>
 <p>Open a new script within your GEOG0030 project and save this script as <code>wk7-obesity-spatial-analysis.r</code>. At the top of your script, add the following metadata (substitute accordingly):</p>
 <div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysing childhood obesity and its factors</span></span>
-<span id="cb200-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Date: January 2021</span></span>
+<span id="cb200-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Date: January 2022</span></span>
 <span id="cb200-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb200-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: Justin </span></span></code></pre></div>
 <p>This week we also need to install some additional libraries: <code>spdep</code>. <code>spdep</code> contains the relevant functions to run our various spatial autocorrelation tests. After installation, add the following libraries for loading in your script:</p>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="co"># libraries</span></span>

@@ -336,13 +336,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="9.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#recording-w09"><i class="fa fa-check"></i><b>9.1</b> Lecture recording</a></li>
 <li class="chapter" data-level="9.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#reading-w09"><i class="fa fa-check"></i><b>9.2</b> Reading list</a></li>
-<li class="chapter" data-level="9.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#raster-analysis"><i class="fa fa-check"></i><b>9.3</b> Raster analysis</a>
+<li class="chapter" data-level="9.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#raster-data"><i class="fa fa-check"></i><b>9.3</b> Raster data</a>
 <ul>
 <li class="chapter" data-level="9.3.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#housekeeping-w09"><i class="fa fa-check"></i><b>9.3.1</b> Housekeeping</a></li>
 <li class="chapter" data-level="9.3.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#loading-data-w09"><i class="fa fa-check"></i><b>9.3.2</b> Loading data</a></li>
+<li class="chapter" data-level="9.3.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#raster-data-1"><i class="fa fa-check"></i><b>9.3.3</b> Raster data</a></li>
+<li class="chapter" data-level="9.3.4" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#map-algebra"><i class="fa fa-check"></i><b>9.3.4</b> Map algebra</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09"><i class="fa fa-check"></i><b>9.4</b> Assignment</a></li>
-<li class="chapter" data-level="9.5" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#byl-w09"><i class="fa fa-check"></i><b>9.5</b> Before you leave</a></li>
+<li class="chapter" data-level="9.4" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#population-change-in-london-1"><i class="fa fa-check"></i><b>9.4</b> Population change in London</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#loading-data-w09-1"><i class="fa fa-check"></i><b>9.4.1</b> Loading data</a></li>
+<li class="chapter" data-level="9.4.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#analysing-population-change"><i class="fa fa-check"></i><b>9.4.2</b> Analysing population change</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09-01"><i class="fa fa-check"></i><b>9.5</b> Assignment 1</a></li>
+<li class="chapter" data-level="9.6" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#air-pollution-in-london"><i class="fa fa-check"></i><b>9.6</b> Air pollution in London</a></li>
+<li class="chapter" data-level="9.7" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09-02"><i class="fa fa-check"></i><b>9.7</b> Assignment 2</a></li>
+<li class="chapter" data-level="9.8" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#byl-w09"><i class="fa fa-check"></i><b>9.8</b> Before you leave</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>10</b> Network Analysis</a>
 <ul>
@@ -478,7 +487,7 @@ Why do we need to normalise by population? When we record events created by huma
 <ol start="2" style="list-style-type: decimal">
 <li>We will need to download all three zipfiles: <code>statistical-gis-boundaries-london.zip</code>, <code>London-wards-2014.zip</code> and <code>London-wards-2018.zip</code>.</li>
 </ol>
-<p>The first data set contains <strong>ALL</strong> levels of London’s administrative boundaries. In descending size order: Borough, Ward, Middle layer Super Output Area (MSOA), Lower layer Super Output Area (LSOA), and Output Area (OA) from 2011. The second data set contains an <em>UPDATED</em> version of the Ward boundaries, as of 2014. The third data set contains an <em>UPDATED</em> version of the Ward boundaries, as of 2018. Once downloaded, you will need to unzip the file.</p>
+<p>The first data set contains <strong>ALL</strong> levels of London’s administrative boundaries. In descending size order: borough, Ward, Middle layer Super Output Area (MSOA), Lower layer Super Output Area (LSOA), and Output Area (OA) from 2011. The second data set contains an <em>UPDATED</em> version of the Ward boundaries, as of 2014. The third data set contains an <em>UPDATED</em> version of the Ward boundaries, as of 2018. Once downloaded, you will need to unzip the file.</p>
 <div class="note">
 <p><strong>Note</strong> <br/>
 To unzip the file, you can use the built-in functionality of your computer’s operating system. For Windows: right click on the zip file, select Extract All, and then follow the instructions. For Mac OS: double-click the zip file.</p>
@@ -526,7 +535,7 @@ They originate from the Roman era who used these geographies, usually defined by
 <h4><span class="header-section-number">2.4.3.2</span> Population data</h4>
 <p>For our population data sets, we will use the ONS mid-year estimates (MYE). These population data sets are <strong>estimates</strong> that have been modelled based on the previous 2011 census count and then forecasted population growth (in combination with several additional data sources). They are released once a year, with a delay of a year. Today we will use the data for 2011, 2015, and 2019.</p>
 <ol style="list-style-type: decimal">
-<li><p>Navigate to the <strong>Ward</strong> level data sets: <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/wardlevelmidyearpopulationestimatesexperimental">[Link]</a></p></li>
+<li><p>Navigate to the <strong>ward</strong> level data sets: <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/wardlevelmidyearpopulationestimatesexperimental">[Link]</a></p></li>
 <li><p>When you navigate to this page, you will find multiple choices of data to download. We will need to download the estimates for <strong>2011, 2015</strong> and <strong>2019</strong>. Click to download each of the zipfiles. Choose the <strong>revised</strong> versions for 2015 and the (Census-based) 2011 wards edition for 2011.</p></li>
 <li><p>In your <code>GEOG0030/data/raw/</code> folder, create a new folder called <code>population</code>, unzip your download, and copy the three spreadsheets into this folder.</p></li>
 </ol>
@@ -629,14 +638,14 @@ We will explain CRSs and using CRSs in GIS software in more detail next week.</p
 <li><p>With <strong>File</strong> select as your source type, click on the small three dots button and navigate to your 2011 boundary files.</p></li>
 <li><p>Here, we will select the <code>London_Ward.shp</code> data set. Click on the <code>.shp</code> file of this data set and click <strong>Open</strong>. Then click <strong>Add</strong>. You may need to close the box after adding the layer.</p></li>
 </ol>
-<p>We can take a moment just to look at our Ward data - and recognise the shape of London. Can you see the City of London in the data set? It has the smallest wards in the entire London area. With the data set loaded, we can now explore it in a little more detail. We want to check out two things about our data: first, its <strong>Properties</strong> and secondly, its <strong>Attribute Table</strong>.</p>
+<p>We can take a moment just to look at our ward data - and recognise the shape of London. Can you see the City of London in the data set? It has the smallest wards in the entire London area. With the data set loaded, we can now explore it in a little more detail. We want to check out two things about our data: first, its <strong>Properties</strong> and secondly, its <strong>Attribute Table</strong>.</p>
 <ol start="8" style="list-style-type: decimal">
 <li>Right-click on the <code>London_Ward</code> layer and open the <strong>Attribute Table</strong> and look at how the attributes are stored and presented in the table. Explore the different buttons in the Attribute Table and see if you can figure out what they mean. Once done, close the Attribute Table.</li>
 <li>Right-click on the <code>London_Ward</code> layer and select <strong>Properties</strong>. Click through the different tabs and see what they contain. Keep the <strong>Properties</strong> box open.</li>
 </ol>
 <p>Before adding our population data, we can make a quick map of the wards in London - we can add labels and change the <em>symbolisation</em> of our wards.</p>
 <ol start="10" style="list-style-type: decimal">
-<li><p>In the <strong>Properties</strong> box, click on the <strong>Symbology</strong> tab - this is where we can change how our data layer looks. For example, here we can change the line and fill colour of our Wards utilising either the default options available or clicking on <strong>Simple Fill</strong> and changing these properties directly. Keep the overall <strong>styling</strong> to a <strong>Single Symbol</strong> for now - we will get back to this once we have added the population data. You can also click on the <strong>Labels</strong> tab - and set the Labels option to <strong>Single labels</strong>.</p></li>
+<li><p>In the <strong>Properties</strong> box, click on the <strong>Symbology</strong> tab - this is where we can change how our data layer looks. For example, here we can change the line and fill colour of our wards utilising either the default options available or clicking on <strong>Simple Fill</strong> and changing these properties directly. Keep the overall <strong>styling</strong> to a <strong>Single Symbol</strong> for now - we will get back to this once we have added the population data. You can also click on the <strong>Labels</strong> tab - and set the Labels option to <strong>Single labels</strong>.</p></li>
 <li><p>QGIS will default to the <strong>NAME</strong> column within our data. You can change the properties of these labels using the options available. Change the font to <strong>Futura</strong> and size <strong>8</strong> and under the add a small buffer to the labels by selecting <strong>Draw text bufer</strong> under the <strong>Buffer</strong> tab. You can click <strong>Apply</strong> to see what your labels look like. Please note that the background colour may differ.</p></li>
 </ol>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>

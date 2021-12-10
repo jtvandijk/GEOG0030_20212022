@@ -178,6 +178,9 @@ recording-w09
 reading-w09
 raster-analysis
 housekeeping-w09
+loading-data-w09
+population-data-2
+pollution-data
 assignment-w09
 byl-w09
 network-analysis
@@ -185,3 +188,17 @@ recording-w10
 reading-w10
 assignment-w10
 byl-w10
+fig:09-raster-but-vector
+raster-data
+about-raster-data
+raster-data-1
+map-algebra
+fig:09-raster-vector
+population-change-in-london-1
+fig:09-raster-as-grid
+loading-data-w09-1
+analysing-population-change
+section
+assignment-w09-01
+assignment-w09-02
+air-pollution-in-london

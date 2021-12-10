@@ -106,7 +106,7 @@ When you navigate to this page, you will find multiple choices of data to downlo
 
 2. We will need to download all three zipfiles: `statistical-gis-boundaries-london.zip`, `London-wards-2014.zip` and `London-wards-2018.zip`.
 
-The first data set contains **ALL** levels of London’s administrative boundaries. In descending size order: Borough, Ward, Middle layer Super Output Area (MSOA), Lower layer Super Output Area (LSOA), and Output Area (OA) from 2011. The second data set contains an *UPDATED* version of the Ward boundaries, as of 2014. The third data set contains an *UPDATED* version of the Ward boundaries, as of 2018. Once downloaded, you will need to unzip the file.
+The first data set contains **ALL** levels of London’s administrative boundaries. In descending size order: borough, Ward, Middle layer Super Output Area (MSOA), Lower layer Super Output Area (LSOA), and Output Area (OA) from 2011. The second data set contains an *UPDATED* version of the Ward boundaries, as of 2014. The third data set contains an *UPDATED* version of the Ward boundaries, as of 2018. Once downloaded, you will need to unzip the file.
 
 :::note
 **Note** <br/>
@@ -160,7 +160,7 @@ We will be looking at wards in our practical analysis – although even at this 
 #### Population data 
 For our population data sets, we will use the ONS mid-year estimates (MYE). These population data sets are **estimates** that have been modelled based on the previous 2011 census count and then forecasted population growth (in combination with several additional data sources). They are released once a year, with a delay of a year. Today we will use the data for 2011, 2015, and 2019.
 
-1. Navigate to the **Ward** level data sets: [[Link]](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/wardlevelmidyearpopulationestimatesexperimental)
+1. Navigate to the **ward** level data sets: [[Link]](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/wardlevelmidyearpopulationestimatesexperimental)
 2. When you navigate to this page, you will find multiple choices of data to download. We will need to download the estimates for **2011, 2015** and **2019**. Click to download each of the zipfiles. Choose the **revised** versions for 2015 and the (Census-based) 2011 wards edition for 2011. 
 
 3. In your `GEOG0030/data/raw/` folder, create a new folder called `population`, unzip your download, and copy the three spreadsheets into this folder.
@@ -269,14 +269,14 @@ We will first focus on loading and joining the 2011 data sets.
 
 7. Here, we will select the `London_Ward.shp` data set. Click on the `.shp` file of this data set and click **Open**. Then click **Add**. You may need to close the box after adding the layer.
 
-We can take a moment just to look at our Ward data - and recognise the shape of London. Can you see the City of London in the data set? It has the smallest wards in the entire London area. With the data set loaded, we can now explore it in a little more detail. We want to check out two things about our data: first, its **Properties** and secondly, its **Attribute Table**. 
+We can take a moment just to look at our ward data - and recognise the shape of London. Can you see the City of London in the data set? It has the smallest wards in the entire London area. With the data set loaded, we can now explore it in a little more detail. We want to check out two things about our data: first, its **Properties** and secondly, its **Attribute Table**. 
 
 8. Right-click on the `London_Ward` layer and open the **Attribute Table** and look at how the attributes are stored and presented in the table. Explore the different buttons in the Attribute Table and see if you can figure out what they mean. Once done, close the Attribute Table.
 9. Right-click on the `London_Ward` layer and select **Properties**. Click through the different tabs and see what they contain. Keep the **Properties** box open.
 
 Before adding our population data, we can make a quick map of the wards in London - we can add labels and change the *symbolisation* of our wards.
 
-10. In the **Properties** box, click on the **Symbology** tab - this is where we can change how our data layer looks. For example, here we can change the line and fill colour of our Wards utilising either the default options available or clicking on **Simple Fill** and changing these properties directly. Keep the overall **styling** to a **Single Symbol** for now - we will get back to this once we have added the population data. You can also click on the **Labels** tab - and set the Labels option to **Single labels**. 
+10. In the **Properties** box, click on the **Symbology** tab - this is where we can change how our data layer looks. For example, here we can change the line and fill colour of our wards utilising either the default options available or clicking on **Simple Fill** and changing these properties directly. Keep the overall **styling** to a **Single Symbol** for now - we will get back to this once we have added the population data. You can also click on the **Labels** tab - and set the Labels option to **Single labels**. 
 
 11. QGIS will default to the **NAME** column within our data. You can change the properties of these labels using the options available. Change the font to **Futura** and size **8** and under the add a small buffer to the labels by selecting **Draw text bufer** under the **Buffer** tab. You can click **Apply** to see what your labels look like. Please note that the background colour may differ.
 
