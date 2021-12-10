@@ -339,7 +339,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#raster-data"><i class="fa fa-check"></i><b>9.3</b> Raster data</a>
 <ul>
 <li class="chapter" data-level="9.3.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#housekeeping-w09"><i class="fa fa-check"></i><b>9.3.1</b> Housekeeping</a></li>
-<li class="chapter" data-level="9.3.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#loading-data-w09"><i class="fa fa-check"></i><b>9.3.2</b> Loading data</a></li>
+<li class="chapter" data-level="9.3.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#downloading-data-w09"><i class="fa fa-check"></i><b>9.3.2</b> Downloading data</a></li>
 <li class="chapter" data-level="9.3.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#raster-data-1"><i class="fa fa-check"></i><b>9.3.3</b> Raster data</a></li>
 <li class="chapter" data-level="9.3.4" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#map-algebra"><i class="fa fa-check"></i><b>9.3.4</b> Map algebra</a></li>
 </ul></li>
@@ -349,7 +349,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#analysing-population-change"><i class="fa fa-check"></i><b>9.4.2</b> Analysing population change</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09-01"><i class="fa fa-check"></i><b>9.5</b> Assignment 1</a></li>
-<li class="chapter" data-level="9.6" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#air-pollution-in-london"><i class="fa fa-check"></i><b>9.6</b> Air pollution in London</a></li>
+<li class="chapter" data-level="9.6" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#air-pollution-in-london"><i class="fa fa-check"></i><b>9.6</b> Air pollution in London</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#loading-data-w09-2"><i class="fa fa-check"></i><b>9.6.1</b> Loading data</a></li>
+<li class="chapter" data-level="9.6.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#loading-data-w09-2"><i class="fa fa-check"></i><b>9.6.2</b> Loading data</a></li>
+</ul></li>
 <li class="chapter" data-level="9.7" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09-02"><i class="fa fa-check"></i><b>9.7</b> Assignment 2</a></li>
 <li class="chapter" data-level="9.8" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#byl-w09"><i class="fa fa-check"></i><b>9.8</b> Before you leave</a></li>
 </ul></li>
@@ -412,7 +416,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>rgdal</code>: for under-the-hood spatial data management</li>
 <li><code>rgeos</code>: for more under-the-hood spatial data management</li>
 <li><code>gstat</code>: to complete our various interpolation techniques</li>
-<li><code>openair</code>: to download our pollution data directly from the <a href="https://www.londonair.org.uk/LondonAir/Default.aspx">London Air data portal</a></li>
 <li><code>sp</code>: for spatial analysis (“predecessor” of <code>sf</code>)</li>
 </ul>
 <p>Within your script, add the following libraries for loading:</p>
@@ -426,11 +429,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb294-8"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgdal)</span>
 <span id="cb294-9"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgeos)</span>
 <span id="cb294-10"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gstat)</span>
-<span id="cb294-11"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatstat)</span>
-<span id="cb294-12"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openair)</span></code></pre></div>
+<span id="cb294-11"><a href="rasters-zonal-statistics-and-interpolation.html#cb294-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(spatstat)</span></code></pre></div>
 </div>
-<div id="loading-data-w09" class="section level3" number="9.3.2">
-<h3><span class="header-section-number">9.3.2</span> Loading data</h3>
+<div id="downloading-data-w09" class="section level3" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> Downloading data</h3>
 <div id="population-data-2" class="section level4" number="9.3.2.1">
 <h4><span class="header-section-number">9.3.2.1</span> Population data</h4>
 <p>For the first part of this week’s practical material we will be using raster datasets from the <a href="https://www.liverpool.ac.uk/geography-and-planning/research/popchange/introduction/">Population Change and Geographic Inequalities in the UK, 1971-2011 (PopChange)</a> project. In this <a href="https://esrc.ukri.org/research/our-research/secondary-data-analysis-initiative/">ESRC-funded project</a>, researchers from the University of Liverpool created raster population surfaces from publicly available Census data (1971, 1981, 1991, 2001, 2011). These population surfaces are estimates of counts of people, displayed within a regular grid raster of a spatial resolution of 1km. These surfaces can be used <em>“to explore, for example, changes in the demographic profiles of small areas, area deprivation, or country of birth”</em>.</p>
@@ -462,7 +464,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="pollution-data" class="section level4" number="9.3.2.2">
 <h4><span class="header-section-number">9.3.2.2</span> Pollution data</h4>
 <p>For the second part of this week’s practical material, we will explore several methods of interpolation by looking at air pollution in London by getting data from the <a href="https://www.londonair.org.uk/LondonAir/General/about.aspx">Londonair</a> website. <strong>Londonair</strong> is the website of the London Air Quality Network (LAQN), and shows air pollution in London and south east England that is provided by the <a href="https://www.imperial.ac.uk/school-public-health/environmental-research-group/">Environmental Research Group</a> of Imperial College London. The data are captured by hundreds of sensors at various continuous monitoring sites in London and the south east of England. The data are publicly available for download - and we can use an R package to directly interact with the data without needing to download it.</p>
-<p>The <code>openair</code> <a href="https://davidcarslaw.github.io/openair/">R package</a> enables us to import our data directly using the <code>importMeta()</code> and <code>importKCL()</code> functions. To understand these functions, you can look at the <a href="https://cloud.r-project.org/web/packages/openair/openair.pdf">documentation of the openair package</a> so that you get an idea why we use them in our code below. However, there is one issue with this package. Because <code>openair</code> contains <strong>C++</strong> code, a compiler is needed. For Windows, for example, <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> is needed. Depending on your system and configuration this can sometimes be a hassle: in case you cannot get <code>openair</code> to work on your computer, you can download a copy of the data set below:</p>
+<p>The <code>openair</code> <a href="https://davidcarslaw.github.io/openair/">R package</a> enables us to import data directly form the Londonair website. However, because the <code>openair</code> contains <strong>C++</strong> code, a compiler is needed. For Windows, for example, <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a> is needed. Depending on your system and configuration this can sometimes be a hassle: to make things easy for us, you can simply download a copy of the data below:</p>
 <table>
 <thead>
 <tr class="header">
@@ -479,7 +481,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>Once downloaded, copy over these files into a <code>data/raw/pollution</code> folder. Please note that the file is rather larger (~170 MB).</p>
+<p>Once downloaded, copy over these files into a <code>data/raw/pollution</code> folder. Please note that the file is rather larger (~170 MB) and it is best to keep it as <code>.zip</code> file.</p>
 </div>
 </div>
 <div id="raster-data-1" class="section level3" number="9.3.3">
@@ -626,7 +628,7 @@ Trying to calculate population change, particularly across decades as we have do
 </div>
 <div id="assignment-w09-01" class="section level2" number="9.5">
 <h2><span class="header-section-number">9.5</span> Assignment 1</h2>
-<p>The first assignment this week is a purely theoretical question: How can we use a combination of the techniques we have used over the last few weeks to calculate the number of people in London underserved by public transport?</p>
+<p>The first assignment this week is a purely theoretical question: How can we use a combination of the techniques we have used over the last few weeks to calculate the number of people in London under-served by public transport?</p>
 <p>To answer the question, we want you to think of a method using what you have learnt above in regards to map algebra and your use of point data in the previous week, to think about how we can calculate the number of people who are <strong>not within 400m euclidean distance walk</strong> of a <strong>bus, tube or train station</strong> in London.</p>
 <div class="note">
 <p><strong>Note</strong> <br />
@@ -635,6 +637,32 @@ Many libraries in r share the same function names. This can be a problem when th
 </div>
 <div id="air-pollution-in-london" class="section level2" number="9.6">
 <h2><span class="header-section-number">9.6</span> Air pollution in London</h2>
+<p>The second half of this week’s tutorial focuses on interpolation. Spatial interpolation is the prediction of a given phenomenon in unmeasured locations. There are many reasons why we may wish to interpolate point data across a map. It could be because we are trying to predict a variable across space, including in areas where there are little to no data. We might also want to smooth the data across space so that we cannot interpret the results of individuals, but still identify the general trends from the data. This is particularly useful when the data corresponds to individual persons and disclosing their locations is unethical.</p>
+<p>To predict the values of the cells of our resulting raster, we need to determine how to interpolate between our points, i.e. develop a set of procedures that enable us to calculate predicted values of the variable of interest with confidence - and, of course, repetitively.
+We will put some techniques into action by interpolating our air quality point data into a raster surface to understand further how air pollution varies across London.</p>
+<div id="loading-data-w09-2" class="section level3" number="9.6.1">
+<h3><span class="header-section-number">9.6.1</span> Loading data</h3>
+<p>Before we get going within interpolating our pollution data set, let’s first take a look at the distribution of the London Air monitoring sites in London. What are your thoughts about the distribution of the sites? Do you think they’ll provide enough data for an accurate enough interpolation?</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:09-monitoring-in-london"></span>
+<img src="images/W09/london_air.png" alt="Locations of the London Air monitoring sites in London. Source: [Londonair 2020](https://www.londonair.org.uk/london/asp/publicdetails.asp)." width="550pt" />
+<p class="caption">
+Figure 9.4: Locations of the London Air monitoring sites in London. Source: <a href="https://www.londonair.org.uk/london/asp/publicdetails.asp">Londonair 2020</a>.
+</p>
+</div>
+<p>Ultimately, monitoring sites and the sensor stations present at them can be expensive to install and run - therefore, identifying the most important places for data collection will somewhat determine their location, alongside trying to create a somewhat even distribution over London. As we can see in the locations of the stations above, there are certainly some areas in London that do not have a station nearby, whilst others (such as central London) where there are many stations available.</p>
+<p>When using interpolation, the distribution and density of our data points will impact the accuracy of our final raster - and we may end up with a level of uncertainty in the areas where data is more sparse, such as the north-west and the south-east of London. Despite this, we can still create an interpolated surface for our pollutant of interest - we just need to interpret our final raster with acknowledgement of these limitations. For this week’s practical, we will go ahead and use the Londonair’s data to study the levels of <strong>Nitrogen Dioxide (NO<sub>2</sub>) in London for 2019</strong>. Once we have our data loaded and processed in the right format, we will start interpolating our data using at first two models: Thiessen Polygons and Inverse Distance Weighting.</p>
+</div>
+<div id="loading-data-w09-2" class="section level3" number="9.6.2">
+<h3><span class="header-section-number">9.6.2</span> Loading data</h3>
+<p>You can download the csv from the <a href="rasters-zonal-statistics-and-interpolation.html#pollution-data">Pollution Data</a> section, if you have not done so. Once downloaded, you can import our data directly from the <code>csv</code> within the zip folder you have downloaded:</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in downloaded data </span></span>
+<span id="cb304-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="co"># as the file is quite large, we will read it directly from zip</span></span>
+<span id="cb304-3"><a href="rasters-zonal-statistics-and-interpolation.html#cb304-3" aria-hidden="true" tabindex="-1"></a>pollution <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/raw/pollution/no2_london_2019.zip&quot;</span>)</span>
+<span id="cb304-4"><a href="rasters-zonal-statistics-and-interpolation.html#cb304-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb304-5"><a href="rasters-zonal-statistics-and-interpolation.html#cb304-5" aria-hidden="true" tabindex="-1"></a><span class="co"># pollution dataframe dimensions</span></span>
+<span id="cb304-6"><a href="rasters-zonal-statistics-and-interpolation.html#cb304-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pollution)</span></code></pre></div>
+<pre><code>## [1] 1596509       7</code></pre>
+</div>
 </div>
 <div id="assignment-w09-02" class="section level2" number="9.7">
 <h2><span class="header-section-number">9.7</span> Assignment 2</h2>

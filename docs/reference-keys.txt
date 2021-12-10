@@ -28,6 +28,7 @@ fig:unnamed-chunk-25
 fig:09-raster-but-vector
 fig:09-raster-vector
 fig:09-raster-as-grid
+fig:09-monitoring-in-london
 geocomputation-an-introduction
 recording-w01
 reading-w01
@@ -181,7 +182,7 @@ recording-w09
 reading-w09
 raster-data
 housekeeping-w09
-loading-data-w09
+downloading-data-w09
 population-data-2
 pollution-data
 raster-data-1
@@ -191,6 +192,7 @@ loading-data-w09-1
 analysing-population-change
 assignment-w09-01
 air-pollution-in-london
+loading-data-w09-2
 assignment-w09-02
 byl-w09
 network-analysis
