@@ -197,6 +197,8 @@ loading-data-w09-2
 analysing-air-pollution
 thiessen-polygons
 inverse-distance-weighting
+mapping-the-idw-raster
+more-raster
 assignment-w09-02
 byl-w09
 network-analysis

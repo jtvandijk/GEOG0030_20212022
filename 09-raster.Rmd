@@ -52,7 +52,7 @@ library(spatstat)
 
 ### Downloading data {#downloading-data-w09}
 #### Population data 
-For the first part of this week's practical material we will be using raster datasets from the [Population Change and Geographic Inequalities in the UK, 1971-2011 (PopChange)](https://www.liverpool.ac.uk/geography-and-planning/research/popchange/introduction/) project. In this [ESRC-funded project](https://esrc.ukri.org/research/our-research/secondary-data-analysis-initiative/), researchers from the University of Liverpool created raster population surfaces from publicly available Census data (1971, 1981, 1991, 2001, 2011). These population surfaces are estimates of counts of people, displayed within a regular grid raster of a spatial resolution of 1km. These surfaces can be used *"to explore, for example, changes in the demographic profiles of small areas, area deprivation, or country of birth"*. 
+For the first part of this week's practical material we will be using raster data sets from the [Population Change and Geographic Inequalities in the UK, 1971-2011 (PopChange)](https://www.liverpool.ac.uk/geography-and-planning/research/popchange/introduction/) project. In this [ESRC-funded project](https://esrc.ukri.org/research/our-research/secondary-data-analysis-initiative/), researchers from the University of Liverpool created raster population surfaces from publicly available Census data (1971, 1981, 1991, 2001, 2011). These population surfaces are estimates of counts of people, displayed within a regular grid raster of a spatial resolution of 1km. These surfaces can be used *"to explore, for example, changes in the demographic profiles of small areas, area deprivation, or country of birth"*. 
 
 To enable this, the researchers have created several categories of rasters, including: Total Population, Population by Age, Population by Country of Birth, Population by Ethnicity etc. This week we will use the **Total Population** data sets. To access data directly from the PopChange website requires a simple registration for log-in, you can then navigate through the data sets and choose those you would like to download.
 
@@ -138,7 +138,7 @@ Reflecting on what we have just read about rasters and their format, what do you
 Let's get started and take a look at our data - first we need to load it into R (using the `raster` library) and then we can quickly plot it using the `base` plot function:
 
 ```{r 09-load-raster data, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
-# load our two raster datasets
+# load our two raster data sets
 pop_2001 <- raster('data/raw/population/5a_ascii_grid2001_Total_Population_UsRsPopA.asc')
 pop_2011 <- raster('data/raw/population/5a_ascii_grid2011_Total_Population_URPopAll.asc')
 
@@ -223,7 +223,7 @@ lonpop_change_agg <- aggregate(lonpop_change,fact=2, fun=mean)
 plot(lonpop_change_agg)
 ```
 
-Another very common technique used in raster analysis via map algebra is the use of **zonal statistics**. As outlined earlier, a zonal statistics operation is one that calculates statistics on cell values of a raster (a value raster) within specific zones that are defined by another data set. The zones can be provided by both **raster** and **vector** data - as a result, **zonal statistics** are a really useful tool if we need to aggregate data from a raster dataset for use within further analysis that primarily uses vector data, such as when we're analysing data within administrative boundaries.
+Another very common technique used in raster analysis via map algebra is the use of **zonal statistics**. As outlined earlier, a zonal statistics operation is one that calculates statistics on cell values of a raster (a value raster) within specific zones that are defined by another data set. The zones can be provided by both **raster** and **vector** data - as a result, **zonal statistics** are a really useful tool if we need to aggregate data from a raster data set for use within further analysis that primarily uses vector data, such as when we're analysing data within administrative boundaries.
 
 For example, in our case, we can aggregate the `lonpop_change` raster to our actual London Ward boundaries, i.e. calculate for each ward in our data set, the average (or other function) population change, as determined by our raster. We can, of course, use other functions other than the `mean` - what function you use will simply depend on your application. Esri has [a great resource](https://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/h-how-zonal-statistics-works.htm) on how Zonal statistics works with other functions and raster 
 
@@ -237,7 +237,7 @@ tm_shape(london_ward_pop) +
   tm_polygons(col='layer')
 ```
 
-We now have a vector data set that we could go ahead and run many of the analyses that we have completed in previous weeks. Furthermore, we can use this data within other analyses we might want to complete - for example, if we are using population change as a specific variable to analyse another dataset that is only available as a vector data set / at the ward level. 
+We now have a vector data set that we could go ahead and run many of the analyses that we have completed in previous weeks. Furthermore, we can use this data within other analyses we might want to complete - for example, if we are using population change as a specific variable to analyse another data set that is only available as a vector data set / at the ward level. 
 
 :::note
 **Note** <br />
@@ -261,7 +261,7 @@ To predict the values of the cells of our resulting raster, we need to determine
 We will put some techniques into action by interpolating our air quality point data into a raster surface to understand further how air pollution varies across London.
 
 ### Loading data {#loading-data-w09-2}
-Before we get going within interpolating our pollution data set, let's first take a look at the distribution of the London Air monitoring sites in London. What are your thoughts about the distribution of the sites? Do you think they'll provide enough data for an accurate enough interpolation? 
+Before we get going within interpolating our pollution data set, let's first take a look at the distribution of the London Air monitoring sites in London. What are your thoughts about the distribution of the sites? Do you think they will provide enough data for an accurate enough interpolation? 
 
 ```{r 09-monitoring-in-london, out.width="550pt", echo=FALSE, fig.align='center', fig.cap='Locations of the London Air monitoring sites in London. Source: [Londonair 2020](https://www.londonair.org.uk/london/asp/publicdetails.asp).'}
 knitr::include_graphics('images/w09/london_air.png')
@@ -351,7 +351,7 @@ tm_shape(lonpollution_points) +
 Our proportional symbols map already tells us a little about our data set - we can see that NO~2~ levels are much higher towards the centre of London, although we can see some anomalies in the south-west, for example. But we can also see how and why a smoothed surface of our data **could** be really useful for further interpretation - and this is where interpolating our data comes in.
 
 #### Thiessen polygons
-The first step we can take to interpolate the data across space is to create Thiessen polygons. Thiessen polygons are formed to assign boundaries of the areas closest to each unique point. Therefore, for every point in a dataset, it has a corresponding Thiessen polygon. 
+The first step we can take to interpolate the data across space is to create Thiessen polygons. Thiessen polygons are formed to assign boundaries of the areas closest to each unique point. Therefore, for every point in a data set, it has a corresponding Thiessen polygon. 
 
 ```{r 09-thiessen, echo=FALSE, fig.align='center', out.width = "550pt", fig.cap='Creating a set of Thiessen polygons. Source: Esri 2020.'}
 knitr::include_graphics('images/w09/thiessen.jpg')
@@ -458,10 +458,10 @@ lon_poll_raster_idw <- raster(idw)
 crs(lon_poll_raster_idw) <- CRS("+init=epsg:27700")
 
 # mask our raster to only the london outline
-lon_idw <- rasterize(london_ward, lon_poll_raster_idw, mask=TRUE) 
+lon_idw_gstat <- rasterize(london_ward, lon_poll_raster_idw, mask=TRUE) 
   
 # plot the resulting raster
-plot(lon_idw)
+plot(lon_idw_gstat)
 ```
 
 Great - if this code has worked for you and you have generated an IDW raster, you can move onto the next task which is to create a proper map of our resulting IDW.
@@ -485,18 +485,64 @@ pollution_ppp <- ppp(x=points_xy[,1], y= points_xy[,2], marks=lonpollution_point
 ss_idw <- spatstat.core::idw(pollution_ppp, power = 2, at="pixels")
 
 # coerce our im output to raster
-lon_idw <- raster(ss_idw)
+lon_idw_sp <- raster(ss_idw)
  
 # set our raster CRS to BNG
-crs(lon_poll_raster_idw) <- CRS("+init=epsg:27700")
+crs(lon_idw_sp) <- CRS("+init=epsg:27700")
 
 # plot the resulting raster
-plot(lon_idw)
+plot(lon_idw_sp)
 ```
 
-You should see we actually get a similar result to the IDW of the `gstat` library - that is because our cell sizes resolutions are the same in both cases. We set our cell resolution as 450 x 450m above - and we can check the cell size of our `spatstat` IDW raster using a very simple command: `res(lon_idw)`. You will see that the IDW `spatstat` auto-generated a 450m cell size.
+You should see we actually get a similar result to the IDW of the `gstat` library - that is because our cell sizes resolutions are similar in both cases. We set our cell resolution as 450 x 450m above - and we can check the cell size of our `spatstat` IDW raster using a very simple command: `res(lon_idw)`. You will see that the IDW `spatstat` auto-generated a 456m cell size.
+
+##### Mapping the IDW raster
+We now have our final predicted raster surface. To map it, we can again use the `tm_raster()` function within our `tmap` "grammar of graphics" system. For our raster, the name of the layer we need to provide is `var1.pred` for those using the `gstat` result and simply `layer` for those using the `spatstat` result.
+
+```{r 09-idw-map-2, warnings=FALSE, message=FALSE, cache=TRUE, tidy=FALSE, echo=TRUE}
+# plot the gstat raster
+tm_shape(lon_idw_gstat) + 
+  tm_raster("var1.pred", style = "quantile", n = 100, palette = "Reds",
+            legend.show = FALSE) + 
+tm_shape(london_ward) + 
+  tm_borders(col = "white", lwd = 0.1)
+```  
+```{r 09-idw-map, warnings=FALSE, message=FALSE, cache=TRUE, tidy=FALSE, eval=TRUE}
+# plot the spatstat raster
+tm_shape(lon_idw_sp) + 
+  tm_raster("layer", style = "quantile", n = 100, palette = "Reds",
+            legend.show = FALSE) + 
+tm_shape(london_ward) + 
+  tm_borders(col = "white", lwd = 0.1)
+
+```
+
+And that's it - for those of you able to use the `gstat` code, it's highly worth playing around with the cell size to look at how it changes the smoothness of our resulting IDW. A smaller cell size will create a smoother IDW output, but it does add uncertainty to these estimates as we do not exactly have a substantial amount of data points to interpolate from.
+
+To help with minimising this uncertainty, there are two additional "data checking" steps you can take with your IDW output:
+
+1) Testing and fine-tuning the power function you have used to ensure it is a valid parameter by using something known as the *Leave One Out Cross Validation*.
+
+2) Generating a 95% confidence interval map of our interpolation mode using cross-validation methods.
+
+This is beyond the scope of this module, but if you would like to explore this you can found details on this in Manuel Gimond's tutorial on interpolation available here: [Link](https://mgimond.github.io/Spatial/interpolation-in-r.html)
+
+#### More raster
+A raster data set normally only contains **one layer**, i.e. one variable. Hence when we want to map a raster, we use the `tm_raster()` and provide the layer name for mapping. In our examples, this has been `layer` and `var1.pred`, for example. However, in some circumstances, such as with satellite imagery we will want to use the `tm_rgb()` function instead. This is because these types of rasters, instead of having a single layer, actually consist of **three** bands: a band with a red value, a band with a green value and a band with a blue value. This is known as "multi-band" imagery.
+
+To visualise multib-band images correctly, we therefore need to use the `tm_rgb()` function in order to stack our three bands together to create the appropriate visualisation. We can visualise each band independently of one another, however, you would see that you end up with either a nearly all red, green or blue image. This is also out of scope of this module, but if you are interested to learn more about [using satellite imagery with R](https://andrewmaclachlan.github.io/CASA0005repo/advanced-raster-analysis.html) this CASA tutorial is good place to start. Alternatively, you can also check Esri's help information on [Rasters and Raster Bands here](https://desktop.arcgis.com/en/arcmap/10.3/manage-data/raster-and-images/raster-bands.html).
+
+Learning how to use satellite imagery can be a really useful skill set, particularly as this type of data is being increasingly used human geography applications - as well as, of course, its more traditional applications in physical and environmental geography.
 
 ## Assignment 2 {#assignment-w09-02}
-We could, of course, look to return the **max** or **min**, or, for example, create monthly averages instead (and create 12 rasters!) - there's a lot we could do with just this single data set beyond what we'll look at today!
+For your final assignment this week, we want you to redo the IDW interpolation of the London pollution data for the months of **June** and **December** and see to what extent there are differences between these months. In order to do this you will, at least, need to:
+
+1. Create monthly averages for the pollution data. This will involve quite some data wrangling. Keep in mind that [Google is your friend](https://lmgtfy.app/?q=google+is+your+friend)!
+2. For both the month of **June** and **December** create a spatial dataframe containing the London monitoring sites and their average NO~2~ reading.
+3. Conduct an Inverse Distance Weighting interpolation for both months of data.
+4. Execute some map algebra to identify the areas where the results of the interpolation differ.
 
 ## Before you leave {#byl-w09}
+This week, we've looked at raster data sets and how we use the `raster` library to manage and process them. Specifically, we looked at using **map algebra** to apply mathematical operations to rasters, using local, global, focal and zonal approaches and how we use map algebra on either an individual or combination of rasters.
+
+We then looked at how we can use two different interpolation methods to generate raster data from point data. Understanding how to interpolate data correctly is incredibly important. Whilst in most instances you will be working with vector data, especially where government statistics and administrative boundaries are involved, there are also plenty of use cases in which you will need to generate raster data from point data, as we have done today. With that being said: [that is it for our final-to-last week in Geocomputation](https://www.youtube.com/watch?v=8iwBM_YB1sE).
