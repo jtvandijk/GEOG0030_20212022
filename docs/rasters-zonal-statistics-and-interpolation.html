@@ -24,7 +24,7 @@
 <meta name="author" content="Justin van Dijk" />
 
 
-<meta name="date" content="2021-12-10" />
+<meta name="date" content="2021-12-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="analysing-spatial-patterns-iii-point-pattern-analysis.html"/>
-<link rel="next" href="network-analysis.html"/>
+<link rel="next" href="transport-network-analysis.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -357,12 +357,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09-02"><i class="fa fa-check"></i><b>9.7</b> Assignment 2</a></li>
 <li class="chapter" data-level="9.8" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#byl-w09"><i class="fa fa-check"></i><b>9.8</b> Before you leave</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="network-analysis.html"><a href="network-analysis.html"><i class="fa fa-check"></i><b>10</b> Network Analysis</a>
+<li class="chapter" data-level="10" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html"><i class="fa fa-check"></i><b>10</b> Transport Network Analysis</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="network-analysis.html"><a href="network-analysis.html#recording-w10"><i class="fa fa-check"></i><b>10.1</b> Lecture recording</a></li>
-<li class="chapter" data-level="10.2" data-path="network-analysis.html"><a href="network-analysis.html#reading-w10"><i class="fa fa-check"></i><b>10.2</b> Reading list</a></li>
-<li class="chapter" data-level="10.3" data-path="network-analysis.html"><a href="network-analysis.html#assignment-w10"><i class="fa fa-check"></i><b>10.3</b> Assignment</a></li>
-<li class="chapter" data-level="10.4" data-path="network-analysis.html"><a href="network-analysis.html#byl-w10"><i class="fa fa-check"></i><b>10.4</b> Before you leave</a></li>
+<li class="chapter" data-level="10.1" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#network-analysis"><i class="fa fa-check"></i><b>10.1</b> Network Analysis</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#accessibility-to-fast-food-outlets"><i class="fa fa-check"></i><b>10.1.1</b> Accessibility to fast-food outlets</a></li>
+<li class="chapter" data-level="10.1.2" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#housekeeping-w10"><i class="fa fa-check"></i><b>10.1.2</b> Housekeeping</a></li>
+<li class="chapter" data-level="10.1.3" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#loading-data-w10"><i class="fa fa-check"></i><b>10.1.3</b> Loading data</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#accessibility-in-portsmouth"><i class="fa fa-check"></i><b>10.2</b> Accessibility in Portsmouth</a></li>
+<li class="chapter" data-level="10.3" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#assignment-w10"><i class="fa fa-check"></i><b>10.3</b> Assignment</a></li>
+<li class="chapter" data-level="10.4" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#byl-w10"><i class="fa fa-check"></i><b>10.4</b> Before you leave</a></li>
 </ul></li>
 </ul>
 
@@ -407,7 +412,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We will also use our London Wards (2018) administrative boundaries data set at various points within both practicals. This file should already be in your <code>raw/boundaries</code> folder.</p>
 <div id="housekeeping-w09" class="section level3" number="9.3.1">
 <h3><span class="header-section-number">9.3.1</span> Housekeeping</h3>
-<p>Let’s get ourselves ready to start our lecture and practical content by first downloading the relevant data and loading this within our script. Open a new script within your GEOG0030 project and save this script as <code>wk9-pollution-raster-analysis.r</code>.At the top of your script, add the following metadata (substitute accordingly):</p>
+<p>Let’s get ourselves ready to start our practical content by first downloading the relevant data and loading this within our script. Open a new script within your GEOG0030 project and save this script as <code>wk9-pollution-raster-analysis.r</code>.At the top of your script, add the following metadata (substitute accordingly):</p>
 <div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="rasters-zonal-statistics-and-interpolation.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysing population change and pollution in London</span></span>
 <span id="cb293-2"><a href="rasters-zonal-statistics-and-interpolation.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Data: January 2022</span></span>
 <span id="cb293-3"><a href="rasters-zonal-statistics-and-interpolation.html#cb293-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: Justin</span></span></code></pre></div>
@@ -947,7 +952,7 @@ Some of the following code will unfortunately not work with some recent versions
         </div>
       </div>
 <a href="analysing-spatial-patterns-iii-point-pattern-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="network-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="transport-network-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

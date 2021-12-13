@@ -43,7 +43,7 @@ The topics covered over the next ten weeks are:
 | 7             | Core Spatial Analysis | [Analysing Spatial Patterns II: Spatial Autocorrelation](analysing-spatial-patterns-ii-spatial-autocorrelation.html) |
 | 8             | Core Spatial Analysis | [Analysing Spatial Patterns III: Point Pattern Analysis](analysing-spatial-patterns-iii-point-pattern-analysis.html) |
 | 9             | Advanced Spatial Analysis | [Rasters, Zonal Statistics and Interpolation](rasters-zonal-statistics-and-interpolation.html) | 
-| 10            | Advanced Spatial Analysis | [Network Analysis](network-analysis.html) | 
+| 10            | Advanced Spatial Analysis | [Transport Network Analysis](transport-network-analysis.html) | 
 
 ## Troubleshooting {-}
 Spatial analysis can yield fascinating insights into geographical relationships. However, at times it can be difficult to work with - particularly when we combine this with learning how to program at the same time. You will get lots of error messages and have software crash, you will end up with bugs in your code that are difficult to find, and you may spend a whole day trying to track down a single data set. But the rewards of learning how to do all of this will become apparent. 

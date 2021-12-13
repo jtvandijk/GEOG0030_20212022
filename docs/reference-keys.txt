@@ -30,6 +30,7 @@ fig:09-raster-vector
 fig:09-raster-as-grid
 fig:09-monitoring-in-london
 fig:09-thiessen
+fig:09-network-graph
 geocomputation-an-introduction
 recording-w01
 reading-w01
@@ -201,8 +202,11 @@ mapping-the-idw-raster
 more-raster
 assignment-w09-02
 byl-w09
+transport-network-analysis
 network-analysis
-recording-w10
-reading-w10
+accessibility-to-fast-food-outlets
+housekeeping-w10
+loading-data-w10
+accessibility-in-portsmouth
 assignment-w10
 byl-w10

@@ -19,7 +19,7 @@ This week's content introduces you to raster data, map algebra and interpolation
 We will also use our London Wards (2018) administrative boundaries data set at various points within both practicals. This file should already be in your `raw/boundaries` folder.
 
 ### Housekeeping {#housekeeping-w09}
-Let's get ourselves ready to start our lecture and practical content by first downloading the relevant data and loading this within our script. Open a new script within your GEOG0030 project and save this script as `wk9-pollution-raster-analysis.r`.At the top of your script, add the following metadata (substitute accordingly):
+Let's get ourselves ready to start our practical content by first downloading the relevant data and loading this within our script. Open a new script within your GEOG0030 project and save this script as `wk9-pollution-raster-analysis.r`.At the top of your script, add the following metadata (substitute accordingly):
 
 ```{r 09-scr-title, warnings=FALSE, message=FALSE, cache=TRUE, tidy=FALSE}
 # Analysing population change and pollution in London
