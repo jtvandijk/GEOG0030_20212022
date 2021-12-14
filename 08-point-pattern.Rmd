@@ -9,7 +9,7 @@ This week, we will be looking at how we can use Point Pattern Analysis (PPA) to 
 - Reading #2
 
 ## Bike theft in London {#bike-theft-w08}
-This week, we continue to investigate bike theft in London in 2019 - as we look to confirm our very simple hypothesis: that bike theft primarily occurs near tube and train stations. This week, instead of looking at the distance of individual bike thefts from train stations, we will look to analyse the distribution of clusters in relation to the stations. We will first look at this visually and then look to compare these clusters to the location of train and tube stations quantitatively using geometric operations.
+This week, we again investigate bike theft in London in 2019 - as we look to confirm our very simple hypothesis: *that bike theft primarily occurs near tube and train stations.* This week, instead of looking at the distance of individual bike thefts from train stations, we will look to analyse the distribution of clusters in relation to the stations. We will first look at this visually and then look to compare these clusters to the location of train and tube stations quantitatively using geometric operations.
 
 To complete this analysis, we will again use the following data sets:
 - Bike theft in London for 2019 from [data.police.uk](https://tfl.gov.uk/)

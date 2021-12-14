@@ -13,7 +13,6 @@ tmap
 vembedr
 janitor
 RColorBrewer
-leaflet
 osmdata
 sp
 spData

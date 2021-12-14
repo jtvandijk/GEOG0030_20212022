@@ -12,7 +12,7 @@ This week, we will be looking at measuring spatial dependence. Spatial dependenc
 This week, we are using a completely new data set and investigating a different phenomena: **childhood obesity**. We will be investigating its distribution across London at the ward-level. To complete this analysis, we will be using a single data download from the [London Datastore](https://data.london.gov.uk/), which we will need to clean, wrangle and then join to one of our ward shapefiles in order to spatially investigate the distribution of childhood obesity.
 
 ### Housekeeping {#housekeeping-w07}
-Let's get ourselves ready to start our lecture and practical content by first downloading the relevant data and loading this within our script.
+Let's get ourselves ready to start our practical content by first downloading the relevant data and loading this within our script.
 
 Open a new script within your GEOG0030 project and save this script as `wk7-obesity-spatial-analysis.r`. At the top of your script, add the following metadata (substitute accordingly):
 

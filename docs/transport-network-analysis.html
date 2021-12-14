@@ -24,7 +24,7 @@
 <meta name="author" content="Justin van Dijk" />
 
 
-<meta name="date" content="2021-12-13" />
+<meta name="date" content="2021-12-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -433,7 +433,7 @@ All calculations within the <code>dodgr</code> library currently need to be run 
 <table>
 <thead>
 <tr class="header">
-<th align="left">File Name</th>
+<th align="left">File</th>
 <th align="left">File Type</th>
 <th align="left">Link</th>
 </tr>
@@ -525,7 +525,7 @@ The <code>dodgr</code> package documentation explains that components are number
 <span id="cb343-3"><a href="transport-network-analysis.html#cb343-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb343-4"><a href="transport-network-analysis.html#cb343-4" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect number of remaining road segments</span></span>
 <span id="cb343-5"><a href="transport-network-analysis.html#cb343-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(graph_connected)</span></code></pre></div>
-<pre><code>## [1] 53978</code></pre>
+<pre><code>## [1] 53980</code></pre>
 <div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="transport-network-analysis.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect on a plot</span></span>
 <span id="cb345-2"><a href="transport-network-analysis.html#cb345-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">dodgr_to_sf</span>(graph_connected), <span class="at">max.plot =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/network_graph_extract-1.png" width="672" /></p>
@@ -656,7 +656,7 @@ a distance matrix obtained from running <code>dodgr_distances</code> on <code>gr
 </div>
 <div id="assignment-w10" class="section level2" number="10.3">
 <h2><span class="header-section-number">10.3</span> Assignment</h2>
-<p>Now you have the number of fast-food outlets within specific distances from each school, the assignment for this week is to aggregate fast-food accessibility at the LSOA scale. After aggregating these distance calculations to the LSOA scale, you will then compare accessibility to the <a href="https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019">2019 Index of Multiple Deprivation</a>. In order to do this you will, at least, need to conduct some data:</p>
+<p>Now you have the number of fast-food outlets within specific distances from each school, the assignment for this week is to aggregate fast-food accessibility at the LSOA scale. After aggregating these distance calculations to the LSOA scale, you will then compare accessibility to the <a href="https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019">2019 Index of Multiple Deprivation</a>. In order to do this you will, at least, need to take the following steps:</p>
 <ol style="list-style-type: decimal">
 <li>Download and extract the 2011 LSOA boundaries of Portsmouth.</li>
 <li>Download the <a href="https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019">2019 Index of Multiple Deprivation</a> and prepare the file so that it can be read into R (i.e. create a <code>csv</code>).</li>
