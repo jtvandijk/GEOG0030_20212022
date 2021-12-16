@@ -217,7 +217,7 @@ We are going to need to make **multiple** joins between our tables as we have mu
 
 Let's have a look in detail at how the four different types of joins from `dplyr` work:
 
-```{r echo=FALSE, out.width = "550pt", fig.align='center', cache=TRUE}
+```{r 05-dplyr, echo=FALSE, out.width = "550pt", fig.align='center', cache=TRUE}
 knitr::include_graphics('images/w05/dplyr-joins.png')
 ```
 <br>
@@ -483,7 +483,7 @@ To change the *shape* of our data, we are going to need to use `tidyr`'s pivot f
 
 Our data is already pretty long - and we know we want to create new fields representing our months, so that seems to suggest that we should use `pivot_wider()`. We just need to first read through the documentation to figure out what parameters we need to use and how. Type `?pivot_wider` into the console to access the documentation.
 
-```{r echo=FALSE, fig.align='center', cache=TRUE, fig.cap='Documentatoin for the `pivot_wider()` function.'}
+```{r 05-pivot-wider, echo=FALSE, fig.align='center', cache=TRUE, fig.cap='Documentation for the `pivot_wider()` function.'}
 knitr::include_graphics('images/w05/pivot_wider.png')
 ```
 

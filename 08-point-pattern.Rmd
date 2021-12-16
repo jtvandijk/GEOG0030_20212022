@@ -1,12 +1,20 @@
 # Analysing Spatial Patterns III: Point Pattern Analysis
 This week, we will be looking at how we can use Point Pattern Analysis (PPA) to detect and delineate clusters within point data. Within point pattern analysis, we look to detect clusters or patterns across a set of points, including measuring density, dispersion and homogeneity in our point structures. There are several approaches to calculating and detecting these clusters, which are explained in our main lecture. We then deploy several PPA techniques, including Kernel Density Estimation, on our bike theft data to continue our investigation from the week before last.
 
-## Lecture recording {#recording-w08}
-- Lecture W8
+<!-- ## Lecture recording {#recording-w08} -->
+<!-- - Lecture W8 -->
 
 ## Reading list {#reading-w08}
-- Reading #1
-- Reading #2
+#### Essential readings {-}
+- Cheshire, J. and Longley, P. 2011. Identifying spatial concentrations of surnames. *International Journal of Geographical Information Science* 26(2), pp.309-325. [[Link]](https://doi.org/10.1080/13658816.2011.591291)
+- Longley, P. *et al.* 2015. Geographic Information Science & systems, **Chapter 12**: *Geovisualization*. [[Link]](https://rl.talis.com/3/ucl/items/fd38ec78-2bea-4165-aab3-0e9d9093db8e.html?lang=en-gb&login=1)
+- Yin, P. 2020. *Kernels and density estimation*. The Geographic Information Science & Technology Body of Knowledge. [[Link]](https://doi.org/10.22224/gistbok/2020.1.12)
+- Yuan, Y. *et al.* 2020. *Point Pattern Analysis*. The Geographic Information Science & Technology Body of Knowledge. [[Link]](https://doi.org/10.22224/gistbok/2020.1.13)
+
+#### Suggested readings {-}
+- Arribas-Bel, D., Garcia-López, M.-À., Viladecans-Marsal, E. 2021. Building(s and) cities: Delineating urban areas with a machine learning algorithm. *Journal of Urban Economics* 125: 103217. [[Link]](https://doi.org/10.1016/j.jue.2019.103217)
+- Van Dijk, J. and Longley, P. 2020. Interactive display of surnames distributions in historic and contemporary Great Britain. *Journal of Maps* 16, pp.58-76. [[Link]](https://doi.org/10.1080/17445647.2020.1746418)
+- Shi, X. 2010. Selection of bandwidth type and adjustment side in kernel density estimation over inhomogeneous backgrounds. *International Journal of Geographical Information Science* 24(5), pp.643-660. [[Link]](https://doi.org/10.1080/13658810902950625)
 
 ## Bike theft in London {#bike-theft-w08}
 This week, we again investigate bike theft in London in 2019 - as we look to confirm our very simple hypothesis: *that bike theft primarily occurs near tube and train stations.* This week, instead of looking at the distance of individual bike thefts from train stations, we will look to analyse the distribution of clusters in relation to the stations. We will first look at this visually and then look to compare these clusters to the location of train and tube stations quantitatively using geometric operations.
@@ -274,7 +282,7 @@ Whilst there are automated functions (e.g. based on maximum-likelihood estimatio
 
 When we use a different kernel type, we are looking to weight the points within our kernel differently:
 
-```{r echo=FALSE, out.width = "650pt", fig.align='center', cache=TRUE, fig.cap='Kernel Types and Their Distributions.'}
+```{r 08-kernels, echo=FALSE, out.width = "650pt", fig.align='center', cache=TRUE, fig.cap='Kernel Types and Their Distributions.'}
 knitr::include_graphics('images/w08/kerneltypes.png')
 ```
 
@@ -354,7 +362,7 @@ Distance-based measures analyze the spatial distribution of points using distanc
 ### Average Nearest Neighbour
 Average Nearest Neighbour (ANN) is the average distance between all points within a data set and their individual nearest point (known as Nearest-Neighbour Distance (NND)). ANN is used as a global indicator to measure the overall pattern of a point set. The ANN of a given point collection can be compared with the expected ANN from points following complete spatial randomness (CSR) to test whether our point data is clustered or dispersed ([Yuan *et al.* 2020)](https://gistbok.ucgis.org/bok-topics/point-pattern-analysis).
 
-```{r echo=FALSE, fig.align='center', cache=TRUE, tidy=TRUE, fig.cap='Relations between different point patterns and mean nearest neighbor distance (NND). Source: [Yuan *et al.* 2020](https://gistbok.ucgis.org/bok-topics/point-pattern-analysis).'}
+```{r 08-ann echo=FALSE, fig.align='center', cache=TRUE, tidy=TRUE, fig.cap='Relations between different point patterns and mean nearest neighbor distance (NND). Source: [Yuan *et al.* 2020](https://gistbok.ucgis.org/bok-topics/point-pattern-analysis).'}
 knitr::include_graphics('images/w08/ann_ppa.png')
 ```
 

@@ -3,12 +3,19 @@
 # Analysing Spatial Patterns I: Geometric Operations and Spatial Queries
 This week, we will be looking at the use of geometric operations and spatial queries within spatial data processing and analysis. Geometric operations and spatial queries are not really a theoretical topic per se in spatial "pattern" analysis but rather essential building blocks to overall spatial data processing and analysis. This is because - and the clue is in the name - they conduct incredibly useful operations and queries on or using the geometry of our data sets, from calculating the area covered by an individual polygon in an areal unit data set, or subsetting the spatial extent of a data set based on another, to running **buffer** and **point-in-polygon** calculations.
 
-## Lecture recording {#recording-w06}
-- Lecture W6
+<!-- ## Lecture recording {#recording-w06} -->
+<!-- - Lecture W6 -->
 
 ## Reading list {#reading-w06}
-- Reading #1
-- Reading #2
+#### Essential readings {-}
+- Lovelace, R., Nowosad, J. and Muenchow, J. 2021. Geocomputation with R, **Chapter 4**: *Spatial data operations*. [[Link]](https://geocompr.robinlovelace.net/spatial-operations.html)
+- Lovelace, R., Nowosad, J. and Muenchow, J. 2021. Geocomputation with R, **Chapter 5**: *Geometry operations*. [[Link]](https://geocompr.robinlovelace.net/geometric-operations.html)
+- Lovelace, R., Nowosad, J. and Muenchow, J. 2021. Geocomputation with R, **Chapter 6**: *Reprojecting geographic data*. [[Link]](https://geocompr.robinlovelace.net/reproj-geo-data.html)
+
+#### Suggested readings {-}
+- Houlden, V. *et al.* 2019. A spatial analysis of proximate greenspace and mental wellbeing in London. *Applied Geography* 109: 102036. [[Link]](https://doi.org/10.1016/j.apgeog.2019.102036)
+- Malleson, N. and Andresen, M. 2016. Exploring the impact of ambient population measures on London crime hotspots. *Journal of Criminal Justice* 46: 52-63. [[Link]](https://doi.org/10.1016/j.jcrimjus.2016.03.002)
+- Oliver, L., Schuurman, N. and Wall, A. 2007. Comparing circular and network buffers to examine the influence of land use on walking for leisure and errands. *International Journal of Health Geographics* 6: 41. [[Link]](https://doi.org/10.1186/1476-072X-6-41)
 
 ## Bike theft in London {#bike-theft-w06}
 This week, we will be investigating bike theft in London in 2019 - and look to confirm a very simple hypothesis: *that bike theft primarily occurs near tube and train stations.* We will be investigating its distribution across London using the point data provided within our crime data set. We will then compare this distribution to the location of train and tube stations using specific geometric operations and spatial queries that can compare the geometry of two (or more) data sets.
@@ -342,7 +349,7 @@ We will approach this question in two different ways to highlight the difference
 #### Geometric operations
 As highlighted above, the offset between our spatial dataframes adds a little complexity to our geometric operations code. To be able to make our direct spatial comparisons across our spatial dataframes, what we first need to do is try to **snap** the geometry of our `london_stations` spatial dataframe to our `london_stations_osm` spatial dataframe for points within a given distance threshold. This will mean that any points in the `london_stations` spatial dataframe that are within a specific distance of the `london_stations_osm` spatial dataframe will have their geometry changed to that of the `london_stations_osm` spatial dataframe.
 
-```{r echo=FALSE, fig.align='center', cache=TRUE, fig.cap='Snapping points to a line. In our case we snap our points to other points.'}
+```{r 06-snap1, echo=FALSE, fig.align='center', cache=TRUE, fig.cap='Snapping points to a line. In our case we snap our points to other points.'}
 knitr::include_graphics('images/w06/snap1.png')
 ```
 
@@ -447,7 +454,7 @@ Our first approach using geometric operations will involve the creation of a **b
 
 When it comes to buffers, we need to consider two main things - what distance will we use (and are we in the right CRS to use a buffer) and whether we want individual buffers or a single buffer.
 
-```{r echo=FALSE, fig.align='center', out.width='500pt', cache=TRUE, fig.cap='A single versus multiple buffer. The single buffer represents a dissolved version of the multiple buffer option. Source: Q-GIS, 2020.'}
+```{r 06-buffer-buffer, echo=FALSE, fig.align='center', out.width='500pt', cache=TRUE, fig.cap='A single versus multiple buffer. The single buffer represents a dissolved version of the multiple buffer option. Source: Q-GIS, 2020.'}
 knitr::include_graphics('images/w06/buffer.png')
 ```
 

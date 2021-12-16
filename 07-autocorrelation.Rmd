@@ -1,12 +1,20 @@
 # Analysing Spatial Patterns II: Spatial Autocorrelation 
 This week, we will be looking at measuring spatial dependence. Spatial dependence is the idea that the observed value of a variable in one location is  dependent (to some degree) on the observed value of the same value in a nearby location. For spatial analysis, this dependence can be assessed and measured statistically by considering the level of spatial autocorrelation between values of a specific variable, observed in either different locations or between pairs of variables observed at the same location. Spatial autocorrelation occurs when these values are not independent of one another and instead cluster together across geographic space.
 
-## Lecture recording {#recording-w07}
-- Lecture W7
+<!-- ## Lecture recording {#recording-w07} -->
+<!-- - Lecture W7 -->
 
 ## Reading list {#reading-w07}
-- Reading #1
-- Reading #2
+#### Essential readings {-}
+- Griffith, D. 2017. *Spatial Autocorrelation*. The Geographic Information Science & Technology Body of Knowledge. [[Link]](https://doi.org/10.22224/gistbok/2020.3.10)
+- Gimond, M. 2021. Intro to GIS and spatial analysis. **Chapter 13**: *Spatial autocorrelation*. [[Link]](https://mgimond.github.io/Spatial/spatial-autocorrelation.html)
+- Livings, M. and Wu, A-M. 2020. *Local Measures of Spatial Association*. The Geographic Information Science & Technology Body of Knowledge. [[Link]](https://doi.org/10.22224/gistbok/2020.3.10)
+- Longley, P. *et al*. 2015. Geographic Information Science & systems, **Chapter 13**: *Spatial Analysis*. [[Link]](https://rl.talis.com/3/ucl/items/fd38ec78-2bea-4165-aab3-0e9d9093db8e.html?lang=en-gb&login=1)
+
+#### Suggested readings {-}
+- Brundson, C. and Comber, L. 2018. An Introduction to R for Spatial Analysis and Mapping. **Chapter 7**: *Spatial Attribute Analysis with R*. [[Link]](https://ucl.userservices.exlibrisgroup.com/view/action/uresolver.do?operation=resolveService&package_service_id=10347667960004761&institutionId=4761&customerId=4760)
+- Lee, S. 2019. Uncertainty in the effects of the modifiable areal unit problem under different levels of spatial autocorrelation: a simulation study. *International Journal of Geographical Information Science* 33: 1135-1154. [[Link]](https://doi.org/10.1080/13658816.2018.1542699)
+- Harris, R. 2020. Exploring the neighbourhood-level correlates of Covid-19 deaths in London using a difference across spatial boundaries method. *Health & Place* 66: 102446. [[Link]](https://doi.org/10.1016/j.healthplace.2020.102446)
 
 ## Childhood obesity
 This week, we are using a completely new data set and investigating a different phenomena: **childhood obesity**. We will be investigating its distribution across London at the ward-level. To complete this analysis, we will be using a single data download from the [London Datastore](https://data.london.gov.uk/), which we will need to clean, wrangle and then join to one of our ward shapefiles in order to spatially investigate the distribution of childhood obesity.
@@ -59,7 +67,7 @@ The main data set utilises the **2011 Ward Boundaries as its spatial representat
     + Copy and paste all contents of the page into a text editor such as Notepad and save your pasted contents as `ward-atlas-data.csv` in your **raw** data folder in a new `atlas` folder - make sure to add the `.csv` to the end of your file name to save your text file as a `csv`. 
     + Click back to the data set page, right-click on the `ward-atlas-data.csv` name and select **Download Linked File** from your computer's options. Move this into your `raw` data folder in a new `atlas` folder.
 
-```{r echo=FALSE, out.width = "450pt", fig.align='center', cache=TRUE, fig.cap='Download linked file.'}
+```{r 07-download-gif, echo=FALSE, out.width = "450pt", fig.align='center', cache=TRUE, fig.cap='Download linked file.'}
 knitr::include_graphics('images/w07/download_shot.gif')
 ```
 
@@ -187,7 +195,7 @@ hist(obesity_ward_sdf$y6_obesity_2014)
 
 We can actually see our data has a slight negative skew - which would make sense given that our median is higher than our mean.
 
-```{r echo=FALSE, fig.align='center', cache=TRUE, fig.cap='Cheatsheet on data distributions: negative skew, normal, positive skew.'}
+```{r 07-data-distro, echo=FALSE, fig.align='center', cache=TRUE, fig.cap='Cheatsheet on data distributions: negative skew, normal, positive skew.'}
 knitr::include_graphics('images/w07/distributions.png')
 ```
 
@@ -215,7 +223,7 @@ You should now see the image appear in the folder that you specified (e.g. `data
 
 Another type of chart we can create just using the base R library is a **boxplot**.
 
-```{r echo=FALSE, out.width = "650pt", fig.align='center', cache=TRUE, fig.cap='Simple boxplot.'}
+```{r 07-boxplot, echo=FALSE, out.width = "650pt", fig.align='center', cache=TRUE, fig.cap='Simple boxplot.'}
 knitr::include_graphics('images/w07/boxplot.png')
 ```
 
@@ -254,7 +262,7 @@ tm_shape(obesity_ward_sdf) +
   tm_facets(ncol = 3)
 ``` 
 
-```{r echo=FALSE, fig.align='center', cache=TRUE, out.width="1000pt"}
+```{r 07-facet-plot, echo=FALSE, fig.align='center', cache=TRUE, out.width="1000pt"}
 knitr::include_graphics('images/w07/facet_plot.png')
 ```
 
@@ -282,7 +290,7 @@ tm_shape(obesity_ward_sdf) +
   tm_scale_bar(breaks = c(0, 5, 10, 15, 20), position = c("left", "bottom"))
 ``` 
 
-```{r echo=FALSE, fig.align='center', cache=TRUE, out.width="1000pt"}
+```{r 07-obesity-plot, echo=FALSE, fig.align='center', cache=TRUE, out.width="1000pt"}
 knitr::include_graphics('images/w07/obesity_plot.png')
 ```
 
@@ -326,13 +334,13 @@ Underlying our global Moran's I test is the concept of a **spatial lag model**. 
 
 An Ordinary Least Squares (OLS) regression is used to fit the data and produce a slope, which determines the Moran's I statistic:
 
-```{r echo=FALSE, fig.align='center', cache=TRUE, fig.cap='A spatial lag model - plotting value against the mean of its neighbours. Source: [Manuel Gimond](https://mgimond.github.io/Spatial/spatial-autocorrelation.html).'}
+```{r 07-moran-plt, echo=FALSE, fig.align='center', cache=TRUE, fig.cap='A spatial lag model - plotting value against the mean of its neighbours. Source: [Manuel Gimond](https://mgimond.github.io/Spatial/spatial-autocorrelation.html).'}
 knitr::include_graphics('images/w07/MoranI_scatter_plot.png')
 ```
 
 To determine a $p$-value from our model for global Moran's I, this spatial lag model is computed multiple times (think hundreds, thousands) but uses a random distribution of neighbouring values to determine different slopes for multiple ways our data *could* be distributed, if our data was distributed by random. The output of this test is a sampling distribution of Moran's I values that would confirm a null hypothesis that our values are randomly distributed. These slopes are then compared to compare our *observed* slope versus our *random* slopes and identify whether the slope is within the main distribution of these values or an outlier:
 
-```{r echo=FALSE, fig.align='center', cache=TRUE, fig.cap='A spatial lag model - plotting value against the mean of its neighbours. Source: Manuel Gimond.'}
+```{r 07-spatial-lag-plt, echo=FALSE, fig.align='center', cache=TRUE, fig.cap='A spatial lag model - plotting value against the mean of its neighbours. Source: Manuel Gimond.'}
 knitr::include_graphics('images/w07/MC_sim_1.png')
 ```
 
@@ -352,7 +360,7 @@ These 'neighbouring' observations can be defined in a multitude of ways, based e
 * **Fixed Distance** neighbours: Euclidean Distance (e.g. within 2km)
 * **(K) Nearest Neighbours**: Certain *n* number of closest neighbours
 
-```{r echo=FALSE, fig.align='center', cache=TRUE, fig.cap='Different approaches of conceptualising neighbours for spatial autocorrelation measurement: contiguity, fixed distance and nearest neighbours. Source: [Manuel Gimond](https://mgimond.github.io/Spatial/spatial-autocorrelation.html).'}
+```{r 07-neighbours, echo=FALSE, fig.align='center', cache=TRUE, fig.cap='Different approaches of conceptualising neighbours for spatial autocorrelation measurement: contiguity, fixed distance and nearest neighbours. Source: [Manuel Gimond](https://mgimond.github.io/Spatial/spatial-autocorrelation.html).'}
 knitr::include_graphics('images/w07/iffn.png')
 ```
 

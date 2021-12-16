@@ -21,7 +21,7 @@ The practical component of the week puts some of these learnings into practice w
 ## Simple digitisation of spatial features
 To get spatial features in a digital form, they need to be digitised. Let’s take what should be a straight-forward example of digitising the River Thames in London.
 
-```{r echo=FALSE, fig.align='center', cache=TRUE, fig.cap='The Thames.'}
+```{r 02-digitise, echo=FALSE, fig.align='center', cache=TRUE, fig.cap='The Thames.'}
 knitr::include_graphics('images/w02/river_thames.png')
 ```
 
@@ -55,7 +55,7 @@ Along with the idea that **80% of data is geographic data**, the second most oft
 
 One of the reasons behind this need for a substantial amount of processing is that the data you often need to use is not in the format that you require for analysis. For example, for our investigation, there is not a ‘ready-made’ spatial population data set (i.e. population `shapefile`) we can download to explore population change across England:
 
-```{r echo=FALSE, fig.align='center', fig.cap='Alas a quick Google search shows that finding a shapefile of England\'s population is incredibly difficult.'}
+```{r 02-google-shp, echo=FALSE, fig.align='center', fig.cap='Alas a quick Google search shows that finding a shapefile of England\'s population is incredibly difficult.'}
 knitr::include_graphics('images/w02/datasearch.png')
 ```
 
@@ -132,7 +132,7 @@ MapInfo is another proprietary GIS software, which has historically been used in
 3. In your `GEOG0030/data/raw/` folder, create a new folder called `boundaries`. Within this folder, create three new folders: `2011`, `2014` and `2018`.
 4. Copy the entire contents of `Esri` folder of each year into their respective year folder within your new `boundaries` folder. We **do not** want to add the additional `Esri` folder as a step in our filesystem, i.e. your file path should read: `GEOG0030/data/raw/boundaries/2011` for the 2011 boundaries and `GEOG0030/data/raw/boundaries/2014` for the 2014 boundaries etc.
 
-```{r echo=FALSE, fig.align='center', fig.cap='Your setup should look something like this.'}
+```{r 02-setup, echo=FALSE, fig.align='center', fig.cap='Your setup should look something like this.'}
 knitr::include_graphics('images/w02/w2files.png')
 ```
 
@@ -287,7 +287,7 @@ Before adding our population data, we can make a quick map of the wards in Londo
 
 11. QGIS will default to the **NAME** column within our data. You can change the properties of these labels using the options available. Change the font to **Futura** and size **8** and under the add a small buffer to the labels by selecting **Draw text bufer** under the **Buffer** tab. You can click **Apply** to see what your labels look like. Please note that the background colour may differ.
 
-```{r echo=FALSE, fig.align='center', fig.cap='It looks incredibly busy.'}
+```{r 02-busy-labels, echo=FALSE, fig.align='center', fig.cap='It looks incredibly busy.'}
 knitr::include_graphics('images/w02/wardlabels.png')
 ```
 
@@ -321,7 +321,7 @@ We can now join this table data to our spatial data using an **Attribute Join**.
 **Note**<br>
 An attribute join is one of two types of data joins you will use in spatial analysis (the other is a spatial join, which we will look at later on in the module). An attribute join essentially allows you to join two data sets together, as long as they share a common attribute to facilitate the ‘matching’ of rows:
 
-```{r echo=FALSE, fig.align='center', fig.caps='Figure from Esri documentation on Attribute Joins.'}
+```{r 02-join-those-attributes, echo=FALSE, fig.align='center', fig.caps='Figure from Esri documentation on Attribute Joins.'}
 knitr::include_graphics('images/w02/attribute_joins.png')
 ```
 
@@ -389,7 +389,7 @@ Feel free to explore using the different options with your data set at the momen
 
 You should now be looking at something like this:
 
-```{r echo=FALSE, fig.align='center', fig.cap='Your result.'}
+```{r 02-ward-result, echo=FALSE, fig.align='center', fig.cap='Your result.'}
 knitr::include_graphics('images/w02/ward_2011.png')
 ```
 

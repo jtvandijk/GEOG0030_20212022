@@ -3,12 +3,18 @@
 # Rasters, Zonal Statistics and Interpolation
 So far, the majority of our module has focused on the use of vector data and table data (that we have then joined to vector data). This week, we switch it up by focusing primarily on raster data and its analysis using map algebra and zonal statistics.
 
-## Lecture recording {#recording-w09}
-- Lecture W9
+<!-- ## Lecture recording {#recording-w09} -->
+<!-- - Lecture W9 -->
 
 ## Reading list {#reading-w09}
-- Reading #1
-- Reading #2
+#### Essential readings {-}
+- Dugoua, E. Kennedy, R. and Urpelainen, J. 2018. Satellite data for the social sciences: measuring rural electrification with night-time lights. *International Journal of Remote Sensing* 39(9): 2690-2701. [[Link]](https://doi.org/10.1080/01431161.2017.1420936)
+- Gimond, M. 2021. Intro to GIS and spatial analysis. **Chapter 14**: *Spatial Interpolation*. [[Link]](https://mgimond.github.io/Spatial/spatial-interpolation.html)
+- Jumaah, H. *et al.* 2019. Air quality index prediction using IDW geostatistical technique and OLS-based GIS technique in Kuala Lumpur, Malaysia. *Geomatics, Natural Hazards and Risk* 10(1): 2185-2199. [[Link]](https://doi.org/10.1080/19475705.2019.1683084)
+
+#### Suggested readings {-}
+- Ferreira, T. 2018. Using satellite data to track socio-economic outcomes: a case study of Namibia. *Stellenbosch Working Paper Series* WP12/2018. [[Link]](https://www.ekon.sun.ac.za/wpapers/2018/wp122018)
+- Mellander, C. *et al.* 2015. Night-time light data: a good proxy measure for economic activity? *PLoS ONE* 10(10): e0139779. [[Link]](https://doi.org/10.1371/journal.pone.0139779)
 
 ## Raster data 
 This week's content introduces you to raster data, map algebra and interpolation. After first looking at population change in London using raster data, we will then look at generating pollution maps in London from individual point readings taken from air quality monitoring sites across London. To complete this analysis, we will be using several new data sets:

@@ -72,7 +72,7 @@ You should all have access to some form of R - whether this is on your personal 
 
 RStudio has various windows that you use for different purposes - and you can customise its layout dependent on your preference. When you first open R-Studio, it should look a little something like this:
 
-```{r 01-rstudio-interface-script, echo=FALSE, fig.align='center', fig.cap='RStudio on RStudio Server.'}
+```{r 04-rstudio-interface-script, echo=FALSE, fig.align='center', fig.cap='RStudio on RStudio Server.'}
 knitr::include_graphics('images/w04/rstudio_interface.png')
 ```
 

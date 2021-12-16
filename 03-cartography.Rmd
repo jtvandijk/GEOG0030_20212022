@@ -139,7 +139,7 @@ You may be wondering whether we are not using the incorrect CRS for our data. As
 
 You should now see your crime data set displayed on the map.
 
-```{r echo=FALSE, fig.align='center', fig.cap='Borough map with crime data.'}
+```{r 03-borough-crime, echo=FALSE, fig.align='center', fig.cap='Borough map with crime data.'}
 knitr::include_graphics('images/w03/crime_unproj.png')
 ```
 
@@ -275,7 +275,7 @@ To start with creating a map, you use the **Add Map** tool to draw a box in whic
 
 1. Click on the **Add Map** tool and draw a box in the first half of our map to load our current map. Note, you can move your map around and resize the box simply by clicking on it as you would in Word etc.
 
-```{r echo=FALSE, fig.align='center', fig.cap='Current active map in the Print Layout.'}
+```{r 03-map-print-layout, echo=FALSE, fig.align='center', fig.cap='Current active map in the Print Layout.'}
 knitr::include_graphics('images/w03/map_layout.png')
 ```
     
@@ -296,7 +296,7 @@ Now we have added our first map to our Map Layout, we want to add a **Legend** f
 
 3. Click on the **Add Legend** tool and again, draw a box on your map in which your legend will appear.
     + As you will see, your Legend auto-generates an entry for every layer in our Layers box in the main QGIS application:
-    ```{r echo=FALSE, fig.align='center', fig.caption='The automatically generated legend for your map.'}
+    ```{r 03-map-legend, echo=FALSE, fig.align='center', fig.caption='The automatically generated legend for your map.'}
 knitr::include_graphics('images/w03/autolegend.png')
 ```
     + In **Item Properties**, uncheck **auto-update** - this stops QGIS automatically populating your legend and enables you to customise your legend.
@@ -348,7 +348,7 @@ We will not at this time add anything else - an inset map could be nice, but thi
   
 Once you have added these properties in, you should have something that looks a little like this:  
 
-```{r echo=FALSE, fig.align='center', fig.cap='Crime rates in London boroughs and wards. Note that the numbers in the legend may differ from the numbers in your own legend.'}
+```{r 03-finale-map, echo=FALSE, fig.align='center', fig.cap='Crime rates in London boroughs and wards. Note that the numbers in the legend may differ from the numbers in your own legend.'}
 knitr::include_graphics('images/w03/london_crime_rate.png') 
 ```
 
