@@ -1,12 +1,20 @@
 # Programming for Spatial Analysis
 This week we are going to look at how to use R and RStudio as a piece of GIS software. Like last week, we will be completing an analysis of our theft crime data set in London. However, rather than solely looking at crime change over time, we are going to add in a spatial component to our analysis: how has crime changed across our wards over the year.
 
-## Lecture recording {#recording-w05}
-- Lecture W5
+<!-- ## Lecture recording {#recording-w05} -->
+<!-- - Lecture W5 -->
 
 ## Reading list {#reading-w05}
-- Reading #1
-- Reading #2
+#### Essential readings {-}
+- Longley, P. *et al.* 2015. Geographic Information Science & systems, **Chapter 13**: *Spatial Analysis*. [[Link]](https://rl.talis.com/3/ucl/items/fd38ec78-2bea-4165-aab3-0e9d9093db8e.html?lang=en-gb&login=1)
+- Lovelace, R., Nowosad, J. and Muenchow, J. 2021. Geocomputation with R, **Chapter 2**: *Geographic Data in R*. [[Link]](https://geocompr.robinlovelace.net/spatial-class.html)
+- Lovelace, R., Nowosad, J. and Muenchow, J. 2021. Geocomputation with R, **Chapter 3**: *Attribute data operations*. [[Link]](https://geocompr.robinlovelace.net/geometric-operations.html)
+- Lovelace, R., Nowosad, J. and Muenchow, J. 2021. Geocomputation with R, **Chapter 8**: *Making maps with R*. [[Link]](https://geocompr.robinlovelace.net/adv-map.html)
+
+#### Suggested readings {-}
+- Poorthuis, A. and Zook, M. 2020. Being smarter about space: Drawing lessons from spatial science. *Annals of the American Association of Geographers* 110(2): 349-359. [[Link]](https://doi.org/10.1080/24694452.2019.1674630)
+- De Smith, M, Goodchild, M. and Longley, P. 2018. Geospatial analsyis. A Comprehensive guide to principles techniques and software tools. **Chapter 9**: *Big Data and geospatial analysis*. [[Link]](https://arxiv.org/pdf/1902.06672.pdf)
+- Radil, S. 2016. Spatial analysis of crime. *The Handbook of Measurement Issues in Criminology and Criminal Justice* 536-554. [[Link]](https://doi.org/10.1002/9781118868799.ch24)
 
 ## Crime analysis II
 To analyse crime by ward over time, we will go through several steps of data preparation ('data wrangling') before joining our data to ward polygons. Specifically, we will:

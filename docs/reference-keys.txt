@@ -32,7 +32,6 @@ fig:09-monitoring-in-london
 fig:09-thiessen
 fig:09-network-graph
 geocomputation-an-introduction
-recording-w01
 reading-w01
 getting-started
 software
@@ -43,7 +42,6 @@ a-note-on-arcgis
 file-management
 byl-w01
 giscience-and-gis-software
-recording-w02
 reading-w02
 simple-digitisation-of-spatial-features
 population-change-in-london
@@ -61,7 +59,6 @@ exporting-map-for-visual-analysis
 assignment-w02
 byl-w02
 cartography-and-visualisation
-recording-w03
 reading-w03
 crime-in-london
 w03-finding
@@ -74,7 +71,6 @@ mapping-our-crime-data
 assignment-w03
 byl-w03
 programming-for-data-analysis
-recording-w04
 reading-w04
 programming
 programming-in-r
@@ -105,7 +101,6 @@ inspecting-data-in-r
 assignment-w04
 byl-w04
 programming-for-spatial-analysis
-recording-w05
 reading-w05
 crime-analysis-ii
 data-preparation

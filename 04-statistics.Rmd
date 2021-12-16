@@ -4,12 +4,21 @@ This week’s content introduces you to the foundational concepts associated wit
 - General principles of programming
 - How to use R and RStudio effectively for programmatical data analysis
 
-## Lecture recording {#recording-w04}
-- Lecture W4
+<!-- ## Lecture recording {#recording-w04} -->
+<!-- - Lecture W4 -->
 
 ## Reading list {#reading-w04}
-- Reading #1
-- Reading #2
+#### Essential readings {-}
+- Brundson, C. and Comber, L. 2018. An Introduction to R for Spatial Analysis and Mapping. **Chapter 2**: *Data and Plots*. [[Link]](https://ucl.userservices.exlibrisgroup.com/view/action/uresolver.do?operation=resolveService&package_service_id=10347667960004761&institutionId=4761&customerId=4760)
+- Hadley, W. 2017. R for Data Science. **Chapter 3**: *Data visualisation*. [[Link]](https://r4ds.had.co.nz/data-visualisation.html)
+- Hadley, W. 2017. R for Data Science. **Chapter 4**: *Workflow: basics*. [[Link]](https://r4ds.had.co.nz/workflow-basics.html)
+- Hadley, W. 2017. R for Data Science. **Chapter 5**: *Data transformation*. [[Link]](https://r4ds.had.co.nz/transform.html)
+- Hadley, W. 2017. R for Data Science. **Chapter 6**: *Workflow: scripts*. [[Link]](https://r4ds.had.co.nz/workflow-scripts.html)
+- Lovelace, R., Nowosad, J. and Muenchow, J. 2021. Geocomputation with R, **Chapter 1**: Introduction. [[Link]](https://geocompr.robinlovelace.net/intro.html)
+
+#### Suggested readings {-}
+- Arribas-Bel, D. *et al*. 2021. Open data products - A framework for creating valuable analysis ready data. *Journal of Geographical Systems* 23: 497-514. [[Link]](https://doi.org/10.1007/s10109-021-00363-5)
+- Brundson, C. and Comber, L. 2018. An Introduction to R for Spatial Analysis and Mapping. **Chapter 4**: *Scripting and Writing Functions in R*. [[Link]](https://ucl.userservices.exlibrisgroup.com/view/action/uresolver.do?operation=resolveService&package_service_id=10347667960004761&institutionId=4761&customerId=4760)
 
 ## Programming
 Programming is our most fundamental way of interacting with a computer - it was how computers were first built and operated - and for a long time, the Command Line Interface (CLI) was our primary way of using computers before our Graphical User Interface (GUI) Operating Systems (OS) and software became mainstream.
@@ -772,4 +781,4 @@ barplot(theft_month_df$crime_totals, main="Theft from persons in London by month
 Now, make sure to save your script, so we can return to it next week. You do not need to save your workspace - but can do so if you like. Saving the workspace will keep any variables generated during your current session saved and available in a future session.
 
 ## Before you leave {#byl-w04}
-We have managed to take a data set of over one million records and clean and filter it to provide a chart that actually shows the potential impact of the COVID-19 lockdown on theft crime in London. Of course, there is a lot more research and exploratory data analysis we would need to complete before we could really substantiate our findings, but this first chart is certainly a step in the right direction. Next week, we will be doing a lot more with our data set - including a lot more data wrangling and of course spatial analysis, but hopefully this week has shown you want you can achieve with just a few lines of code. [That concludes the tutorial for this week](https://www.youtube.com/watch?v=NKyYr2pbXUM).
+We have managed to take a data set of over one million records and clean and filter it to provide a chart that actually shows the potential impact of the first COVID-19 lockdown on theft crime in London. Of course, there is a lot more research and exploratory data analysis we would need to complete before we could really substantiate our findings, but this first chart is certainly a step in the right direction. Next week, we will be doing a lot more with our data set - including a lot more data wrangling and of course spatial analysis, but hopefully this week has shown you want you can achieve with just a few lines of code. [That concludes the tutorial for this week](https://www.youtube.com/watch?v=NKyYr2pbXUM).
