@@ -362,7 +362,7 @@ Distance-based measures analyze the spatial distribution of points using distanc
 ### Average Nearest Neighbour
 Average Nearest Neighbour (ANN) is the average distance between all points within a data set and their individual nearest point (known as Nearest-Neighbour Distance (NND)). ANN is used as a global indicator to measure the overall pattern of a point set. The ANN of a given point collection can be compared with the expected ANN from points following complete spatial randomness (CSR) to test whether our point data is clustered or dispersed ([Yuan *et al.* 2020)](https://gistbok.ucgis.org/bok-topics/point-pattern-analysis).
 
-```{r 08-ann echo=FALSE, fig.align='center', cache=TRUE, tidy=TRUE, fig.cap='Relations between different point patterns and mean nearest neighbor distance (NND). Source: [Yuan *et al.* 2020](https://gistbok.ucgis.org/bok-topics/point-pattern-analysis).'}
+```{r 08-ann, echo=FALSE, fig.align='center', cache=TRUE, tidy=TRUE, fig.cap='Relations between different point patterns and mean nearest neighbor distance (NND). Source: [Yuan *et al.* 2020](https://gistbok.ucgis.org/bok-topics/point-pattern-analysis).'}
 knitr::include_graphics('images/w08/ann_ppa.png')
 ```
 
