@@ -3331,7 +3331,7 @@ You should now see the image appear in the folder that you specified (e.g. `data
 
 Another type of chart we can create just using the base R library is a **boxplot**.
 
-```{r 07-boxplot, echo=FALSE, out.width = "650pt", fig.align='center', cache=TRUE, fig.cap='Simple boxplot.'}
+```{r 07-boxplot-img, echo=FALSE, out.width = "650pt", fig.align='center', cache=TRUE, fig.cap='Simple boxplot.'}
 knitr::include_graphics('images/w07/boxplot.png')
 ```
 
