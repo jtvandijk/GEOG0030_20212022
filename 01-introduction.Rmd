@@ -1,6 +1,6 @@
 # (PART\*) Foundational Concepts {-}
 # Geocomputation: An Introduction
-This week’s lecture provided you with a thorough introduction into what is Geocomputation, outlining how and why it is different to a traditional ‘GIScience’ course. We set the scene for the remainder of the module and explained how the foundational concepts that you will learn about in the first half of term fit together to form the overall Geocomputation curriculum. There is no actual computer practical this week, but you will need to complete a few practical tasks in preparation for our future practicals.
+This week’s lecture provided you with a thorough introduction into what is Geocomputation, outlining how and why it is different to a traditional ‘GIScience’ course. We set the scene for the remainder of the module and explained how the foundational concepts that you will learn about in the first half of term fit together to form the overall Geocomputation curriculum. There is no actual hands-on computer tutorial this week, but you will need to complete a few practical tasks in preparation for our future practicals.
 
 <!-- ## Lecture recording {#recording-w01} -->
 <!-- - Lecture W1 -->
@@ -87,7 +87,7 @@ Recent developments in the ArcPro software, however, does make it an attractive 
 ## File management
 Establishing an organised file system, for both your data and your documents, is essential to working effectively and efficiently as a researcher, whether in Geocomputation, Spatial Data Science or any other application you might think of.
 
-To get ready for our practicals, we would recommend you to set-up a file management system as follows (either on your local computer, [Desktop@UCL Anywhere](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere) or [RStudio server](https://rstudio.data-science.rc.ucl.ac.uk/)).
+To get ready for our tutorials, we would recommend you to set-up a file management system as follows (either on your local computer, [Desktop@UCL Anywhere](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere) or [RStudio server](https://rstudio.data-science.rc.ucl.ac.uk/)).
 
 1. Create a `GEOG0030` folder in your `Documents` folder on your computer (most likely inside a UCL or Undergraduate or Geography folder).
 2. Next, within your **GEOG0030** folder, create the following subfolders: 
@@ -96,7 +96,7 @@ To get ready for our practicals, we would recommend you to set-up a file managem
 | :----        | :----------- |
 | `data`      | To store both raw data sets and final outputs. |
 | `slides`    | To store a copy of the lecture slides. |
-| `maps`      | To save the maps you produce during your practicals. |
+| `maps`      | To save the maps you produce during your tutorials |
 | `qgis`      | To save any data related to QGIS. |
 | `notes`     | To store your notes, codebook, etc. |
 

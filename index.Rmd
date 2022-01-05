@@ -26,7 +26,7 @@ Welcome to **Geocomputation**, a course that introduces you to both the principl
 Over the next ten weeks, you will learn about the theory, methods and tools of spatial analysis whilst implementing small research projects, first using QGIS, and then using the R programming language within the RStudio software environment. You will learn how to find, manage and clean spatial, demographic and socio-economic data sets, and then analyse them using core spatial and statistical analysis techniques. 
 
 ## Moodle {-}
-[Moodle](https://moodle.ucl.ac.uk/) is the central point of your learning experience for GEOG0030 and it is where all important information will be communicated such as key module and assessment information. This workbook contains all reading material as well as the content of all computer practicals.
+[Moodle](https://moodle.ucl.ac.uk/) is the central point of your learning experience for GEOG0030 and it is where all important information will be communicated such as key module and assessment information. This workbook contains links to all reading material as well as the content of all computer practicals.
 
 ## Module overview {-}
 The topics covered over the next ten weeks are:
