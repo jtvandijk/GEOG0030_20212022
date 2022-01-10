@@ -48,7 +48,7 @@ R is both a programming language and software environment - in the form of RStud
 Installing R takes a few relatively simple steps involving two programmes. First there is the R programme itself. Follow these steps to get it installed on your computer:
 
 1. Navigate in your browser to your nearest CRAN mirror: [[Link]](https://cran.ma.imperial.ac.uk/)
-2. If you use a Windows computer, click on *Download R for Windows*. Then click on *base*.  Download and install **R 4.1.1 for Windows**. If you use a Mac computer, click on *Download R for macOS* and download and install **R-4.1.1.pkg**
+2. If you use a Windows computer, click on *Download R for Windows*. Then click on *base*.  Download and install **R 4.1.x for Windows**. If you use a Mac computer, click on *Download R for macOS* and download and install **R-4.1.x.pkg**
 
 That is it! You now have installed the latest version of R on your own machine. However, to make working with R a little bit easier we also need to install something called an Integrated Development Environment (IDE). We will use RStudio:
 
