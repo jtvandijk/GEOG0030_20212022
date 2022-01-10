@@ -2,8 +2,8 @@
 # Geocomputation: An Introduction
 This week’s lecture provided you with a thorough introduction into what is Geocomputation, outlining how and why it is different to a traditional ‘GIScience’ course. We set the scene for the remainder of the module and explained how the foundational concepts that you will learn about in the first half of term fit together to form the overall Geocomputation curriculum. There is no actual hands-on computer tutorial this week, but you will need to complete a few practical tasks in preparation for our future practicals.
 
-<!-- ## Lecture recording {#recording-w01} -->
-<!-- - Lecture W1 -->
+## Lecture recording {#recording-w01}
+You can access the Lecturecast recording here: [[Link]](https://echo360.org.uk/section/9991b6b4-5c6b-4edd-aa84-7ff49b1170e3/home). The slides for this week's lecture can be downloaded here: [[Link]](https://github.com/jtvandijk/GEOG0030/tree/master/data/ppt/w01_geo.pdf).
 
 ## Reading list {#reading-w01}
 #### Essential readings {-}
