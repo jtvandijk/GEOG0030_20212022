@@ -29,9 +29,9 @@ We are going to use a very light online tool that allows us to create digital da
 
 1. Head to [geojson.io](http://geojson.io/#map=12/51.5170/-0.1030) - it should load directly, zoomed into London.
 2. In the bottom left-hand corner, select **Satellite** as your map option.
-3. Next, click on the `Draw a Polyline` tool.
+3. Next, click on the `Draw a Polyline` tool which you can find on the right hand side of the screen. You can hover over the icons to get the names of each tool.
 4. Now digitise the river Thames - simply click from a starting point on the left- or right-hand side of the map, and digitise the whole river.
-5. Once you are done, simply double-click your final point to end your line.
+5. Once you are done, double-click your final point to end your line.
 6. You can then click on the line and select `info` to find out how long the line is. 
 
 #### Questions {-}
@@ -42,7 +42,7 @@ We are going to use a very light online tool that allows us to create digital da
 - How well do you think your line represents the River Thames?
 
 ## Population change in London
-The second part of this practical will introduces you to **attribute joins** and making a simple choropleth map. You will be using these joins throughout this module, and probably the rest of your career, so it is incredibly important that you understand how they work – even as simple as they may be!
+The second part of this practical will introduces you to **attribute joins** and making something called a choropleth map. You will be using these joins throughout this module, and probably the rest of your career, so it is incredibly important that you understand how they work – even as simple as they may be!
 
 :::note
 **Note**<br/>
@@ -126,7 +126,7 @@ Once unzipped, you will find two folder options: *Esri* and *MapInfo.* These fol
 
 :::note
 **Note**<br/>
-MapInfo is another proprietary GIS software, which has historically been used in public sectors services in the UK and abroad (and many councils still use the software!), although has generally been replaced by either Esri’s ecosystem or open-source software GIS. The TAB format is the main format that the software uses for vector data, similar to Esri and its shapefile format.
+MapInfo is another proprietary GIS software, which has historically been used in public sectors services in the UK and abroad (and many councils still use the software!), although has generally been replaced by either Esri’s ecosystem or open-source software GIS. The TAB format is the main format that the software uses for vector data, similar to Esri and its `shapefile` format.
 :::
 
 3. In your `GEOG0030/data/raw/` folder, create a new folder called `boundaries`. Within this folder, create three new folders: `2011`, `2014` and `2018`.
@@ -160,8 +160,6 @@ For the majority of your practicals, we will be keeping it simple with a focus o
 OR 
 
 * **Boroughs** -> **Middle layer Super Output Areas** -> **Lower layer Super Output Areas** -> **Output Areas**. 
-
-We will be looking at wards in our practical analysis – although even at this fine scale, the City of London is a little pesky and introduces complexities into our analysis, which we willl see.
 :::
 
 #### Population data 
@@ -175,13 +173,13 @@ For our population data sets, we will use the ONS mid-year estimates (MYE). Thes
 Now it is time to do some quite **extensive** data cleaning. 
 
 #### Cleaning our population data sets
-If you open up the 2011 ward spreadsheet in Excel (or another spreadsheet programme: this could be Numbers or you can upload your data to use it with Google Docs, for example), you will quickly see that there are several worksheets to this workbook. **We are interested in the Mid-2011 Persons.**
+If you open up the 2011 ward spreadsheet in Excel (or another spreadsheet programme: this could be Numbers or you can upload your data to use it with Google Docs, for example), you will quickly see that there are several worksheets to this workbook. **We are interested in the Mid-2011 Persons.** Please note that the instructions below are based on using Excel.
 
 1. Click on the **Mid-2011 Persons** tab and have a look at the data. 
 
 As you should be able to see, we have a set of different fields (e.g. Ward Code, Ward Name), including population statistics. Right now, we have too much data - so what we will want to do is simplify and extract only the data we need for analysis. For this, we need the total population (**All Ages**), alongside some identifying information that distinguishes each record from one another. Here we can see that both **Ward Code** and **Ward Name** suit this requirement. We can also think that the **Local Authority** column might be of use - so it might be worthwhile keeping this information as well.
 
-2. Create a new spreadsheet within your programme. From the **Mid-2011 Persons** spreadsheet, copy over all cells from columns **A** to **D** and rows **4 to 636** into this new spreadsheet. **Row 636** denotes the end of the **Greater London** wards (i.e. the end of the Westminster LA) which are kept (in most scenarios) at the top of the spreadsheet as their **Ward Codes** are the first in sequential order. 
+2. Create a new spreadsheet within your programme. From the **Mid-2011 Persons** spreadsheet, copy over all cells from columns **A** to **D** and rows **4 to 636** into this new spreadsheet. **Row 636** denotes the end of the **Greater London** wards (i.e. the end of the Westminster Local Authority) which are kept (in most scenarios) at the top of the spreadsheet as their **Ward Codes** are the first in sequential order. 
 3. Before we go any further, we need to format our data. First, we want to rename our fields to remove the spaces and superscript formatting. Re-title the fields as follows: **ward_code**, **ward_name**, **local_authority** and **pop2011**. 
 
 One further bit of formatting that you **MUST** do before saving your data is to format our population field. At the moment, you will see that there are commas separating the **thousands** within our values. If we leave this **commas** in our values, QGIS will read them as decimal points, creating decimal values of our population. There are many points at which we could solve this issue, but the easiest point is now - we will strip our population values of the commas and set them to integer (whole numbers) values. 
@@ -193,7 +191,7 @@ We now need to copy over the data from the 2015 and 2019 data sets into their ow
 
 6. Open the **Mid-2015 ward population** `.xls` from your population folder. 
 
-As you will see again, there are plenty of worksheets available - again, we want to select the **Mid-2015 Persons** tab. We now need to copy over the data from our 2015 data set to a new spreadsheet again. However,  at first instance, you will notice that the City of London (CoL) wards are missing from this data set. Then if you scroll to the end of the London Local Authorities, i.e. to the bottom of Westminster, what you should notice is that the final row for the Westminster data is in fact row 575 - this means we are missing nearly other LAs in addition to our CoL LAs and we will need to determine which ones are missing and if we can find them in the 2015 spreadsheet.
+As you will see again, there are plenty of worksheets available - we want to select the **Mid-2015 Persons** tab. We now need to copy over the data from our 2015 data set to a new spreadsheet again. However,  at first instance, you will notice that the City of London (CoL) wards are missing from this data set. Then if you scroll to the end of the London Local Authorities, i.e. to the bottom of Westminster, what you should notice is that the final row for the Westminster data is in fact row 575 - this suggests we are missing several LAs in addition to our CoL LAs and we will need to determine which ones are missing and if we can find them in the 2015 spreadsheet.
 
 6. With this in mind, **first copy from row 5 to the end of the grouped London Local Authorities**, i.e. to the bottom of Westminster, for columns `A` to `D` into a new spreadsheet. Through a quick scroll through the Local Authorities, a.k.a boroughs, (and with the extensive knowledge that you will soon build about London Local Authorities!) we can quickly find that we are missing the wards for: 
 
@@ -201,7 +199,7 @@ As you will see again, there are plenty of worksheets available - again, we want
 - *Kensington and Chelsea*
 - *Tower Hamlets*
 
-If we head back to the original 2015 raw data set, we can actually find this data (as well as the City of London) further down in the spreadsheet. It seems like these LAs had their codes revised in the 2014 revision and are no longer in the same order as the 2011 data set - oh, the joys of using data!
+If we head back to the original 2015 raw data set, we can actually find this data (as well as the City of London) further down in the spreadsheet. It seems like these LAs had their codes revised in the 2014 revision and are no longer in the same order as the 2011 data set.
 
 7. Locate the data for the *City of London*, *Hackney*, *Kensington and Chelsea* and *Tower Hamlets* and copy this over into our new spreadsheet. Double-check that you now have in total **637** wards within your data set.
 
@@ -219,7 +217,7 @@ As you will see again, there are plenty of worksheets available - again, we want
 
 12. Next, copy the data from row 5 to the final row for the Westminster data for columns `A`, `B`, `D` and `G` over into a new spreadsheet.
 
-Look at the total number of rows you have copied over. We can see that we have even fewer wards than the 2015 data set - yikes!We need to go hunting again for our missing data in the 2019 data set. 
+Look at the total number of rows you have copied over. We can see that we have even fewer wards than the 2015 data set - yikes. We need to go hunting again for our missing data in the 2019 data set. 
 
 For expediency, you need to find and copy over the data for: 
 
@@ -260,7 +258,7 @@ Data interoperability is a key issue that you will face in spatial analysis, par
 1. Start **QGIS**.
 Let's start a new project.
 2. Click on **Project** -> **New**. Save your project into your `qgis` folder as `w2-pop-analysis`. Remember to save your work throughout the practical. 
-4. Before we get started with adding data, we will first set the Coordinate Reference System of our Project. Click on **Project** -> **Properties -- CRS**. In the Filter box, type **British National Grid**. Select **OSGB 1936 / British National Grid - EPSG:27700** and click Apply. Click OK.
+4. Before we get started with adding data, we will first set the Coordinate Reference System of our Project. Click on **Project** -> **Properties -- CRS**. In the Filter box, type **British National Grid**. Select **OSGB 1936 / British National Grid - EPSG:27700** and click Apply. Click **OK**.
 
 :::note
 **Note**<br/>
@@ -299,9 +297,9 @@ The main strength of a GUI GIS system is that is really helps us understand how 
 
 The first, and this is only really relevant to GUI GIS systems, is that each layer can either be turned on or off, to make it visible or not (try clicking the tick box to the left of each layer). This is probably a feature you are used to working with if you have played with interactive web mapping applications before!
 
-The second concept is the order in which your layers are drawn – and this is relevant for both GUI GIS and when using plotting libraries such as ggplot2 in RStudio. Your layers will be drawn depending on the order in which your layers are either tabled (as in a GUI GIS) or ‘called’ in your function in code.
+The second concept is the order in which your layers are drawn – and this is relevant for both GUI GIS and when using plotting libraries such as `ggplot2` or `tmap` in RStudio. Your layers will be drawn depending on the order in which your layers are either tabled (as in a GUI GIS) or ‘called’ in your function in code.
 
-Being aware of this need for 'order' is important when we shift to using RStudio and `ggoplot2` to plot our maps, as if you do not layer your data correctly in your code, your map will end up not looking as you hoped!
+Being aware of this need for 'order' is important when we shift to using RStudio and `tmap` to plot our maps, as if you do not layer your data correctly in your code, your map will end up not looking as you hoped!
 
 For us using QGIS right now, the layers will be drawn from bottom to top. At the moment, we only have one layer loaded, so we do not need to worry about our order right now - but as we add in our 2015 and 2018 ward files, it is useful to know about this order as we will need to display them individually to export them at the end.
 :::
@@ -344,10 +342,10 @@ To make our join work, we need to check that we have a matching **UID** across b
 - Click on the **+** button. Make sure the **Join Layer** is set to `ward_population_2011`.
 - Set the **Join field** to `ward_code`.
 - Set the **Target field** to `GSS_code`.
-- Click the **Joined Fields** box and click to only select the `POP2011` field.
+- Click the **Joined Fields** box and click to only select the `pop2011` field.
 - Click on the **Custom Field Name Prefix** and **remove** the pre-entered text to leave it blank.
 - Click on **OK**.
-- Click on **Apply** in the main Join tab and then click OK to return to the main QGIS window.
+- Click on **Apply** in the main Join tab and then click **OK** to return to the main QGIS window.
 
 We can now check to see if our join has worked by opening up our `London_Ward` **Attribute Table** and looking to see if our wards now have a **Population** field attached to it.
 
@@ -365,7 +363,7 @@ Let's do this now:
 19. Right-click on your `London_Ward` shapefile and click **Export** -> **Save Features As...**. The format should be set to an ESRI shapefile.
 - Then click on the three dots buttons and navigate to your `final` folder and enter: `ward_population_2011` as your file name.
 - Check that the **CRS** is **British National Grid**.
-- Leave the remaining fields as selected, but check that the **Add saved file to map** is checked. Click OK.
+- Leave the remaining fields as selected, but check that the **Add saved file to map** is checked. Click **OK**.
 
 You should now see our new shapefile add itself to our map. You can now remove the original `London_Ward` and `ward_population_2011` data sets from our Layers box (Right-click on the layers and opt for **Remove Layer...**).
 
@@ -415,7 +413,7 @@ You now need to **repeat this whole process** for your 2015 and 2019 data sets. 
 
 To make visual comparisons against our three data sets, theoretically we would need to standardise the breaks at which our classification schemes are set at. To set all three data sets to the same breaks, you can do the following:
 
-- Right-click on the `ward_population_2019` data set and navigate to the `Symbology` tab. Double-click on the Values for the smallest classification group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click OK, then Click Apply, then Click OK to return to the main QGIS screen.
+- Right-click on the `ward_population_2019` data set and navigate to the `Symbology` tab. Double-click on the Values for the smallest classification group and set the Lower value to 141 (this is the lowest figure across our data sets, found in the 2015 data). Click **OK**, then click **Apply**, then click **OK** to return to the main QGIS screen.
 -  Right-click again on the `ward_population_2019` data set but this time, click on **Styles** -> **Copy Styles** -> **Symbology**.
 - Now right-click on the `ward_population_2015` file, but this time after clicking on **Styles** -> **Paste Style** -> **Symbology**. You should now see the classification breaks in the 2015 data set change to match those in the 2019 data.
 - Repeat this for the 2011 data set as well.
