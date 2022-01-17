@@ -8,7 +8,7 @@ The practical component of the week puts some of these learnings into practice a
 **Note**<br/>
 The data sets you will create in this practical will be used in other practicals, so make sure to follow every step and export your data into your working and final folders (respectively) at the end.
 
-The practical will also introduce you to point-in-polygon counts. You will be using these counts throughout this module, so it is incredibly important that you understand how they work – even as simple as they may be!
+The practical will also introduce you to point-in-polygon counts. You will be using these counts throughout this module, so it is incredibly important that you understand how they work – even as seemingly simple as they may be!
 :::
 
 <!-- ## Lecture recording {#recording-w03} -->
@@ -51,7 +51,7 @@ You therefore need to decide if you want to include an analysis of crime in the 
 #### Population data {-}
 We know that if we want to study a phenomena like crime (and aggregate it to an areal unit as we will do today!), we will need to normalise this by our population. Luckily, we already have our ward population sorted from last week, with our `ward_population_2019.shp` that should be currently sitting in your final data folder. 
 
-In addition to our **ward** level data set, we also want to generate the same type of shapefile for our London **boroughs**, i.e. a `borough_ward_population_2019.shp`, utilising the same approach as last week, joining our population table data to our borough shape data.To do this, we need to know where to get both our required data sets from - luckily, you have already got a borough shape data in your `raw/boundaries/2011` folder. Therefore, it is just a case of tracking down the same Mid-Year Estimates (MYE) for London boroughs as we did for the wards.
+In addition to our **ward** level data set, we also want to generate the same type of shapefile for our London **boroughs**, i.e. a `borough_ward_population_2019.shp`, utilising the same approach as last week, joining our population table data to our borough shape data. To do this, we need to know where to get both our required data sets from - luckily, you have already got a borough shape data in your `raw/boundaries/2011` folder. Therefore, it is just a case of tracking down the same Mid-Year Estimates (MYE) for London boroughs as we did for the wards.
 
 ### Downloading and processing {#w03-downloading}
 As outlined above, to get going with our analysis, we need to download both the **population** data for our boroughs and the 2020 **crime** data for our two police forces in London. 
@@ -69,7 +69,7 @@ Through a quick search, we can find our borough population table data pretty muc
 
 4. Navigate to the `MYE2-Persons` tab.
 
-5. Utilising your preferred approach, extract: `Code`, `Name`, `Geography` and `All ages` data for all London boroughs.
+5. Extract: `Code`, `Name`, `Geography` and `All ages` data for all London boroughs.
 You should have a total of **33** boroughs.
 
 6. Once you have your 33 boroughs separated from the rest of the data, copy the columns (`Code`, `Name`, `Geography` and `All ages`) and respective data for each borough into a new csv.
@@ -116,7 +116,7 @@ We now need to create our borough population shapefile - and to do so, we need t
 
 * Load the respective Population data set as a Delimited Text File Layer (Remember the settings, including no geometry! This one is found in your `working` folder)
 
-* Join the two data sets together using the Join tool in the borough data set Properties box (remember which fields to use, which to add and to remove the prefix - look back at last week's instructions if you get stuck).
+* Join the two data sets together using the **Join** tool in the borough data set **Properties** box (remember which fields to use, which to add, and to remove the prefix - look back at last week's instructions if you get stuck).
 
 * Export your joined data set into a new data set within your `working` folder: `borough_population_2019.shp`.
 
@@ -132,7 +132,7 @@ Once this is done, we are ready to load and map our crime data. We will load thi
 
 :::note
 **Note**<br/>
-You may be wondering whether we are not using the incorrect CRS for our data. As you click **Add**, you should have gotten a a pop-up from QGIS asking about transformations - they are the mathematical algorithms that convert data from one CRS to another. And this is exactly what QGIS is trying to do. QGIS knows that the **Project CRS** is **BNG** but the **Layer** you are trying to add has a **WGS84** CRS. QGIS is asking you what transformation it should use to project the Layer in the Project CRS! This is because one key strength (but also problem!) of QGIS is that it can **project "on the fly"** - what this means is that QGIS will automatically convert all Layers to the Project CRS once it knows which transformation you would like to use so that they will all be rendered in the correct position with respect to each other! But you must note that this transformation is only **temporary in nature** and as a result, it is not a full **reprojection** of our data. More details on this can be found in QGIS' [user manual section on working with projections](https://docs.qgis.org/3.16/en/docs/user_manual/working_with_projections/working_with_projections.html).
+You may be wondering whether we are not using the incorrect CRS for our data. As you click **Add**, you should have gotten a a pop-up from QGIS asking about transformations - they are the mathematical algorithms that convert data from one CRS to another. And this is exactly what QGIS is trying to do. QGIS knows that the **Project CRS** is **BNG** but the **Layer** you are trying to add has a **WGS84** CRS. QGIS is asking you what transformation it should use to project the Layer in the Project CRS. This is because one key strength of QGIS is that it can **project "on the fly"** - what this means is that QGIS will automatically convert all Layers to the Project CRS once it knows which transformation you would like to use so that they will all be rendered in the correct position with respect to each other! But you must note that this transformation is only **temporary in nature** and as a result, it is not a full **reprojection** of our data. More details on this can be found in QGIS' [user manual section on working with projections](https://docs.qgis.org/3.16/en/docs/user_manual/working_with_projections/working_with_projections.html).
 :::
 
 3. For now, let us use the on-the-fly projection and accept QGIS' default value by clicking **OK**. This transformation should be built-in to your QGIS transformation library, whereas some of the more accurate options would need installation.

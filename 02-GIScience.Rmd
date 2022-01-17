@@ -4,8 +4,8 @@ This week’s lecture introduced you to foundational concepts associated with GI
 
 The practical component of the week puts some of these learnings into practice with a digitisation of the river Thames in London as well as an exploration of population data within London using QGIS.
 
-<!-- ## Lecture recording {#recording-w02} -->
-<!-- - Lecture W2 -->
+## Lecture recording {#recording-w02}
+You can access the Lecturecast recording here: [[Link]](https://echo360.org.uk/section/9991b6b4-5c6b-4edd-aa84-7ff49b1170e3/home). The slides for this week's lecture can be downloaded here: [[Link]](https://github.com/jtvandijk/GEOG0030/tree/master/data/ppt/w02_geo.pdf).
 
 ## Reading list {#reading-w02}
 #### Essential readings {-}
