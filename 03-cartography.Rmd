@@ -11,8 +11,8 @@ The data sets you will create in this practical will be used in other practicals
 The practical will also introduce you to point-in-polygon counts. You will be using these counts throughout this module, so it is incredibly important that you understand how they work – even as seemingly simple as they may be!
 :::
 
-<!-- ## Lecture recording {#recording-w03} -->
-<!-- - Lecture W3 -->
+## Lecture recording {#recording-w03}
+You can access the Lecturecast recording here: [[Link]](https://echo360.org.uk/section/9991b6b4-5c6b-4edd-aa84-7ff49b1170e3/home). The slides for this week's lecture can be downloaded here: [[Link]](https://github.com/jtvandijk/GEOG0030/tree/master/data/ppt/w03_geo.pdf).
 
 ## Reading list {#reading-w03}
 #### Essential readings {-}
