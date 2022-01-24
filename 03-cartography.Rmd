@@ -87,7 +87,7 @@ Normally, we would now head to the Police Data Portal and download our crime dat
 #### File download {-}
 | File                                                 | Type           | Link |
 | :------                                              | :------        | :------ |
-| Theft from persons in 2020                           | `csv`    | [Download](https://github.com/jtvandijk/GEOG0114/tree/master/data/zip/crime_theft_2020_london.zip) |
+| Theft from persons in 2020                           | `csv`    | [Download](https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/crime_theft_2020_london.zip) |
 
 :::note
 **Note** <br/>

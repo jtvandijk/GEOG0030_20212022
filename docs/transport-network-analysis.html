@@ -24,7 +24,7 @@
 <meta name="author" content="Justin van Dijk" />
 
 
-<meta name="date" content="2022-01-17" />
+<meta name="date" content="2022-01-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="rasters-zonal-statistics-and-interpolation.html"/>
 
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,8 +51,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/vembedr-0.1.4/css/vembedr.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
@@ -150,218 +151,218 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </a></li>
 
 <li class="divider"></li>
-<li class="part"><span><b>Module overview</b></span></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Module Introduction</a>
+<li class="part"><span><b>Module overview<span></span></b></span></li>
+<li><a href="index.html#module-introduction">Module Introduction<span></span></a>
 <ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#welcome"><i class="fa fa-check"></i>Welcome</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#moodle"><i class="fa fa-check"></i>Moodle</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#module-overview"><i class="fa fa-check"></i>Module overview</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#troubleshooting"><i class="fa fa-check"></i>Troubleshooting</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li><a href="index.html#welcome">Welcome<span></span></a></li>
+<li><a href="index.html#moodle">Moodle<span></span></a></li>
+<li><a href="index.html#module-overview">Module overview<span></span></a></li>
+<li><a href="index.html#troubleshooting">Troubleshooting<span></span></a></li>
+<li><a href="index.html#acknowledgements">Acknowledgements<span></span></a></li>
 </ul></li>
-<li class="part"><span><b>Foundational Concepts</b></span></li>
-<li class="chapter" data-level="1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html"><i class="fa fa-check"></i><b>1</b> Geocomputation: An Introduction</a>
+<li class="part"><span><b>Foundational Concepts<span></span></b></span></li>
+<li class="chapter" data-level="1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html"><i class="fa fa-check"></i><b>1</b> Geocomputation: An Introduction<span></span></a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#recording-w01"><i class="fa fa-check"></i><b>1.1</b> Lecture recording</a></li>
-<li class="chapter" data-level="1.2" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#reading-w01"><i class="fa fa-check"></i><b>1.2</b> Reading list</a></li>
-<li class="chapter" data-level="1.3" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#getting-started"><i class="fa fa-check"></i><b>1.3</b> Getting started</a></li>
-<li class="chapter" data-level="1.4" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#software"><i class="fa fa-check"></i><b>1.4</b> Software</a>
+<li class="chapter" data-level="1.1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#recording-w01"><i class="fa fa-check"></i><b>1.1</b> Lecture recording<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#reading-w01"><i class="fa fa-check"></i><b>1.2</b> Reading list<span></span></a></li>
+<li class="chapter" data-level="1.3" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#getting-started"><i class="fa fa-check"></i><b>1.3</b> Getting started<span></span></a></li>
+<li class="chapter" data-level="1.4" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#software"><i class="fa fa-check"></i><b>1.4</b> Software<span></span></a>
 <ul>
-<li class="chapter" data-level="1.4.1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#qgis-installation"><i class="fa fa-check"></i><b>1.4.1</b> QGIS Installation</a></li>
-<li class="chapter" data-level="1.4.2" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#r-and-rstudio-installation"><i class="fa fa-check"></i><b>1.4.2</b> R and RStudio Installation</a></li>
-<li class="chapter" data-level="1.4.3" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#ucl"><i class="fa fa-check"></i><b>1.4.3</b> UCL Desktop and RStudio Server</a></li>
-<li class="chapter" data-level="1.4.4" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#a-note-on-arcgis"><i class="fa fa-check"></i><b>1.4.4</b> A note on ArcGIS</a></li>
+<li class="chapter" data-level="1.4.1" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#qgis-installation"><i class="fa fa-check"></i><b>1.4.1</b> QGIS Installation<span></span></a></li>
+<li class="chapter" data-level="1.4.2" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#r-and-rstudio-installation"><i class="fa fa-check"></i><b>1.4.2</b> R and RStudio Installation<span></span></a></li>
+<li class="chapter" data-level="1.4.3" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#ucl"><i class="fa fa-check"></i><b>1.4.3</b> UCL Desktop and RStudio Server<span></span></a></li>
+<li class="chapter" data-level="1.4.4" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#a-note-on-arcgis"><i class="fa fa-check"></i><b>1.4.4</b> A note on ArcGIS<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#file-management"><i class="fa fa-check"></i><b>1.5</b> File management</a></li>
-<li class="chapter" data-level="1.6" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#byl-w01"><i class="fa fa-check"></i><b>1.6</b> Before you leave</a></li>
+<li class="chapter" data-level="1.5" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#file-management"><i class="fa fa-check"></i><b>1.5</b> File management<span></span></a></li>
+<li class="chapter" data-level="1.6" data-path="geocomputation-an-introduction.html"><a href="geocomputation-an-introduction.html#byl-w01"><i class="fa fa-check"></i><b>1.6</b> Before you leave<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html"><i class="fa fa-check"></i><b>2</b> GIScience and GIS software</a>
+<li class="chapter" data-level="2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html"><i class="fa fa-check"></i><b>2</b> GIScience and GIS software<span></span></a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#recording-w02"><i class="fa fa-check"></i><b>2.1</b> Lecture recording</a></li>
-<li class="chapter" data-level="2.2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#reading-w02"><i class="fa fa-check"></i><b>2.2</b> Reading list</a></li>
-<li class="chapter" data-level="2.3" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#simple-digitisation-of-spatial-features"><i class="fa fa-check"></i><b>2.3</b> Simple digitisation of spatial features</a></li>
-<li class="chapter" data-level="2.4" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#population-change-in-london"><i class="fa fa-check"></i><b>2.4</b> Population change in London</a>
+<li class="chapter" data-level="2.1" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#recording-w02"><i class="fa fa-check"></i><b>2.1</b> Lecture recording<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#reading-w02"><i class="fa fa-check"></i><b>2.2</b> Reading list<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#simple-digitisation-of-spatial-features"><i class="fa fa-check"></i><b>2.3</b> Simple digitisation of spatial features<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#population-change-in-london"><i class="fa fa-check"></i><b>2.4</b> Population change in London<span></span></a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#setting-the-scene"><i class="fa fa-check"></i><b>2.4.1</b> Setting the scene</a></li>
-<li class="chapter" data-level="2.4.2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#w02-finding"><i class="fa fa-check"></i><b>2.4.2</b> Finding our data sets</a></li>
-<li class="chapter" data-level="2.4.3" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#w02-downloading"><i class="fa fa-check"></i><b>2.4.3</b> Downloading and processing</a></li>
-<li class="chapter" data-level="2.4.4" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#using-qgis-to-map-our-population-data"><i class="fa fa-check"></i><b>2.4.4</b> Using QGIS to map our population data</a></li>
-<li class="chapter" data-level="2.4.5" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#exporting-map-for-visual-analysis"><i class="fa fa-check"></i><b>2.4.5</b> Exporting map for visual analysis</a></li>
+<li class="chapter" data-level="2.4.1" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#setting-the-scene"><i class="fa fa-check"></i><b>2.4.1</b> Setting the scene<span></span></a></li>
+<li class="chapter" data-level="2.4.2" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#w02-finding"><i class="fa fa-check"></i><b>2.4.2</b> Finding our data sets<span></span></a></li>
+<li class="chapter" data-level="2.4.3" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#w02-downloading"><i class="fa fa-check"></i><b>2.4.3</b> Downloading and processing<span></span></a></li>
+<li class="chapter" data-level="2.4.4" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#using-qgis-to-map-our-population-data"><i class="fa fa-check"></i><b>2.4.4</b> Using QGIS to map our population data<span></span></a></li>
+<li class="chapter" data-level="2.4.5" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#exporting-map-for-visual-analysis"><i class="fa fa-check"></i><b>2.4.5</b> Exporting map for visual analysis<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#assignment-w02"><i class="fa fa-check"></i><b>2.5</b> Assignment</a></li>
-<li class="chapter" data-level="2.6" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#byl-w02"><i class="fa fa-check"></i><b>2.6</b> Before you leave</a></li>
+<li class="chapter" data-level="2.5" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#assignment-w02"><i class="fa fa-check"></i><b>2.5</b> Assignment<span></span></a></li>
+<li class="chapter" data-level="2.6" data-path="giscience-and-gis-software.html"><a href="giscience-and-gis-software.html#byl-w02"><i class="fa fa-check"></i><b>2.6</b> Before you leave<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html"><i class="fa fa-check"></i><b>3</b> Cartography and Visualisation</a>
+<li class="chapter" data-level="3" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html"><i class="fa fa-check"></i><b>3</b> Cartography and Visualisation<span></span></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#reading-w03"><i class="fa fa-check"></i><b>3.1</b> Reading list</a></li>
-<li class="chapter" data-level="3.2" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#crime-in-london"><i class="fa fa-check"></i><b>3.2</b> Crime in London</a>
+<li class="chapter" data-level="3.1" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#reading-w03"><i class="fa fa-check"></i><b>3.1</b> Reading list<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#crime-in-london"><i class="fa fa-check"></i><b>3.2</b> Crime in London<span></span></a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#w03-finding"><i class="fa fa-check"></i><b>3.2.1</b> Finding our data sets</a></li>
-<li class="chapter" data-level="3.2.2" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#w03-downloading"><i class="fa fa-check"></i><b>3.2.2</b> Downloading and processing</a></li>
-<li class="chapter" data-level="3.2.3" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#using-qgis-to-map-our-crime-data"><i class="fa fa-check"></i><b>3.2.3</b> Using QGIS to map our crime data</a></li>
+<li class="chapter" data-level="3.2.1" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#w03-finding"><i class="fa fa-check"></i><b>3.2.1</b> Finding our data sets<span></span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#w03-downloading"><i class="fa fa-check"></i><b>3.2.2</b> Downloading and processing<span></span></a></li>
+<li class="chapter" data-level="3.2.3" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#using-qgis-to-map-our-crime-data"><i class="fa fa-check"></i><b>3.2.3</b> Using QGIS to map our crime data<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#assignment-w03"><i class="fa fa-check"></i><b>3.3</b> Assignment</a></li>
-<li class="chapter" data-level="3.4" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#byl-w03"><i class="fa fa-check"></i><b>3.4</b> Before you leave</a></li>
+<li class="chapter" data-level="3.3" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#assignment-w03"><i class="fa fa-check"></i><b>3.3</b> Assignment<span></span></a></li>
+<li class="chapter" data-level="3.4" data-path="cartography-and-visualisation.html"><a href="cartography-and-visualisation.html#byl-w03"><i class="fa fa-check"></i><b>3.4</b> Before you leave<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html"><i class="fa fa-check"></i><b>4</b> Programming for Data Analysis</a>
+<li class="chapter" data-level="4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html"><i class="fa fa-check"></i><b>4</b> Programming for Data Analysis<span></span></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#reading-w04"><i class="fa fa-check"></i><b>4.1</b> Reading list</a></li>
-<li class="chapter" data-level="4.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#programming"><i class="fa fa-check"></i><b>4.2</b> Programming</a></li>
-<li class="chapter" data-level="4.3" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#programming-in-r"><i class="fa fa-check"></i><b>4.3</b> Programming in R</a>
+<li class="chapter" data-level="4.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#reading-w04"><i class="fa fa-check"></i><b>4.1</b> Reading list<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#programming"><i class="fa fa-check"></i><b>4.2</b> Programming<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#programming-in-r"><i class="fa fa-check"></i><b>4.3</b> Programming in R<span></span></a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#the-rstudio-interface"><i class="fa fa-check"></i><b>4.3.1</b> The RStudio interface</a></li>
+<li class="chapter" data-level="4.3.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#the-rstudio-interface"><i class="fa fa-check"></i><b>4.3.1</b> The RStudio interface<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#rstudio-console"><i class="fa fa-check"></i><b>4.4</b> RStudio console</a>
+<li class="chapter" data-level="4.4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#rstudio-console"><i class="fa fa-check"></i><b>4.4</b> RStudio console<span></span></a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#command-input"><i class="fa fa-check"></i><b>4.4.1</b> Command Input</a></li>
-<li class="chapter" data-level="4.4.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#storing-variables"><i class="fa fa-check"></i><b>4.4.2</b> Storing variables</a></li>
-<li class="chapter" data-level="4.4.3" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#accessing-and-returning-variables"><i class="fa fa-check"></i><b>4.4.3</b> Accessing and returning variables</a></li>
-<li class="chapter" data-level="4.4.4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#variables-of-different-data-types"><i class="fa fa-check"></i><b>4.4.4</b> Variables of different data types</a></li>
-<li class="chapter" data-level="4.4.5" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#calling-functions-on-our-variables"><i class="fa fa-check"></i><b>4.4.5</b> Calling functions on our variables</a></li>
-<li class="chapter" data-level="4.4.6" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#returning-functions"><i class="fa fa-check"></i><b>4.4.6</b> Returning functions</a></li>
-<li class="chapter" data-level="4.4.7" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#examining-our-variables-using-functions"><i class="fa fa-check"></i><b>4.4.7</b> Examining our variables using functions</a></li>
-<li class="chapter" data-level="4.4.8" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#creating-a-two-element-object"><i class="fa fa-check"></i><b>4.4.8</b> Creating a two-element object</a></li>
+<li class="chapter" data-level="4.4.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#command-input"><i class="fa fa-check"></i><b>4.4.1</b> Command Input<span></span></a></li>
+<li class="chapter" data-level="4.4.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#storing-variables"><i class="fa fa-check"></i><b>4.4.2</b> Storing variables<span></span></a></li>
+<li class="chapter" data-level="4.4.3" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#accessing-and-returning-variables"><i class="fa fa-check"></i><b>4.4.3</b> Accessing and returning variables<span></span></a></li>
+<li class="chapter" data-level="4.4.4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#variables-of-different-data-types"><i class="fa fa-check"></i><b>4.4.4</b> Variables of different data types<span></span></a></li>
+<li class="chapter" data-level="4.4.5" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#calling-functions-on-our-variables"><i class="fa fa-check"></i><b>4.4.5</b> Calling functions on our variables<span></span></a></li>
+<li class="chapter" data-level="4.4.6" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#returning-functions"><i class="fa fa-check"></i><b>4.4.6</b> Returning functions<span></span></a></li>
+<li class="chapter" data-level="4.4.7" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#examining-our-variables-using-functions"><i class="fa fa-check"></i><b>4.4.7</b> Examining our variables using functions<span></span></a></li>
+<li class="chapter" data-level="4.4.8" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#creating-a-two-element-object"><i class="fa fa-check"></i><b>4.4.8</b> Creating a two-element object<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#simple-analysis"><i class="fa fa-check"></i><b>4.5</b> Simple analysis</a>
+<li class="chapter" data-level="4.5" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#simple-analysis"><i class="fa fa-check"></i><b>4.5</b> Simple analysis<span></span></a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#housekeeping"><i class="fa fa-check"></i><b>4.5.1</b> Housekeeping</a></li>
-<li class="chapter" data-level="4.5.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#atomic-vectors"><i class="fa fa-check"></i><b>4.5.2</b> Atomic vectors</a></li>
-<li class="chapter" data-level="4.5.3" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#matrices"><i class="fa fa-check"></i><b>4.5.3</b> Matrices</a></li>
-<li class="chapter" data-level="4.5.4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#dataframes"><i class="fa fa-check"></i><b>4.5.4</b> Dataframes</a></li>
-<li class="chapter" data-level="4.5.5" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#column-names"><i class="fa fa-check"></i><b>4.5.5</b> Column names</a></li>
-<li class="chapter" data-level="4.5.6" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#adding-columns"><i class="fa fa-check"></i><b>4.5.6</b> Adding columns</a></li>
+<li class="chapter" data-level="4.5.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#housekeeping"><i class="fa fa-check"></i><b>4.5.1</b> Housekeeping<span></span></a></li>
+<li class="chapter" data-level="4.5.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#atomic-vectors"><i class="fa fa-check"></i><b>4.5.2</b> Atomic vectors<span></span></a></li>
+<li class="chapter" data-level="4.5.3" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#matrices"><i class="fa fa-check"></i><b>4.5.3</b> Matrices<span></span></a></li>
+<li class="chapter" data-level="4.5.4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#dataframes"><i class="fa fa-check"></i><b>4.5.4</b> Dataframes<span></span></a></li>
+<li class="chapter" data-level="4.5.5" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#column-names"><i class="fa fa-check"></i><b>4.5.5</b> Column names<span></span></a></li>
+<li class="chapter" data-level="4.5.6" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#adding-columns"><i class="fa fa-check"></i><b>4.5.6</b> Adding columns<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#crime-analysis-i"><i class="fa fa-check"></i><b>4.6</b> Crime analysis I</a>
+<li class="chapter" data-level="4.6" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#crime-analysis-i"><i class="fa fa-check"></i><b>4.6</b> Crime analysis I<span></span></a>
 <ul>
-<li class="chapter" data-level="4.6.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#starting-a-project"><i class="fa fa-check"></i><b>4.6.1</b> Starting a project</a></li>
-<li class="chapter" data-level="4.6.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#setting-up-a-script"><i class="fa fa-check"></i><b>4.6.2</b> Setting up a script</a></li>
-<li class="chapter" data-level="4.6.3" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#running-a-script"><i class="fa fa-check"></i><b>4.6.3</b> Running a script</a></li>
-<li class="chapter" data-level="4.6.4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#crime-data-2"><i class="fa fa-check"></i><b>4.6.4</b> Crime data</a></li>
+<li class="chapter" data-level="4.6.1" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#starting-a-project"><i class="fa fa-check"></i><b>4.6.1</b> Starting a project<span></span></a></li>
+<li class="chapter" data-level="4.6.2" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#setting-up-a-script"><i class="fa fa-check"></i><b>4.6.2</b> Setting up a script<span></span></a></li>
+<li class="chapter" data-level="4.6.3" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#running-a-script"><i class="fa fa-check"></i><b>4.6.3</b> Running a script<span></span></a></li>
+<li class="chapter" data-level="4.6.4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#crime-data-2"><i class="fa fa-check"></i><b>4.6.4</b> Crime data<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4.7" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#assignment-w04"><i class="fa fa-check"></i><b>4.7</b> Assignment</a></li>
-<li class="chapter" data-level="4.8" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#byl-w04"><i class="fa fa-check"></i><b>4.8</b> Before you leave</a></li>
+<li class="chapter" data-level="4.7" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#assignment-w04"><i class="fa fa-check"></i><b>4.7</b> Assignment<span></span></a></li>
+<li class="chapter" data-level="4.8" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#byl-w04"><i class="fa fa-check"></i><b>4.8</b> Before you leave<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html"><i class="fa fa-check"></i><b>5</b> Programming for Spatial Analysis</a>
+<li class="chapter" data-level="5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html"><i class="fa fa-check"></i><b>5</b> Programming for Spatial Analysis<span></span></a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#reading-w05"><i class="fa fa-check"></i><b>5.1</b> Reading list</a></li>
-<li class="chapter" data-level="5.2" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#crime-analysis-ii"><i class="fa fa-check"></i><b>5.2</b> Crime analysis II</a>
+<li class="chapter" data-level="5.1" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#reading-w05"><i class="fa fa-check"></i><b>5.1</b> Reading list<span></span></a></li>
+<li class="chapter" data-level="5.2" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#crime-analysis-ii"><i class="fa fa-check"></i><b>5.2</b> Crime analysis II<span></span></a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#data-preparation"><i class="fa fa-check"></i><b>5.2.1</b> Data preparation</a></li>
-<li class="chapter" data-level="5.2.2" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#spatial-analysis-set-up"><i class="fa fa-check"></i><b>5.2.2</b> Spatial analysis set up</a></li>
-<li class="chapter" data-level="5.2.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#interacting-with-spatial-data"><i class="fa fa-check"></i><b>5.2.3</b> Interacting with spatial data</a></li>
-<li class="chapter" data-level="5.2.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#getting-our-crime-data-in-shape"><i class="fa fa-check"></i><b>5.2.4</b> Getting our crime data in shape</a></li>
-<li class="chapter" data-level="5.2.5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#data-wrangling"><i class="fa fa-check"></i><b>5.2.5</b> Data wrangling</a></li>
-<li class="chapter" data-level="5.2.6" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#improving-your-workflow"><i class="fa fa-check"></i><b>5.2.6</b> Improving your workflow</a></li>
-<li class="chapter" data-level="5.2.7" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#aggregate-crime-by-ward"><i class="fa fa-check"></i><b>5.2.7</b> Aggregate crime by ward</a></li>
-<li class="chapter" data-level="5.2.8" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#joining-crime-data-to-wards"><i class="fa fa-check"></i><b>5.2.8</b> Joining crime data to wards</a></li>
-<li class="chapter" data-level="5.2.9" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#mapping-crime-data"><i class="fa fa-check"></i><b>5.2.9</b> Mapping crime data</a></li>
-<li class="chapter" data-level="5.2.10" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#styling-crime-data"><i class="fa fa-check"></i><b>5.2.10</b> Styling crime data</a></li>
-<li class="chapter" data-level="5.2.11" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#exporting-our-crime-data"><i class="fa fa-check"></i><b>5.2.11</b> Exporting our crime data</a></li>
+<li class="chapter" data-level="5.2.1" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#data-preparation"><i class="fa fa-check"></i><b>5.2.1</b> Data preparation<span></span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#spatial-analysis-set-up"><i class="fa fa-check"></i><b>5.2.2</b> Spatial analysis set up<span></span></a></li>
+<li class="chapter" data-level="5.2.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#interacting-with-spatial-data"><i class="fa fa-check"></i><b>5.2.3</b> Interacting with spatial data<span></span></a></li>
+<li class="chapter" data-level="5.2.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#getting-our-crime-data-in-shape"><i class="fa fa-check"></i><b>5.2.4</b> Getting our crime data in shape<span></span></a></li>
+<li class="chapter" data-level="5.2.5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#data-wrangling"><i class="fa fa-check"></i><b>5.2.5</b> Data wrangling<span></span></a></li>
+<li class="chapter" data-level="5.2.6" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#improving-your-workflow"><i class="fa fa-check"></i><b>5.2.6</b> Improving your workflow<span></span></a></li>
+<li class="chapter" data-level="5.2.7" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#aggregate-crime-by-ward"><i class="fa fa-check"></i><b>5.2.7</b> Aggregate crime by ward<span></span></a></li>
+<li class="chapter" data-level="5.2.8" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#joining-crime-data-to-wards"><i class="fa fa-check"></i><b>5.2.8</b> Joining crime data to wards<span></span></a></li>
+<li class="chapter" data-level="5.2.9" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#mapping-crime-data"><i class="fa fa-check"></i><b>5.2.9</b> Mapping crime data<span></span></a></li>
+<li class="chapter" data-level="5.2.10" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#styling-crime-data"><i class="fa fa-check"></i><b>5.2.10</b> Styling crime data<span></span></a></li>
+<li class="chapter" data-level="5.2.11" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#exporting-our-crime-data"><i class="fa fa-check"></i><b>5.2.11</b> Exporting our crime data<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#assignment-w05"><i class="fa fa-check"></i><b>5.3</b> Assignment</a></li>
-<li class="chapter" data-level="5.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#byl-w05"><i class="fa fa-check"></i><b>5.4</b> Before you leave</a></li>
+<li class="chapter" data-level="5.3" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#assignment-w05"><i class="fa fa-check"></i><b>5.3</b> Assignment<span></span></a></li>
+<li class="chapter" data-level="5.4" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html#byl-w05"><i class="fa fa-check"></i><b>5.4</b> Before you leave<span></span></a></li>
 </ul></li>
-<li class="part"><span><b>Core Spatial Analysis</b></span></li>
-<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Geometric Operations and Spatial Queries</a>
+<li class="part"><span><b>Core Spatial Analysis<span></span></b></span></li>
+<li class="chapter" data-level="6" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><i class="fa fa-check"></i><b>6</b> Analysing Spatial Patterns I: Geometric Operations and Spatial Queries<span></span></a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#reading-w06"><i class="fa fa-check"></i><b>6.1</b> Reading list</a></li>
-<li class="chapter" data-level="6.2" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#bike-theft-w06"><i class="fa fa-check"></i><b>6.2</b> Bike theft in London</a>
+<li class="chapter" data-level="6.1" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#reading-w06"><i class="fa fa-check"></i><b>6.1</b> Reading list<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#bike-theft-w06"><i class="fa fa-check"></i><b>6.2</b> Bike theft in London<span></span></a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#housekeeping-w06"><i class="fa fa-check"></i><b>6.2.1</b> Housekeeping</a></li>
-<li class="chapter" data-level="6.2.2" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#loading-data-w06"><i class="fa fa-check"></i><b>6.2.2</b> Loading data</a></li>
-<li class="chapter" data-level="6.2.3" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#data-preparation-w06"><i class="fa fa-check"></i><b>6.2.3</b> Data preparation</a></li>
-<li class="chapter" data-level="6.2.4" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#spatial-operations-i"><i class="fa fa-check"></i><b>6.2.4</b> Spatial operations I</a></li>
-<li class="chapter" data-level="6.2.5" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#spatial-operations-ii"><i class="fa fa-check"></i><b>6.2.5</b> Spatial operations II</a></li>
+<li class="chapter" data-level="6.2.1" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#housekeeping-w06"><i class="fa fa-check"></i><b>6.2.1</b> Housekeeping<span></span></a></li>
+<li class="chapter" data-level="6.2.2" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#loading-data-w06"><i class="fa fa-check"></i><b>6.2.2</b> Loading data<span></span></a></li>
+<li class="chapter" data-level="6.2.3" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#data-preparation-w06"><i class="fa fa-check"></i><b>6.2.3</b> Data preparation<span></span></a></li>
+<li class="chapter" data-level="6.2.4" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#spatial-operations-i"><i class="fa fa-check"></i><b>6.2.4</b> Spatial operations I<span></span></a></li>
+<li class="chapter" data-level="6.2.5" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#spatial-operations-ii"><i class="fa fa-check"></i><b>6.2.5</b> Spatial operations II<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#assignment-w06"><i class="fa fa-check"></i><b>6.3</b> Assignment</a></li>
-<li class="chapter" data-level="6.4" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#byl-w06"><i class="fa fa-check"></i><b>6.4</b> Before you leave</a></li>
+<li class="chapter" data-level="6.3" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#assignment-w06"><i class="fa fa-check"></i><b>6.3</b> Assignment<span></span></a></li>
+<li class="chapter" data-level="6.4" data-path="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html"><a href="analysing-spatial-patterns-i-geometric-operations-and-spatial-queries.html#byl-w06"><i class="fa fa-check"></i><b>6.4</b> Before you leave<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><i class="fa fa-check"></i><b>7</b> Analysing Spatial Patterns II: Spatial Autocorrelation</a>
+<li class="chapter" data-level="7" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><i class="fa fa-check"></i><b>7</b> Analysing Spatial Patterns II: Spatial Autocorrelation<span></span></a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#reading-w07"><i class="fa fa-check"></i><b>7.1</b> Reading list</a></li>
-<li class="chapter" data-level="7.2" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#childhood-obesity"><i class="fa fa-check"></i><b>7.2</b> Childhood obesity</a>
+<li class="chapter" data-level="7.1" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#reading-w07"><i class="fa fa-check"></i><b>7.1</b> Reading list<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#childhood-obesity"><i class="fa fa-check"></i><b>7.2</b> Childhood obesity<span></span></a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#housekeeping-w07"><i class="fa fa-check"></i><b>7.2.1</b> Housekeeping</a></li>
-<li class="chapter" data-level="7.2.2" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#loading-data-w07"><i class="fa fa-check"></i><b>7.2.2</b> Loading data</a></li>
-<li class="chapter" data-level="7.2.3" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#data-preparation-w07"><i class="fa fa-check"></i><b>7.2.3</b> Data preparation</a></li>
+<li class="chapter" data-level="7.2.1" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#housekeeping-w07"><i class="fa fa-check"></i><b>7.2.1</b> Housekeeping<span></span></a></li>
+<li class="chapter" data-level="7.2.2" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#loading-data-w07"><i class="fa fa-check"></i><b>7.2.2</b> Loading data<span></span></a></li>
+<li class="chapter" data-level="7.2.3" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#data-preparation-w07"><i class="fa fa-check"></i><b>7.2.3</b> Data preparation<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#statistical-distributions"><i class="fa fa-check"></i><b>7.3</b> Statistical distributions</a></li>
-<li class="chapter" data-level="7.4" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#assignment-1-w07"><i class="fa fa-check"></i><b>7.4</b> Assignment 1</a></li>
-<li class="chapter" data-level="7.5" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#spatial-distributions"><i class="fa fa-check"></i><b>7.5</b> Spatial distributions</a>
+<li class="chapter" data-level="7.3" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#statistical-distributions"><i class="fa fa-check"></i><b>7.3</b> Statistical distributions<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#assignment-1-w07"><i class="fa fa-check"></i><b>7.4</b> Assignment 1<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#spatial-distributions"><i class="fa fa-check"></i><b>7.5</b> Spatial distributions<span></span></a>
 <ul>
-<li class="chapter" data-level="7.5.1" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#spatial-lag"><i class="fa fa-check"></i><b>7.5.1</b> Spatial lag</a></li>
-<li class="chapter" data-level="7.5.2" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#defining-neighbours"><i class="fa fa-check"></i><b>7.5.2</b> Defining neighbours</a></li>
-<li class="chapter" data-level="7.5.3" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#spatial-weights-matrix"><i class="fa fa-check"></i><b>7.5.3</b> Spatial weights matrix</a></li>
-<li class="chapter" data-level="7.5.4" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#global-morans-i"><i class="fa fa-check"></i><b>7.5.4</b> Global Moran’s I</a></li>
-<li class="chapter" data-level="7.5.5" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#geary-cs"><i class="fa fa-check"></i><b>7.5.5</b> Geary C’s</a></li>
-<li class="chapter" data-level="7.5.6" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#getis-ord-general-g"><i class="fa fa-check"></i><b>7.5.6</b> Getis-Ord General G</a></li>
-<li class="chapter" data-level="7.5.7" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#local-morans-i"><i class="fa fa-check"></i><b>7.5.7</b> Local Moran’s I</a></li>
-<li class="chapter" data-level="7.5.8" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#getis-gi"><i class="fa fa-check"></i><b>7.5.8</b> Getis-Gi*</a></li>
+<li class="chapter" data-level="7.5.1" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#spatial-lag"><i class="fa fa-check"></i><b>7.5.1</b> Spatial lag<span></span></a></li>
+<li class="chapter" data-level="7.5.2" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#defining-neighbours"><i class="fa fa-check"></i><b>7.5.2</b> Defining neighbours<span></span></a></li>
+<li class="chapter" data-level="7.5.3" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#spatial-weights-matrix"><i class="fa fa-check"></i><b>7.5.3</b> Spatial weights matrix<span></span></a></li>
+<li class="chapter" data-level="7.5.4" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#global-morans-i"><i class="fa fa-check"></i><b>7.5.4</b> Global Moran’s I<span></span></a></li>
+<li class="chapter" data-level="7.5.5" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#geary-cs"><i class="fa fa-check"></i><b>7.5.5</b> Geary C’s<span></span></a></li>
+<li class="chapter" data-level="7.5.6" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#getis-ord-general-g"><i class="fa fa-check"></i><b>7.5.6</b> Getis-Ord General G<span></span></a></li>
+<li class="chapter" data-level="7.5.7" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#local-morans-i"><i class="fa fa-check"></i><b>7.5.7</b> Local Moran’s I<span></span></a></li>
+<li class="chapter" data-level="7.5.8" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#getis-gi"><i class="fa fa-check"></i><b>7.5.8</b> Getis-Gi*<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7.6" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#assignment-2-w07"><i class="fa fa-check"></i><b>7.6</b> Assignment 2</a></li>
-<li class="chapter" data-level="7.7" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#byl-w07"><i class="fa fa-check"></i><b>7.7</b> Before you leave</a></li>
+<li class="chapter" data-level="7.6" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#assignment-2-w07"><i class="fa fa-check"></i><b>7.6</b> Assignment 2<span></span></a></li>
+<li class="chapter" data-level="7.7" data-path="analysing-spatial-patterns-ii-spatial-autocorrelation.html"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#byl-w07"><i class="fa fa-check"></i><b>7.7</b> Before you leave<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html"><i class="fa fa-check"></i><b>8</b> Analysing Spatial Patterns III: Point Pattern Analysis</a>
+<li class="chapter" data-level="8" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html"><i class="fa fa-check"></i><b>8</b> Analysing Spatial Patterns III: Point Pattern Analysis<span></span></a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#reading-w08"><i class="fa fa-check"></i><b>8.1</b> Reading list</a></li>
-<li class="chapter" data-level="8.2" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#bike-theft-w08"><i class="fa fa-check"></i><b>8.2</b> Bike theft in London</a>
+<li class="chapter" data-level="8.1" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#reading-w08"><i class="fa fa-check"></i><b>8.1</b> Reading list<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#bike-theft-w08"><i class="fa fa-check"></i><b>8.2</b> Bike theft in London<span></span></a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#housekeeping-w08"><i class="fa fa-check"></i><b>8.2.1</b> Housekeeping</a></li>
-<li class="chapter" data-level="8.2.2" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#loading-data-w08"><i class="fa fa-check"></i><b>8.2.2</b> Loading data</a></li>
+<li class="chapter" data-level="8.2.1" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#housekeeping-w08"><i class="fa fa-check"></i><b>8.2.1</b> Housekeeping<span></span></a></li>
+<li class="chapter" data-level="8.2.2" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#loading-data-w08"><i class="fa fa-check"></i><b>8.2.2</b> Loading data<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#point-pattern-analysis"><i class="fa fa-check"></i><b>8.3</b> Point pattern analysis</a></li>
-<li class="chapter" data-level="8.4" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#density-based-techniques"><i class="fa fa-check"></i><b>8.4</b> Density-based techniques</a>
+<li class="chapter" data-level="8.3" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#point-pattern-analysis"><i class="fa fa-check"></i><b>8.3</b> Point pattern analysis<span></span></a></li>
+<li class="chapter" data-level="8.4" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#density-based-techniques"><i class="fa fa-check"></i><b>8.4</b> Density-based techniques<span></span></a>
 <ul>
-<li class="chapter" data-level="" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#quadrat-analysis"><i class="fa fa-check"></i>Quadrat analysis</a></li>
-<li class="chapter" data-level="8.4.1" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#kernel-density-estimation"><i class="fa fa-check"></i><b>8.4.1</b> Kernel Density Estimation</a></li>
+<li><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#quadrat-analysis">Quadrat analysis<span></span></a></li>
+<li class="chapter" data-level="8.4.1" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#kernel-density-estimation"><i class="fa fa-check"></i><b>8.4.1</b> Kernel Density Estimation<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#assignment-w08"><i class="fa fa-check"></i><b>8.5</b> Assignment</a></li>
-<li class="chapter" data-level="8.6" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#distance-based-methods"><i class="fa fa-check"></i><b>8.6</b> Distance-Based Methods</a>
+<li class="chapter" data-level="8.5" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#assignment-w08"><i class="fa fa-check"></i><b>8.5</b> Assignment<span></span></a></li>
+<li class="chapter" data-level="8.6" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#distance-based-methods"><i class="fa fa-check"></i><b>8.6</b> Distance-Based Methods<span></span></a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#average-nearest-neighbour"><i class="fa fa-check"></i><b>8.6.1</b> Average Nearest Neighbour</a></li>
-<li class="chapter" data-level="8.6.2" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#ripleys-k-function"><i class="fa fa-check"></i><b>8.6.2</b> Ripley’s K function</a></li>
-<li class="chapter" data-level="8.6.3" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#dbscan"><i class="fa fa-check"></i><b>8.6.3</b> DBSCAN</a></li>
-<li class="chapter" data-level="8.6.4" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#mapping-dbscan-clusters"><i class="fa fa-check"></i><b>8.6.4</b> Mapping DBSCAN clusters</a></li>
+<li class="chapter" data-level="8.6.1" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#average-nearest-neighbour"><i class="fa fa-check"></i><b>8.6.1</b> Average Nearest Neighbour<span></span></a></li>
+<li class="chapter" data-level="8.6.2" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#ripleys-k-function"><i class="fa fa-check"></i><b>8.6.2</b> Ripley’s K function<span></span></a></li>
+<li class="chapter" data-level="8.6.3" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#dbscan"><i class="fa fa-check"></i><b>8.6.3</b> DBSCAN<span></span></a></li>
+<li class="chapter" data-level="8.6.4" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#mapping-dbscan-clusters"><i class="fa fa-check"></i><b>8.6.4</b> Mapping DBSCAN clusters<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#byl-w08"><i class="fa fa-check"></i><b>8.7</b> Before you leave</a></li>
+<li class="chapter" data-level="8.7" data-path="analysing-spatial-patterns-iii-point-pattern-analysis.html"><a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#byl-w08"><i class="fa fa-check"></i><b>8.7</b> Before you leave<span></span></a></li>
 </ul></li>
-<li class="part"><span><b>Advanced Spatial Analysis</b></span></li>
-<li class="chapter" data-level="9" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>9</b> Rasters, Zonal Statistics and Interpolation</a>
+<li class="part"><span><b>Advanced Spatial Analysis<span></span></b></span></li>
+<li class="chapter" data-level="9" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html"><i class="fa fa-check"></i><b>9</b> Rasters, Zonal Statistics and Interpolation<span></span></a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#reading-w09"><i class="fa fa-check"></i><b>9.1</b> Reading list</a></li>
-<li class="chapter" data-level="9.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#raster-data"><i class="fa fa-check"></i><b>9.2</b> Raster data</a>
+<li class="chapter" data-level="9.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#reading-w09"><i class="fa fa-check"></i><b>9.1</b> Reading list<span></span></a></li>
+<li class="chapter" data-level="9.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#raster-data"><i class="fa fa-check"></i><b>9.2</b> Raster data<span></span></a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#housekeeping-w09"><i class="fa fa-check"></i><b>9.2.1</b> Housekeeping</a></li>
-<li class="chapter" data-level="9.2.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#downloading-data-w09"><i class="fa fa-check"></i><b>9.2.2</b> Downloading data</a></li>
-<li class="chapter" data-level="9.2.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#raster-data-1"><i class="fa fa-check"></i><b>9.2.3</b> Raster data</a></li>
-<li class="chapter" data-level="9.2.4" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#map-algebra"><i class="fa fa-check"></i><b>9.2.4</b> Map algebra</a></li>
+<li class="chapter" data-level="9.2.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#housekeeping-w09"><i class="fa fa-check"></i><b>9.2.1</b> Housekeeping<span></span></a></li>
+<li class="chapter" data-level="9.2.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#downloading-data-w09"><i class="fa fa-check"></i><b>9.2.2</b> Downloading data<span></span></a></li>
+<li class="chapter" data-level="9.2.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#raster-data-1"><i class="fa fa-check"></i><b>9.2.3</b> Raster data<span></span></a></li>
+<li class="chapter" data-level="9.2.4" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#map-algebra"><i class="fa fa-check"></i><b>9.2.4</b> Map algebra<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#population-change-in-london-1"><i class="fa fa-check"></i><b>9.3</b> Population change in London</a>
+<li class="chapter" data-level="9.3" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#population-change-in-london-1"><i class="fa fa-check"></i><b>9.3</b> Population change in London<span></span></a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#loading-data-w09-1"><i class="fa fa-check"></i><b>9.3.1</b> Loading data</a></li>
-<li class="chapter" data-level="9.3.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#analysing-population-change"><i class="fa fa-check"></i><b>9.3.2</b> Analysing population change</a></li>
+<li class="chapter" data-level="9.3.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#loading-data-w09-1"><i class="fa fa-check"></i><b>9.3.1</b> Loading data<span></span></a></li>
+<li class="chapter" data-level="9.3.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#analysing-population-change"><i class="fa fa-check"></i><b>9.3.2</b> Analysing population change<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09-01"><i class="fa fa-check"></i><b>9.4</b> Assignment 1</a></li>
-<li class="chapter" data-level="9.5" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#air-pollution-in-london"><i class="fa fa-check"></i><b>9.5</b> Air pollution in London</a>
+<li class="chapter" data-level="9.4" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09-01"><i class="fa fa-check"></i><b>9.4</b> Assignment 1<span></span></a></li>
+<li class="chapter" data-level="9.5" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#air-pollution-in-london"><i class="fa fa-check"></i><b>9.5</b> Air pollution in London<span></span></a>
 <ul>
-<li class="chapter" data-level="9.5.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#loading-data-w09-2"><i class="fa fa-check"></i><b>9.5.1</b> Loading data</a></li>
-<li class="chapter" data-level="9.5.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#analysing-air-pollution"><i class="fa fa-check"></i><b>9.5.2</b> Analysing air pollution</a></li>
+<li class="chapter" data-level="9.5.1" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#loading-data-w09-2"><i class="fa fa-check"></i><b>9.5.1</b> Loading data<span></span></a></li>
+<li class="chapter" data-level="9.5.2" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#analysing-air-pollution"><i class="fa fa-check"></i><b>9.5.2</b> Analysing air pollution<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09-02"><i class="fa fa-check"></i><b>9.6</b> Assignment 2</a></li>
-<li class="chapter" data-level="9.7" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#byl-w09"><i class="fa fa-check"></i><b>9.7</b> Before you leave</a></li>
+<li class="chapter" data-level="9.6" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#assignment-w09-02"><i class="fa fa-check"></i><b>9.6</b> Assignment 2<span></span></a></li>
+<li class="chapter" data-level="9.7" data-path="rasters-zonal-statistics-and-interpolation.html"><a href="rasters-zonal-statistics-and-interpolation.html#byl-w09"><i class="fa fa-check"></i><b>9.7</b> Before you leave<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html"><i class="fa fa-check"></i><b>10</b> Transport Network Analysis</a>
+<li class="chapter" data-level="10" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html"><i class="fa fa-check"></i><b>10</b> Transport Network Analysis<span></span></a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#reading-w10"><i class="fa fa-check"></i><b>10.1</b> Reading list</a></li>
-<li class="chapter" data-level="10.2" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#network-analysis"><i class="fa fa-check"></i><b>10.2</b> Network Analysis</a>
+<li class="chapter" data-level="10.1" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#reading-w10"><i class="fa fa-check"></i><b>10.1</b> Reading list<span></span></a></li>
+<li class="chapter" data-level="10.2" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#network-analysis"><i class="fa fa-check"></i><b>10.2</b> Network Analysis<span></span></a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#accessibility-to-fast-food-outlets"><i class="fa fa-check"></i><b>10.2.1</b> Accessibility to fast-food outlets</a></li>
-<li class="chapter" data-level="10.2.2" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#housekeeping-w10"><i class="fa fa-check"></i><b>10.2.2</b> Housekeeping</a></li>
-<li class="chapter" data-level="10.2.3" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#loading-data-w10"><i class="fa fa-check"></i><b>10.2.3</b> Loading data</a></li>
+<li class="chapter" data-level="10.2.1" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#accessibility-to-fast-food-outlets"><i class="fa fa-check"></i><b>10.2.1</b> Accessibility to fast-food outlets<span></span></a></li>
+<li class="chapter" data-level="10.2.2" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#housekeeping-w10"><i class="fa fa-check"></i><b>10.2.2</b> Housekeeping<span></span></a></li>
+<li class="chapter" data-level="10.2.3" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#loading-data-w10"><i class="fa fa-check"></i><b>10.2.3</b> Loading data<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#accessibility-in-portsmouth"><i class="fa fa-check"></i><b>10.3</b> Accessibility in Portsmouth</a></li>
-<li class="chapter" data-level="10.4" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#assignment-w10"><i class="fa fa-check"></i><b>10.4</b> Assignment</a></li>
-<li class="chapter" data-level="10.5" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#byl-w10"><i class="fa fa-check"></i><b>10.5</b> Before you leave</a></li>
+<li class="chapter" data-level="10.3" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#accessibility-in-portsmouth"><i class="fa fa-check"></i><b>10.3</b> Accessibility in Portsmouth<span></span></a></li>
+<li class="chapter" data-level="10.4" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#assignment-w10"><i class="fa fa-check"></i><b>10.4</b> Assignment<span></span></a></li>
+<li class="chapter" data-level="10.5" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#byl-w10"><i class="fa fa-check"></i><b>10.5</b> Before you leave<span></span></a></li>
 </ul></li>
 </ul>
 
@@ -380,31 +381,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="transport-network-analysis" class="section level1" number="10">
-<h1><span class="header-section-number">10</span> Transport Network Analysis</h1>
+<div id="transport-network-analysis" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">10</span> Transport Network Analysis<a href="transport-network-analysis.html#transport-network-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This final week we will cover another type of data: network data. We will take a look at different types of network analysis and how they apply to different applications and can be used within spatial analysis. For our practical component, we will look at current some approaches to analyse road networks in R using the <code>dodgr</code> library to calculate the network distance between two points (i.e. an Origin and a Destination). These distances can then be used to calculate the number of X resource (e.g. fast-food outlets) within a certain distance of a POI, e.g. a school or population-weighted centroid.</p>
 <!-- ## Lecture recording {#recording-w10} -->
 <!-- - Lecture W10 -->
-<div id="reading-w10" class="section level2" number="10.1">
-<h2><span class="header-section-number">10.1</span> Reading list</h2>
-<div id="essential-readings-9" class="section level4 unnumbered">
-<h4>Essential readings</h4>
+<div id="reading-w10" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Reading list<a href="transport-network-analysis.html#reading-w10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="essential-readings-9" class="section level4 unnumbered hasAnchor">
+<h4>Essential readings<a href="transport-network-analysis.html#essential-readings-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>Geurs, K., Van WEe, B. 2004. Accessibility evaluation of land-use and transport strategies: review and research directions. <em>Journal of Transport Geography</em> 12(2): 127-140. <a href="https://doi.org/10.1016/j.jtrangeo.2003.10.005">[Link]</a></li>
 <li>Neutens, T. Schwanen, T. and Witlox, F. 2011. The prism of everyday life: Towards a new research agenda for time geography. <em>Transport Reviews</em> 31(1): 25-47. <a href="https://doi.org/10.1080/01441647.2010.484153">[Link]</a></li>
 <li>Schwanen, T. and De Jong, T. 2008. Exploring the juggling of responsibilities with space-time accessibility analysis. <em>Urban Geography</em> 29(6): 556-580. <a href="https://doi.org/10.2747/0272-3638.29.6.556">[Link]</a></li>
 </ul>
 </div>
-<div id="suggested-readings-9" class="section level4 unnumbered">
-<h4>Suggested readings</h4>
+<div id="suggested-readings-9" class="section level4 unnumbered hasAnchor">
+<h4>Suggested readings<a href="transport-network-analysis.html#suggested-readings-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li>Van Dijk, J., Krygsman, S. and De Jong, T. 2015. Toward spatial justice: The spatial equity effects of a toll road in Cape Town, South Africa. <em>Journal of Transport and Land Use</em> 8(3): 95-114. <a href="https://doi.org/10.5198/jtlu.2015.555">[Link]</a></li>
 <li>Van Dijk, J. and De Jong, T. 2017. Post-processing GPS-tracks in reconstructing travelled routes in a GIS-environment: network subset selection and attribute adjustment. <em>Annals of GIS</em> 23(3): 203-217. <a href="https://doi.org/10.1080/19475683.2017.1340340">[Link]</a></li>
 </ul>
 </div>
 </div>
-<div id="network-analysis" class="section level2" number="10.2">
-<h2><span class="header-section-number">10.2</span> Network Analysis</h2>
+<div id="network-analysis" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Network Analysis<a href="transport-network-analysis.html#network-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The term ‘network analysis’ covers a wide range of analysis techniques, from complex network analysis, social network analysis, link analysis, as well as road network analysis.</p>
 <p>A network or network graph is constituted by a collection of vertices that are connected to one another by edges. Note, vertices may also be called nodes or points, whilst edges may be called links or lines. Within social network analysis, you may find the terms actors (the vertices) and ties or relations (the edges) also used.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:09-network-graph"></span>
@@ -416,15 +417,15 @@ Figure 10.1: Visualising networks through vertices and edges.
 <p>Understanding that networks are formed through the connections of vertices and edges, we can think of many naturally and manmade occurring networks that also have a precise geography to them (i.e. their distribution can be mapped directly within geographic space), including rivers connected with tributaries and animal tracks, to electricity pylons and cables and our road and street networks that form crucial parts of our infrastructure.</p>
 <p>The latter, in particular, have been a substantial focus of those working within spatial analysis over the last two decades, particularly with routing applications now dominating much of our day-to-day technology, from personal route-planning and ride-share apps to large-scale logistics and infrastructure applications, including the delivery operations behind all of our online shopping and even <a href="https://www.arcgis.com/apps/webappviewer/index.html?id=2de764a9303848ffb9a4cac0bd0b1aab">Scotland’s Trunk Road Gritters</a>.</p>
 <p>Alongside this development of routing applications, GIS analysts, geographers and public health specialists have also identified the utility of network analysis within geographic space to calculate distance-based measurement and coverage buffers that can be used as part of accessibility studies that look to understand the provision of a specific resource (e.g. greenspaces, hospitals or even fast-food stores) to a certain area of population.</p>
-<div id="accessibility-to-fast-food-outlets" class="section level3" number="10.2.1">
-<h3><span class="header-section-number">10.2.1</span> Accessibility to fast-food outlets</h3>
+<div id="accessibility-to-fast-food-outlets" class="section level3 hasAnchor" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Accessibility to fast-food outlets<a href="transport-network-analysis.html#accessibility-to-fast-food-outlets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For this week’s practical, we will be using Portsmouth in the UK as our area of interest for our analysis. Portsmouth is located on the south coast of the UUK, and is actually the only city in the UK whose population density exceeds that of London (in 2011). One of the reasons is that the city primarily occupies an outcrop of land on the south-coast (an island called Portsea Island), and extends only slightly into the north, past the M27. There are lots of geographical issues and challenges within the city that you could investigate, including weaknesses in Portsmouth’s current road provision - there are only three main roads in and out of the island!</p>
 <p>One prominent topic within the city is the issue of public health and childhood obesity. According to figures released in March 2020 by Public Health England, more than one in three school pupils are overweight or obese by the time they finish primary school within the city - higher than the national average of one in four. One potential contributor to the health crisis is the ease and availability of fast-food in the city. From the local newspaper in the city, the Portsmouth News, Healthwatch Portsmouth Chairman Roger Batterbury was quoted: <em>‘For people in areas of deprivation, every penny counts and when it comes to buying food, the cheapest option is important but that is rarely the healthy choice.’</em> See the original article <a href="https://www.portsmouth.co.uk/health/one-three-portsmouth-pupils-are-overweight-or-obese-time-they-finish-primary-school-2063613">here</a>.</p>
 <p>The City Council itself has aimed to address the issue by banning new fast-food takeaways within a 400m range of schools – it started with a pilot at Arundel Court Primary Academy in Landport in September 2019. Since the pilot, no new hot food takeaways will be able to open within a 400m radius of the school. To assess the likely impact of this policy, we will investigate the accessibility of fast-food outlets for school children - we want to know if there is a geography to accessibility that could be used within future analysis to understand whether certain socio-economic demographics are more exposed to fast-food then others. We will measure accessibility by understanding how many fast-food outlets are within specific walking distances of each school, starting at 400m, then 800m and finally a 1km walking distance. We will then aggregate these counts at the Lower Super Output Area (LSOA) and compare these results across the city.</p>
 <p>To get this data ready for our spatial and socio-economic analyses, we will need to first calculate the distances between our schools and fast-food outlets. This involves <strong>calculating the shortest distance a child would walk between a school and a fast-food outlet, using roads or streets</strong>. This means we need to conduct a road network analysis between each school and fast-food outlet.</p>
 </div>
-<div id="housekeeping-w10" class="section level3" number="10.2.2">
-<h3><span class="header-section-number">10.2.2</span> Housekeeping</h3>
+<div id="housekeeping-w10" class="section level3 hasAnchor" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> Housekeeping<a href="transport-network-analysis.html#housekeeping-w10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s get ourselves ready to start our practical by first adding our relevant libraries, downloading the relevant data and loading this within our script. Open a new script (preferably within your GEOG0030 project) and save this script as <code>wk10-fastfood-analysis.r</code>. At the top of your script, add the following metadata (substitute accordingly):</p>
 <div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="transport-network-analysis.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysing distance between schools and fast-food outlets in Portsmouth</span></span>
 <span id="cb332-2"><a href="transport-network-analysis.html#cb332-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Data: January 2022</span></span>
@@ -441,8 +442,8 @@ All calculations within the <code>dodgr</code> library currently need to be run 
 <span id="cb333-5"><a href="transport-network-analysis.html#cb333-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata)</span>
 <span id="cb333-6"><a href="transport-network-analysis.html#cb333-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dodgr)</span></code></pre></div>
 </div>
-<div id="loading-data-w10" class="section level3" number="10.2.3">
-<h3><span class="header-section-number">10.2.3</span> Loading data</h3>
+<div id="loading-data-w10" class="section level3 hasAnchor" number="10.2.3">
+<h3><span class="header-section-number">10.2.3</span> Loading data<a href="transport-network-analysis.html#loading-data-w10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The first data set we need to download will help with the visualisation of our results: boundary data that contains an outline of Portsmouth.</p>
 <table>
 <thead>
@@ -502,8 +503,8 @@ Because we are focusing on walking, we will overwrite the <code>oneway</code> va
 <p>Now we have the network edges, we can turn this into a graph-representation that allows for the calculation of network-based accessibility statistics.</p>
 </div>
 </div>
-<div id="accessibility-in-portsmouth" class="section level2" number="10.3">
-<h2><span class="header-section-number">10.3</span> Accessibility in Portsmouth</h2>
+<div id="accessibility-in-portsmouth" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Accessibility in Portsmouth<a href="transport-network-analysis.html#accessibility-in-portsmouth" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Before we construct our graph, we need to also create our <strong>ORIGIN</strong> and <strong>DESTINATION</strong> points, i.e. the data points we wish to calculate the distances between. As we will use the <code>dodgr_dists()</code> function to calculate these distances, according to the <code>dodgr</code> documentation, these points need to be in either a vector or matrix format, containing the two coordinates for each point for the origins and for the destinations.</p>
 <p>For our Portsmouth scenario, we are interested in calculating the shortest distances between schools and fast-food outlets, therefore we need to download these data sets - again we will turn to OpenStreetMap. Following a similar structure to our query above, we will use our knowledge of OpenStreetMap <em>keys</em> and <em>values</em> to extract the points of origins (schools) and destinations (fast-food outlets) we are interested in,:</p>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="transport-network-analysis.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download schools from OSM</span></span>
@@ -668,8 +669,8 @@ a distance matrix obtained from running <code>dodgr_distances</code> on <code>gr
 <p><img src="GEOG0030_files/figure-html/w10-bubble-maps-1.png" width="672" /></p>
 <p>The map shows that areas with greater access/exposure to fast-food outlets (denoted by the larger symbols) appear to be within the city centre and in the south, whereas those schools in the north have less exposure. However, if we head back to the interactive map at the start of this practical, you will be able to see that these two areas correlate quite well with the more commercial areas within Portsmouth, the high street and an area known as Gunwharf Quays. This suggests there are complexities in understanding accessibility as well as trying to apply specific policies such as banning new fast-food takeaways within a 400m range of school, particularly if these schools are in commercial areas.</p>
 </div>
-<div id="assignment-w10" class="section level2" number="10.4">
-<h2><span class="header-section-number">10.4</span> Assignment</h2>
+<div id="assignment-w10" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Assignment<a href="transport-network-analysis.html#assignment-w10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now you have the number of fast-food outlets within specific distances from each school, the assignment for this week is to aggregate fast-food accessibility at the LSOA scale. After aggregating these distance calculations to the LSOA scale, you will then compare accessibility to the <a href="https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019">2019 Index of Multiple Deprivation</a>. In order to do this you will, at least, need to take the following steps:</p>
 <ol style="list-style-type: decimal">
 <li>Download and extract the 2011 LSOA boundaries of Portsmouth.</li>
@@ -690,8 +691,8 @@ a distance matrix obtained from running <code>dodgr_distances</code> on <code>gr
 This skills and steps required for this analysis are not just based on this weeks practical, but you will have to combine all your knowledge of coding and spatial analysis you have gained over the past 10 weeks!</p>
 </div>
 </div>
-<div id="byl-w10" class="section level2" number="10.5">
-<h2><span class="header-section-number">10.5</span> Before you leave</h2>
+<div id="byl-w10" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Before you leave<a href="transport-network-analysis.html#byl-w10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Having finished this final tutorial on transport network analysis and, hopefully, having been able to independently conduct some further area-profiling using IMD deciles, <a href="https://www.youtube.com/watch?v=fFw7q-BLxLA">you have now reached the end of Geocomputation</a>!</p>
 
 </div>
