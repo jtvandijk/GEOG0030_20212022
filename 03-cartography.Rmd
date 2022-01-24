@@ -197,7 +197,7 @@ To get our **crime rate** statistic, we are going to do our first bit of table m
      
 6. With the **Attribute Table** of your `Count` layer still open, click on the **pencil** icon at the start of the row. 
     + This pencil actually turns on the Editing mode in QGIS.
-    + The editing mode allows you to edit both the **Attribute Table** values **and** the **geometry** of your data.
+    + The Editing mode allows you to edit both the **Attribute Table** values **and** the **geometry** of your data.
     + E.g. you could actually move the various vertex of your boroughs whilst in this Editing mode if you like!
     + When it comes to the **Attribute Table**, it means you can directly edit existing values in the table **or** create and add new fields to the table.
     + Whilst you can actually do the latter outside of the Editing mode, this Editing mode means you can reverse any edits you make and they are not permanent just in case you make a mistake.
@@ -223,7 +223,7 @@ Understanding how to add new fields and their parameters rely on you understandi
 
 The empty field has *NULL* populated for each row - so we need to find a way to give our boroughs some crime rate data. To do this, we will calculate a simple **Crime Rate** using the **Field Calculator** tool provided by QGIS within the **Attribute Table**. We will create a crime rate that details the number of crimes per 10,000 people in the borough. In most cases, a crime rate per person will create a decimal result less than 1 which not only will not be stored correctly by our `crime_rate` field but, for many people, a **decimal** value is hard to interpret and understand.
 
-9. Whilst still in the editing mode, click on the **Abacus** button (Ctrl + I / Cmd + I), which is actually the **Field Calculator**. A new pop-up should load up. We can see there are various options we could click at the top - including **Create a new field**. So we could in fact create a new field directly from the field calculator which would help us combine these two steps in one and quicken our workflow!
+9. Whilst still in the Editing mode, click on the **Abacus** button (Ctrl + I / Cmd + I), which is actually the **Field Calculator**. A new pop-up should load up. We can see there are various options we could click at the top - including **Create a new field**. So we could in fact create a new field directly from the field calculator which would help us combine these two steps in one and quicken our workflow!
 
 10. For now, in the Field Calculator pop-up:
     + Check the `Update existing field` box.
@@ -234,9 +234,9 @@ The empty field has *NULL* populated for each row - so we need to find a way to 
     
 You should then return to the **Attribute Table** and see our newly populated `crime_rate` field - at the moment, we can see the resulting calculations stored as decimals.
   
-11. Click on the **Save** button to save these edits - you will see the numbers turn to integers.
+11. Click on the **Save** button to save these edits.
 
-12. Click again on the **Pencil** button to exit Editing mode. 
+12. Click again on the **Pencil** button to exit Editing mode - you will see the numbers turn to integers.
 
 We now have a `crime_rate` column to map. Before moving to the next step, if you would like, go ahead and symbolise your boroughs by this `crime_rate`.
 

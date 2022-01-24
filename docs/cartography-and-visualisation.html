@@ -588,7 +588,7 @@ QGIS can at times be a little bit buggy so when it creates new data layers in yo
 <li>With the <strong>Attribute Table</strong> of your <code>Count</code> layer still open, click on the <strong>pencil</strong> icon at the start of the row.
 <ul>
 <li>This pencil actually turns on the Editing mode in QGIS.</li>
-<li>The editing mode allows you to edit both the <strong>Attribute Table</strong> values <strong>and</strong> the <strong>geometry</strong> of your data.</li>
+<li>The Editing mode allows you to edit both the <strong>Attribute Table</strong> values <strong>and</strong> the <strong>geometry</strong> of your data.</li>
 <li>E.g. you could actually move the various vertex of your boroughs whilst in this Editing mode if you like!</li>
 <li>When it comes to the <strong>Attribute Table</strong>, it means you can directly edit existing values in the table <strong>or</strong> create and add new fields to the table.</li>
 <li>Whilst you can actually do the latter outside of the Editing mode, this Editing mode means you can reverse any edits you make and they are not permanent just in case you make a mistake.</li>
@@ -614,7 +614,7 @@ Understanding how to add new fields and their parameters rely on you understandi
 </div>
 <p>The empty field has <em>NULL</em> populated for each row - so we need to find a way to give our boroughs some crime rate data. To do this, we will calculate a simple <strong>Crime Rate</strong> using the <strong>Field Calculator</strong> tool provided by QGIS within the <strong>Attribute Table</strong>. We will create a crime rate that details the number of crimes per 10,000 people in the borough. In most cases, a crime rate per person will create a decimal result less than 1 which not only will not be stored correctly by our <code>crime_rate</code> field but, for many people, a <strong>decimal</strong> value is hard to interpret and understand.</p>
 <ol start="9" style="list-style-type: decimal">
-<li><p>Whilst still in the editing mode, click on the <strong>Abacus</strong> button (Ctrl + I / Cmd + I), which is actually the <strong>Field Calculator</strong>. A new pop-up should load up. We can see there are various options we could click at the top - including <strong>Create a new field</strong>. So we could in fact create a new field directly from the field calculator which would help us combine these two steps in one and quicken our workflow!</p></li>
+<li><p>Whilst still in the Editing mode, click on the <strong>Abacus</strong> button (Ctrl + I / Cmd + I), which is actually the <strong>Field Calculator</strong>. A new pop-up should load up. We can see there are various options we could click at the top - including <strong>Create a new field</strong>. So we could in fact create a new field directly from the field calculator which would help us combine these two steps in one and quicken our workflow!</p></li>
 <li><p>For now, in the Field Calculator pop-up:</p>
 <ul>
 <li>Check the <code>Update existing field</code> box.</li>
@@ -626,8 +626,8 @@ Understanding how to add new fields and their parameters rely on you understandi
 </ol>
 <p>You should then return to the <strong>Attribute Table</strong> and see our newly populated <code>crime_rate</code> field - at the moment, we can see the resulting calculations stored as decimals.</p>
 <ol start="11" style="list-style-type: decimal">
-<li><p>Click on the <strong>Save</strong> button to save these edits - you will see the numbers turn to integers.</p></li>
-<li><p>Click again on the <strong>Pencil</strong> button to exit Editing mode.</p></li>
+<li><p>Click on the <strong>Save</strong> button to save these edits.</p></li>
+<li><p>Click again on the <strong>Pencil</strong> button to exit Editing mode - you will see the numbers turn to integers.</p></li>
 </ol>
 <p>We now have a <code>crime_rate</code> column to map. Before moving to the next step, if you would like, go ahead and symbolise your boroughs by this <code>crime_rate</code>.</p>
 <ol start="13" style="list-style-type: decimal">
