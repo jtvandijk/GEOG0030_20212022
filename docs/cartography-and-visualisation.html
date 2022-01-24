@@ -617,7 +617,7 @@ Understanding how to add new fields and their parameters rely on you understandi
 <li><p>Whilst still in the Editing mode, click on the <strong>Abacus</strong> button (Ctrl + I / Cmd + I), which is actually the <strong>Field Calculator</strong>. A new pop-up should load up. We can see there are various options we could click at the top - including <strong>Create a new field</strong>. So we could in fact create a new field directly from the field calculator which would help us combine these two steps in one and quicken our workflow!</p></li>
 <li><p>For now, in the Field Calculator pop-up:</p>
 <ul>
-<li>Check the <code>Update existing field</code> box.</li>
+<li>Check the <strong>Update existing field</strong> box.</li>
 <li>Use the drop-down to select the <code>crime_rate</code>field.</li>
 <li>In the Expression editor, add the following expression: <strong>( “crimecount” / “pop2019” ) * 10000</strong></li>
 <li>You can type this in manually or use the <code>Fields and Values</code> selector in the box in the middle to add the fields into the editor.</li>
@@ -627,8 +627,12 @@ Understanding how to add new fields and their parameters rely on you understandi
 <p>You should then return to the <strong>Attribute Table</strong> and see our newly populated <code>crime_rate</code> field - at the moment, we can see the resulting calculations stored as decimals.</p>
 <ol start="11" style="list-style-type: decimal">
 <li><p>Click on the <strong>Save</strong> button to save these edits.</p></li>
-<li><p>Click again on the <strong>Pencil</strong> button to exit Editing mode - you will see the numbers turn to integers.</p></li>
+<li><p>Click again on the <strong>Pencil</strong> button to exit Editing mode - you should see the numbers turn to integers.</p></li>
 </ol>
+<div class="note">
+<p><strong>Note</strong> <br />
+On some computers and installations the numbers do not get changed to an <code>integer</code>, but remain a <code>double</code>. If this happens, create a new field directly in the Field Calculator. instead of ticking the <strong>Update existing field</strong> box you keep the <strong>Create a new field</strong> box ticked. Name the new field <code>crime_rate_int</code>, make sure the <strong>Output field type</strong> is set to <code>Whole number (integer)</code>, and use the same expression as above to get the crime rate in a new column.</p>
+</div>
 <p>We now have a <code>crime_rate</code> column to map. Before moving to the next step, if you would like, go ahead and symbolise your boroughs by this <code>crime_rate</code>.</p>
 <ol start="13" style="list-style-type: decimal">
 <li>Rename your borough crime rate layer to <code>Borough Crime Rate</code>.</li>

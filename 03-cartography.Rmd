@@ -226,7 +226,7 @@ The empty field has *NULL* populated for each row - so we need to find a way to 
 9. Whilst still in the Editing mode, click on the **Abacus** button (Ctrl + I / Cmd + I), which is actually the **Field Calculator**. A new pop-up should load up. We can see there are various options we could click at the top - including **Create a new field**. So we could in fact create a new field directly from the field calculator which would help us combine these two steps in one and quicken our workflow!
 
 10. For now, in the Field Calculator pop-up:
-    + Check the `Update existing field` box.
+    + Check the **Update existing field** box.
     + Use the drop-down to select the `crime_rate`field.
     + In the Expression editor, add the following expression: **( "crimecount" / "pop2019" ) \* 10000**
     + You can type this in manually or use the `Fields and Values` selector in the box in the middle to add the fields into the editor.
@@ -236,7 +236,12 @@ You should then return to the **Attribute Table** and see our newly populated `c
   
 11. Click on the **Save** button to save these edits.
 
-12. Click again on the **Pencil** button to exit Editing mode - you will see the numbers turn to integers.
+12. Click again on the **Pencil** button to exit Editing mode - you should see the numbers turn to integers.
+
+:::note
+**Note** <br />
+On some computers and installations the numbers do not get changed to an `integer`, but remain a `double`. If this happens, create a new field directly in the Field Calculator. instead of ticking the **Update existing field** box you keep the **Create a new field** box ticked. Name the new field `crime_rate_int`, make sure the **Output field type** is set to `Whole number (integer)`, and use the same expression as above to get the crime rate in a new column.
+:::
 
 We now have a `crime_rate` column to map. Before moving to the next step, if you would like, go ahead and symbolise your boroughs by this `crime_rate`.
 
