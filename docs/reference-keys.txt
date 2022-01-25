@@ -102,6 +102,7 @@ crime-data-2
 reading-data-into-r
 inspecting-data-in-r
 assignment-w04
+want-more-optional
 byl-w04
 programming-for-spatial-analysis
 reading-w05

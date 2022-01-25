@@ -24,7 +24,7 @@
 <meta name="author" content="Justin van Dijk" />
 
 
-<meta name="date" content="2022-01-24" />
+<meta name="date" content="2022-01-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -241,7 +241,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6.4" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#crime-data-2"><i class="fa fa-check"></i><b>4.6.4</b> Crime data<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#assignment-w04"><i class="fa fa-check"></i><b>4.7</b> Assignment<span></span></a></li>
-<li class="chapter" data-level="4.8" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#byl-w04"><i class="fa fa-check"></i><b>4.8</b> Before you leave<span></span></a></li>
+<li class="chapter" data-level="4.8" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#want-more-optional"><i class="fa fa-check"></i><b>4.8</b> Want more? [Optional]<span></span></a></li>
+<li class="chapter" data-level="4.9" data-path="programming-for-data-analysis.html"><a href="programming-for-data-analysis.html#byl-w04"><i class="fa fa-check"></i><b>4.9</b> Before you leave<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="programming-for-spatial-analysis.html"><a href="programming-for-spatial-analysis.html"><i class="fa fa-check"></i><b>5</b> Programming for Spatial Analysis<span></span></a>
 <ul>
@@ -434,8 +435,8 @@ Figure 4.1: Top 10 programming languages and their applications according to DZo
 - RStudio is our Integrated Development Environment (IDE), which we need to understand in terms of functionality and workflow. An IDE is simply a complicated way of saying “a place where I write and build scripts and execute my code”.</p>
 <p>As you may know already, R is a free and open-source programming language, that originally was created to focus on statistical analysis. In conjunction with the development of R as a language, the same community created the RStudio IDE to execute this statistical programming. Together, R and RStudio have grown into an incredibly success partnership of analytical programming language and analysis software - and is widely used for academic research as well as in the commercial sector.</p>
 <p>One of R’s great strength is that it is open-source, can be used on all major computer operating systems and is free for anyone to use. It, as a result, has a huge and active contributor community which constantly adds functionality to the language and software, making it an incredibly useful tool for many purposes and applications beyond statistical analysis.</p>
-<p>Unlike traditional statistical analysis programmes you may have used such as <a href="https://www.microsoft.com/en-us/microsoft-365/excel">Microsoft Excel</a> or even <a href="https://www.ibm.com/uk-en/products/spss-statistics">SPSS</a>, within the R-Studio IDE, the user has to type commands to get it to execute tasks such as loading in a data set or performing a calculation. We primarily do this by building up a script, that provides a record of what you have done, whilst also enabling the straightforward repetition of tasks.</p>
-<p>We can also use the <strong>R Console</strong> to execute simple instructions that do not need repeating - such as installing libraries or quickly viewing data (we will get to this in a second). In addition, R, its various graphic-oriented “packages” and R-Studio are capable of making graphs, charts and maps through just a few lines of code (you might notice a <strong>Plots</strong> window to your right in your RStudio window) - which can then be easily modified and tweaked by making slight changes to the script if mistakes are spotted.</p>
+<p>Unlike traditional statistical analysis programmes you may have used such as <a href="https://www.microsoft.com/en-us/microsoft-365/excel">Microsoft Excel</a> or even <a href="https://www.ibm.com/uk-en/products/spss-statistics">SPSS</a>, within the RStudio IDE, the user has to type commands to get it to execute tasks such as loading in a data set or performing a calculation. We primarily do this by building up a script, that provides a record of what you have done, whilst also enabling the straightforward repetition of tasks.</p>
+<p>We can also use the <strong>R Console</strong> to execute simple instructions that do not need repeating - such as installing libraries or quickly viewing data (we will get to this in a second). In addition, R, its various graphic-oriented “packages” and RStudio are capable of making graphs, charts and maps through just a few lines of code (you might notice a <strong>Plots</strong> window to your right in your RStudio window) - which can then be easily modified and tweaked by making slight changes to the script if mistakes are spotted.</p>
 <p>Unfortunately, command-line computing can also be off-putting at first. It is easy to make mistakes that are not always obvious to detect and thus debug. Nevertheless, there are good reasons to stick with R and RStudio. These include:</p>
 <ul>
 <li>It is broadly intuitive with a strong focus on publishable-quality graphics.</li>
@@ -444,7 +445,7 @@ Figure 4.1: Top 10 programming languages and their applications according to DZo
 <li>It is well respected and used at the world’s largest technology companies (including Google, Microsoft and Facebook, and at hundreds of other companies).</li>
 <li>It offers a <strong>transferable skill</strong> that shows to potential employers experience both of statistics and of computing.</li>
 </ul>
-<p>The intention of the practical elements of this week is to provide a thorough introduction to R-Studio to get you started:</p>
+<p>The intention of the practical elements of this week is to provide a thorough introduction to RStudio to get you started:</p>
 <ol style="list-style-type: decimal">
 <li>The basic programming principles behind R.</li>
 <li>Loading in data from <code>csv</code> files, filtering and subsetting it into smaller chunks and joining them together.</li>
@@ -454,8 +455,8 @@ Figure 4.1: Top 10 programming languages and their applications according to DZo
 <p>What you should remember is that R has a steep learning curve, but the benefits of using it are well worth the effort. The best way to really learn R is to take the basic code provided in tutorials and experiment with changing parameters - such as the colour of points in a graph - to really get ‘under the hood’ of the software.</p>
 <div id="the-rstudio-interface" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> The RStudio interface<a href="programming-for-data-analysis.html#the-rstudio-interface" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>You should all have access to some form of R - whether this is on your personal computer, <a href="https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere">Desktop@UCL Anywhere</a> or through RStudio Server - so let us go ahead and open RStudio and we will first take a quick tour of the various components of the R-Studio environment interface and how and when to use them.</p>
-<p>RStudio has various windows that you use for different purposes - and you can customise its layout dependent on your preference. When you first open R-Studio, it should look a little something like this:</p>
+<p>You should all have access to some form of R - whether this is on your personal computer, <a href="https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere">Desktop@UCL Anywhere</a> or through RStudio Server. If not, please go through the <a href="#geocomputation-an-introduction.html">Geocomputation: An Introduction</a> section. Go ahead and open RStudio and we will first take a quick tour of the various components of the RStudio environment interface and how and when to use them.</p>
+<p>RStudio has various windows that you use for different purposes - and you can customise its layout dependent on your preference. When you first open RStudio, it should look a little something like this:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:04-rstudio-interface-script"></span>
 <img src="images/w04/rstudio_interface.png" alt="RStudio on RStudio Server." width="1090" />
 <p class="caption">
@@ -481,7 +482,7 @@ Figure 4.2: RStudio on RStudio Server.
 <p><strong>Note</strong><br/>
 You might need to click on the console window to get it to expand - you can then drag it to take up a larger space in your RStudio window.</p>
 </div>
-<p>In your R-Studio console, you should see a prompt sign - <code>&gt;</code> to the left - this means we are ready to start writing code. Anything that appears as red in the command line means it is an error (or a warning) so you will likely need to correct your code. If you see a <code>&gt;</code> on the left it means you can type in your next line, a <code>+</code> means that you have not finished the previous line of code. As will become clear, <code>+</code> signs often appear if you do not close brackets or you did not properly finish your command in a way that R expected.</p>
+<p>In your RStudio console, you should see a prompt sign - <code>&gt;</code> to the left - this means we are ready to start writing code. Anything that appears as red in the command line means it is an error (or a warning) so you will likely need to correct your code. If you see a <code>&gt;</code> on the left it means you can type in your next line, a <code>+</code> means that you have not finished the previous line of code. As will become clear, <code>+</code> signs often appear if you do not close brackets or you did not properly finish your command in a way that R expected.</p>
 <p>In your console, let us go ahead and conduct some quick maths - at their most basic, all programming languages can be used like calculators.</p>
 <div id="command-input" class="section level3 hasAnchor" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> Command Input<a href="programming-for-data-analysis.html#command-input" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -990,7 +991,7 @@ If using a Windows machine, you will need to submit your forward-slashes (<code>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="programming-for-data-analysis.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(crime_csv)</span></code></pre></div>
 <pre><code>## [1] 90979    12</code></pre>
 <p>We have found out our variable is a data frame, containing <strong>90979 rows and 12 columns</strong>. We however do not want just the single <code>csv</code> and instead what to combine all our <code>csv's</code> in our <code>all_crime</code> folder into a single data frame - so how do we do this?</p>
-<p>This will be the most complicated section of code you will come across today, and we will use some functions that you have not seen before..</p>
+<p>This will be the most complicated section of code you will come across today, and we will use some functions that you have not seen before.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="programming-for-data-analysis.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in all files and append all rows to a single data frame</span></span>
 <span id="cb74-2"><a href="programming-for-data-analysis.html#cb74-2" aria-hidden="true" tabindex="-1"></a>all_crime_df <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">&quot;data/raw/crime/all_crime/&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb74-3"><a href="programming-for-data-analysis.html#cb74-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">recursive =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
@@ -1078,8 +1079,12 @@ It is a little difficult to explain the code above without going into too much d
 </ol>
 <p>Now, make sure to save your script, so we can return to it next week. You do not need to save your workspace - but can do so if you like. Saving the workspace will keep any variables generated during your current session saved and available in a future session.</p>
 </div>
-<div id="byl-w04" class="section level2 hasAnchor" number="4.8">
-<h2><span class="header-section-number">4.8</span> Before you leave<a href="programming-for-data-analysis.html#byl-w04" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="want-more-optional" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Want more? [Optional]<a href="programming-for-data-analysis.html#want-more-optional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The graphs and figures we have made so far are not really pretty. Although possible with the basic R installation, there are easier and better ways to make nice visualisations. For this we can turn to other R packages that have been developed. In fact, there are many hundreds of packages in R each designed for a specific purpose, some of which you can use to create plots in R. One of those packages is called <code>ggplot2</code>. The <code>ggplot2</code> package is an implementation of the Grammar of Graphics (<a href="https://en.wikipedia.org/wiki/Leland_Wilkinson">Wilkinson 2005</a>) - a general scheme for data visualisation that breaks up graphs into semantic components such as scales and layers. <code>ggplot2</code> can serve as a replacement for the base graphics in R and contains a number of default options that match good visualisation practice. You provide the data, tell <code>ggplot2</code> how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details. An excellent introduction to <code>ggplot2</code> can be found in the online, freely available book <a href="https://r4ds.had.co.nz/data-visualisation.html">R for Data Science</a>; written by Hadley Wickham, core developer of <code>ggplot2</code> and the <code>tidyverse</code>. Have a particularly close look at <strong>Chapter 3</strong>: <em>Data visualisation</em>: <a href="https://r4ds.had.co.nz/data-visualisation.html">[Link]</a>.</p>
+</div>
+<div id="byl-w04" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> Before you leave<a href="programming-for-data-analysis.html#byl-w04" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We have managed to take a data set of over one million records and clean and filter it to provide a chart that actually shows the potential impact of the first COVID-19 lockdown on theft crime in London. Of course, there is a lot more research and exploratory data analysis we would need to complete before we could really substantiate our findings, but this first chart is certainly a step in the right direction. Next week, we will be doing a lot more with our data set - including a lot more data wrangling and of course spatial analysis, but hopefully this week has shown you want you can achieve with just a few lines of code. <a href="https://www.youtube.com/watch?v=NKyYr2pbXUM">That concludes the tutorial for this week</a>.</p>
 
 </div>

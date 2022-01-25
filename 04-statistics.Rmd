@@ -46,9 +46,9 @@ As you may know already, R is a free and open-source programming language, that 
 
 One of R’s great strength is that it is open-source, can be used on all major computer operating systems and is free for anyone to use. It, as a result, has a huge and active contributor community which constantly adds functionality to the language and software, making it an incredibly useful tool for many purposes and applications beyond statistical analysis.
 
-Unlike traditional statistical analysis programmes you may have used such as [Microsoft Excel](https://www.microsoft.com/en-us/microsoft-365/excel) or even [SPSS](https://www.ibm.com/uk-en/products/spss-statistics), within the R-Studio IDE, the user has to type commands to get it to execute tasks such as loading in a data set or performing a calculation. We primarily do this by building up a script, that provides a record of what you have done, whilst also enabling the straightforward repetition of tasks. 
+Unlike traditional statistical analysis programmes you may have used such as [Microsoft Excel](https://www.microsoft.com/en-us/microsoft-365/excel) or even [SPSS](https://www.ibm.com/uk-en/products/spss-statistics), within the RStudio IDE, the user has to type commands to get it to execute tasks such as loading in a data set or performing a calculation. We primarily do this by building up a script, that provides a record of what you have done, whilst also enabling the straightforward repetition of tasks. 
 
-We can also use the **R Console** to execute simple instructions that do not need repeating - such as installing libraries or quickly viewing data (we will get to this in a second). In addition, R, its various graphic-oriented "packages" and R-Studio are capable of making graphs, charts and maps through just a few lines of code (you might notice a **Plots** window to your right in your RStudio window)  - which can then be easily modified and tweaked by making slight changes to the script if mistakes are spotted. 
+We can also use the **R Console** to execute simple instructions that do not need repeating - such as installing libraries or quickly viewing data (we will get to this in a second). In addition, R, its various graphic-oriented "packages" and RStudio are capable of making graphs, charts and maps through just a few lines of code (you might notice a **Plots** window to your right in your RStudio window)  - which can then be easily modified and tweaked by making slight changes to the script if mistakes are spotted. 
 
 Unfortunately, command-line computing can also be off-putting at first. It is easy to make mistakes that are not always obvious to detect and thus debug. Nevertheless, there are good reasons to stick with R and RStudio. These include:
 
@@ -58,7 +58,7 @@ Unfortunately, command-line computing can also be off-putting at first. It is ea
 * It is well respected and used at the world's largest technology companies (including Google, Microsoft and Facebook, and at hundreds of other companies).
 * It offers a **transferable skill** that shows to potential employers experience both of statistics and of computing.
 
-The intention of the practical elements of this week is to provide a thorough introduction to R-Studio to get you started:
+The intention of the practical elements of this week is to provide a thorough introduction to RStudio to get you started:
 
 1. The basic programming principles behind R.
 2. Loading in data from `csv` files, filtering and subsetting it into smaller chunks and joining them together.
@@ -68,9 +68,9 @@ The intention of the practical elements of this week is to provide a thorough in
 What you should remember is that R has a steep learning curve, but the benefits of using it are well worth the effort. The best way to really learn R is to take the basic code provided in tutorials and experiment with changing parameters - such as the colour of points in a graph - to really get 'under the hood' of the software. 
 
 ### The RStudio interface
-You should all have access to some form of R - whether this is on your personal computer, [Desktop@UCL Anywhere](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere) or through RStudio Server - so let us go ahead and open RStudio and we will first take a quick tour of the various components of the R-Studio environment interface and how and when to use them.
+You should all have access to some form of R - whether this is on your personal computer, [Desktop@UCL Anywhere](https://www.ucl.ac.uk/isd/services/computers/remote-access/desktopucl-anywhere) or through RStudio Server. If not, please go through the [Geocomputation: An Introduction](#geocomputation-an-introduction.html) section. Go ahead and open RStudio and we will first take a quick tour of the various components of the RStudio environment interface and how and when to use them.
 
-RStudio has various windows that you use for different purposes - and you can customise its layout dependent on your preference. When you first open R-Studio, it should look a little something like this:
+RStudio has various windows that you use for different purposes - and you can customise its layout dependent on your preference. When you first open RStudio, it should look a little something like this:
 
 ```{r 04-rstudio-interface-script, echo=FALSE, fig.align='center', fig.cap='RStudio on RStudio Server.'}
 knitr::include_graphics('images/w04/rstudio_interface.png')
@@ -96,7 +96,7 @@ We will first start off with using **RStudio's console** to test out some of R's
 You might need to click on the console window to get it to expand - you can then drag it to take up a larger space in your RStudio window.
 :::
 
-In your R-Studio console, you should see a prompt sign - `>` to the left - this means we are ready to start writing code. Anything that appears as red in the command line means it is an error (or a warning) so you will likely need to correct your code. If you see a `>` on the left it means you can type in your next line, a `+` means that you have not finished the previous line of code. As will become clear, `+` signs often appear if you do not close brackets or you did not properly finish your command in a way that R expected.
+In your RStudio console, you should see a prompt sign - `>` to the left - this means we are ready to start writing code. Anything that appears as red in the command line means it is an error (or a warning) so you will likely need to correct your code. If you see a `>` on the left it means you can type in your next line, a `+` means that you have not finished the previous line of code. As will become clear, `+` signs often appear if you do not close brackets or you did not properly finish your command in a way that R expected.
 
 In your console, let us go ahead and conduct some quick maths - at their most basic, all programming languages can be used like calculators.
 
@@ -681,7 +681,7 @@ dim(crime_csv)
 
 We have found out our variable is a data frame, containing **90979 rows and 12 columns**. We however do not want just the single `csv` and instead what to combine all our `csv's` in our `all_crime` folder into a single data frame - so how do we do this?
 
-This will be the most complicated section of code you will come across today, and we will use some functions that you have not seen before..
+This will be the most complicated section of code you will come across today, and we will use some functions that you have not seen before.
 
 ```{r 04-combine-csv, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # read in all files and append all rows to a single data frame
@@ -749,7 +749,7 @@ Let us go ahead and count the number of thefts in London **by month**. The code 
 
 ```{r 04-count-theft, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # count in the all_theft_df the number of crimes by month and store as a new dataframe
-theft_month_df <- count(all_theft_df,month)
+theft_month_df <- count(all_theft_df, month)
 ```
 
 We have stored the output of our `count()` function to a new data frame: `theft_month_df`. Go ahead and look at the data frame to see the output - it is a very simple table containing simply the month and `n`, i.e. the number of thefts occurring per month. We can and should go ahead and rename this column to help with our interpretation of the data frame. We will use a quick approach to do this, that uses **selection** of the precise column to rename only the second column: 
@@ -779,6 +779,9 @@ barplot(theft_month_df$crime_totals, main="Theft from persons in London by month
 6. As this barplot is still a little basic, also try to figure out how to change the bar chart fill and borders to another colour from grey and black respectively. 
 
 Now, make sure to save your script, so we can return to it next week. You do not need to save your workspace - but can do so if you like. Saving the workspace will keep any variables generated during your current session saved and available in a future session.
+
+## Want more? [Optional]
+The graphs and figures we have made so far are not really pretty. Although possible with the basic R installation, there are easier and better ways to make nice visualisations. For this we can turn to other R packages that have been developed. In fact, there are many hundreds of packages in R each designed for a specific purpose, some of which you can use to create plots in R. One of those packages is called `ggplot2`. The `ggplot2` package is an implementation of the Grammar of Graphics ([Wilkinson 2005](https://en.wikipedia.org/wiki/Leland_Wilkinson)) - a general scheme for data visualisation that breaks up graphs into semantic components such as scales and layers. `ggplot2` can serve as a replacement for the base graphics in R and contains a number of default options that match good visualisation practice. You provide the data, tell `ggplot2` how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details. An excellent introduction to `ggplot2` can be found in the online, freely available book [R for Data Science](https://r4ds.had.co.nz/data-visualisation.html); written by Hadley Wickham, core developer of `ggplot2` and the `tidyverse`. Have a particularly close look at **Chapter 3**: *Data visualisation*: [[Link]](https://r4ds.had.co.nz/data-visualisation.html).
 
 ## Before you leave {#byl-w04}
 We have managed to take a data set of over one million records and clean and filter it to provide a chart that actually shows the potential impact of the first COVID-19 lockdown on theft crime in London. Of course, there is a lot more research and exploratory data analysis we would need to complete before we could really substantiate our findings, but this first chart is certainly a step in the right direction. Next week, we will be doing a lot more with our data set - including a lot more data wrangling and of course spatial analysis, but hopefully this week has shown you want you can achieve with just a few lines of code. [That concludes the tutorial for this week](https://www.youtube.com/watch?v=NKyYr2pbXUM).
