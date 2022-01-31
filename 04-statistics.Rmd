@@ -764,8 +764,8 @@ This selection is made through the `[2]` element of code added after the `names(
 ## Assignment {#assignment-w04}
 We now have our final data set ready for our simple analysis and answer some simple questions.
 
-1. What is the mean average of crime per month in London in 2020?
-2. What is the median average crime per month in London in 2020?
+1. What is the average number of crimes per month in London in 2020?
+2. What is the median number of crimes per month in London in 2020?
 3. What are the minimum and maximum values of crime in London in 2020?
 
 4. Besides descriptive statistics, it would be really useful to generate a simple chart. Use the documentation of the `barplot()` function to create the barplot below:
