@@ -4,8 +4,8 @@ This week’s content introduces you to the foundational concepts associated wit
 - General principles of programming
 - How to use R and RStudio effectively for programmatical data analysis
 
-<!-- ## Lecture recording {#recording-w04} -->
-<!-- - Lecture W4 -->
+## Lecture recording {#recording-w03}
+You can access the Lecturecast recording here: [[Link]](https://echo360.org.uk/section/9991b6b4-5c6b-4edd-aa84-7ff49b1170e3/home). The slides for this week's lecture can be downloaded here: [[Link]](https://github.com/jtvandijk/GEOG0030/tree/master/data/ppt/w04_geo.pdf).
 
 ## Reading list {#reading-w04}
 #### Essential readings {-}
