@@ -562,6 +562,10 @@ For making our maps, we will be using one of two main visualisation libraries th
 
 We can use this function to plot the theft crime rate for one of our months really quickly. Within your script, use the `qtm` function to create a map of theft crime rate in London in January 2020.
 
+:::note
+Before continuing do confirm whether your `theft_crime_rate_sdf` is indeed still of class `sf`. In some instances it is possible that this changed when manipulating the attributes. You can simply check this by running `class(theft_crime_rate_sdf)`. If your dataframe is not of class `sf`, you can force it into one by running `theft_crime_rate_sdf <- st_as_sf(theft_crime_rate_sdf))`.
+:::
+
 ```{r 05-jan-2020-cr, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # quick thematic map for January 2020
 qtm(theft_crime_rate_sdf, fill="jan_2020")
