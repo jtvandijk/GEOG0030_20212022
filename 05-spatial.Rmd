@@ -1,8 +1,8 @@
 # Programming for Spatial Analysis
 This week we are going to look at how to use R and RStudio as a piece of GIS software. Like last week, we will be completing an analysis of our theft crime data set in London. However, rather than solely looking at crime change over time, we are going to add in a spatial component to our analysis: how has crime changed across our wards over the year.
 
-<!-- ## Lecture recording {#recording-w05} -->
-<!-- - Lecture W5 -->
+## Lecture recording {#recording-w05}
+You can access the Lecturecast recording here: [[Link]](https://echo360.org.uk/section/9991b6b4-5c6b-4edd-aa84-7ff49b1170e3/home). The slides for this week's lecture can be downloaded here: [[Link]](https://github.com/jtvandijk/GEOG0030/tree/master/data/ppt/w05_geo.pdf).
 
 ## Reading list {#reading-w05}
 #### Essential readings {-}

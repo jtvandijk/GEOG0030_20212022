@@ -106,6 +106,7 @@ assignment-w04
 want-more-optional
 byl-w04
 programming-for-spatial-analysis
+recording-w05
 reading-w05
 crime-analysis-ii
 data-preparation
