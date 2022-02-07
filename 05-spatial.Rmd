@@ -551,8 +551,8 @@ Once again, after a bit of searching, we can find out that the `mutate()` functi
 # create a new function called crime rate, which takes an argument, x, and the crime rate calculation
 crime_rate = function(x, na.rm = FALSE) ((x/all_theft_ward_sdf$pop2019)*10000)
 
-# apply this calculation to all columns between 8 and 18 within the all_theft_ward_sdf and transform the values
-theft_crime_rate_sdf <- mutate_at(all_theft_ward_sdf, vars(8:18), crime_rate)
+# apply this calculation to all columns between 8 and 19 within the all_theft_ward_sdf and transform the values
+theft_crime_rate_sdf <- mutate_at(all_theft_ward_sdf, vars(8:19), crime_rate)
 ``` 
 
 Have a look at your new `theft_crime_rate_sdf` spatial data frame - does it look as you would expect? Now we have our **final** data frame, we can go ahead and make our maps.
