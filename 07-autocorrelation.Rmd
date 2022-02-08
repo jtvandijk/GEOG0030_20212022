@@ -320,8 +320,6 @@ These are outlined in the below table for easy reference:
 |Test | Scale | Test | Output | Significance Value |
 | :---- | :---| :--------------| :--------------| :---|
 | Global Moran's I | Global | Tests how "random" the spatial distribution of values are, producing a correlation coefficient for the relationship between a variable (like income) and its surrounding values. | **Moran's I statistic:** <br> Metric between -1 and 1. <br> -1 = dispersed <br> 0 = CSR <br> 1 = clustered | Yes - $p$-value |
-| Getis-Ord | Global | Tests for clusters of **high** and **low** values. <br> Works best with use of **distance/proximity weights**. | **Getis-Ord \(G_{i}^{*}\) statistic:** <br> gG > Expected = High values clustering <br> gG < Expected = Low values clustering | Yes - $p$-value |
-| Geary's C | Global | Tests whether **similar** or **disimilar** values are clustering.  | **Geary C statistic:**  <br> 1 = No spatial autocorrelation <br> GC < 1 = Similar values clustering (positive spatial autocorrelation) <br> GC > 1 = Dissimilar values clustering (negative spatial autocorrelation) | Yes - $p$-value |
 | Local Moran's I | Local | Tests the difference between a unit of analysis and its neighbour(s).  | **Local Moran's I statistic:** <br> 1. Can be used alongside the mean of values to generate cluster type generations. <br>i.e. High-High, High-Low, Low-High, Low-Low, Insignificant. <br> 2. Can also use standard deviation of main local statistic to show just high and low clusters  | Yes - $p$-value |
 | Local Getis-Ord | Local |  Identifies statistically significant hot spots and cold spots using the local Getis-Ord Gi* statistic.  | Can use the standard deviation of statistic to identify hot and cold spots | Yes - $p$-value |
 
@@ -440,8 +438,6 @@ ward_spatial_weights_queen <- ward_neighbours_queen %>% nb2listw(., style="C")
 ward_spatial_weights_fd <- ward_neighbours_fd %>% nb2listw(., style = 'B')
 ``` 
 
-We will be using the Queen definition for the majority of our tests, but use the Fixed Distance for Getis-Ord. 
-
 :::note
 **Note** <br />
 If you did not remove the `NAs` in our obesity column than the following code will not run. Make sure you have done this. If not, do it now and re-run your spatial weights matrix generation code again.
@@ -473,41 +469,15 @@ obesity_GMI
 
 The Moran’s I statistic calculated should be 0.53. With 1 = clustered, 0 = no pattern, -1 = dispersed, this means we can confirm that childhood obesity in London is positively autocorrelated. In other words, childhood obesity does spatially cluster. We can also consider the pseudo $p$-value as a measure of the statistical significance of the model - at < 2.2e-16, which confirm our result is (psuedo) significant.
 
-### Geary C's
-The Gearcy C test will tell us whether similar values or dissimilar values are clustering. We can run the Geary C test using the exact same notation - we just change the test we want to run:
-
-```{r 07-run-GC, warnings=FALSE, message=FALSE, cache=FALSE, tidy=TRUE}
-# run the Geary C's test on our y6_obesity_2014 data
-obesity_GC <- obesity_ward_sdf %>% pull(y6_obesity_2014) %>% as.vector() %>% geary.test(., ward_spatial_weights_queen)
-
-# print Geary C's statistic
-obesity_GC
-``` 
-
-The Geary’s C statistic calculated should be 0.46. With Geary’s C falling between 0 and 2 and 1 means no spatial autocorrelation, <1 = positive spatial autocorrelation or similar values clustering and >1 = negative spatial autocorrelation or dissimilar values clustering, we can confirm that our data shows that similar values are clustering. We can also consider the *pseudo* $p$-value as a measure of the statistical significance of the model again, which also here confirms our result is (pseudo) significant.
-
-### Getis-Ord General G
-The Getis-Ord General G test tells us whether high or low values are clustering. For Getis-Ord, as it is **recommended** to use a proximity-based neighbour matrix, we will use our Fixed Distance definition of neighbours:
-
-```{r 07-run-GO, message=FALSE, cache=FALSE, tidy=TRUE, warnings=FALSE}
-# run the Getis-Ord General G test on our y6_obesity_2014 data, change spatial weights to fd
-obesity_GO <- obesity_ward_sdf %>% pull(y6_obesity_2014) %>% as.vector() %>% globalG.test(., ward_spatial_weights_fd)
-
-# print results
-obesity_GO
-``` 
-
-The Getis-Ord General G statistic calculated should be 0.024 (2.415636e-02). The expectation is 0.021 ( 2.195887e-02). With G > expected = high values clustering and G < expected = low values clustering, we can confirm that high values within our variable are tending to cluster. The pseudo $p$-value suggest again that the model is significant.
-
 :::note
 **Note** <br/>
-Before we run our local spatial autocorrelation tests, let's just take a second to think through what our results have shown. From our three statistical tests, we can confirm that:
+Before we run our local spatial autocorrelation tests, let's just take a second to think through what our results have shown. From our global statistical tests, we can confirm that:
 
 * There is clustering in our data set.
 * Similar values are clustering.
 * High values are clustering.
 
-Each of these tests do tell us something different about how our data is clustered and can refine our conclusions about our data without the need for our local tests - we can conclude already that areas of high levels of childhood obesity tend to cluster in the same area. What we do not know yet is **where** these clusters are occurring. To help with this, we need to run our **local** models to identify where these clusters are located.
+We can conclude already that areas of high levels of childhood obesity tend to cluster in the same area. What we do not know yet is **where** these clusters are occurring. To help with this, we need to run our **local** models to identify where these clusters are located.
 :::
 
 ### Local Moran's I
@@ -666,7 +636,7 @@ tm_shape(obesity_ward_sdf) +
 
 And there we have it - within one map, we can visualise both the relationship of our Wards to their respective neighbourhoods and the significance of this relationship from our local Moran's I test. This type of map is called a LISA map - and is a great way of showing how a variable is actually clustering.
 
-### Getis-Gi*
+### Getis-Ord-Gi*
 The final test we will run today is the local Getis-Ord, which will produce the Gi* statistic. This statistic will identify hot and cold spots by looking at the neighbours within a defined proximity to identify where either high or low values cluster spatially and recognising statistically significant hot-spots as those areas of high values where other areas within a neighbourhood range also share high values too (and vice versa for cold spots).
 
 Run the local Gi* statistic spatial autocorrelation test and print the result:
@@ -704,7 +674,7 @@ tm_shape(obesity_ward_sdf) +
   tm_scale_bar(breaks = c(0, 5, 10, 15, 20), position = c("left", "bottom"))
 ``` 
 
-Our map shows quite clearly hot and cold spots of obesity across London - how does this compare with our local Moran's I? Do we see the same clusters?
+Our map shows quite clearly hot and cold spots of obesity across London - how does this compare with our local Moran's I? Do we see the same clusters? How can we only the statistically significant clusters?
 
 ## Assignment 2 {#assignment-2-w07}
 Through conducting our spatial autocorrelation tests, we can visually confirm the presence of clusters in our `y6_obesity_2014` variable - and provide a significance value associated with these tests. This provides us with a way to explain our distributions **quantitatively** during the analysis of our results - it also creates some pretty cool looking maps.
@@ -714,7 +684,7 @@ Now you have the code, you will be able to repeat this analysis on any variable 
 In order to do this, you have to:
 
 1. Create a choropleth map showing the distribution of the variable values.
-2. Calculate all three global spatial autocorrelation statistics and explain what they show.
+2. Calculate a global spatial autocorrelation statistic and explain what it shows.
 3. Create a local Moran's I map showing the four cluster types.
 4. Create a local Getis-Ord hotspot map.
 5. Compare these results to the output of our `y6_obesity_2014` values. Do both variables have clusters? Do we see similar clusters in similar locations? What might this tell us about the relationship between deprivation and obesity in children in London?
