@@ -386,7 +386,7 @@ For either approach, we use a single line of code to create the relevant \(W_{ij
 # create a neighbours list based on the Queen neighbour definition
 ward_neighbours_queen <- obesity_ward_sdf %>% poly2nb(., queen=T)
 
-# Create a neighbours list based on the Rook neighbour definition
+# create a neighbours list based on the Rook neighbour definition
 ward_neighbours_rook <- obesity_ward_sdf %>% poly2nb(., queen=F)
 
 # creates centroid and joins neighbours within 0 and 3000 'units' of the CRS, i.e. metres

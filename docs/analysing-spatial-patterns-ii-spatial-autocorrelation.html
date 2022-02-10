@@ -24,7 +24,7 @@
 <meta name="author" content="Justin van Dijk" />
 
 
-<meta name="date" content="2022-02-08" />
+<meta name="date" content="2022-02-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -770,7 +770,7 @@ Have a look at Esri’s Help Documentation on <a href="https://pro.arcgis.com/en
 <span id="cb222-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb222-2" aria-hidden="true" tabindex="-1"></a>ward_neighbours_queen <span class="ot">&lt;-</span> obesity_ward_sdf <span class="sc">%&gt;%</span></span>
 <span id="cb222-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb222-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">poly2nb</span>(., <span class="at">queen =</span> T)</span>
 <span id="cb222-4"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb222-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb222-5"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb222-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a neighbours list based on the Rook neighbour definition</span></span>
+<span id="cb222-5"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb222-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create a neighbours list based on the Rook neighbour definition</span></span>
 <span id="cb222-6"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb222-6" aria-hidden="true" tabindex="-1"></a>ward_neighbours_rook <span class="ot">&lt;-</span> obesity_ward_sdf <span class="sc">%&gt;%</span></span>
 <span id="cb222-7"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb222-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">poly2nb</span>(., <span class="at">queen =</span> F)</span>
 <span id="cb222-8"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb222-8" aria-hidden="true" tabindex="-1"></a></span>

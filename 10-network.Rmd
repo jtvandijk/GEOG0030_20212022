@@ -265,7 +265,7 @@ Now you have the number of fast-food outlets within specific distances from each
 
 :::note
 **Note** <br/>
-This skills and steps required for this analysis are not just based on this weeks practical, but you will have to combine all your knowledge of coding and spatial analysis you have gained over the past 10 weeks!
+This skills and steps required for this analysis are not just based on this weeks practical, but you will have to combine all your knowledge of coding and spatial analysis you have gained over the past ten weeks!
 :::
 
 ## Before you leave {#byl-w10}

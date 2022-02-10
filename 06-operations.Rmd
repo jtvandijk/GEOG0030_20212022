@@ -558,7 +558,7 @@ london_ward_shp$btns_rate <- (london_ward_shp$nr_station_bike_theft/london_ward_
 ## Assignment {#assignment-w06}
 Now we worked through all this, for this week's assignment:
 
-1. Create a proper map of the rate of bike thefts within 400m of a train or tube station.
+1. Create a proper map of the rate of bike thefts within **400m** of a train or tube station.
 2. Re-run the above analysis at four more distances: **100m**, **200m**, **300m**, **500m** and calculate the percentage of bike theft at these different distances. You can choose whether you would like to use the **geometric operations** or **spatial queries** approach. What do you think could explain the substantial differences in counts as we increase away from the train station from 100 to 200m?
 
 ## Before you leave {#byl-w06}
