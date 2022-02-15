@@ -11,6 +11,7 @@ rmd_files:
 - 08-point-pattern.Rmd
 - 09-raster.Rmd
 - 10-network.Rmd
+- 11-data.Rmd
 language:
   ui:
     chapter_name: ""
