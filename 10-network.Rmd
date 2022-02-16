@@ -1,7 +1,6 @@
 # Transport Network Analysis
 This final week we will cover another type of data: network data. We will take a look at different types of network analysis and how they apply to different applications and can be used within spatial analysis. For our practical component, we will look at current some approaches to analyse road networks in R using the `dodgr` library to calculate the network distance between two points (i.e. an Origin and a Destination). These distances can then be used to calculate the number of X resource (e.g. fast-food outlets) within a certain distance of a POI, e.g. a school or population-weighted centroid. 
 
-
 <!-- ## Lecture recording {#recording-w10} -->
 <!-- - Lecture W10 -->
 

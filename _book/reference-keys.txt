@@ -206,7 +206,7 @@ loading-data-w10
 accessibility-in-portsmouth
 assignment-w10
 byl-w10
-online-resources
+data-sources
 open-data
 cdrc-data
 other-data
