@@ -429,7 +429,7 @@ In your script, add the following code to extract only the relevant columns we n
 
 ```{r 05-select-rel-columns, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # reduce our data frame using the select function
-all_theft_ward_df <- select(all_theft_ward_df, crime_id, month, longitude, latitude, lsoa_name, lsoa_code, crime_type, WD18CD, WD18NM)
+all_theft_ward_df <- dplyr::select(all_theft_ward_df, crime_id, month, longitude, latitude, lsoa_name, lsoa_code, crime_type, WD18CD, WD18NM)
 ``` 
 
 You should now see that your `all_theft_ward_df` data frame should only contain nine variables - you can go and view this data frame or call the `head()` function on the data in the console if you'd like to check out this new formatting.
