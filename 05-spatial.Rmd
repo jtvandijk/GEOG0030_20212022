@@ -396,22 +396,22 @@ For **both** functions, we can also use the negative `-` approach we saw in the 
 
 ```{r 05-lsoalueg-13, warnings=FALSE, message=FALSE, cache=TRUE, eval=FALSE, tidy=TRUE}
 # select column 2
-dplyr::selectlsoa_ward_lookup, 2)
+dplyr::select(lsoa_ward_lookup, 2)
 
 # select everything but column 2
-dplyr::selectlsoa_ward_lookup, -2)
+dplyr::select(lsoa_ward_lookup, -2)
 
 #select LSOA11CD column, note no ""
-dplyr::selectlsoa_ward_lookup, LSOA11CD)
+dplyr::select(lsoa_ward_lookup, LSOA11CD)
 
 # select everything but column 2, note no ""
-dplyr::selectlsoa_ward_lookup, -LSOA11CD)
+dplyr::select(lsoa_ward_lookup, -LSOA11CD)
 
 # select LSOA* columns
-dplyr::selectlsoa_ward_lookup, starts_with("LSOA"))
+dplyr::select(lsoa_ward_lookup, starts_with("LSOA"))
 
 # select everything but column 2
-dplyr::selectlsoa_ward_lookup, -LSOA11CD)
+dplyr::select(lsoa_ward_lookup, -LSOA11CD)
 ```
 
 In addition to these index-based functions, within `dplyr`, we also have `filter()` that enables us to easily filter rows within our data frame based on specific conditions (such as being a City of London ward). In addition, `dplyr` provides lots of functions that we can use directly with these selections to apply certain data wrangling processes to only specific parts of our data frame, such as `mutate()` or `count()`.
