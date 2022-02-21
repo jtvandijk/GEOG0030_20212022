@@ -130,7 +130,7 @@ bike_theft_2019 <- read_csv("data/raw/crime/crime_all_2019_london.csv") %>%
   # convert into BNG
   st_transform(27700)
 ``` 
-We now have our three data sets loaded, it is time for a little data checking. We can see just from our Environment window that in total, we have **286** stations and **18,735** crimes to look at in our analysis. We can double-check the (Attribute) tables of our newly created spatial dataframes to see what data we have to work with. 
+We now have our three data sets loaded, it is time for a little data checking. We can see just from our Environment window that in total, we have **302** stations and **18,744** crimes to look at in our analysis. We can double-check the (Attribute) tables of our newly created spatial dataframes to see what data we have to work with. 
 
 You can either do this manually by clicking on the variable, or using commands such as `head()`, `summary()` and `names()` to get an understanding of our dataframe structures and the field names present - you can choose your approach, but make sure to look at your data.
 
