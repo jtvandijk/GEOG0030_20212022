@@ -247,7 +247,10 @@ london_stations_osm <- opq(bbox = p_bbox) %>%
   osmdata_sf()
 ``` 
 
-In some cases this code may (temporarily) not work. If that is the case you can download the `london_stations_osm` object here: [Download](https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/london_stations_osm.RData). After downloading, you can copy it to your working directory and load the object using the `load()` function.
+:::note
+**Note** <br/>
+In some cases this code may (temporarily) not work. If that is the case you can download the `london_stations_osm` object here: [[Download]](https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/london_stations_osm.RData). After downloading, you can copy the file to your working directory and load the object using the `load()` function.
+:::
 
 :::note
 **Note** <br/>
