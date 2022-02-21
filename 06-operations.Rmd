@@ -247,6 +247,8 @@ london_stations_osm <- opq(bbox = p_bbox) %>%
   osmdata_sf()
 ``` 
 
+In some cases this code may (temporarily) not work. If that is the case you can download the `london_stations_osm` object here: [Download](https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/london_stations_osm.RData). After downloading, you can copy it to your working directory and load the object using the `load()` function.
+
 :::note
 **Note** <br/>
 When we download OSM data - and extract it as above - our query will return all elements tagged as our key-value pair into our `osmdata_sf()` OSM data object. This means all elements - any **points, lines and polygons** - associated with our tag will be returned. Obviously we would think with our `public_transport = station` tag, we would only return point data representing our train and tube stations in London. But if we use the `summary()` function on our `london_stations_osm` OSM data object, we can see that not only is a lot of other data stored in our OSM data object (including the bounding box we used within our query, plus metadata about our query), but our query has returned both **points** and **polygons** - currently stored within this OSM data object as individual spatial data frames. 
