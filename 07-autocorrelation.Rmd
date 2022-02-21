@@ -127,7 +127,7 @@ Select our 10 fields from our `all_ward_data` dataframe for use in analysis:
 
 ```{r 07-clean-csv, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # select our 10 fields for analysis using their index number
-obesity_ward_data <- select(all_ward_data, 2, 4, 838, 900, 248, 353, 373, 377, 859, 865)
+obesity_ward_data <- dplyr::select(all_ward_data, 2, 4, 838, 900, 248, 353, 373, 377, 859, 865)
 ``` 
 
 You should now have a new dataframe with our 10 variables. One issue with our original `csv` is that is contained two rows worth of field names - hence if you look at the first row of our dataframe, it does not make sense. We therefore want to remove this row as well as the last three rows. In addition, it would be good to clean up our names for use - here we're going to use the `janitor` library, which cleans our names by removing white space, special characters, capitals etc.
