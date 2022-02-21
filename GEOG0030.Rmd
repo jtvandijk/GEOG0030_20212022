@@ -2238,7 +2238,7 @@ You should see that we now end up with a data frame akin to our final output abo
 **Option 2: New code, remove columns first**
 ```{r 05-speedy-2, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # select the relevant fields from the lookup table, then join to dataframe
-all_theft_ward_df_speedy_2 <- dplyr::selectlsoa_ward_lookup, LSOA11CD, WD18CD, WD18NM) %>% right_join(all_theft_df, by = c( "LSOA11CD" = "lsoa_code"))
+all_theft_ward_df_speedy_2 <- dplyr::select(lsoa_ward_lookup, LSOA11CD, WD18CD, WD18NM) %>% right_join(all_theft_df, by = c( "LSOA11CD" = "lsoa_code"))
 ``` 
 
 What these two options do show is that there are multiple ways to achieve the same output, using similar code - we just need to always think through what outputs we want to use. Pipes help us improve the efficiency of our code - the one thing however to note in our current case is that by adding the pipe, we would not be able to check our join prior to the selection - so sometimes, it is better to add in this efficiency, once you are certain that your code has run correctly.
