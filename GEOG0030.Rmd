@@ -2230,7 +2230,7 @@ Let's see how we can combine this process into a single line of code:
 **Option 1: Original code, added pipe**
 ```{r 05-speedy-1, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # join dataframes, then select only relevant columns
-all_theft_ward_df_speedy_1 <- left_join(all_theft_df, lsoa_ward_lookup, by = c("lsoa_code" = "LSOA11CD")) %>% select(crime_id, month, longitude, latitude, lsoa_name, lsoa_code, crime_type, WD18CD, WD18NM)
+all_theft_ward_df_speedy_1 <- left_join(all_theft_df, lsoa_ward_lookup, by = c("lsoa_code" = "LSOA11CD")) %>% dplyr::select(crime_id, month, longitude, latitude, lsoa_name, lsoa_code, crime_type, WD18CD, WD18NM)
 ``` 
 
 You should see that we now end up with a data frame akin to our final output above - the same number of observations and variables, all from one line of course. We could also take another approach in writing code, by completing our selection **prior** to our join, which would mean having to write out fewer field names when piping this output into our join:
