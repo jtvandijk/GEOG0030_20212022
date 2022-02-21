@@ -57,7 +57,7 @@ This week, we will start off using three data sets:
 | File                                                 | Type           | Link |
 | :------                                              | :------        | :------ |
 | Crime in London 2019                                 | `csv`        | [Download](https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/crime_all_2019_london.zip) |
-| Train and tube stations in London                    | `kml`        | [Download](https://github.com/jtvandijk/GEOG0114/tree/master/data/zip/tfl_stations.zip) |
+| Train and tube stations in London                    | `kml`        | [Download](https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/tfl_stations.zip) |
 
 Download the files above. Store your `crime_all_2019_london.csv` in your `data/raw/crime` folder. Move your `tfl_stations.kml` download to your `raw` data folder and create a new `transport` folder to contain it. The London Ward boundaries for 2019 should still be in your `data/raw/boundaries` folder.
 
