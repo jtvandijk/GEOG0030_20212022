@@ -447,6 +447,7 @@ If you did not remove the `NAs` in our obesity column than the following code wi
 With a global Moran’s I we test how “random” the spatial distribution of these values is, producing a global Moran's statistic from the lag approach explained earlier. 
 
 The global Moran’s I statistic is a metric between -1 and 1:
+
 * -1 is a completely even spatial distribution of values
 * 0 is a “random” distribution
 * 1 is a “non-random” distribution of clearly defined clusters

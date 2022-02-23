@@ -24,7 +24,7 @@
 <meta name="author" content="Justin van Dijk" />
 
 
-<meta name="date" content="2022-02-21" />
+<meta name="date" content="2022-02-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -826,10 +826,12 @@ If you did not remove the <code>NAs</code> in our obesity column than the follow
 <div id="global-morans-i" class="section level3 hasAnchor" number="7.5.4">
 <h3><span class="header-section-number">7.5.4</span> Global Moran’s I<a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#global-morans-i" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>With a global Moran’s I we test how “random” the spatial distribution of these values is, producing a global Moran’s statistic from the lag approach explained earlier.</p>
-<p>The global Moran’s I statistic is a metric between -1 and 1:
-* -1 is a completely even spatial distribution of values
-* 0 is a “random” distribution
-* 1 is a “non-random” distribution of clearly defined clusters</p>
+<p>The global Moran’s I statistic is a metric between -1 and 1:</p>
+<ul>
+<li>-1 is a completely even spatial distribution of values</li>
+<li>0 is a “random” distribution</li>
+<li>1 is a “non-random” distribution of clearly defined clusters</li>
+</ul>
 <p>Before we run our global Moran’s I test, we will first create a spatial lag model plot which looks at each of the values plotted against their spatially lagged values. The graph will show quickly whether we are likely to expect our test to return a positive, zero or negative statistic:</p>
 <div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb230-1" aria-hidden="true" tabindex="-1"></a>obesity_MI_sp <span class="ot">&lt;-</span> <span class="fu">moran.plot</span>(obesity_ward_sdf<span class="sc">$</span>y6_obesity_2014, <span class="at">listw =</span> ward_spatial_weights_queen)</span></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/07-scatter-plot-MI-1.png" width="672" /></p>
