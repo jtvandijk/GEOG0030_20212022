@@ -589,7 +589,7 @@ If you run into an error along the lines of <code>Error in nchar(x, "width") : i
 Figure 7.2: Cheatsheet on data distributions: negative skew, normal, positive skew.
 </p>
 </div>
-<p>We can further customise our histograms if we want to make them more aesthetically pleasing and update the title and axis labeling:0</p>
+<p>We can further customise our histograms if we want to make them more aesthetically pleasing and update the title and axis labeling:</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pretty histogram</span></span>
 <span id="cb216-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb216-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(obesity_ward_sdf<span class="sc">$</span>y6_obesity_2014, <span class="at">breaks =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Distribution of Obesity in Year 6 children, London Wards in 2014&quot;</span>,</span>
 <span id="cb216-3"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb216-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">&quot;Percentage of obese Year 6 children in the ward&quot;</span>)</span></code></pre></div>
@@ -730,9 +730,9 @@ Figure 7.4: A spatial lag model - plotting value against the mean of its neighbo
 </div>
 <p>To determine a <span class="math inline">\(p\)</span>-value from our model for global Moran’s I, this spatial lag model is computed multiple times (think hundreds, thousands) but uses a random distribution of neighbouring values to determine different slopes for multiple ways our data <em>could</em> be distributed, if our data was distributed by random. The output of this test is a sampling distribution of Moran’s I values that would confirm a null hypothesis that our values are randomly distributed. These slopes are then compared to compare our <em>observed</em> slope versus our <em>random</em> slopes and identify whether the slope is within the main distribution of these values or an outlier:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:07-spatial-lag-plt"></span>
-<img src="images/w07/MC_sim_1.png" alt="A spatial lag model - plotting value against the mean of its neighbours. Source: Manuel Gimond." width="1094" />
+<img src="images/w07/MC_sim_1.png" alt="A spatial lag model - plotting value against the mean of its neighbours. Source: [Manuel Gimond](https://mgimond.github.io/Spatial/spatial-autocorrelation.html)." width="1094" />
 <p class="caption">
-Figure 7.5: A spatial lag model - plotting value against the mean of its neighbours. Source: Manuel Gimond.
+Figure 7.5: A spatial lag model - plotting value against the mean of its neighbours. Source: <a href="https://mgimond.github.io/Spatial/spatial-autocorrelation.html">Manuel Gimond</a>.
 </p>
 </div>
 <p>If our slope is an outlier, i.e. not a value we would expect to compute if the data were randomly distributed, we are more confidently able to confirm our slope is reflective of our data’s clustering and is significant. Our <em>pseudo-</em><span class="math inline">\(p\)</span>-values are then computed from our simulation results:</p>
@@ -790,7 +790,7 @@ Have a look at Esri’s Help Documentation on <a href="https://pro.arcgis.com/en
 <p>Creating our neighbours list through a single line of code, as above, does not really tell us much about the differences between these conceptualisations. It would be useful to the links between neighbours for our three definitions and visualise their distribution across space. To be able to do this, we will use a few lines of code to generate a visualisation based on mapping the defined connections between the centroids of our wards.</p>
 <div class="note">
 <p><strong>Note</strong> <br />
-A centroid, in it’s most simplest is the central point of an areal unit. How this central point is defined can be weighted by different approaches to understanding geometries or by using an additional variable. In our case, our centroids will reflect in the “central” point of our wards, determined by its geometric boundaries.</p>
+A centroid, in its most simplest form is the central point of an areal unit. How this central point is defined can be weighted by different approaches to understanding geometries or by using an additional variable. In our case, our centroids will reflect in the “central” point of our wards, determined by its geometric boundaries.</p>
 </div>
 <p>We can calculate the centroids of our wards using one of the <strong>geometric</strong> tools from the <code>sf</code> library: <code>sf_centroid()</code>:</p>
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the centroids of all of the Wards in London</span></span>
@@ -808,7 +808,7 @@ A centroid, in it’s most simplest is the central point of an areal unit. How t
 <div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot neighbours: Fixed Distance</span></span>
 <span id="cb228-2"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb228-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ward_neighbours_fd, <span class="fu">st_geometry</span>(ward_centroid), <span class="at">col =</span> <span class="st">&quot;green&quot;</span>, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">cex =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p><img src="GEOG0030_files/figure-html/07-plotting-neighbours-3-1.png" width="672" /></p>
-<p>When comparing these different maps, we can see that there is definitely a difference in the number of neighbours when we use our different approaches. I0t seems our fixed distance neighbour conceptualisation has much connections in the center of London versus areas on the outskirts. We can see that our contiguity approaches provide a more equally distributed connection map - with our Queen conceptualisation having a few more links that our Rook.</p>
+<p>When comparing these different maps, we can see that there is definitely a difference in the number of neighbours when we use our different approaches. It seems our fixed distance neighbour conceptualisation has much connections in the center of London versus areas on the outskirts. We can see that our contiguity approaches provide a more equally distributed connection map - with our Queen conceptualisation having a few more links that our Rook.</p>
 <p>We can also type the different neighbours objects into the console to find out the total number of “non-zero links” (i.e. total number of connections) present within the conceptualisation. You should see that Queen has 3560 non-zero links, Rook has 3474 and Fixed Difference has 8238. Whilst this code simply explores these conceptualisations - and theorectically is not needed for your analysis - it helps us understand further how our different neighbourhood conceptualisations can ultimately impact our overall analysis.</p>
 <p>With our neighbours now defined, we will go ahead and create our final (two) spatial weights objects that will be needed for our spatial autocorrelation code. At the moment, we currently have our neighbours defined as a “list” - but we need to convert it to a “neighbours” object using the <code>nb2listw()</code> function:</p>
 <div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="analysing-spatial-patterns-ii-spatial-autocorrelation.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a neighbours list</span></span>
@@ -980,7 +980,7 @@ Before we run our local spatial autocorrelation tests, let’s just take a secon
 <li><em>If a ward’s observed value is higher than the observed mean but it’s local Moran’s I statistic is lower than the LMI mean</em>, it is designated as <strong>HIGH-LOW</strong>.</li>
 <li><em>If a ward’s LMI was found not to be significant</em>, the ward will be mapped as <strong>not significant</strong>.</li>
 </ul>
-<p>For example, this means that f we know our ward’s observed value is less than the mean value of our overall <code>y6_obesity_2014 variable</code>, then it means it is of course a low value for obesity in comparison to the entirety of London. If it’s local Moran’s I statistic is also lower than the mean value of the rest of the LMI_Ii statistics, it also means it is located in a neighbourhood of low values. As a result, if this relationship is significant (determined by the pseudo <span class="math inline">\(p\)</span>-value from our local Moran’s I calculation), we can call this a “LOW-LOW” cluster.</p>
+<p>For example, this means that if we know our ward’s observed value is less than the mean value of our overall <code>y6_obesity_2014 variable</code>, then it means it is of course a low value for obesity in comparison to the entirety of London. If it’s local Moran’s I statistic is also lower than the mean value of the rest of the LMI_Ii statistics, it also means it is located in a neighbourhood of low values. As a result, if this relationship is significant (determined by the pseudo <span class="math inline">\(p\)</span>-value from our local Moran’s I calculation), we can call this a “LOW-LOW” cluster.</p>
 <p>To achieve this cluster map, we need to take several additional steps:</p>
 <ul>
 <li>The first will tell us, for each Ward, whether its observed value is higher or lower than the mean observed.</li>
@@ -1085,6 +1085,7 @@ Before we run our local spatial autocorrelation tests, let’s just take a secon
 <li>Create a local Moran’s I map showing the four cluster types.</li>
 <li>Create a local Getis-Ord hotspot map.</li>
 <li>Compare these results to the output of our <code>y6_obesity_2014</code> values. Do both variables have clusters? Do we see similar clusters in similar locations? What might this tell us about the relationship between deprivation and obesity in children in London?</li>
+<li>Run the analysis using a different neighbour definition. What happens? Do the results change?</li>
 </ol>
 </div>
 <div id="byl-w07" class="section level2 hasAnchor" number="7.7">
