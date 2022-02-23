@@ -199,7 +199,7 @@ We can actually see our data has a slight negative skew - which would make sense
 knitr::include_graphics('images/w07/distributions.png')
 ```
 
-We can further customise our histograms if we want to make them more aesthetically pleasing and update the title and axis labeling:0
+We can further customise our histograms if we want to make them more aesthetically pleasing and update the title and axis labeling:
 
 ```{r 07-hist-2, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # pretty histogram
@@ -338,7 +338,7 @@ knitr::include_graphics('images/w07/MoranI_scatter_plot.png')
 
 To determine a $p$-value from our model for global Moran's I, this spatial lag model is computed multiple times (think hundreds, thousands) but uses a random distribution of neighbouring values to determine different slopes for multiple ways our data *could* be distributed, if our data was distributed by random. The output of this test is a sampling distribution of Moran's I values that would confirm a null hypothesis that our values are randomly distributed. These slopes are then compared to compare our *observed* slope versus our *random* slopes and identify whether the slope is within the main distribution of these values or an outlier:
 
-```{r 07-spatial-lag-plt, echo=FALSE, fig.align='center', cache=TRUE, fig.cap='A spatial lag model - plotting value against the mean of its neighbours. Source: Manuel Gimond.'}
+```{r 07-spatial-lag-plt, echo=FALSE, fig.align='center', cache=TRUE, fig.cap='A spatial lag model - plotting value against the mean of its neighbours. Source: [Manuel Gimond](https://mgimond.github.io/Spatial/spatial-autocorrelation.html).'}.'}
 knitr::include_graphics('images/w07/MC_sim_1.png')
 ```
 
@@ -397,7 +397,7 @@ Creating our neighbours list through a single line of code, as above, does not r
 
 :::note
 **Note** <br />
-A centroid, in it's most simplest is the central point of an areal unit. How this central point is defined can be weighted by different approaches to understanding geometries or by using an additional variable. In our case, our centroids will reflect in the "central" point of our wards, determined by its geometric boundaries.
+A centroid, in its most simplest form is the central point of an areal unit. How this central point is defined can be weighted by different approaches to understanding geometries or by using an additional variable. In our case, our centroids will reflect in the "central" point of our wards, determined by its geometric boundaries.
 :::
 
 We can calculate the centroids of our wards using one of the **geometric** tools from the `sf` library: `sf_centroid()`:
@@ -424,7 +424,7 @@ plot(ward_neighbours_rook, st_geometry(ward_centroid), col="blue", pch=20, cex=0
 plot(ward_neighbours_fd, st_geometry(ward_centroid), col="green", pch=20, cex=0.5)
 ``` 
 
-When comparing these different maps, we can see that there is definitely a difference in the number of neighbours when we use our different approaches. I0t seems our fixed distance neighbour conceptualisation has much connections in the center of London versus areas on the outskirts. We can see that our contiguity approaches provide a more equally distributed connection map - with our Queen conceptualisation having a few more links that our Rook.
+When comparing these different maps, we can see that there is definitely a difference in the number of neighbours when we use our different approaches. It seems our fixed distance neighbour conceptualisation has much connections in the center of London versus areas on the outskirts. We can see that our contiguity approaches provide a more equally distributed connection map - with our Queen conceptualisation having a few more links that our Rook.
 
 We can also type the different neighbours objects into the console to find out the total number of "non-zero links" (i.e. total number of connections) present within the conceptualisation. You should see that Queen has 3560 non-zero links, Rook has 3474 and Fixed Difference has 8238. Whilst this code simply explores these conceptualisations - and theorectically is not needed for your analysis - it helps us understand further how our different neighbourhood conceptualisations can ultimately impact our overall analysis.
 
@@ -580,7 +580,7 @@ Our HIGH-HIGH and LOW-LOW will show our clusters, whereas the other two cluster 
 * *If a ward's observed value is higher than the observed mean but it's local Moran's I statistic is lower than the LMI mean*, it is designated as **HIGH-LOW**.
 * *If a ward's LMI was found not to be significant*, the ward will be mapped as **not significant**.
 
-For example, this means that f we know our ward’s observed value is less than the mean value of our overall `y6_obesity_2014 variable`, then it means it is of course a low value for obesity in comparison to the entirety of London. If it’s local Moran’s I statistic is also lower than the mean value of the rest of the LMI_Ii statistics, it also means it is located in a neighbourhood of low values. As a result, if this relationship is significant (determined by the pseudo $p$-value from our local Moran’s I calculation), we can call this a “LOW-LOW” cluster.
+For example, this means that if we know our ward’s observed value is less than the mean value of our overall `y6_obesity_2014 variable`, then it means it is of course a low value for obesity in comparison to the entirety of London. If it’s local Moran’s I statistic is also lower than the mean value of the rest of the LMI_Ii statistics, it also means it is located in a neighbourhood of low values. As a result, if this relationship is significant (determined by the pseudo $p$-value from our local Moran’s I calculation), we can call this a “LOW-LOW” cluster.
 
 To achieve this cluster map, we need to take several additional steps:
 
@@ -689,6 +689,7 @@ In order to do this, you have to:
 3. Create a local Moran's I map showing the four cluster types.
 4. Create a local Getis-Ord hotspot map.
 5. Compare these results to the output of our `y6_obesity_2014` values. Do both variables have clusters? Do we see similar clusters in similar locations? What might this tell us about the relationship between deprivation and obesity in children in London?
+6. Run the analysis using a different neighbour definition. What happens? Do the results change?
 
 ## Before you leave {#byl-w07}
 And that is how you can measure spatial dependence in your data set through different spatial autocorrelation measures. Next week we will focus on the last topic within our set of core spatial analysis methods and techniques, but [this week we have covered enough](https://www.youtube.com/watch?v=fCZVL_8D048)!
