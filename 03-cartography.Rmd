@@ -301,7 +301,7 @@ Now we have added our first map to our Map Layout, we want to add a **Legend** f
 
 3. Click on the **Add Legend** tool and again, draw a box on your map in which your legend will appear.
     + As you will see, your Legend auto-generates an entry for every layer in our Layers box in the main QGIS application:
-    ```{r 03-map-legend, echo=FALSE, fig.align='center', fig.caption='The automatically generated legend for your map.'}
+```{r 03-map-legend, echo=FALSE, fig.align='center', fig.caption='The automatically generated legend for your map.'}
 knitr::include_graphics('images/w03/autolegend.png')
 ```
     + In **Item Properties**, uncheck **auto-update** - this stops QGIS automatically populating your legend and enables you to customise your legend.

@@ -161,6 +161,7 @@ getis-ord-gi
 assignment-2-w07
 byl-w07
 analysing-spatial-patterns-iii-point-pattern-analysis
+recording-w08
 reading-w08
 bike-theft-w08
 housekeeping-w08
