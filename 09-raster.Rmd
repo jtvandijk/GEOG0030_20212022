@@ -47,11 +47,8 @@ Within your script, add the following libraries for loading:
 library(tidyverse)
 library(sf)
 library(tmap)
-library(RColorBrewer)
 library(raster)
 library(sp)
-library(rgdal)
-library(rgeos)
 library(gstat)
 library(spatstat)
 ```
