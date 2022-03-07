@@ -24,7 +24,7 @@
 <meta name="author" content="Justin van Dijk" />
 
 
-<meta name="date" content="2022-03-03" />
+<meta name="date" content="2022-03-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -507,7 +507,7 @@ If you did not export your OpenStreetMap train and tube stations from our practi
 <li><strong>Density-based methods</strong>: Density-based methods focus on the <em>first-order</em> properties of a data set, i.e. the variation in the individual locations of the points in the data set across the area of interest, and will characterise our data set’s distribution accordingly in terms of density.</li>
 <li><strong>Distanced-based methods</strong>: Distanced-based methods focus on the <em>second-order</em> properties of a data set, i.e. the interactions between points within our data and whether they appear to have influence on one another and form clusters, and will characterise our data set’s distribution accordingly in terms of dispersion.</li>
 </ul>
-<p>The main library to use when it comes to point pattern analysis in R is the <code>spatstat</code> library, developed by Baddeley, Rubak and Turner since <strong>2005</strong>. As their documentation states, <code>spatstat</code> “is a package for the statistical analysis of spatial data. Its main focus is the analysis of spatial patterns of points in two-dimensional space”. According to it’s “Get Started with <code>spatstat</code>” documentation, “<code>spatstat</code> supports a very wide range of popular techniques for statistical analysis for spatial point patterns, including:</p>
+<p>The main library to use when it comes to point pattern analysis in R is the <code>spatstat</code> library, developed by Baddeley, Rubak and Turner since <strong>2005</strong>. As their documentation states, <code>spatstat</code> “is a package for the statistical analysis of spatial data. Its main focus is the analysis of spatial patterns of points in two-dimensional space”. According to its “Get Started with <code>spatstat</code>” documentation, “<code>spatstat</code> supports a very wide range of popular techniques for statistical analysis for spatial point patterns, including:</p>
 <ul>
 <li>Kernel estimation of density/intensity</li>
 <li>Quadrat counting and clustering indices</li>
@@ -621,7 +621,7 @@ One additional thing to note about the <code>ppp</code> data object is that a <c
 ## alternative hypothesis: two.sided
 ## 
 ## Quadrats: 81 tiles (irregular windows)</code></pre>
-<p>Our <span class="math inline">\(p\)</span> value is well below 0.05 (or 0.01 for that matter), which means there is a statistically significant difference between the expected distribution (i.e. CSR) and the observed distribution (our bike theft point data). We can therefore reject the null hypothesis that our point data have been generated under complete spatial randomness and confirm that our point pattern was not generated in a random matter.However, our completing both a quadrat analysis and the resulting Chi-Squared test is not exactly the most efficient way of looking to understand the relative local densities of our data set - nor can we compare these results to the location of our train and tube stations to look into our original hypothesis that bike theft primarily occurs near tube and train stations.</p>
+<p>Our <span class="math inline">\(p\)</span> value is well below 0.05 (or 0.01 for that matter), which means there is a statistically significant difference between the expected distribution (i.e. CSR) and the observed distribution (our bike theft point data). We can therefore reject the null hypothesis that our point data have been generated under complete spatial randomness and confirm that our point pattern was not generated in a random matter. However, our completing both a quadrat analysis and the resulting Chi-Squared test is not exactly the most efficient way of looking to understand the relative local densities of our data set - nor can we compare these results to the location of our train and tube stations to look into our original hypothesis that bike theft primarily occurs near tube and train stations.</p>
 </div>
 <div id="kernel-density-estimation" class="section level3 hasAnchor" number="8.5.1">
 <h3><span class="header-section-number">8.5.1</span> Kernel Density Estimation<a href="analysing-spatial-patterns-iii-point-pattern-analysis.html#kernel-density-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
