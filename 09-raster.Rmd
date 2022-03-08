@@ -6,7 +6,6 @@ So far, the majority of our module has focused on the use of vector data and tab
 ## Lecture recording {#recording-w09}
 You can access the Lecturecast recording here: [[Link]](https://echo360.org.uk/section/9991b6b4-5c6b-4edd-aa84-7ff49b1170e3/home). The slides for this week's lecture can be downloaded here: [[Link]](https://github.com/jtvandijk/GEOG0030/tree/master/data/ppt/w09_geo.pdf).
 
-
 ## Reading list {#reading-w09}
 #### Essential readings {-}
 - Dugoua, E. Kennedy, R. and Urpelainen, J. 2018. Satellite data for the social sciences: measuring rural electrification with night-time lights. *International Journal of Remote Sensing* 39(9): 2690-2701. [[Link]](https://doi.org/10.1080/01431161.2017.1420936)

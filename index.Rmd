@@ -1,7 +1,7 @@
 --- 
 title: "GEOG0030: Geocomputation"
 author: Justin van Dijk
-date: "`r Sys.Date()`"
+date: "Last modified: `r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
