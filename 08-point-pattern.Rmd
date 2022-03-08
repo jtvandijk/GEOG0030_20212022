@@ -63,7 +63,7 @@ If you did not export your OpenStreetMap train and tube stations from our practi
 
 Let's go ahead and load all of our data at once - we did our due diligence in Week 06 and know what our data looks like and what CRS they are in, so we can go ahead and use pipes to make loading our data more efficient:
 
-```{r 08-load-all-data, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
+```{r 08-load-all-data, warnings=FALSE, message=FALSE, cache=TRUE, tidy=FALSE}
 # read in our 2018 London Ward boundaries
 london_ward_shp <- read_sf("data/raw/boundaries/2018/London_Ward.shp")
 
@@ -71,21 +71,21 @@ london_ward_shp <- read_sf("data/raw/boundaries/2018/London_Ward.shp")
 london_stations <- read_sf("data/raw/transport/osm_stations.shp")
 
 # read in our crime data csv from our raw data folder
-bike_theft_2019 <- read_csv("data/raw/crime/crime_all_2019_london.csv") %>% 
-  # clean names with janitor
-  clean_names() %>%
-  # filter according to crime type and ensure we have no NAs in our data set
-  filter(crime_type == "Bicycle theft" & !is.na(longitude) & !is.na(latitude)) %>% 
-  # select just the longitude and latitude columns
-  dplyr::select(longitude, latitude) %>%
-  # transform into a point spatial dataframe
-  # note providing the columns as the coordinates to use
-  # plus the CRS, which as our columns are long/lat is WGS84/4236
-  st_as_sf(coords = c("longitude", "latitude"), crs = 4236) %>% 
-  # convert into BNG
-  st_transform(27700) %>% 
-  # clip to London
-  st_intersection(london_ward_shp)
+bike_theft_2019 <- read_csv("data/raw/crime/crime_all_2019_london.csv") %>%
+    # clean names with janitor
+    clean_names() %>%
+    # filter according to crime type and ensure we have no NAs in our data set
+    filter(crime_type == "Bicycle theft" & !is.na(longitude) & !is.na(latitude)) %>%
+    # select just the longitude and latitude columns
+    dplyr::select(longitude, latitude) %>%
+    # transform into a point spatial dataframe note providing the columns as
+    # the coordinates to use plus the CRS, which as our columns are long/lat is
+    # WGS84/4236
+    st_as_sf(coords = c("longitude", "latitude"), crs = 4236) %>%
+    # convert into BNG
+    st_transform(27700) %>%
+    # clip to London
+    st_intersection(london_ward_shp)
 ``` 
 
 Let's create a quick map of our data to check it loaded correctly:
