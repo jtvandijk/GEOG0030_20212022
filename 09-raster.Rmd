@@ -3,8 +3,9 @@
 # Rasters, Zonal Statistics and Interpolation
 So far, the majority of our module has focused on the use of vector data and table data (that we have then joined to vector data). This week, we switch it up by focusing primarily on raster data and its analysis using map algebra and zonal statistics.
 
-<!-- ## Lecture recording {#recording-w09} -->
-<!-- - Lecture W9 -->
+## Lecture recording {#recording-w09}
+You can access the Lecturecast recording here: [[Link]](https://echo360.org.uk/section/9991b6b4-5c6b-4edd-aa84-7ff49b1170e3/home). The slides for this week's lecture can be downloaded here: [[Link]](https://github.com/jtvandijk/GEOG0030/tree/master/data/ppt/w09_geo.pdf).
+
 
 ## Reading list {#reading-w09}
 #### Essential readings {-}
@@ -46,9 +47,8 @@ Within your script, add the following libraries for loading:
 # libraries
 library(tidyverse)
 library(sf)
-library(tmap)
 library(raster)
-library(sp)
+library(tmap)
 library(gstat)
 library(spatstat)
 ```
@@ -393,7 +393,7 @@ st_thiessen_point <- function(points){
 # call function
 lon_points_voronoi = st_thiessen_point(lonpollution_points)
 
-# add attribute data =
+# add attribute data 
 lonpollution_tv = st_set_geometry(lonpollution_points, lon_points_voronoi)
 
 # inspect

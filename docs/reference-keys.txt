@@ -179,6 +179,7 @@ working-with-the-dbscan-output
 mapping-dbscan-clusters
 byl-w08
 rasters-zonal-statistics-and-interpolation
+recording-w09
 reading-w09
 raster-data
 housekeeping-w09

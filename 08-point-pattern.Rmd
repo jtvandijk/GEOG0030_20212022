@@ -42,10 +42,8 @@ library(tidyverse)
 library(sf)
 library(tmap)
 library(janitor)
-library(spdep)
-library(RColorBrewer)
-library(raster)
 library(spatstat)
+library(raster)
 library(dbscan)
 ```
 

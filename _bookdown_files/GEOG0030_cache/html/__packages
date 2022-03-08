@@ -16,7 +16,6 @@ osmdata
 sp
 spData
 spdep
-raster
 spatstat.data
 spatstat.geom
 nlme
@@ -24,8 +23,7 @@ rpart
 spatstat.core
 spatstat.linnet
 spatstat
+raster
 dbscan
-rgdal
-rgeos
 gstat
 dodgr
