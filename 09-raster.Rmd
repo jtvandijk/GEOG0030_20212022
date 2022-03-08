@@ -33,14 +33,7 @@ Let's get ourselves ready to start our practical content by first downloading th
 # Author: Justin
 ```
 
-In addition to those libraries you should now be familiar with, we will need to install and use:
-
-* `rgdal`: for under-the-hood spatial data management
-* `rgeos`: for more under-the-hood spatial data management
-* `gstat`: to complete our various interpolation techniques
-* `sp`: for spatial analysis ("predecessor" of `sf`)
-
-Within your script, add the following libraries for loading:
+In addition to those libraries you should now be familiar with, we will need to install `gstat`. After installing `gstat`, within your script, add the following libraries for loading:
 
 ```{r 09-scr-libs-all, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
 # libraries
