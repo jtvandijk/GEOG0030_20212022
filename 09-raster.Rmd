@@ -427,7 +427,7 @@ Before we can run IDW, we must first generate an empty grid within which to stor
 
 :::note
 **Note** <br />
-Some of the following code will unfortunately not work with some recent versions of the `rgdal` package. This is because the `gstat` package that both our IDW function is from has not managed to yet accommodate the changes `rgdal` has made to using `GDAL 3` and `PROJ 6`. if the `gsat` below does not work for you, there is an additional section of code that uses the `spatst` library to conduct the IDW analysis. 
+Some of the following code will unfortunately not work with some recent versions of the `rgdal` package. This is because the `gstat` package that both our IDW function is from has not managed to yet accommodate the changes `rgdal` has made to using `GDAL 3` and `PROJ 6`. if the `gsat` below does not work for you, there is an additional section of code that uses the `spatstat` library to conduct the IDW analysis. 
 :::
 
 ```{r 09-inverse-distance-weights, warnings=FALSE, message=FALSE, cache=TRUE, tidy=TRUE}
