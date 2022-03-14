@@ -56,7 +56,7 @@ For this week, we have gone ahead and downloaded the data for you, which you can
 | PopChange Raster                            | File Type         | Link |
 | :------                                     | :------      | :------ |
 | Population surface GB 2001 - Total Population    | `asc`        | [Download](https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/5a_ascii_grid2001_Total_Population_UsRsPopA.zip) |
-| Population surface GB 2011 - Total Population    | `asc`        | [Download](https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/5a_ascii_grid2011_Total_Population_URPopAll) |
+| Population surface GB 2011 - Total Population    | `asc`        | [Download](https://github.com/jtvandijk/GEOG0030/tree/master/data/zip/5a_ascii_grid2011_Total_Population_URPopAll.zip) |
 
 Once downloaded, copy over these files into your `data/raw/population` folder.
 
