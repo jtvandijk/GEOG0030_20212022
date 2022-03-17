@@ -1,12 +1,12 @@
 # Transport Network Analysis
 This final week we will cover another type of data: network data. We will take a look at different types of network analysis and how they apply to different applications and can be used within spatial analysis. For our practical component, we will look at current some approaches to analyse road networks in R using the `dodgr` library to calculate the network distance between two points (i.e. an Origin and a Destination). These distances can then be used to calculate the number of X resource (e.g. fast-food outlets) within a certain distance of a POI, e.g. a school or population-weighted centroid. 
 
-<!-- ## Lecture recording {#recording-w10} -->
-<!-- - Lecture W10 -->
+## Lecture recording {#recording-w10}
+You can access the Lecturecast recording here: [[Link]](https://echo360.org.uk/section/9991b6b4-5c6b-4edd-aa84-7ff49b1170e3/home). The slides for this week's lecture can be downloaded here: [[Link]](https://github.com/jtvandijk/GEOG0030/tree/master/data/ppt/w10_geo.pdf).
 
 ## Reading list {#reading-w10}
 #### Essential readings {-}
-- Geurs, K., Van WEe, B. 2004. Accessibility evaluation of land-use and transport strategies: review and research directions. *Journal of Transport Geography* 12(2): 127-140. [[Link]](https://doi.org/10.1016/j.jtrangeo.2003.10.005)
+- Geurs, K., Van Wee, B. 2004. Accessibility evaluation of land-use and transport strategies: review and research directions. *Journal of Transport Geography* 12(2): 127-140. [[Link]](https://doi.org/10.1016/j.jtrangeo.2003.10.005)
 - Neutens, T. Schwanen, T. and Witlox, F. 2011. The prism of everyday life: Towards a new research agenda for time geography. *Transport Reviews* 31(1): 25-47. [[Link]](https://doi.org/10.1080/01441647.2010.484153)
 - Schwanen, T. and De Jong, T. 2008. Exploring the juggling of responsibilities with space-time accessibility analysis. *Urban Geography* 29(6): 556-580. [[Link]](https://doi.org/10.2747/0272-3638.29.6.556)
 
@@ -122,7 +122,7 @@ ports_roads_edges$oneway <- "no"
 Now we have the network edges, we can turn this into a graph-representation that allows for the calculation of network-based accessibility statistics. 
 
 ## Accessibility in Portsmouth
-Before we construct our graph, we need to also create our **ORIGIN** and **DESTINATION** points, i.e. the data points we wish to calculate the distances between. As we will use the `dodgr_dists()` function to calculate these distances, according to the `dodgr` documentation, these points need to be in either a vector or matrix format, containing the two coordinates for each point for the origins and for the destinations.
+Before we construct our graph, we need to also create our **Origin** and **Destination** points, i.e. the data points we wish to calculate the distances between. As we will use the `dodgr_dists()` function to calculate these distances, according to the `dodgr` documentation, these points need to be in either a vector or matrix format, containing the two coordinates for each point for the origins and for the destinations.
 
 For our Portsmouth scenario, we are interested in calculating the shortest distances between schools and fast-food outlets, therefore we need to download these data sets - again we will turn to OpenStreetMap. Following a similar structure to our query above, we will use our knowledge of OpenStreetMap *keys* and *values* to extract the points of origins (schools) and destinations (fast-food outlets) we are interested in,:
 

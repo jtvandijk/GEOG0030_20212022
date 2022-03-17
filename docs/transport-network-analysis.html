@@ -357,16 +357,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html"><i class="fa fa-check"></i><b>10</b> Transport Network Analysis</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#reading-w10"><i class="fa fa-check"></i><b>10.1</b> Reading list</a></li>
-<li class="chapter" data-level="10.2" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#network-analysis"><i class="fa fa-check"></i><b>10.2</b> Network Analysis</a>
+<li class="chapter" data-level="10.1" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#recording-w10"><i class="fa fa-check"></i><b>10.1</b> Lecture recording</a></li>
+<li class="chapter" data-level="10.2" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#reading-w10"><i class="fa fa-check"></i><b>10.2</b> Reading list</a></li>
+<li class="chapter" data-level="10.3" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#network-analysis"><i class="fa fa-check"></i><b>10.3</b> Network Analysis</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#accessibility-to-fast-food-outlets"><i class="fa fa-check"></i><b>10.2.1</b> Accessibility to fast-food outlets</a></li>
-<li class="chapter" data-level="10.2.2" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#housekeeping-w10"><i class="fa fa-check"></i><b>10.2.2</b> Housekeeping</a></li>
-<li class="chapter" data-level="10.2.3" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#loading-data-w10"><i class="fa fa-check"></i><b>10.2.3</b> Loading data</a></li>
+<li class="chapter" data-level="10.3.1" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#accessibility-to-fast-food-outlets"><i class="fa fa-check"></i><b>10.3.1</b> Accessibility to fast-food outlets</a></li>
+<li class="chapter" data-level="10.3.2" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#housekeeping-w10"><i class="fa fa-check"></i><b>10.3.2</b> Housekeeping</a></li>
+<li class="chapter" data-level="10.3.3" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#loading-data-w10"><i class="fa fa-check"></i><b>10.3.3</b> Loading data</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#accessibility-in-portsmouth"><i class="fa fa-check"></i><b>10.3</b> Accessibility in Portsmouth</a></li>
-<li class="chapter" data-level="10.4" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#assignment-w10"><i class="fa fa-check"></i><b>10.4</b> Assignment</a></li>
-<li class="chapter" data-level="10.5" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#byl-w10"><i class="fa fa-check"></i><b>10.5</b> Before you leave</a></li>
+<li class="chapter" data-level="10.4" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#accessibility-in-portsmouth"><i class="fa fa-check"></i><b>10.4</b> Accessibility in Portsmouth</a></li>
+<li class="chapter" data-level="10.5" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#assignment-w10"><i class="fa fa-check"></i><b>10.5</b> Assignment</a></li>
+<li class="chapter" data-level="10.6" data-path="transport-network-analysis.html"><a href="transport-network-analysis.html#byl-w10"><i class="fa fa-check"></i><b>10.6</b> Before you leave</a></li>
 </ul></li>
 <li class="part"><span><b>Additional Resources</b></span></li>
 <li class="chapter" data-level="11" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>11</b> Data Sources</a>
@@ -395,14 +396,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="transport-network-analysis" class="section level1" number="10">
 <h1><span class="header-section-number">10</span> Transport Network Analysis</h1>
 <p>This final week we will cover another type of data: network data. We will take a look at different types of network analysis and how they apply to different applications and can be used within spatial analysis. For our practical component, we will look at current some approaches to analyse road networks in R using the <code>dodgr</code> library to calculate the network distance between two points (i.e. an Origin and a Destination). These distances can then be used to calculate the number of X resource (e.g. fast-food outlets) within a certain distance of a POI, e.g. a school or population-weighted centroid.</p>
-<!-- ## Lecture recording {#recording-w10} -->
-<!-- - Lecture W10 -->
-<div id="reading-w10" class="section level2" number="10.1">
-<h2><span class="header-section-number">10.1</span> Reading list</h2>
+<div id="recording-w10" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Lecture recording</h2>
+<p>You can access the Lecturecast recording here: <a href="https://echo360.org.uk/section/9991b6b4-5c6b-4edd-aa84-7ff49b1170e3/home">[Link]</a>. The slides for this week’s lecture can be downloaded here: <a href="https://github.com/jtvandijk/GEOG0030/tree/master/data/ppt/w10_geo.pdf">[Link]</a>.</p>
+</div>
+<div id="reading-w10" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> Reading list</h2>
 <div id="essential-readings-9" class="section level4 unnumbered">
 <h4>Essential readings</h4>
 <ul>
-<li>Geurs, K., Van WEe, B. 2004. Accessibility evaluation of land-use and transport strategies: review and research directions. <em>Journal of Transport Geography</em> 12(2): 127-140. <a href="https://doi.org/10.1016/j.jtrangeo.2003.10.005">[Link]</a></li>
+<li>Geurs, K., Van Wee, B. 2004. Accessibility evaluation of land-use and transport strategies: review and research directions. <em>Journal of Transport Geography</em> 12(2): 127-140. <a href="https://doi.org/10.1016/j.jtrangeo.2003.10.005">[Link]</a></li>
 <li>Neutens, T. Schwanen, T. and Witlox, F. 2011. The prism of everyday life: Towards a new research agenda for time geography. <em>Transport Reviews</em> 31(1): 25-47. <a href="https://doi.org/10.1080/01441647.2010.484153">[Link]</a></li>
 <li>Schwanen, T. and De Jong, T. 2008. Exploring the juggling of responsibilities with space-time accessibility analysis. <em>Urban Geography</em> 29(6): 556-580. <a href="https://doi.org/10.2747/0272-3638.29.6.556">[Link]</a></li>
 </ul>
@@ -415,8 +418,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 </div>
-<div id="network-analysis" class="section level2" number="10.2">
-<h2><span class="header-section-number">10.2</span> Network Analysis</h2>
+<div id="network-analysis" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> Network Analysis</h2>
 <p>The term ‘network analysis’ covers a wide range of analysis techniques, from complex network analysis, social network analysis, link analysis, as well as road network analysis.</p>
 <p>A network or network graph is constituted by a collection of vertices that are connected to one another by edges. Note, vertices may also be called nodes or points, whilst edges may be called links or lines. Within social network analysis, you may find the terms actors (the vertices) and ties or relations (the edges) also used.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:09-network-graph"></span>
@@ -428,15 +431,15 @@ Figure 10.1: Visualising networks through vertices and edges.
 <p>Understanding that networks are formed through the connections of vertices and edges, we can think of many naturally and manmade occurring networks that also have a precise geography to them (i.e. their distribution can be mapped directly within geographic space), including rivers connected with tributaries and animal tracks, to electricity pylons and cables and our road and street networks that form crucial parts of our infrastructure.</p>
 <p>The latter, in particular, have been a substantial focus of those working within spatial analysis over the last two decades, particularly with routing applications now dominating much of our day-to-day technology, from personal route-planning and ride-share apps to large-scale logistics and infrastructure applications, including the delivery operations behind all of our online shopping and even <a href="https://www.arcgis.com/apps/webappviewer/index.html?id=2de764a9303848ffb9a4cac0bd0b1aab">Scotland’s Trunk Road Gritters</a>.</p>
 <p>Alongside this development of routing applications, GIS analysts, geographers and public health specialists have also identified the utility of network analysis within geographic space to calculate distance-based measurement and coverage buffers that can be used as part of accessibility studies that look to understand the provision of a specific resource (e.g. greenspaces, hospitals or even fast-food stores) to a certain area of population.</p>
-<div id="accessibility-to-fast-food-outlets" class="section level3" number="10.2.1">
-<h3><span class="header-section-number">10.2.1</span> Accessibility to fast-food outlets</h3>
+<div id="accessibility-to-fast-food-outlets" class="section level3" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> Accessibility to fast-food outlets</h3>
 <p>For this week’s practical, we will be using Portsmouth in the UK as our area of interest for our analysis. Portsmouth is located on the south coast of the UUK, and is actually the only city in the UK whose population density exceeds that of London (in 2011). One of the reasons is that the city primarily occupies an outcrop of land on the south-coast (an island called Portsea Island), and extends only slightly into the north, past the M27. There are lots of geographical issues and challenges within the city that you could investigate, including weaknesses in Portsmouth’s current road provision - there are only three main roads in and out of the island!</p>
 <p>One prominent topic within the city is the issue of public health and childhood obesity. According to figures released in March 2020 by Public Health England, more than one in three school pupils are overweight or obese by the time they finish primary school within the city - higher than the national average of one in four. One potential contributor to the health crisis is the ease and availability of fast-food in the city. From the local newspaper in the city, the Portsmouth News, Healthwatch Portsmouth Chairman Roger Batterbury was quoted: <em>‘For people in areas of deprivation, every penny counts and when it comes to buying food, the cheapest option is important but that is rarely the healthy choice.’</em> See the original article <a href="https://www.portsmouth.co.uk/health/one-three-portsmouth-pupils-are-overweight-or-obese-time-they-finish-primary-school-2063613">here</a>.</p>
 <p>The City Council itself has aimed to address the issue by banning new fast-food takeaways within a 400m range of schools – it started with a pilot at Arundel Court Primary Academy in Landport in September 2019. Since the pilot, no new hot food takeaways will be able to open within a 400m radius of the school. To assess the likely impact of this policy, we will investigate the accessibility of fast-food outlets for school children - we want to know if there is a geography to accessibility that could be used within future analysis to understand whether certain socio-economic demographics are more exposed to fast-food then others. We will measure accessibility by understanding how many fast-food outlets are within specific walking distances of each school, starting at 400m, then 800m and finally a 1km walking distance. We will then aggregate these counts at the Lower Super Output Area (LSOA) and compare these results across the city.</p>
 <p>To get this data ready for our spatial and socio-economic analyses, we will need to first calculate the distances between our schools and fast-food outlets. This involves <strong>calculating the shortest distance a child would walk between a school and a fast-food outlet, using roads or streets</strong>. This means we need to conduct a road network analysis between each school and fast-food outlet.</p>
 </div>
-<div id="housekeeping-w10" class="section level3" number="10.2.2">
-<h3><span class="header-section-number">10.2.2</span> Housekeeping</h3>
+<div id="housekeeping-w10" class="section level3" number="10.3.2">
+<h3><span class="header-section-number">10.3.2</span> Housekeeping</h3>
 <p>Let’s get ourselves ready to start our practical by first adding our relevant libraries, downloading the relevant data and loading this within our script. Open a new script (preferably within your GEOG0030 project) and save this script as <code>wk10-fastfood-analysis.r</code>. At the top of your script, add the following metadata (substitute accordingly):</p>
 <div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="transport-network-analysis.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysing distance between schools and fast-food outlets in Portsmouth</span></span>
 <span id="cb328-2"><a href="transport-network-analysis.html#cb328-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Data: January 2022</span></span>
@@ -453,8 +456,8 @@ All calculations within the <code>dodgr</code> library currently need to be run 
 <span id="cb329-5"><a href="transport-network-analysis.html#cb329-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata)</span>
 <span id="cb329-6"><a href="transport-network-analysis.html#cb329-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dodgr)</span></code></pre></div>
 </div>
-<div id="loading-data-w10" class="section level3" number="10.2.3">
-<h3><span class="header-section-number">10.2.3</span> Loading data</h3>
+<div id="loading-data-w10" class="section level3" number="10.3.3">
+<h3><span class="header-section-number">10.3.3</span> Loading data</h3>
 <p>The first data set we need to download will help with the visualisation of our results: boundary data that contains an outline of Portsmouth.</p>
 <table>
 <thead>
@@ -514,9 +517,9 @@ Because we are focusing on walking, we will overwrite the <code>oneway</code> va
 <p>Now we have the network edges, we can turn this into a graph-representation that allows for the calculation of network-based accessibility statistics.</p>
 </div>
 </div>
-<div id="accessibility-in-portsmouth" class="section level2" number="10.3">
-<h2><span class="header-section-number">10.3</span> Accessibility in Portsmouth</h2>
-<p>Before we construct our graph, we need to also create our <strong>ORIGIN</strong> and <strong>DESTINATION</strong> points, i.e. the data points we wish to calculate the distances between. As we will use the <code>dodgr_dists()</code> function to calculate these distances, according to the <code>dodgr</code> documentation, these points need to be in either a vector or matrix format, containing the two coordinates for each point for the origins and for the destinations.</p>
+<div id="accessibility-in-portsmouth" class="section level2" number="10.4">
+<h2><span class="header-section-number">10.4</span> Accessibility in Portsmouth</h2>
+<p>Before we construct our graph, we need to also create our <strong>Origin</strong> and <strong>Destination</strong> points, i.e. the data points we wish to calculate the distances between. As we will use the <code>dodgr_dists()</code> function to calculate these distances, according to the <code>dodgr</code> documentation, these points need to be in either a vector or matrix format, containing the two coordinates for each point for the origins and for the destinations.</p>
 <p>For our Portsmouth scenario, we are interested in calculating the shortest distances between schools and fast-food outlets, therefore we need to download these data sets - again we will turn to OpenStreetMap. Following a similar structure to our query above, we will use our knowledge of OpenStreetMap <em>keys</em> and <em>values</em> to extract the points of origins (schools) and destinations (fast-food outlets) we are interested in,:</p>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="transport-network-analysis.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download schools from OSM</span></span>
 <span id="cb336-2"><a href="transport-network-analysis.html#cb336-2" aria-hidden="true" tabindex="-1"></a>schools <span class="ot">&lt;-</span> <span class="fu">opq</span>(<span class="at">bbox =</span> p_bbox) <span class="sc">%&gt;%</span></span>
@@ -678,8 +681,8 @@ a distance matrix obtained from running <code>dodgr_distances</code> on <code>gr
 <p><img src="GEOG0030_files/figure-html/w10-bubble-maps-1.png" width="672" /></p>
 <p>The map shows that areas with greater access/exposure to fast-food outlets (denoted by the larger symbols) appear to be within the city centre and in the south, whereas those schools in the north have less exposure. However, if we head back to the interactive map at the start of this practical, you will be able to see that these two areas correlate quite well with the more commercial areas within Portsmouth, the high street and an area known as Gunwharf Quays. This suggests there are complexities in understanding accessibility as well as trying to apply specific policies such as banning new fast-food takeaways within a 400m range of school, particularly if these schools are in commercial areas.</p>
 </div>
-<div id="assignment-w10" class="section level2" number="10.4">
-<h2><span class="header-section-number">10.4</span> Assignment</h2>
+<div id="assignment-w10" class="section level2" number="10.5">
+<h2><span class="header-section-number">10.5</span> Assignment</h2>
 <p>Now you have the number of fast-food outlets within specific distances from each school, the assignment for this week is to aggregate fast-food accessibility at the LSOA scale. After aggregating these distance calculations to the LSOA scale, you will then compare accessibility to the <a href="https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019">2019 Index of Multiple Deprivation</a>. In order to do this you will, at least, need to take the following steps:</p>
 <ol style="list-style-type: decimal">
 <li>Download and extract the 2011 LSOA boundaries of Portsmouth.</li>
@@ -700,8 +703,8 @@ a distance matrix obtained from running <code>dodgr_distances</code> on <code>gr
 This skills and steps required for this analysis are not just based on this weeks practical, but you will have to combine all your knowledge of coding and spatial analysis you have gained over the past ten weeks!</p>
 </div>
 </div>
-<div id="byl-w10" class="section level2" number="10.5">
-<h2><span class="header-section-number">10.5</span> Before you leave</h2>
+<div id="byl-w10" class="section level2" number="10.6">
+<h2><span class="header-section-number">10.6</span> Before you leave</h2>
 <p>Having finished this final tutorial on transport network analysis and, hopefully, having been able to independently conduct some further area-profiling using IMD deciles, <a href="https://www.youtube.com/watch?v=fFw7q-BLxLA">you have now reached the end of Geocomputation</a>!</p>
 
 </div>
