@@ -179,6 +179,7 @@ working-with-the-dbscan-output
 mapping-dbscan-clusters
 byl-w08
 rasters-zonal-statistics-and-interpolation
+recording-w09
 reading-w09
 raster-data
 housekeeping-w09
@@ -201,6 +202,7 @@ more-raster
 assignment-w09-02
 byl-w09
 transport-network-analysis
+recording-w10
 reading-w10
 network-analysis
 accessibility-to-fast-food-outlets

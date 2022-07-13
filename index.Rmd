@@ -8,7 +8,7 @@ documentclass: book
 link-citations: yes
 github-repo: "jtvandijk/GEOG0030"
 description: "GEOG0030: Geocomputation handbook."
-url: 'https\://jtvandijk.github.io/GEOG0030/'
+url: 'https\://jtvandijk.github.io/GEOG0030_20212022/'
 ---
 # (PART\*) Module overview {-}
 
